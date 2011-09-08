@@ -13,5 +13,5 @@ grant {
   permission java.lang.RuntimePermission "*";
   permission java.lang.reflect.ReflectPermission "suppressAccessChecks";
   permission java.util.logging.LoggingPermission "control";
+  permission java.net.NetPermission "specifyStreamHandler";
 };
-
