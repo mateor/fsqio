@@ -7,7 +7,7 @@
  */
 
 grant {
-  permission java.net.SocketPermission "localhost", "connect";
+  permission java.net.SocketPermission "localhost", "connect,accept,resolve";
   permission java.io.FilePermission "<<ALL FILES>>", "read, write, execute, delete";
   permission java.util.PropertyPermission "*", "read, write";
   permission java.lang.RuntimePermission "*";
