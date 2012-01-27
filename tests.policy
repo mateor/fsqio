@@ -14,4 +14,6 @@ grant {
   permission java.lang.reflect.ReflectPermission "suppressAccessChecks";
   permission java.util.logging.LoggingPermission "control";
   permission java.net.NetPermission "*";
+  permission javax.security.auth.AuthPermission "*";
+  permission java.security.SecurityPermission "*";
 };
