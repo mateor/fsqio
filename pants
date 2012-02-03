@@ -1,2 +1,6 @@
 #!/bin/sh
-build/pants.pex goal "$@"
+MY_DIR=$(dirname $0)
+BUILD_ROOT_DIR=$MY_DIR
+export PYTHONPATH=$BUILD_ROOT_DIR/core/src/main/python
+#export PEX_INHERIT_PATH=1
+$BUILD_ROOT_DIR/build/pants.pex goal "$@"
