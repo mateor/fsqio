@@ -17,4 +17,9 @@ grant {
   permission java.net.NetPermission "*";
   permission javax.security.auth.AuthPermission "*";
   permission java.security.SecurityPermission "*";
+  /* hadoop tests need the mbean/jdo perms */
+  permission javax.management.MBeanServerPermission "*";
+  permission javax.management.MBeanPermission "*", "*";
+  permission javax.management.MBeanTrustPermission "*";
+  permission javax.jdo.spi.JDOPermission "*";
 };
