@@ -22,4 +22,6 @@ grant {
   permission javax.management.MBeanPermission "*", "*";
   permission javax.management.MBeanTrustPermission "*";
   permission javax.jdo.spi.JDOPermission "*";
+  /* pig uses this for spilling stuff to disk*/
+  permission java.lang.management.ManagementPermission "control";
 };
