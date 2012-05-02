@@ -24,4 +24,6 @@ grant {
   permission javax.jdo.spi.JDOPermission "*";
   /* pig uses this for spilling stuff to disk*/
   permission java.lang.management.ManagementPermission "control";
+  /* scoobi uses these to serialize stuff on the wire */
+  permission java.io.SerializablePermission "enableSubclassImplementation";
 };
