@@ -4,7 +4,7 @@ python_library(
 
 python_library(
   name = 'mako',
-  dependencies = [egg("Mako-0.4.0-py2.6.egg")])
+  dependencies = [egg("Mako-0.7.0-py2.6.egg")])
 
 python_library(
   name = 'markdown',
