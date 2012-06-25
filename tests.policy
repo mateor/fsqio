@@ -26,4 +26,6 @@ grant {
   permission java.lang.management.ManagementPermission "control";
   /* scoobi uses these to serialize stuff on the wire */
   permission java.io.SerializablePermission "enableSubclassImplementation";
+  /* elastic search indexing tests */
+  permission java.lang.management.ManagementPermission "monitor";
 };
