@@ -3,12 +3,20 @@ python_library(
   dependencies = [egg("antlr_python_runtime-3.1.3-py2.6.egg")])
 
 python_library(
+  name = 'argparse',
+  dependencies = [egg("argparse-1.2.1-py2.6.egg")])
+
+python_library(
   name = 'mako',
   dependencies = [egg("Mako-0.7.0-py2.6.egg")])
 
 python_library(
   name = 'markdown',
   dependencies = [egg("Markdown-2.0.3-py2.6.egg")])
+
+python_library(
+  name = 'mox',
+  dependencies = [egg("mox-0.5.3-py2.6.egg")])
 
 python_library(
   name = 'py',
