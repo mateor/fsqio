@@ -27,6 +27,10 @@ python_library(
   dependencies = [egg("py-1.4.5-py2.6.egg")])
 
 python_library(
+  name = 'pymongo',
+  dependencies = [egg("pymongo-2.2.1-py2.6-linux-x86_64.egg")])
+
+python_library(
   name = 'pytest',
   dependencies = [
     pants(":py"),
