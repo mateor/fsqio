@@ -3,6 +3,10 @@ python_library(
   dependencies = [egg("antlr_python_runtime-3.1.3-py2.6.egg")])
 
 python_library(
+  name = 'antlr_thrift_parser',
+  dependencies = [egg("antlr_thrift_parser-0.2-py2.6.egg")])
+
+python_library(
   name = 'argparse',
   dependencies = [egg("argparse-1.2.1-py2.6.egg")])
 
@@ -40,4 +44,4 @@ python_library(
 
 python_library(
   name = 'thrift_descriptors',
-  dependencies = [egg("thrift_descriptors-0.1-py2.6.egg")])
+  dependencies = [egg("thrift_descriptors-0.2-py2.6.egg")])
