@@ -59,6 +59,16 @@ run this in your foursquare repo:
 git config user.email "<your_user_name>@foursquare.com"
 """
 
+def check_pants_version(build_root_dir):
+    "Check the pants.pex symlink and fail if it's pointing to the wrong version."
+    installed_pants = os.readlink(build_root_dir + "/build/pants.pex")
+    pants_version_file = open(build_root_dir + "/build/pants.version")
+    pants_version = pants_version_file.read().strip()
+    git_pants = "pants-{0}.pex".format(pants_version)
+
+    if installed_pants != git_pants:
+        sys.exit("Wrong version of pants detected! Please run bootstrap.sh")
+
 def run_and_time_task(build_root_dir):
     args = sys.argv[1:]
 
@@ -124,6 +134,8 @@ def main():
     build_root_dir = os.path.dirname(__file__)
     
     goal = None if len(sys.argv) < 2 else sys.argv[1]
+
+    check_pants_version(build_root_dir)
     
     info = run_and_time_task(build_root_dir)
 
