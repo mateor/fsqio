@@ -1,17 +1,21 @@
 #! /usr/bin/env python
 
-import os, sys, subprocess, time
+# pants
+
+import os
+import sys
+import subprocess
+import time
+import datetime
+import pickle
 
 BuildMetricsMongoClusterNames = [u'infra-1',u'infra-2', u'infra-3']
 BuildMetricsMongoClusterPort = 27000
 BuildMetricsDatabaseName = u'build-metrics'
 BuildMetricsCollectionName = u'metrics'
+BuildMetricsCacheFile = ".build-metrics-cache"
 
 LogTheseGoals = set([u"compile", u"test"])
-
-build_root_dir = os.getcwdu()
-args = sys.argv[1:]
-goal = None if len(sys.argv) < 2 else sys.argv[1]
 
 ## subprocess.check_output doesn't exist in Python 2.6, so I copied this
 ## backport from https://gist.github.com/1027906
@@ -55,65 +59,117 @@ run this in your foursquare repo:
 git config user.email "<your_user_name>@foursquare.com"
 """
 
-start_time = time.time()
-try:
-    os.putenv("PYTHONPATH", build_root_dir + u"/core/src/main/python")
-    proc = subprocess.Popen([build_root_dir + "/build/pants.pex", "goal"] + args)
-    proc.wait()
-    build_completion_status = "success" if proc.returncode == 0 else "failure"
-except KeyboardInterrupt:
-    build_completion_status = "canceled"
+def run_and_time_task(build_root_dir):
+    args = sys.argv[1:]
 
-end_time = time.time()
-total_time = end_time - start_time
-(x, x, child_user_time, child_sys_time, x) = os.times()
-
-if goal in LogTheseGoals:
+    start_time = time.time()
     try:
-        from pymongo import *
-        from pymongo import Connection
-        from bson.objectid import ObjectId
+        os.putenv("PYTHONPATH", build_root_dir + u"/core/src/main/python")
+        proc = subprocess.Popen([build_root_dir + "/build/pants.pex", "goal"] + args)
+        proc.wait()
+        build_completion_status = "success" if proc.returncode == 0 else "failure"
+    except KeyboardInterrupt:
+        build_completion_status = "canceled"
 
-        with Connection(BuildMetricsMongoClusterNames, BuildMetricsMongoClusterPort) as connection:
-            c = connection[BuildMetricsDatabaseName][BuildMetricsCollectionName]
+    end_time = time.time()
+    total_time = end_time - start_time
+    (x, x, child_user_time, child_sys_time, x) = os.times()
+    
+    build_info = {
+        u"created_on": datetime.datetime.utcnow(),
+        u"email": user_email(),
+        u"total_time": total_time,
+        u"user_time": child_user_time,
+        u"sys_time": child_sys_time,
+        u"commandline": sys.argv,
+        u"uname": uname(),
+        u"status": build_completion_status,
+        u"build_system": u"pants",
+        u"git_rev": git_rev()}
 
-            email = ""
-            try:
-                email = check_output([u"git", u"config", u"--get", u"user.email"]).strip()
-                if email == "":
-                    print email_not_configured_msg
-                elif not email.endswith("@foursquare.com"):
-                    print email_not_foursquare_msg
-            except subprocess.CalledProcessError:
-                pass
+    return build_info
 
-            (sysname, nodename, release, version, machine) = os.uname()
-            uname = {u"sysname": sysname,
-                     u"nodename": nodename,
-                     u"release": release,
-                     u"version": version,
-                     u"machine": machine}
+def uname():
+    (sysname, nodename, release, version, machine) = os.uname()
+    return {u"sysname": sysname,
+            u"nodename": nodename,
+            u"release": release,
+            u"version": version,
+            u"machine": machine}
 
-            git_rev = ""
-            try:
-                git_rev = check_output([u"git", u"rev-parse", u"--short", u"HEAD"]).strip()
-            except subprocess.CalledProcessError:
-                pass
+def user_email():
+    email = ""
+    try:
+        email = check_output([u"git", u"config", u"--get", u"user.email"]).strip()
+    except subprocess.CalledProcessError:
+        pass
 
-            build_info = {
-                u"_id": ObjectId(),
-                u"email": email,
-                u"total_time": total_time,
-                u"user_time": child_user_time,
-                u"sys_time": child_sys_time,
-                u"commandline": sys.argv,
-                u"uname": uname,
-                u"status": build_completion_status,
-                u"build_system": u"pants",
-                u"git_rev": git_rev}
-
-            c.insert(build_info)
+    if email == "":
+        print email_not_configured_msg
+    elif not email.endswith("@foursquare.com"):
+        print email_not_foursquare_msg
         
-    except ImportError:
-        print pymongo_not_installed_msg
+    return email
 
+def git_rev():
+    git_rev = ""
+    try:
+        git_rev = check_output([u"git", u"rev-parse", u"--short", u"HEAD"]).strip()
+    except subprocess.CalledProcessError:
+        pass
+
+    return git_rev
+
+def main():
+    build_root_dir = os.getcwdu()
+    goal = None if len(sys.argv) < 2 else sys.argv[1]
+    
+    info = run_and_time_task(build_root_dir)
+
+    if goal in LogTheseGoals:
+        build_info_list = [info]
+
+        ## Add any cached build times.
+        try: 
+            with open(BuildMetricsCacheFile, "r") as cache_file:
+                build_info_list.extend(pickle.load(cache_file))
+        except (IOError, EOFError):
+            pass
+        
+        try:
+            from pymongo import Connection
+            from pymongo.errors import AutoReconnect
+            
+            with Connection(BuildMetricsMongoClusterNames,
+                            BuildMetricsMongoClusterPort,
+                            network_timeout=2,
+                            socketTimeoutMS=2000,
+                            connectTimeoutMS=2000) as connection:
+                
+                c = connection[BuildMetricsDatabaseName][BuildMetricsCollectionName]
+
+
+                ## Load metrics that may have been saved (if pymongo wasn't installed, or there
+                ## wasn't a connection to mongo) during previous compiles.
+                c.insert(build_info_list)
+
+                try: 
+                    os.remove(BuildMetricsCacheFile)
+                except OSError:
+                    pass
+
+        except (ImportError, AutoReconnect):
+            ## In the event we can't write mongo, either because pymongo isn't installed, or
+            ## because we can't establish a connection, we'll log our metrics to a local cache.
+            ## Each metric entry is stored as a pickled python object on a new line in the file
+            with open(BuildMetricsCacheFile, "a") as cache_file:
+                pickle.dump(build_info_list, cache_file)
+
+            print pymongo_not_installed_msg
+                
+
+    exit(0 if info[u"status"] == u"success" else 1)
+    
+
+if __name__ == '__main__':
+  main()
