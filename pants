@@ -35,7 +35,25 @@ def check_output(*popenargs, **kwargs):
         raise error
     return output
 
+pymongo_not_installed_msg = """
+It looks like you don't have pymongo installed, which means I can't
+log your build metrics to our build metrics database, which makes
+it harder for us to figure out how to make builds faster, which
+makes me sad. Please install pymongo. You can find directions here:
 
+http://api.mongodb.org/python/current/installation.html
+"""
+
+email_not_configured_msg =  """
+You haven't set your email address in git. Please run:
+git config --global user.email "<your_user_name>@foursquare.com"
+"""
+
+email_not_foursquare_msg = """
+It looks like your git repo isn't configured to use your foursquare email address. Please
+run this in your foursquare repo:
+git config user.email "<your_user_name>@foursquare.com"
+"""
 
 start_time = time.time()
 try:
@@ -98,25 +116,4 @@ if goal in LogTheseGoals:
         
     except ImportError:
         print pymongo_not_installed_msg
-
-pymongo_not_installed_msg = """
-It looks like you don't have pymongo installed, which means I can't
-log your build metrics to our build metrics database, which makes
-it harder for us to figure out how to make builds faster, which
-makes me sad. Please install pymongo. You can find directions here:
-
-http://api.mongodb.org/python/current/installation.html
-"""
-
-email_not_configured_msg =  """
-You haven't set your email address in git. Please run:
-git config --global user.email "<your_user_name>@foursquare.com"
-"""
-
-email_not_foursquare_msg = """
-It looks like your git repo isn't configured to use your foursquare email address. Please
-run this in your foursquare repo:
-git config user.email "<your_user_name>@foursquare.com"
-"""
-
 
