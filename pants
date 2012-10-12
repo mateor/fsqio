@@ -121,7 +121,8 @@ def git_rev():
     return git_rev
 
 def main():
-    build_root_dir = os.getcwdu()
+    build_root_dir = os.path.dirname(__file__)
+    
     goal = None if len(sys.argv) < 2 else sys.argv[1]
     
     info = run_and_time_task(build_root_dir)
