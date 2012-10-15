@@ -167,7 +167,7 @@ def main():
 
                 ## Load metrics that may have been saved (if pymongo wasn't installed, or there
                 ## wasn't a connection to mongo) during previous compiles.
-##                c.insert(build_info_list)
+                c.insert(build_info_list)
 
                 try: 
                     os.remove(BuildMetricsCacheFile)
