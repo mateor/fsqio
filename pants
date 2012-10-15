@@ -113,7 +113,7 @@ def uname():
 def user_email():
     email = ""
     try:
-        email = check_output([u"asdfadsgit", u"config", u"--get", u"user.email"]).strip()
+        email = check_output([u"git", u"config", u"--get", u"user.email"]).strip()
     except subprocess.CalledProcessError:
         pass
 
