@@ -135,23 +135,24 @@ def git_rev():
 
 def main():
     build_root_dir = os.path.dirname(__file__)
-    
+
     goal = None if len(sys.argv) < 2 else sys.argv[1]
 
-    check_pants_version(build_root_dir)
-    
+    if os.getenv("PANTS_DEV") == None:
+        check_pants_version(build_root_dir)
+
     info = run_and_time_task(build_root_dir)
 
     if goal in LogTheseGoals:
         build_info_list = [info]
 
         ## Add any cached build times.
-        try: 
+        try:
             with open(BuildMetricsCacheFile, "r") as cache_file:
                 build_info_list.extend(pickle.load(cache_file))
         except (IOError, EOFError):
             pass
-        
+
         try:
             from pymongo import Connection
             from pymongo.errors import AutoReconnect
