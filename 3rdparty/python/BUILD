@@ -37,6 +37,10 @@ python_library(
 )
 
 python_library(
+  name = 'requests',
+  dependencies = [egg("requests-0.14.2-py2.6.egg")])
+
+python_library(
   name = 'setuptools',
   dependencies = [egg("distribute-0.6.21-py2.6.egg")])
 
