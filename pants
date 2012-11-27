@@ -120,7 +120,7 @@ def user_email():
     if email == "":
         try:
             localhostname = check_output([u"hostname"]).strip()
-            if localhostname.startwith("build"):
+            if localhostname.startswith("build"):
                 return "build@foursquare.com"
         except subprocess.CalledProcessError:
             pass
