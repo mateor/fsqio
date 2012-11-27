@@ -87,7 +87,7 @@ def run_and_time_task(build_root_dir):
     end_time = time.time()
     total_time = end_time - start_time
     (x, x, child_user_time, child_sys_time, x) = os.times()
-    
+
     build_info = {
         u"created_on": datetime.datetime.utcnow(),
         u"email": user_email(),
@@ -118,10 +118,17 @@ def user_email():
         pass
 
     if email == "":
+        try:
+            localhostname = check_output([u"hostname"]).strip()
+            if localhostname.startwith("build"):
+                return "build@foursquare.com"
+        except subprocess.CalledProcessError:
+            pass
         print email_not_configured_msg
+
     elif not email.endswith("@foursquare.com"):
         print email_not_foursquare_msg
-        
+
     return email
 
 def git_rev():
@@ -156,13 +163,13 @@ def main():
         try:
             from pymongo import Connection
             from pymongo.errors import AutoReconnect
-            
+
             with Connection(BuildMetricsMongoClusterNames,
                             BuildMetricsMongoClusterPort,
                             network_timeout=2,
                             socketTimeoutMS=2000,
                             connectTimeoutMS=2000) as connection:
-                
+
                 c = connection[BuildMetricsDatabaseName][BuildMetricsCollectionName]
 
 
@@ -170,7 +177,7 @@ def main():
                 ## wasn't a connection to mongo) during previous compiles.
                 c.insert(build_info_list)
 
-                try: 
+                try:
                     os.remove(BuildMetricsCacheFile)
                 except OSError:
                     pass
@@ -188,10 +195,10 @@ def main():
         except AutoReconnect:
             with open(BuildMetricsCacheFile, "a") as cache_file:
                 pickle.dump(build_info_list, cache_file)
-                
+
 
     exit(0 if info[u"status"] == u"success" else 1)
-    
+
 
 if __name__ == '__main__':
   main()
