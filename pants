@@ -70,7 +70,10 @@ def check_pants_version(build_root_dir):
     git_pants = "pants-{0}.pex".format(pants_version)
 
     if installed_pants != git_pants:
-        sys.exit("Wrong version of pants detected! Please run bootstrap.sh")
+        print("Wrong version of pants detected! Please run bootstrap.sh")
+        print("Ah, what the heck, I'll run it for you ...")
+        os.system("./bootstrap.sh")
+
 
 def run_and_time_task(build_root_dir):
     args = sys.argv[1:]
