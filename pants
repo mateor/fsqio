@@ -76,12 +76,31 @@ def check_pants_version(build_root_dir):
 
 
 def run_and_time_task(build_root_dir):
-    args = sys.argv[1:]
+    args = []
+    pants_binary = None
+    for arg in sys.argv[1:]:
+        if arg.startswith("--pants-binary="):
+           pants_binary = arg.split("=", 1)[1]
+        elif arg.startswith("--pants-version="):
+           pants_binary = build_root_dir + "/build/pants-%s.pex" % arg.split("=", 1)[1]
+        elif arg == '--beta':
+           pants_binary = build_root_dir + "/build/pants-beta.pex"
+        else:
+            args.append(arg)  # Pass through to pants.pex.
+
+    if pants_binary is None:
+       if os.getenv("PANTS_DEV") == None:
+            check_pants_version(build_root_dir)
+       pants_binary = build_root_dir + "/build/pants.pex"
+
+    if not os.path.isfile(pants_binary):
+      sys.stderr.write("No pants binary at %s\n" % pants_binary)
+      sys.exit(1)
 
     start_time = time.time()
     try:
         os.putenv("PYTHONPATH", build_root_dir + u"/core/src/main/python")
-        proc = subprocess.Popen([build_root_dir + "/build/pants.pex", "goal"] + args)
+        proc = subprocess.Popen([pants_binary, "goal"] + args)
         proc.wait()
         build_completion_status = "success" if proc.returncode == 0 else "failure"
     except KeyboardInterrupt:
@@ -147,9 +166,6 @@ def main():
     build_root_dir = os.path.dirname(__file__)
 
     goal = None if len(sys.argv) < 2 else sys.argv[1]
-
-    if os.getenv("PANTS_DEV") == None:
-        check_pants_version(build_root_dir)
 
     info = run_and_time_task(build_root_dir)
 
