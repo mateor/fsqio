@@ -98,7 +98,7 @@ def run_and_time_task(build_root_dir):
 
     start_time = time.time()
     try:
-        os.putenv("PYTHONPATH", build_root_dir + u"/core/src/main/python")
+        os.putenv("PYTHONPATH", build_root_dir + u"/src/python")
         proc = subprocess.Popen([pants_binary, "goal"] + args)
         proc.wait()
         build_completion_status = "success" if proc.returncode == 0 else "failure"
