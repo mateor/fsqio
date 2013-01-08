@@ -9,6 +9,18 @@ python_library(
   dependencies = [egg("argparse-1.2.1-py2.6.egg")])
 
 python_library(
+  name = 'boto',
+  dependencies = [egg("boto-2.6.0-py2.6.egg")])
+
+python_library(
+  name = 'cherrypy',
+  dependencies = [egg("CherryPy-3.2.2-py2.6.egg")])
+
+python_library(
+  name = 'dateutil',
+  dependencies = [egg("python_dateutil-2.1-py2.6.egg")])
+
+python_library(
   name = 'mako',
   dependencies = [egg("Mako-0.7.0-py2.6.egg")])
 
