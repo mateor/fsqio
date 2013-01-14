@@ -1,5 +1,9 @@
 # Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
+from foursquare.pants.python_egg_download import CachedPythonEgg
+
+egg = CachedPythonEgg
+
 python_library(
   name = 'antlr-3.1.3',
   dependencies = [egg("antlr_python_runtime-3.1.3-py2.6.egg")])
