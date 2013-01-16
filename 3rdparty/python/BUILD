@@ -25,6 +25,10 @@ python_library(
   dependencies = [egg("python_dateutil-2.1-py2.6.egg")])
 
 python_library(
+  name = 'luigi',
+  dependencies = [egg("luigi-2013_01_15.001-py2.6.egg")])
+
+python_library(
   name = 'mako',
   dependencies = [egg("Mako-0.7.0-py2.6.egg")])
 
