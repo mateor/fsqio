@@ -53,6 +53,10 @@ python_library(
   dependencies = [egg("pymongo-2.2.1-py2.6-linux-x86_64.egg")])
 
 python_library(
+  name = 'pyopenssl',
+  dependencies = [egg("pyOpenSSL-0.13-py2.6-linux-x86_64.egg")])
+
+python_library(
   name = 'pytest',
   dependencies = [
     ':py',
@@ -72,3 +76,6 @@ python_library(
   name = 'thrift-0.7',
   dependencies = [egg("Thrift-0.7.0_dev-py2.6.egg")])
 
+python_library(
+  name = 'twisted',
+  dependencies = [egg("Twisted-12.3.0-py2.6-linux-x86_64.egg"), ':pyopenssl'])
