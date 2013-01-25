@@ -51,7 +51,7 @@ python_library(
 python_library(
   name = 'pytest',
   dependencies = [
-    pants(':py'),
+    ':py',
     egg("pytest-2.0.2-py2.6.egg"),
   ]
 )
