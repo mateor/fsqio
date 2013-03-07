@@ -57,6 +57,10 @@ python_library(
   dependencies = [egg("pyOpenSSL-0.13-py2.6-linux-x86_64.egg")])
 
 python_library(
+  name = 'pystache',
+  dependencies = [egg('pystache-0.5.3-py2.6.egg')])
+
+python_library(
   name = 'pytest',
   dependencies = [
     ':py',
