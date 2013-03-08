@@ -30,7 +30,7 @@ python_library(
 
 python_library(
   name = 'luigi',
-  dependencies = [egg("luigi-2013_01_29.001-py2.6.egg")])
+  dependencies = [egg("luigi-2013_03_08.001-py2.6.egg")])
 
 python_library(
   name = 'mako',
