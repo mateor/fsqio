@@ -45,6 +45,10 @@ python_library(
   dependencies = [egg("mox-0.5.3-py2.6.egg")])
 
 python_library(
+  name = 'psycopg2',
+  dependencies = [egg("psycopg2-vertica2-2.4.6-py2.6-linux-x86_64.egg")])
+
+python_library(
   name = 'py',
   dependencies = [egg("py-1.4.5-py2.6.egg")])
 
