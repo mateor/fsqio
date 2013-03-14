@@ -25,6 +25,10 @@ python_library(
   dependencies = [egg("python_dateutil-2.1-py2.6.egg")])
 
 python_library(
+  name = 'flask',
+  dependencies = [egg("Flask-0.9-py2.6.egg")])
+
+python_library(
   name = 'kazoo',
   dependencies = [egg("kazoo-0.9-py2.6.egg")])
 
@@ -78,6 +82,10 @@ python_library(
 python_library(
   name = 'requests',
   dependencies = [egg("requests-0.14.2-py2.6.egg")])
+
+python_library(
+  name = 'requests-1.2',
+  dependencies = [egg("requests-1.2.0-py2.6.egg")])
 
 python_library(
   name = 'setuptools',
