@@ -181,6 +181,7 @@ def main():
         try:
             from pymongo import Connection
             from pymongo.errors import AutoReconnect
+            from pymongo.errors import ConnectionFailure
 
             with Connection(BuildMetricsMongoClusterNames,
                             BuildMetricsMongoClusterPort,
@@ -209,8 +210,7 @@ def main():
             with open(BuildMetricsCacheFile, "a") as cache_file:
                 pickle.dump(build_info_list, cache_file)
 
-
-        except AutoReconnect:
+        except (AutoReconnect, ConnectionFailure):
             with open(BuildMetricsCacheFile, "a") as cache_file:
                 pickle.dump(build_info_list, cache_file)
 
