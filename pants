@@ -64,13 +64,13 @@ git config user.email "<your_user_name>@foursquare.com"
 
 def get_current_pants_binary(build_root_dir):
     """Check the pants.pex symlink and fail if it's pointing to the wrong version."""
-    current_pants_binary = build_root_dir + "/build/pants-current.pex"
+    current_pants_binary = build_root_dir + "/build-support/pants-current.pex"
     if not os.path.isfile(current_pants_binary):
         sys.stderr.write("No pants binary at %s\n" % current_pants_binary)
         sys.exit(1)
     installed_pants = os.readlink(current_pants_binary)
     if os.getenv("PANTS_DEV") == None:
-      with open(build_root_dir + "/build/pants-current.version") as pants_version_file:
+      with open(build_root_dir + "/build-support/pants-current.version") as pants_version_file:
         pants_version = pants_version_file.read().strip()
       git_pants = "pants-%s.pex" % pants_version
 
@@ -87,9 +87,9 @@ def run_and_time_task(build_root_dir):
         if arg.startswith("--pants-binary="):
            pants_binary = arg.split("=", 1)[1]
         elif arg.startswith("--pants-version="):
-           pants_binary = build_root_dir + "/build/pants-%s.pex" % arg.split("=", 1)[1]
+           pants_binary = build_root_dir + "/build-support/pants-%s.pex" % arg.split("=", 1)[1]
         elif arg == '--beta':
-           pants_binary = build_root_dir + "/build/pants-beta.pex"
+           pants_binary = build_root_dir + "/build-support/pants-beta.pex"
         else:
             args.append(arg)  # Pass through to pants.pex.
 
