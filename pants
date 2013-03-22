@@ -2,65 +2,22 @@
 
 # pants
 
+
+import inspect
+import os.path
+import sys
+
+# Add <root>/src/python to the import path so we can use standard Foursquare modules.
+root_dir = os.path.dirname(inspect.getfile(inspect.currentframe()))
+def path(*p): return os.path.join(root_dir, *p)
+python_dir = path("src", "python")
+sys.path.insert(0, python_dir)
+
+from foursquare.common.process import check_output
+from foursquare.toolchain.timed_pants import run_and_log_pants
+
 import os
 import sys
-import subprocess
-import time
-import datetime
-import pickle
-
-BuildMetricsMongoClusterNames = [u'infra-1',u'infra-2', u'infra-3']
-BuildMetricsMongoClusterPort = 27000
-BuildMetricsDatabaseName = u'build-metrics'
-BuildMetricsCollectionName = u'metrics'
-BuildMetricsCacheFile = ".build-metrics-cache"
-
-LogTheseGoals = set([u"compile", u"test"])
-
-## subprocess.check_output doesn't exist in Python 2.6, so I copied this
-## backport from https://gist.github.com/1027906
-def check_output(*popenargs, **kwargs):
-    r"""Run command with arguments and return its output as a byte string.
-
-    Backported from Python 2.7 as it's implemented as pure python on stdlib.
-
-    >>> check_output(['/usr/bin/python', '--version'])
-    Python 2.6.2
-    """
-    try:
-        process = subprocess.Popen(stdout=subprocess.PIPE, *popenargs, **kwargs)
-        output, unused_err = process.communicate()
-        retcode = process.poll()
-        if retcode:
-            cmd = kwargs.get("args")
-            if cmd is None:
-                cmd = popenargs[0]
-            error = subprocess.CalledProcessError(retcode, cmd)
-            error.output = output
-            raise error
-        return output
-    except OSError:
-        return ""
-
-pymongo_not_installed_msg = """
-It looks like you don't have pymongo installed, which means I can't
-log your build metrics to our build metrics database, which makes
-it harder for us to figure out how to make builds faster, which
-makes me sad. Please install pymongo. You can find directions here:
-
-http://api.mongodb.org/python/current/installation.html
-"""
-
-email_not_configured_msg =  """
-You haven't set your email address in git. Please run:
-git config --global user.email "<your_user_name>@foursquare.com"
-"""
-
-email_not_foursquare_msg = """
-It looks like your git repo isn't configured to use your foursquare email address. Please
-run this in your foursquare repo:
-git config user.email "<your_user_name>@foursquare.com"
-"""
 
 def get_current_pants_binary(build_root_dir):
     """Check the pants.pex symlink and fail if it's pointing to the wrong version."""
@@ -80,7 +37,7 @@ def get_current_pants_binary(build_root_dir):
           os.system("./bootstrap.sh")
     return current_pants_binary
 
-def run_and_time_task(build_root_dir):
+def pick_pants_cmd(build_root_dir):
     args = []
     pants_binary = None
     for arg in sys.argv[1:]:
@@ -96,127 +53,12 @@ def run_and_time_task(build_root_dir):
     if pants_binary is None:
         pants_binary = get_current_pants_binary(build_root_dir)
 
-    start_time = time.time()
-    try:
-        os.putenv("PYTHONPATH", build_root_dir + u"/src/python")
-        proc = subprocess.Popen([pants_binary, "goal"] + args)
-        proc.wait()
-        build_completion_status = "success" if proc.returncode == 0 else "failure"
-    except KeyboardInterrupt:
-        build_completion_status = "canceled"
-
-    end_time = time.time()
-    total_time = end_time - start_time
-    (x, x, child_user_time, child_sys_time, x) = os.times()
-
-    build_info = {
-        u"created_on": datetime.datetime.utcnow(),
-        u"email": user_email(),
-        u"total_time": total_time,
-        u"user_time": child_user_time,
-        u"sys_time": child_sys_time,
-        u"commandline": sys.argv,
-        u"uname": uname(),
-        u"status": build_completion_status,
-        u"build_system": u"pants",
-        u"git_rev": git_rev()}
-
-    return build_info
-
-def uname():
-    (sysname, nodename, release, version, machine) = os.uname()
-    return {u"sysname": sysname,
-            u"nodename": nodename,
-            u"release": release,
-            u"version": version,
-            u"machine": machine}
-
-def user_email():
-    email = ""
-    try:
-        email = check_output([u"git", u"config", u"--get", u"user.email"]).strip()
-    except subprocess.CalledProcessError:
-        pass
-
-    if email == "":
-        try:
-            localhostname = check_output([u"hostname"]).strip()
-            if localhostname.startswith("build"):
-                return "build@foursquare.com"
-        except subprocess.CalledProcessError:
-            pass
-        print email_not_configured_msg
-
-    elif not email.endswith("@foursquare.com"):
-        print email_not_foursquare_msg
-
-    return email
-
-def git_rev():
-    git_rev = ""
-    try:
-        git_rev = check_output([u"git", u"rev-parse", u"--short", u"HEAD"]).strip()
-    except subprocess.CalledProcessError:
-        pass
-
-    return git_rev
+    return [pants_binary, "goal"] + args
 
 def main():
     build_root_dir = os.path.dirname(__file__)
-
-    goal = None if len(sys.argv) < 2 else sys.argv[1]
-
-    info = run_and_time_task(build_root_dir)
-
-    if goal in LogTheseGoals:
-        build_info_list = [info]
-
-        ## Add any cached build times.
-        try:
-            with open(BuildMetricsCacheFile, "r") as cache_file:
-                build_info_list.extend(pickle.load(cache_file))
-        except (IOError, EOFError):
-            pass
-
-        try:
-            from pymongo import Connection
-            from pymongo.errors import AutoReconnect
-            from pymongo.errors import ConnectionFailure
-
-            with Connection(BuildMetricsMongoClusterNames,
-                            BuildMetricsMongoClusterPort,
-                            network_timeout=2,
-                            socketTimeoutMS=2000,
-                            connectTimeoutMS=2000) as connection:
-
-                c = connection[BuildMetricsDatabaseName][BuildMetricsCollectionName]
-
-
-                ## Load metrics that may have been saved (if pymongo wasn't installed, or there
-                ## wasn't a connection to mongo) during previous compiles.
-                c.insert(build_info_list)
-
-                try:
-                    os.remove(BuildMetricsCacheFile)
-                except OSError:
-                    pass
-
-        except ImportError:
-            print "import"
-            ## In the event we can't write mongo, either because pymongo isn't installed, or
-            ## because we can't establish a connection, we'll log our metrics to a local cache.
-            ## Each metric entry is stored as a pickled python object on a new line in the file
-            print pymongo_not_installed_msg
-            with open(BuildMetricsCacheFile, "a") as cache_file:
-                pickle.dump(build_info_list, cache_file)
-
-        except (AutoReconnect, ConnectionFailure):
-            with open(BuildMetricsCacheFile, "a") as cache_file:
-                pickle.dump(build_info_list, cache_file)
-
-
-    exit(0 if info[u"status"] == u"success" else 1)
-
-
+    cmd = pick_pants_cmd(build_root_dir)
+    os.putenv("PYTHONPATH", build_root_dir + u"/src/python")
+    exit(run_and_log_pants(cmd))
 if __name__ == '__main__':
   main()
