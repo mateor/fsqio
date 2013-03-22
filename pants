@@ -206,9 +206,9 @@ def main():
             ## In the event we can't write mongo, either because pymongo isn't installed, or
             ## because we can't establish a connection, we'll log our metrics to a local cache.
             ## Each metric entry is stored as a pickled python object on a new line in the file
-            #print pymongo_not_installed_msg
-            #with open(BuildMetricsCacheFile, "a") as cache_file:
-            #    pickle.dump(build_info_list, cache_file)
+            print pymongo_not_installed_msg
+            with open(BuildMetricsCacheFile, "a") as cache_file:
+                pickle.dump(build_info_list, cache_file)
 
         except (AutoReconnect, ConnectionFailure):
             with open(BuildMetricsCacheFile, "a") as cache_file:
