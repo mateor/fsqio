@@ -1,6 +1,6 @@
 # Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-from foursquare.pants.python_egg_download import CachedPythonEgg
+from foursquare.pants.python_egg_download import CachedPythonEgg, PlatformDependentEgg
 
 egg = CachedPythonEgg
 
@@ -46,7 +46,9 @@ python_library(
 
 python_library(
   name = 'psycopg2',
-  dependencies = [egg("psycopg2-vertica2-2.4.6-py2.6-linux-x86_64.egg")])
+  dependencies = [PlatformDependentEgg(
+      linux="psycopg2_vertica-2.4.6-py2.6-linux-x86_64.egg",
+      osx="psycopg2_vertica-2.4.6-py2.6-macosx-10.7-intel.egg")])
 
 python_library(
   name = 'py',
