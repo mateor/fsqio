@@ -48,7 +48,8 @@ python_library(
   name = 'psycopg2',
   dependencies = [PlatformDependentEgg(
       linux="psycopg2_vertica-2.4.6-py2.6-linux-x86_64.egg",
-      osx="psycopg2_vertica-2.4.6-py2.6-macosx-10.7-intel.egg")])
+      osx="psycopg2_vertica-2.4.6-py2.6-macosx-10.7-intel.egg"
+      )])
 
 python_library(
   name = 'py',
