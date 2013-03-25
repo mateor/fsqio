@@ -13,34 +13,21 @@ def path(*p): return os.path.join(root_dir, *p)
 python_dir = path("src", "python")
 sys.path.insert(0, python_dir)
 
-from foursquare.common.process import check_output
-from foursquare.toolchain.pants import run_and_log_pants, get_current_binary
-
+from argparse import ArgumentParser
+from foursquare.common.json_config import JsonConfig
+from foursquare.toolchain.pants import run_pants, setup_pants_arg_parser
 import os
 import sys
 
-def pick_pants_cmd(build_root_dir):
-    args = []
-    pants_binary = None
-    for arg in sys.argv[1:]:
-        if arg.startswith("--pants-binary="):
-           pants_binary = arg.split("=", 1)[1]
-        elif arg.startswith("--pants-version="):
-           pants_binary = build_root_dir + "/build-support/pants-%s.pex" % arg.split("=", 1)[1]
-        elif arg == '--beta':
-           pants_binary = build_root_dir + "/build-support/pants-beta.pex"
-        else:
-            args.append(arg)  # Pass through to pants.pex.
+parser = ArgumentParser(add_help=False)
+setup_pants_arg_parser(parser)
+parser.add_argument('goal', nargs='?')
 
-    if pants_binary is None:
-        pants_binary = get_current_binary(build_root_dir)
-
-    return [pants_binary, "goal"] + args
+config = JsonConfig(path('build-support/fsconfig.json'))
 
 def main():
-    build_root_dir = os.path.dirname(__file__)
-    cmd = pick_pants_cmd(build_root_dir)
-    os.putenv("PYTHONPATH", build_root_dir + u"/src/python")
-    exit(run_and_log_pants(cmd))
+  args = args, other_args = parser.parse_known_args()
+  args.passthrough = other_args
+  exit(run_pants(root_dir, args.goal, args, config, quiet=not config.get('pants.printcmd', False)).result)
 if __name__ == '__main__':
   main()
