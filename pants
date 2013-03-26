@@ -15,19 +15,22 @@ sys.path.insert(0, python_dir)
 
 from argparse import ArgumentParser
 from foursquare.common.json_config import JsonConfig
-from foursquare.toolchain.pants import run_pants, setup_pants_arg_parser
+from foursquare.toolchain.pants import PantsRunner
+from foursquare.toolchain.watcher import WatcherRunner
 import os
 import sys
 
-parser = ArgumentParser(add_help=False)
-setup_pants_arg_parser(parser)
-parser.add_argument('goal', nargs='?')
 
 config = JsonConfig(path('build-support/fsconfig.json'))
+runner = PantsRunner(root_dir, config, quiet=not config.get('pants.printcmd', False))
+runner.add_external_goal(WatcherRunner)
+parser = ArgumentParser(add_help=False)
+runner.setup_arg_parser(parser)
+parser.add_argument('goal', nargs='?')
 
 def main():
   args = args, other_args = parser.parse_known_args()
   args.passthrough = other_args
-  exit(run_pants(root_dir, args.goal, args, config, quiet=not config.get('pants.printcmd', False)).result)
+  exit(runner.run(args.goal, args).result)
 if __name__ == '__main__':
   main()
