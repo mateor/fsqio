@@ -17,13 +17,20 @@ from argparse import ArgumentParser
 from foursquare.common.json_config import JsonConfig
 from foursquare.toolchain.pants import PantsRunner
 from foursquare.toolchain.watcher import WatcherRunner
+from foursquare.toolchain.tasks import CustomClean, Wash, SetupGit, SetupGitAliases
 import os
 import sys
 
 
 config = JsonConfig(path('build-support/fsconfig.json'))
 runner = PantsRunner(root_dir, config, quiet=not config.get('pants.printcmd', False))
-runner.add_external_goal(WatcherRunner)
+
+runner.add_external_goal(WatcherRunner) # ~compile support
+runner.add_external_goal(Wash) # update build tools
+runner.add_external_goal(CustomClean) #delegates `clean` via config to clean-all(-async) or ramdisk
+runner.add_external_goal(SetupGit) # (re)setup git config (user, email, hooks)
+runner.add_external_goal(SetupGitAliases) # (re)setup git aliases
+
 parser = ArgumentParser(add_help=False)
 runner.setup_arg_parser(parser)
 parser.add_argument('goal', nargs='?')
@@ -31,6 +38,9 @@ parser.add_argument('goal', nargs='?')
 def main():
   args = args, other_args = parser.parse_known_args()
   args.passthrough = other_args
-  exit(runner.run(args.goal, args).result)
+  ret = runner.run(args.goal, args)
+  if '--help' in other_args:
+    runner.print_help(args.goal, args)
+  exit(ret.result)
 if __name__ == '__main__':
   main()
