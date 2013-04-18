@@ -36,7 +36,6 @@ python_library(
   name = 'luigi',
   dependencies = [egg("luigi-2013_04_18.001-py2.6.egg")])
 
-
 python_library(
   name = 'mako',
   dependencies = [egg("Mako-0.7.0-py2.6.egg")])
