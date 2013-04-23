@@ -46,6 +46,10 @@ python_library(
   dependencies = [egg("Markdown-2.0.3-py2.6.egg")])
 
 python_library(
+  name = 'mechanize',
+  dependencies = [egg("mechanize-0.2.5-py2.6.egg")])
+
+python_library(
   name = 'mox',
   dependencies = [egg("mox-0.5.3-py2.6.egg")])
 
