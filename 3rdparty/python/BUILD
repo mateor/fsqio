@@ -101,5 +101,9 @@ python_library(
   dependencies = [egg("Thrift-0.7.0_dev-py2.6.egg")])
 
 python_library(
+  name = 'tornado',
+  dependencies = [egg("tornado-3.0.1-py2.6.egg")])
+
+python_library(
   name = 'twisted',
   dependencies = [egg("Twisted-12.3.0-py2.6-linux-x86_64.egg"), ':pyopenssl'])
