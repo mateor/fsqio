@@ -49,3 +49,5 @@ python_library(
     python_requirement('Twisted==12.3.0'),
   ]
 )
+
+make_lib('unittest2', 'unittest2==0.5.1')
