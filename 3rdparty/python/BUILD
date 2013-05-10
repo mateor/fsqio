@@ -1,109 +1,51 @@
 # Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-from foursquare.pants.python_egg_download import CachedPythonEgg, PlatformDependentEgg
 
-egg = CachedPythonEgg
+def make_lib(name, dependency_name=None):
+  dependency_name = dependency_name or name
+  python_library(
+    name=name,
+    dependencies=[python_requirement(dependency_name)]
+  )
 
-python_library(
-  name = 'antlr-3.1.3',
-  dependencies = [egg("antlr_python_runtime-3.1.3-py2.6.egg")])
-
-python_library(
-  name = 'argparse',
-  dependencies = [egg("argparse-1.2.1-py2.6.egg")])
-
-python_library(
-  name = 'boto',
-  dependencies = [egg("boto-2.6.0-py2.6.egg")])
-
-python_library(
-  name = 'cherrypy',
-  dependencies = [egg("CherryPy-3.2.2-py2.6.egg")])
-
-python_library(
-  name = 'dateutil',
-  dependencies = [egg("python_dateutil-2.1-py2.6.egg")])
-
-python_library(
-  name = 'flask',
-  dependencies = [egg("Flask-0.9-py2.6.egg")])
-
-python_library(
-  name = 'kazoo',
-  dependencies = [egg("kazoo-0.9-py2.6.egg")])
-
-python_library(
-  name = 'luigi',
-  dependencies = [egg("luigi-2013_05_10.001-py2.6.egg")])
-
-
-python_library(
-  name = 'mako',
-  dependencies = [egg("Mako-0.7.0-py2.6.egg")])
-
-python_library(
-  name = 'markdown',
-  dependencies = [egg("Markdown-2.0.3-py2.6.egg")])
-
-python_library(
-  name = 'mechanize',
-  dependencies = [egg("mechanize-0.2.5-py2.6.egg")])
-
-python_library(
-  name = 'mox',
-  dependencies = [egg("mox-0.5.3-py2.6.egg")])
-
-python_library(
-  name = 'psycopg2',
-  dependencies = [PlatformDependentEgg(
-      linux="psycopg2_vertica-2.4.6-py2.6-linux-x86_64.egg",
-      osx="psycopg2_vertica-2.4.6-py2.6-macosx-10.7-intel.egg"
-      )])
-
-python_library(
-  name = 'py',
-  dependencies = [egg("py-1.4.5-py2.6.egg")])
-
-python_library(
-  name = 'pymongo',
-  dependencies = [egg("pymongo-2.2.1-py2.6-linux-x86_64.egg")])
-
-python_library(
-  name = 'pyopenssl',
-  dependencies = [egg("pyOpenSSL-0.13-py2.6-linux-x86_64.egg")])
-
-python_library(
-  name = 'pystache',
-  dependencies = [egg('pystache-0.5.3-py2.6.egg')])
+make_lib('antlr-3.1.3', 'antlr_python_runtime==3.1.3')
+make_lib('argparse', 'argparse==1.2.1')
+make_lib('boto', 'boto==2.6.0')
+make_lib('cherrypy', 'CherryPy==3.2.2')
+make_lib('dateutil', 'python-dateutil==2.1')
+make_lib('flask', 'Flask==0.9')
+make_lib('kazoo', 'kazoo==0.9')
+make_lib('luigi', 'luigi==2013_05_10.001')
+make_lib('mako', 'Mako==0.7.0')
+make_lib('markdown', 'Markdown==2.0.3')
+make_lib('mechanize', 'mechanize==0.2.5')
+make_lib('mox', 'mox==0.5.3')
+make_lib('mako', 'Mako==0.7.0')
+make_lib('psycopg2', 'psycopg2-vertica==2.4.6')
+make_lib('py', 'py==1.4.5')
+make_lib('pymongo', 'pymongo==2.2.1')
+make_lib('pyopenssl', 'pyOpenSSL==0.13')
+make_lib('pystache', 'pystache==0.5.3')
 
 python_library(
   name = 'pytest',
   dependencies = [
     ':py',
-    egg("pytest-2.0.2-py2.6.egg"),
+    python_requirement('pytest==2.0.2'),
   ]
 )
 
-python_library(
-  name = 'requests',
-  dependencies = [egg("requests-0.14.2-py2.6.egg")])
-
-python_library(
-  name = 'requests-1.2',
-  dependencies = [egg("requests-1.2.0-py2.6.egg")])
-
-python_library(
-  name = 'setuptools',
-  dependencies = [egg("distribute-0.6.21-py2.6.egg")])
-
-python_library(
-  name = 'thrift-0.7',
-  dependencies = [egg("Thrift-0.7.0_dev-py2.6.egg")])
-
-python_library(
-  name = 'tornado',
-  dependencies = [egg("tornado-3.0.1-py2.6.egg")])
+make_lib('requests', 'requests==0.14.2')
+make_lib('requests-1.2', 'requests==1.2.0')
+make_lib('setuptools', 'distribute==0.6.21')
+make_lib('thrift-0.7', 'Thrift==0.7.0_dev')
+make_lib('tornado', 'tornado==3.0.1')
+make_lib('twisted', 'Twisted==12.3.0')
 
 python_library(
   name = 'twisted',
-  dependencies = [egg("Twisted-12.3.0-py2.6-linux-x86_64.egg"), ':pyopenssl'])
+  dependencies = [
+    ':pyopenssl',
+    python_requirement('Twisted==12.3.0'),
+  ]
+)
