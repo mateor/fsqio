@@ -26,6 +26,7 @@ make_lib('py', 'py==1.4.5')
 make_lib('pymongo', 'pymongo==2.2.1')
 make_lib('pyopenssl', 'pyOpenSSL==0.13')
 make_lib('pystache', 'pystache==0.5.3')
+make_lib('zope-interface', 'zope.interface==4.0.5')
 
 python_library(
   name = 'pytest',
@@ -51,3 +52,4 @@ python_library(
 )
 
 make_lib('unittest2', 'unittest2==0.5.1')
+
