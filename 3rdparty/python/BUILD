@@ -52,4 +52,5 @@ python_library(
 )
 
 make_lib('unittest2', 'unittest2==0.5.1')
+make_lib('whoops', 'whoops==0.2.0')
 
