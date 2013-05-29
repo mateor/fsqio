@@ -19,8 +19,18 @@ make_lib('luigi', 'luigi==2013_05_10.001')
 make_lib('mako', 'Mako==0.7.0')
 make_lib('markdown', 'Markdown==2.0.3')
 make_lib('mechanize', 'mechanize==0.2.5')
+
+python_library(
+  name = 'mesos',
+  dependencies = [
+    ':protobuf',
+    python_requirement('mesos==0.9.0'),
+  ]
+)
+
 make_lib('mox', 'mox==0.5.3')
 make_lib('mako', 'Mako==0.7.0')
+make_lib('protobuf', 'protobuf==2.5.0')
 make_lib('psycopg2', 'psycopg2-vertica==2.4.6')
 make_lib('py', 'py==1.4.5')
 make_lib('pymongo', 'pymongo==2.2.1')
