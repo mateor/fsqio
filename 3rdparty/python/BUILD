@@ -24,7 +24,7 @@ python_library(
   name = 'mesos',
   dependencies = [
     ':protobuf',
-    python_requirement('mesos==0.9.0'),
+    python_requirement('mesos==0.11.0'),
   ]
 )
 
