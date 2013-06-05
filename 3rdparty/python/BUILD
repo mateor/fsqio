@@ -64,3 +64,14 @@ python_library(
 make_lib('unittest2', 'unittest2==0.5.1')
 make_lib('whoops', 'whoops==0.2.0')
 
+make_lib('numpy', 'numpy==1.7.1')
+python_library(
+  name = 'matplotlib',
+  dependencies = [
+    ':numpy',
+    python_requirement('matplotlib==1.2.1')
+  ]
+)
+make_lib('scipy', 'scipy==0.12.0')
+make_lib('scikit-learn', 'scikit-learn==0.13.1')
+make_lib('simplejson', 'simplejson==3.3.0')
