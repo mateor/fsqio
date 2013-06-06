@@ -19,6 +19,7 @@ make_lib('luigi', 'luigi==2013_06_08.001')
 make_lib('mako', 'Mako==0.7.0')
 make_lib('markdown', 'Markdown==2.0.3')
 make_lib('mechanize', 'mechanize==0.2.5')
+make_lib('hive', 'hive==0.9.0_cdh4.1.2')
 
 python_library(
   name = 'mesos',
