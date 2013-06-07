@@ -30,6 +30,7 @@ python_library(
 
 make_lib('mox', 'mox==0.5.3')
 make_lib('mako', 'Mako==0.7.0')
+make_lib('ordereddict', 'ordereddict==1.1')
 make_lib('protobuf', 'protobuf==2.5.0')
 make_lib('psycopg2', 'psycopg2-vertica==2.4.6')
 make_lib('py', 'py==1.4.5')
