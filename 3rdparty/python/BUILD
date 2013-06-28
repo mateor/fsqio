@@ -40,6 +40,7 @@ make_lib('pymongo', 'pymongo==2.2.1')
 make_lib('pyopenssl', 'pyOpenSSL==0.13')
 make_lib('pystache', 'pystache==0.5.3')
 make_lib('zope-interface', 'zope.interface==4.0.5')
+make_lib('lvm', 'lvm==2.02.99_2_git._2012_10_22_')
 
 python_library(
   name = 'pytest',
@@ -55,6 +56,7 @@ make_lib('setuptools', 'distribute==0.6.21')
 make_lib('thrift-0.7', 'Thrift==0.7.0_dev')
 make_lib('thrift-0.9', 'thrift==0.9.0')
 make_lib('tornado', 'tornado==3.1')
+make_lib('futures', 'concurrent.futures==2.1.3')
 
 python_library(
   name = 'twisted',
