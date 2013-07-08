@@ -33,30 +33,30 @@ struct Include {
 }
 
 struct Namespace {
-  1: required string language,
+  1: required string language
   2: required string name
 }
 
 struct Annotation {
-  1: required string key,
+  1: required string key
   2: required string value
 }
 
 /* Types. */
 
 enum SimpleBaseType {
-  BOOL = 0,
-  BYTE = 1,
-  I16 = 2,
-  I32 = 3,
-  I64 = 4,
-  DOUBLE = 5,
-  STRING = 6,
+  BOOL = 0
+  BYTE = 1
+  I16 = 2
+  I32 = 3
+  I64 = 4
+  DOUBLE = 5
+  STRING = 6
   BINARY = 7
 }
 
 struct BaseType {
-  1: required SimpleBaseType simpleBaseType,
+  1: required SimpleBaseType simpleBaseType
   99: optional list<Annotation> annotations = []
 }
 
@@ -74,7 +74,7 @@ struct SetType {
 }
 
 struct MapType {
-  1: required string keyTypeId,
+  1: required string keyTypeId
   2: required string valueTypeId
 }
 
@@ -83,13 +83,13 @@ struct MapType {
 // regular struct, and we enforce the union constraint in code.
 // TODO: Add Python support for 'union' in the Thrift compiler.
 union SimpleContainerType {
-  1: optional ListType listType,
-  2: optional SetType setType,
+  1: optional ListType listType
+  2: optional SetType setType
   3: optional MapType mapType
 }
 
 struct ContainerType {
-  1: required SimpleContainerType simpleContainerType,
+  1: required SimpleContainerType simpleContainerType
   99: optional list<Annotation> annotations = []
 }
 
@@ -103,19 +103,19 @@ struct Typeref {
 // regular struct, and we enforce the union constraint in code.
 // TODO: Add Python support for 'union' in the Thrift compiler.
 union SimpleType {
-  1: optional BaseType baseType,
-  2: optional ContainerType containerType,
+  1: optional BaseType baseType
+  2: optional ContainerType containerType
   3: optional Typeref typeref
 }
 
 struct Type {
-  1: required string id,
+  1: required string id
   2: required SimpleType simpleType
 }
 
 struct Typedef {
-  1: required string typeId,
-  2: required string typeAlias,
+  1: required string typeId
+  2: required string typeAlias
   99: optional list<Annotation> annotations = []
 }
 
@@ -126,7 +126,7 @@ struct Typedef {
 struct TypeRegistry {
   // A map from id to type. Used to resolve type ids, e.g., in container types.
   // Note that type ids are opaque, not durable, and can change from parse to parse.
-  1: map<string, Type> idToType,
+  1: map<string, Type> idToType
 
   // A map from alias to type id. Aliases are created using typedef.
   2: map<string, string> aliasToTypeId
@@ -136,8 +136,8 @@ struct TypeRegistry {
 /* Constants. */
 
 struct Const {
-  1: required string typeId,
-  2: required string name,
+  1: required string typeId
+  2: required string name
   3: required string value
 }
 
@@ -145,14 +145,14 @@ struct Const {
 /* Enumerations. */
 
 struct EnumElement {
-  1: required string name,
-  2: required i32 value,
+  1: required string name
+  2: required i32 value
   99: optional list<Annotation> annotations = []
 }
 
 struct Enum {
-  1: required string name,
-  2: required list<EnumElement> elements,
+  1: required string name
+  2: required list<EnumElement> elements
   99: optional list<Annotation> annotations = []
 }
 
@@ -160,34 +160,34 @@ struct Enum {
 /* Structs, unions and exceptions. */
 
 enum Requiredness {
-  REQUIRED = 0,
+  REQUIRED = 0
   OPTIONAL = 1
 }
 
 struct Field {
-  1: required i16 identifier,
-  2: required string name,
-  3: required string typeId,
-  4: optional Requiredness requiredness,
-  5: optional string defaultValue,
+  1: required i16 identifier
+  2: required string name
+  3: required string typeId
+  4: optional Requiredness requiredness
+  5: optional string defaultValue
   99: optional list<Annotation> annotations = []
 }
 
 struct Struct {
-  1: required string name,
-  2: required list<Field> fields,
+  1: required string name
+  2: required list<Field> fields
   99: optional list<Annotation> annotations = []
 }
 
 struct Union {
-  1: required string name,
-  2: required list<Field> fields,
+  1: required string name
+  2: required list<Field> fields
   99: optional list<Annotation> annotations = []
 }
 
 struct Exception {
-  1: required string name,
-  2: required list<Field> fields,
+  1: required string name
+  2: required list<Field> fields
   99: optional list<Annotation> annotations = []
 }
 
@@ -195,18 +195,18 @@ struct Exception {
 /* Services. */
 
 struct Function {
-  1: required string name,
+  1: required string name
   2: optional string returnTypeId,  // Unspecified means void.
   3: optional bool oneWay = 0,  // Thrift doesn't allow 'false'/'true' when specifying the default.
-  4: required list<Field> argz,
-  5: required list<Field> throwz,
+  4: required list<Field> argz
+  5: required list<Field> throwz
   99: optional list<Annotation> annotations = []
 }
 
 struct Service {
-  1: required string name,
-  2: optional string extendz,
-  3: required list<Function> functions,
+  1: required string name
+  2: optional string extendz
+  3: required list<Function> functions
   99: optional list<Annotation> annotations = []
 }
 
@@ -214,15 +214,15 @@ struct Service {
 // In the Thrift parsing code the collection of all elements in a .thrift file
 // is referred to as a 'program'.
 struct Program {
-  1: optional list<Namespace> namespaces = [],
-  2: optional list<Include> includes = [],
-  3: optional list<Const> constants = [],
-  4: optional list<Enum> enums = [],
-  5: optional list<Typedef> typedefs = [],
-  6: optional list<Struct> structs = [],
-  7: optional list<Union> unions = [],
-  8: optional list<Exception> exceptions = [],
-  9: optional list<Service> services = [],
+  1: optional list<Namespace> namespaces = []
+  2: optional list<Include> includes = []
+  3: optional list<Const> constants = []
+  4: optional list<Enum> enums = []
+  5: optional list<Typedef> typedefs = []
+  6: optional list<Struct> structs = []
+  7: optional list<Union> unions = []
+  8: optional list<Exception> exceptions = []
+  9: optional list<Service> services = []
 
   // A registry of all types in the program. Used for resolving type references.
   98: required TypeRegistry typeRegistry
