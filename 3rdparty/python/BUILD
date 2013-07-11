@@ -10,7 +10,7 @@ def make_lib(name, dependency_name=None):
 
 make_lib('antlr-3.1.3', 'antlr_python_runtime==3.1.3')
 make_lib('argparse', 'argparse==1.2.1')
-make_lib('boto', 'boto==2.6.0')
+make_lib('boto', 'boto==2.6.0_fsa')
 make_lib('cherrypy', 'CherryPy==3.2.2')
 make_lib('counter', 'Counter==1.0.0')
 make_lib('dateutil', 'python-dateutil==2.1')
