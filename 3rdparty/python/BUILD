@@ -1,5 +1,10 @@
 # Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
+########################################################################################
+# Trying to add a new library?                                                         #
+# https://sites.google.com/a/foursquare.com/foursquare/eng/build/deploying-python-eggs #
+########################################################################################
+
 
 def make_lib(name, dependency_name=None):
   dependency_name = dependency_name or name
@@ -12,6 +17,7 @@ make_lib('antlr-3.1.3', 'antlr_python_runtime==3.1.3')
 make_lib('argparse', 'argparse==1.2.1')
 make_lib('boto', 'boto==2.6.0_fsa')
 make_lib('cherrypy', 'CherryPy==3.2.2')
+make_lib('cookies', 'cookies==1.2.1')
 make_lib('counter', 'Counter==1.0.0')
 make_lib('dateutil', 'python-dateutil==2.1')
 make_lib('flask', 'Flask==0.9')
