@@ -68,6 +68,7 @@ python_library(
 make_lib('requests', 'requests==0.14.2')
 make_lib('requests-1.2', 'requests==1.2.0')
 make_lib('setuptools', 'distribute==0.6.21')
+make_lib('sqlalchemy', 'SQLAlchemy==0.8.2')
 make_lib('thrift-0.7', 'Thrift==0.7.0_dev')
 make_lib('thrift-0.9', 'thrift==0.9.0')
 make_lib('tornado', 'tornado==3.1')
