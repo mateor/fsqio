@@ -26,7 +26,14 @@ make_lib('luigi', 'luigi==2013_07_08.001')
 make_lib('mako', 'Mako==0.7.0')
 make_lib('markdown', 'Markdown==2.0.3')
 make_lib('mechanize', 'mechanize==0.2.5')
-make_lib('hive', 'hive==0.9.0_cdh4.1.2')
+
+python_library(
+  name = 'hive',
+  dependencies = [
+    ':thrift-0.9',
+    python_requirement('hive==0.9.0_cdh4.1.2_nothrift'),
+  ]
+)
 
 python_library(
   name = 'mesos',
@@ -45,6 +52,7 @@ make_lib('py', 'py==1.4.5')
 make_lib('pymongo', 'pymongo==2.2.1')
 make_lib('pyopenssl', 'pyOpenSSL==0.13')
 make_lib('pystache', 'pystache==0.5.3fs')
+make_lib('pyhadoop', 'pyhadoop==0.1.4')
 make_lib('zope-interface', 'zope.interface==4.0.5')
 make_lib('lvm', 'lvm==2.02.99_2_git._2012_10_22_')
 make_lib('apscheduler', 'APScheduler==2.1.1')
