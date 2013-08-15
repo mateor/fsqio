@@ -30,7 +30,7 @@ make_lib('mechanize', 'mechanize==0.2.5')
 python_library(
   name = 'hive',
   dependencies = [
-    ':thrift-0.9',
+    ':thrift-0.9-fs1',
     python_requirement('hive==0.9.0_cdh4.1.2_nothrift'),
   ]
 )
@@ -70,7 +70,7 @@ make_lib('requests-1.2', 'requests==1.2.0')
 make_lib('setuptools', 'distribute==0.6.21')
 make_lib('sqlalchemy', 'SQLAlchemy==0.8.2')
 make_lib('thrift-0.7', 'Thrift==0.7.0_dev')
-make_lib('thrift-0.9', 'thrift==0.9.0')
+make_lib('thrift-0.9-fs1', 'thrift==0.9.0_fs1')
 make_lib('tornado', 'tornado==3.1')
 make_lib('futures', 'concurrent.futures==2.1.3')
 
