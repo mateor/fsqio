@@ -97,3 +97,12 @@ python_library(
 make_lib('scipy', 'scipy==0.12.0')
 make_lib('scikit-learn', 'scikit-learn==0.13.1')
 make_lib('simplejson', 'simplejson==3.3.0')
+python_library(
+  name = 'twitter-common-zookeeper-serverset',
+  dependencies = [
+    python_requirement('twitter.common.zookeeper.serverset==0.0.0'),
+    python_requirement('twitter.common.service.thrift==0.0.0'),
+    ':thrift-0.9-fs1',
+    ':futures', # needed by twitter.common.concurrent, which is pulled in by twitter.common.zookeeper.serverset
+  ]
+)
