@@ -17,7 +17,7 @@ from argparse import ArgumentParser
 from foursquare.common.json_config import JsonConfig
 from foursquare.toolchain.pants import PantsRunner
 from foursquare.toolchain.watcher import WatcherRunner
-from foursquare.toolchain.tasks import CustomClean, Scrub, Wash, SetupGit, SetupGitAliases, Unmount, RewritePackages
+from foursquare.toolchain.tasks import CustomClean, Wash, SetupGit, SetupGitAliases, Unmount, RewritePackages
 import os
 import sys
 
@@ -32,7 +32,6 @@ runner.add_external_goal(SetupGit) # (re)setup git config (user, email, hooks)
 runner.add_external_goal(SetupGitAliases) # (re)setup git aliases
 runner.add_external_goal(Unmount) #delegates `clean` via config to clean-all(-async) or ramdisk
 runner.add_external_goal(WatcherRunner) # ~compile support
-runner.add_external_goal(Scrub) # clean, wash, artifact cache, git clean, etc
 
 parser = ArgumentParser(add_help=False)
 runner.setup_arg_parser(parser)
