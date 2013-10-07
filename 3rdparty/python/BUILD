@@ -44,6 +44,7 @@ python_library(
   ]
 )
 
+make_lib('mock', 'mock==1.0.1')
 make_lib('mox', 'mox==0.5.3')
 make_lib('mako', 'Mako==0.7.0')
 make_lib('ordereddict', 'ordereddict==1.1')
