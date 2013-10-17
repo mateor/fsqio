@@ -26,6 +26,7 @@ make_lib('luigi', 'luigi==2013_08_07.001')
 make_lib('mako', 'Mako==0.7.0')
 make_lib('markdown', 'Markdown==2.0.3')
 make_lib('mechanize', 'mechanize==0.2.5')
+make_lib('redis', 'Redis==2.8.0')
 
 python_library(
   name = 'hive',
