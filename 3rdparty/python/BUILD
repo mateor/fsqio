@@ -60,6 +60,7 @@ make_lib('zope-interface', 'zope.interface==4.0.5')
 make_lib('lvm', 'lvm==2.02.99_2_git._2012_10_22_')
 make_lib('pycurl', 'pycurl==7.19.0')
 make_lib('apscheduler', 'APScheduler==2.1.1')
+make_lib('loko_tools', 'loko_tools==0.1.1')
 
 python_library(
   name = 'pytest',
