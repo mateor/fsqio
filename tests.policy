@@ -17,6 +17,7 @@ grant {
   permission java.net.NetPermission "*";
   permission javax.security.auth.AuthPermission "*";
   permission java.security.SecurityPermission "*";
+  permission javax.net.ssl.SSLPermission "setHostnameVerifier";
   /* hadoop tests need the mbean/jdo perms */
   permission javax.management.MBeanServerPermission "*";
   permission javax.management.MBeanPermission "*", "*";
