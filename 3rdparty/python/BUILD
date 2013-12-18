@@ -99,6 +99,7 @@ python_library(
     python_requirement('matplotlib==1.2.1')
   ]
 )
+make_lib('fsevents', 'MacFSEvents==0.2.8')
 make_lib('scipy', 'scipy==0.12.0')
 make_lib('scikit-learn', 'scikit-learn==0.13.1')
 make_lib('simplejson', 'simplejson==3.3.0')
