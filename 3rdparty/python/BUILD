@@ -46,6 +46,7 @@ python_library(
 
 make_lib('mock', 'mock==1.0.1')
 make_lib('mox', 'mox==0.5.3')
+make_lib('mako', 'Mako==0.7.0')
 make_lib('ordereddict', 'ordereddict==1.1')
 make_lib('protobuf', 'protobuf==2.5.0')
 make_lib('psycopg2', 'psycopg2-vertica==2.4.6')
