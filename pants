@@ -22,7 +22,7 @@ import os
 import sys
 
 
-config = JsonConfig(path('build-support/fsconfig.json'))
+config = JsonConfig(path('.fsconfig.json'))
 runner = PantsRunner(root_dir, config, quiet=not config.get('pants.printcmd', False))
 
 runner.add_external_goal(RewritePackages) # c.f.common.foo -> src/jvm/com/foursquare/common/foo
