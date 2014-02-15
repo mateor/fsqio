@@ -79,7 +79,7 @@ python_library(
   ]
 )
 
-make_dep('requests', '0.14.2')
+make_dep('requests', '2.3.0')
 make_dep('requests-1.2', '1.2.0', 'requests')
 make_dep('setuptools', '0.6.21', 'distribute')
 make_dep('sqlalchemy', '0.8.2', 'SQLAlchemy')
