@@ -80,6 +80,7 @@ python_library(
 )
 
 make_dep('requests', '2.2.1')
+make_dep('requests_futures', '0.9.4')
 make_dep('setuptools', '0.6.21', 'distribute')
 make_dep('sqlalchemy', '0.8.2', 'SQLAlchemy')
 make_dep('thrift-0.7', '0.7.0_dev', 'Thrift')
