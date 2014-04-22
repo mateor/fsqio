@@ -21,6 +21,8 @@ from foursquare.toolchain.tasks import (CustomClean, Scrub, Wash, SetupGit, Setu
                                         Unmount, RewritePackages, SyncEggs)
 import os
 import sys
+import platform
+import datetime
 
 
 config = JsonConfig(path('.fsconfig.json'))
@@ -41,6 +43,21 @@ runner.setup_arg_parser(parser)
 parser.add_argument('goal', nargs='?')
 
 def main():
+  upgrade_date = datetime.date(2014, 04, 29)
+  mac_ver = platform.mac_ver()[0]
+  if mac_ver[0:4] in ('10.7', '10.8'):
+    today = datetime.date.today()
+    print '*' * 100
+    if today > upgrade_date:
+      print "You didn't upgrade to mavericks in time.  Your are out of date. Talk to ja and upgrade now."
+      print '*' * 100
+      sys.exit(1)
+    else:
+      days_left = (upgrade_date - today).days
+      print "You are not on mavericks.  You have {0} days left. Talk to ja an get upgraded!".format(days_left)
+      print '*' * 100
+
+
   args = args, other_args = parser.parse_known_args()
   args.passthrough = other_args
   ret = runner.run(args.goal, args)
