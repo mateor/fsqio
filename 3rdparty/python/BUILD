@@ -20,7 +20,9 @@ def make_dep(name, version, dependency_name=None):
   """
   dependency_name = dependency_name or name
   versioned_name = "%s==%s" % (dependency_name, version)
-  return python_requirement(requirement=versioned_name, name=name)
+  req = python_requirement(requirement=versioned_name, name=name)
+  python_requirement_library(name=name, requirements=[req])
+  return ':' + name
 
 
 make_dep('antlr-3.1.3', '3.1.3', 'antlr_python_runtime')
