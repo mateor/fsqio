@@ -67,7 +67,7 @@ make_dep('pystache', '0.5.3fs')
 make_dep('pyhadoop', '0.1.4')
 make_dep('zope-interface', '4.0.5', 'zope.interface')
 make_dep('lvm', '2.02.99_2_git._2012_10_22_')
-make_dep('pycurl', '7.19.0')
+make_dep('pycurl', '7.19.3.1')
 make_dep('apscheduler', '2.1.1', 'APScheduler')
 make_dep('loko_tools', '0.1.1')
 
