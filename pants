@@ -43,7 +43,7 @@ runner.setup_arg_parser(parser)
 parser.add_argument('goal', nargs='?')
 
 def main():
-  upgrade_date = datetime.date(2014, 5, 9)
+  upgrade_date = datetime.date(2014, 5, 17)
   mac_ver = platform.mac_ver()[0]
   if mac_ver[0:4] in ('10.7', '10.8'):
     today = datetime.date.today()
