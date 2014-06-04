@@ -42,7 +42,7 @@ make_dep('dateutil', '2.1', 'python-dateutil')
 make_dep('flask', '0.9', 'Flask')
 make_dep('repoze.lru', '0.6')
 make_dep('tornado-redis', '2.4.16')
-make_dep('kazoo', '1.3.1') #upgrade from 1.1
+make_dep('kazoo', '1.1')
 make_dep('luigi', '2013_08_07.001')
 make_dep('mako', '0.7.0', 'Mako')
 make_dep('markdown', '2.0.3', 'Markdown')
