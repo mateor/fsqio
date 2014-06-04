@@ -27,6 +27,13 @@ def make_dep(name, version, dependency_name=None):
 
 make_dep('antlr-3.1.3', '3.1.3', 'antlr_python_runtime')
 make_dep('argparse', '1.2.1')
+make_dep('apache.aurora.client', '0.5.1-SNAPSHOT')
+make_dep('apache.aurora.common', '0.5.1-SNAPSHOT')
+make_dep('apache.aurora.config', '0.5.1-SNAPSHOT')
+make_dep('apache.gen.aurora', '0.5.1-SNAPSHOT')
+make_dep('apache.gen.thermos', '0.5.1-SNAPSHOT')
+make_dep('apache.thermos.common', '0.5.1-SNAPSHOT')
+make_dep('apache.thermos.config', '0.5.1-SNAPSHOT')
 make_dep('boto', '2.6.0_fsa')
 make_dep('cherrypy', '3.2.2', 'CherryPy')
 make_dep('cookies', '1.2.1')
@@ -35,12 +42,34 @@ make_dep('dateutil', '2.1', 'python-dateutil')
 make_dep('flask', '0.9', 'Flask')
 make_dep('repoze.lru', '0.6')
 make_dep('tornado-redis', '2.4.16')
-make_dep('kazoo', '1.1')
+make_dep('kazoo', '1.3.1') #upgrade from 1.1
 make_dep('luigi', '2013_08_07.001')
 make_dep('mako', '0.7.0', 'Mako')
 make_dep('markdown', '2.0.3', 'Markdown')
 make_dep('mechanize', '0.2.5')
+make_dep('pystachio', '0.7.2')
 make_dep('redis', '2.8.0', 'Redis')
+make_dep('thrift', '0.9.1')
+make_dep('twitter.common.app', '0.3.0')
+make_dep('twitter.common.collections', '0.3.0')
+make_dep('twitter.common.concurrent', '0.3.0')
+make_dep('twitter.common.contextutil', '0.3.0')
+make_dep('twitter.common.decorators', '0.3.0')
+make_dep('twitter.common.dirutil', '0.3.0')
+make_dep('twitter.common.exceptions', '0.3.0')
+make_dep('twitter.common.lang', '0.3.0')
+make_dep('twitter.common.log', '0.3.0')
+make_dep('twitter.common.metrics', '0.3.0')
+make_dep('twitter.common.options', '0.3.0')
+make_dep('twitter.common.process', '0.3.0')
+make_dep('twitter.common.python', '0.5.4')
+make_dep('twitter.common.quantity', '0.3.0')
+make_dep('twitter.common.recordio', '0.3.0')
+make_dep('twitter.common.rpc', '0.3.0')
+make_dep('twitter.common.string', '0.3.0')
+make_dep('twitter.common.util', '0.3.0')
+make_dep('twitter.common.zookeeper', '0.3.0')
+make_dep('wheel', '0.23.0')
 
 python_library(
   name = 'hive',
@@ -90,7 +119,8 @@ make_dep('sqlalchemy', '0.8.2', 'SQLAlchemy')
 make_dep('thrift-0.9-fs1', '0.9.1_fs1', 'thrift')
 make_dep('tornado', '3.1')
 make_dep('toro', '0.5')
-make_dep('futures', '2.1.3', 'concurrent.futures')
+#make_dep('futures', '2.1.3', 'concurrent.futures')
+make_dep('futures', '2.1.2')
 
 python_library(
   name = 'twisted',
@@ -125,3 +155,4 @@ python_library(
     ':futures', # needed by twitter.common.concurrent, which is pulled in by twitter.common.zookeeper.serverset
   ]
 )
+
