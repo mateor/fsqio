@@ -119,8 +119,8 @@ make_dep('sqlalchemy', '0.8.2', 'SQLAlchemy')
 make_dep('thrift-0.9-fs1', '0.9.1_fs1', 'thrift')
 make_dep('tornado', '3.1')
 make_dep('toro', '0.5')
-#make_dep('futures', '2.1.3', 'concurrent.futures')
-make_dep('futures', '2.1.2')
+make_dep('futures', '2.1.3', 'concurrent.futures')
+#make_dep('futures', '2.1.2')
 
 python_library(
   name = 'twisted',
