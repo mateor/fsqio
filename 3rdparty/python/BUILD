@@ -42,7 +42,7 @@ make_dep('dateutil', '2.1', 'python-dateutil')
 make_dep('flask', '0.9', 'Flask')
 make_dep('repoze.lru', '0.6')
 make_dep('tornado-redis', '2.4.16')
-make_dep('kazoo', '1.1')
+make_dep('kazoo', '1.3.1') #upgrade from 1.1
 make_dep('luigi', '2013_08_07.001')
 make_dep('mako', '0.7.0', 'Mako')
 make_dep('markdown', '2.0.3', 'Markdown')
@@ -119,8 +119,8 @@ make_dep('sqlalchemy', '0.8.2', 'SQLAlchemy')
 make_dep('thrift-0.9-fs1', '0.9.1_fs1', 'thrift')
 make_dep('tornado', '3.1')
 make_dep('toro', '0.5')
-make_dep('futures', '2.1.3', 'concurrent.futures')
-#make_dep('futures', '2.1.2')
+#make_dep('futures', '2.1.3', 'concurrent.futures')
+make_dep('futures', '2.1.2')
 
 python_library(
   name = 'twisted',
