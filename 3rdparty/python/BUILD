@@ -25,25 +25,38 @@ def make_dep(name, version, dependency_name=None):
   return ':' + name
 
 
-make_dep('antlr-3.1.3', '3.1.3', 'antlr_python_runtime')
-make_dep('argparse', '1.2.1')
-make_dep('apache.aurora.client', '0.5.1-SNAPSHOT')
-make_dep('apache.aurora.common', '0.5.1-SNAPSHOT')
-make_dep('apache.aurora.config', '0.5.1-SNAPSHOT')
-make_dep('apache.gen.aurora', '0.5.1-SNAPSHOT')
-make_dep('apache.gen.thermos', '0.5.1-SNAPSHOT')
-make_dep('apache.thermos.common', '0.5.1-SNAPSHOT')
-make_dep('apache.thermos.config', '0.5.1-SNAPSHOT')
-make_dep('boto', '2.6.0_fsa')
-make_dep('cherrypy', '3.2.2', 'CherryPy')
+make_dep('apache.aurora.client', '0.0.0.FS1')
+make_dep('apache.aurora.common', '0.0.0.FS1')
+make_dep('apache.aurora.config', '0.0.0.FS1')
+make_dep('apache.gen.aurora', '0.0.0.FS1')
+make_dep('apache.gen.thermos', '0.0.0.FS1')
+make_dep('apache.thermos.common', '0.0.0.FS1')
+make_dep('apache.thermos.config', '0.0.0.FS1')
+make_dep('boto', '2.29.1')
 make_dep('cookies', '1.2.1')
-make_dep('counter', '1.0.0', 'Counter')
-make_dep('dateutil', '2.1', 'python-dateutil')
-make_dep('flask', '0.9', 'Flask')
+
+python_requirement_library(
+  name = 'dateutil',
+  requirements = [
+    python_requirement('six==1.7.2'),
+    python_requirement('python-dateutil==2.1'),
+  ],
+)
+
+python_requirement_library(
+  name = 'flask',
+  requirements = [
+    python_requirement('Flask==0.9'),
+    python_requirement('Werkzeug==0.9.6'),
+    python_requirement('Jinja2==2.7.3'),
+    python_requirement('MarkupSafe==0.23'),
+  ],
+)
+
 make_dep('repoze.lru', '0.6')
 make_dep('tornado-redis', '2.4.16')
-make_dep('kazoo', '1.3.1') #upgrade from 1.1
-make_dep('luigi', '2013_08_07.001')
+make_dep('kazoo', '1.3.1')
+make_dep('luigi', '2013.08.07.001')
 make_dep('mako', '0.7.0', 'Mako')
 make_dep('markdown', '2.0.3', 'Markdown')
 make_dep('mechanize', '0.2.5')
@@ -68,41 +81,43 @@ make_dep('twitter.common.recordio', '0.3.0')
 make_dep('twitter.common.rpc', '0.3.0')
 make_dep('twitter.common.string', '0.3.0')
 make_dep('twitter.common.util', '0.3.0')
-make_dep('twitter.common.zookeeper', '0.3.0')
-make_dep('wheel', '0.23.0')
-
 python_library(
-  name = 'hive',
+  name = 'twitter.common.zookeeper',
   dependencies = [
-    ':thrift-0.9-fs1',
-    make_dep('_hive', '0.9.0_cdh4.1.2_nothrift', 'hive'),
+    make_dep('_t.c.zookeeper.', '0.3.0', 'twitter.common.zookeeper'),
+    make_dep('zc-zookeeper-static', '3.4.4'),
   ]
 )
+make_dep('wheel', '0.23.0')
+
 
 python_library(
   name = 'mesos',
   dependencies = [
     ':protobuf',
-    make_dep('_mesos', '0.11.0', 'mesos'),
+    make_dep('_mesos', '0.19.0', 'mesos'),
   ]
 )
 
+make_dep('toro', '0.5'),
 make_dep('mock', '1.0.1')
 make_dep('mox', '0.5.3')
-make_dep('ordereddict', '1.1')
+make_dep('nose', '1.3.3')
 make_dep('protobuf', '2.5.0')
-make_dep('psycopg2', '2.5.2')
+make_dep('psycopg2', '2.5.3')
 make_dep('py', '1.4.5')
 make_dep('pymongo', '2.2.1')
 make_dep('pymongo26', '2.6.3', 'pymongo')
 make_dep('pyopenssl', '0.13', 'pyOpenSSL')
 make_dep('pystache', '0.5.3fs')
 make_dep('pyhadoop', '0.1.4')
-make_dep('zope-interface', '4.0.5', 'zope.interface')
-make_dep('lvm', '2.02.99_2_git._2012_10_22_')
+make_dep('zope-interface', '4.1.1', 'zope.interface')
+make_dep('lvm', '2.02.99')
 make_dep('pycurl', '7.19.3.1')
 make_dep('apscheduler', '2.1.1', 'APScheduler')
-make_dep('loko_tools', '0.1.1')
+
+# XXX(pl): This doesn't easy_install
+# make_dep('loko-client', '0.2.4')
 
 python_library(
   name = 'pytest',
@@ -112,15 +127,19 @@ python_library(
   ]
 )
 
-make_dep('requests', '2.2.1')
+make_dep('requests', '2.3.0')
 make_dep('requests_futures', '0.9.4')
 make_dep('setuptools', '0.6.21', 'distribute')
 make_dep('sqlalchemy', '0.8.2', 'SQLAlchemy')
-make_dep('thrift-0.9-fs1', '0.9.1_fs1', 'thrift')
+make_dep('thrift-0.9.1.fs1', '0.9.1.fs1', 'thrift')
 make_dep('tornado', '3.1')
-make_dep('toro', '0.5')
-#make_dep('futures', '2.1.3', 'concurrent.futures')
-make_dep('futures', '2.1.2')
+
+python_requirement_library(
+  name = 'futures',
+  requirements = [
+    python_requirement('futures>=2.1.3'),
+  ],
+)
 
 python_library(
   name = 'twisted',
@@ -133,7 +152,7 @@ python_library(
 make_dep('unittest2', '0.5.1')
 make_dep('whoops', '0.2.0')
 
-make_dep('numpy', '1.7.1')
+make_dep('numpy', '1.8.1')
 python_library(
   name = 'matplotlib',
   dependencies = [
@@ -141,17 +160,17 @@ python_library(
     make_dep('_matplotlib', '1.2.1', 'matplotlib'),
   ]
 )
-make_dep('fsevents', '0.2.8', 'MacFSEvents')
+make_dep('fsevents', '0.3', 'MacFSEvents')
 make_dep('pyinotify', '0.9.4')
-make_dep('scipy', '0.12.0')
-make_dep('scikit-learn', '0.13.1')
-make_dep('simplejson', '3.3.0')
+make_dep('scipy', '0.13.3')
+make_dep('scikit-learn', '0.14.1')
+make_dep('simplejson', '3.5.2')
 python_library(
   name = 'twitter-common-zookeeper-serverset',
   dependencies = [
     make_dep('twitter.common.zookeeper.serverset', '0.0.0'),
     make_dep('twitter.common.service.thrift', '0.0.0'),
-    ':thrift-0.9-fs1',
+    ':thrift-0.9.1.fs1',
     ':futures', # needed by twitter.common.concurrent, which is pulled in by twitter.common.zookeeper.serverset
   ]
 )
