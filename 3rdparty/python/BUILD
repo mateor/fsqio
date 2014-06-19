@@ -99,6 +99,8 @@ python_library(
   ]
 )
 
+make_dep('hive-codegen', '0.10.0')
+
 make_dep('toro', '0.5'),
 make_dep('mock', '1.0.1')
 make_dep('mox', '0.5.3')
