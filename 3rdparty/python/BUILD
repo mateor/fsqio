@@ -25,13 +25,13 @@ def make_dep(name, version, dependency_name=None):
   return ':' + name
 
 
-make_dep('apache.aurora.client', '0.0.0.FS1')
-make_dep('apache.aurora.common', '0.0.0.FS1')
-make_dep('apache.aurora.config', '0.0.0.FS1')
-make_dep('apache.gen.aurora', '0.0.0.FS1')
-make_dep('apache.gen.thermos', '0.0.0.FS1')
-make_dep('apache.thermos.common', '0.0.0.FS1')
-make_dep('apache.thermos.config', '0.0.0.FS1')
+make_dep('apache.aurora.client', '0.0.1.FS1')
+make_dep('apache.aurora.common', '0.0.1.FS1')
+make_dep('apache.aurora.config', '0.0.1.FS1')
+make_dep('apache.gen.aurora', '0.0.1.FS1')
+make_dep('apache.gen.thermos', '0.0.1.FS1')
+make_dep('apache.thermos.common', '0.0.1.FS1')
+make_dep('apache.thermos.config', '0.0.1.FS1')
 make_dep('apscheduler', '2.1.1', 'APScheduler')
 make_dep('boto', '2.29.1')
 make_dep('cookies', '1.2.1')
