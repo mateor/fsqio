@@ -75,8 +75,6 @@ make_dep('scikit-learn', '0.14.1')
 make_dep('scipy', '0.13.3')
 make_dep('setuptools', '0.6.21', 'distribute')
 make_dep('simplejson', '3.5.2')
-make_dep('snakebite', '1.3.3')
-make_dep('snakebite2', '2.4.5')
 make_dep('supervisor', '3.1.1')
 make_dep('sqlalchemy', '0.8.2', 'SQLAlchemy')
 make_dep('thrift', '0.9.1')
@@ -107,13 +105,6 @@ make_dep('wheel', '0.23.0')
 make_dep('whoops', '0.2.0')
 make_dep('zope-interface', '4.1.1', 'zope.interface')
 
-python_library(
-  name = 'twitter.common.zookeeper',
-  dependencies = [
-    make_dep('_t.c.zookeeper.', '0.3.1', 'twitter.common.zookeeper'),
-    make_dep('zc-zookeeper-static', '3.4.4'),
-  ]
-)
 
 # XXX(pl): This doesn't easy_install
 # make_dep('loko-client', '0.2.4')
@@ -140,14 +131,3 @@ python_library(
     make_dep('_twisted', '12.3.0', 'Twisted'),
   ]
 )
-
-python_library(
-  name = 'twitter-common-zookeeper-serverset',
-  dependencies = [
-    make_dep('twitter.common.zookeeper.serverset', '0.0.0'),
-    make_dep('twitter.common.service.thrift', '0.0.0'),
-    ':thrift-0.9.1.fs1',
-    ':futures', # needed by twitter.common.concurrent, which is pulled in by twitter.common.zookeeper.serverset
-  ]
-)
-
