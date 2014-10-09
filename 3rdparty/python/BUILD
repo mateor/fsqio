@@ -25,6 +25,20 @@ def make_dep(name, version, dependency_name=None):
   return ':' + name
 
 
+python_requirement_library(
+  name = 'apache.aurora.clientv2',
+  requirements = [
+    python_requirement(requirement='apache.aurora.clientv2==0.5.1.24BCBDC', name='apache.aurora.clientv2'),
+    python_requirement(requirement='apache.aurora.common==0.5.1.24BCBDC', name='apache.aurora.common'),
+    python_requirement(requirement='apache.aurora.config==0.5.1.24BCBDC', name='apache.aurora.config'),
+    python_requirement(requirement='apache.gen.aurora==0.5.1.24BCBDC', name='apache.gen.aurora'),
+    python_requirement(requirement='apache.gen.thermos==0.5.1.24BCBDC', name='apache.gen.thermos'),
+    python_requirement(requirement='apache.thermos.common==0.5.1.24BCBDC', name='apache.thermos.common'),
+    python_requirement(requirement='apache.thermos.config==0.5.1.24BCBDC', name='apache.thermos.config')
+  ]
+)
+
+
 make_dep('apache.aurora.client', '0.0.1.FS1')
 make_dep('apache.aurora.common', '0.0.1.FS1')
 make_dep('apache.aurora.config', '0.0.1.FS1')
