@@ -82,7 +82,7 @@ make_dep('supervisor', '3.1.1')
 make_dep('sqlalchemy', '0.8.2', 'SQLAlchemy')
 make_dep('thrift', '0.9.1')
 make_dep('thrift-0.9.1.fs1', '0.9.1.fs1', 'thrift')
-make_dep('tornado', '3.1')
+make_dep('tornado', '4.0.2')
 make_dep('tornado-redis', '2.4.16')
 make_dep('toro', '0.5'),
 make_dep('twitter.common.app', '0.3.1')
