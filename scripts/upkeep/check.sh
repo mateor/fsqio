@@ -4,6 +4,8 @@ DIR=$(dirname ${BASH_SOURCE[${#BASH_SOURCE[@]} - 1]})
 
 source $DIR/run.sh
 
+set -e
+
 shopt -s nullglob # without this, empty $DIR would expand * to literal $DIR/*
 
 ran=""
