@@ -31,7 +31,7 @@ if [ "$1" != "" ]; then
   check $DIR/required/$1
 else
   for req_file in $DIR/required/*; do
-    check req_file
+    check $req_file
   done
 fi
 
