@@ -9,10 +9,9 @@ set -e
 shopt -s nullglob # without this, empty $DIR would expand * to literal $DIR/*
 
 ran=""
-
-function check() {
-  task=$(basename $1)
-  required=$(cat $1)
+for req_file in $DIR/required/*; do
+  task=$(basename $req_file)
+  required=$(cat $req_file)
 
   current=""
   if [ -f $DIR/current/$task ]; then
@@ -25,15 +24,7 @@ function check() {
     run_task $task
     ran="$ran $task"
   fi
-}
-
-if [ "$1" != "" ]; then
-  check $DIR/required/$1
-else
-  for req_file in $DIR/required/*; do
-    check req_file
-  done
-fi
+done
 
 if [ "$ran" != "" ]; then
     echo
