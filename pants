@@ -14,7 +14,6 @@ python_dir = path("src", "python")
 sys.path.insert(0, python_dir)
 
 from argparse import ArgumentParser
-from foursquare.common.json_config import JsonConfig
 from foursquare.common.process import run_command
 from foursquare.toolchain.pants import PantsRunner
 import os
@@ -22,8 +21,7 @@ import sys
 import platform
 
 
-config = JsonConfig(path('.fsconfig.json'))
-runner = PantsRunner(root_dir, config, quiet=True)
+runner = PantsRunner(root_dir)
 
 parser = ArgumentParser(add_help=False)
 runner.setup_arg_parser(parser)
@@ -43,7 +41,7 @@ def main():
   args.passthrough = other_args
 
   if not args.skip_upkeep:
-    ret = run_command(['./scripts/upkeep/check.sh'], quiet=True)
+    ret = run_command(['./scripts/upkeep/check.sh'])
     if not ret:
       exit(ret)
 
