@@ -1,26 +1,14 @@
-#! /usr/bin/env python2.7
+#!/bin/bash
 
-import os
-import sys
+set -e
 
-root_dir = os.path.abspath(os.path.dirname(__file__))
-sys.path.insert(0, os.path.join(root_dir, 'src', 'python'))
+if [[ -f .pantsenv/bin/pants && -z "$SKIP_UPKEEP" ]]; then
+  ./upkeep
+fi
 
-from foursquare.common.process import run_command
-from foursquare.toolchain.pants import PantsRunner
-
-
-def main():
-  if 'PANTS_SKIP_UPKEEP' in os.environ:
-    print "Skipping upkeep tasks"
-  else:
-    ret = run_command(['./scripts/upkeep/check.sh'])
-    if not ret:
-      sys.exit(ret)
-
-  ret = PantsRunner(root_dir).run(sys.argv[1:])
-  sys.exit(ret.result)
-
-
-if __name__ == '__main__':
-  main()
+if [ -z "$PANTSBINARY" ]; then
+  exec .pantsenv/bin/pants goal $@
+else
+  export PYTHONPATH=src/python
+  exec $PANTSBINARY goal $@
+fi
