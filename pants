@@ -2,7 +2,7 @@
 
 set -e
 
-if [[ -f .pantsenv/bin/pants && -z "$SKIP_UPKEEP" ]]; then
+if [[ -z "$SKIP_UPKEEP" || ! -f .pantsenv/bin/pants ]]; then
   ./upkeep
 fi
 
