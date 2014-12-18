@@ -1,5 +1,10 @@
+if [ "$1" == "force" ]; then
+  shift
+  exec ./scripts/upkeep/force.sh $@
+fi
+
 if [ "$1" != "" ]; then
   exec ./scripts/upkeep/run.sh $@
-else
-  exec ./scripts/upkeep/check.sh
 fi
+
+exec ./scripts/upkeep/check.sh
