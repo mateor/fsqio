@@ -7,8 +7,8 @@ if [[ -z "$SKIP_UPKEEP" ]]; then
 fi
 
 if [ -z "$PANTSBINARY" ]; then
-  exec .pantsenv/bin/pants goal "$@"
+  exec .pantsenv/bin/pants "$@"
 else
   export PYTHONPATH=src/python
-  exec $PANTSBINARY --print-exception-stacktrace goal "$@"
+  exec $PANTSBINARY --print-exception-stacktrace "$@"
 fi
