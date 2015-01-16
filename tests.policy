@@ -13,6 +13,7 @@ grant {
   permission java.util.PropertyPermission "*", "read, write";
   permission java.lang.RuntimePermission "*";
   permission java.lang.reflect.ReflectPermission "suppressAccessChecks";
+  permission java.lang.reflect.ReflectPermission "newProxyInPackage.com.google.template.soy";
   permission java.util.logging.LoggingPermission "control";
   permission java.net.NetPermission "*";
   permission javax.security.auth.AuthPermission "*";
