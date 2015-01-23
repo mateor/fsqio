@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if [ "$1" == "force" ]; then
   shift
   exec ./scripts/upkeep/force.sh "$@"
