@@ -9,6 +9,7 @@ function run_task() {
   export FS_DEV_BUCKET=http://bodega.prod.foursquare.com/4sq-dev
   export URL_BASE=$FS_DEV_BUCKET/data/bin
   export CURL_PROXY="proxyout-aux:80"
+  export PYTHONPATH=""
 
   $DIR/tasks/$(basename $1).sh "$2" && if [ -f $DIR/required/$1 ]; then cp $DIR/required/$1 $DIR/current/$1; fi
 }
