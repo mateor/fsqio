@@ -6,6 +6,13 @@ if [[ -z "$SKIP_UPKEEP" ]]; then
   ./upkeep
 fi
 
+if [ "$(uname)" == "Darwin" ]; then
+  export JDK_HOME=$(/usr/libexec/java_home -v 1.8.0_40)
+else
+  export JDK_HOME="/data/loko/infrastructure-jdk8/current"
+fi
+
+
 if [ -z "$PANTSBINARY" ]; then
   exec .pantsenv/bin/pants "$@"
 else
