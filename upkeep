@@ -2,7 +2,7 @@
 
 if [ "$1" == "--help" ]; then
   echo ""
-  echo "upkeep: ensure tasks required to maintian a working dev env are run when needed."
+  echo "upkeep: ensure tasks required to maintain a working dev env are run when needed."
   echo ""
   echo "Usage:"
   echo " - \`./upkeep\` with no args will check that all required tasks are up-to-date."
