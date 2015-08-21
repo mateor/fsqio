@@ -25,8 +25,11 @@ grant {
   permission javax.management.MBeanTrustPermission "*";
   permission javax.xml.bind.JAXBPermission "*";
   permission javax.jdo.spi.JDOPermission "*";
+  permission javax.security.auth.PrivateCredentialPermission "org.apache.hadoop.security.Credentials * \"*\"", "read";
   /* pig uses this for spilling stuff to disk*/
   permission java.lang.management.ManagementPermission "control";
   /* elastic search indexing tests */
   permission java.lang.management.ManagementPermission "monitor";
+  /* hive tests */
+  permission java.sql.SQLPermission "deregisterDriver";
 };
