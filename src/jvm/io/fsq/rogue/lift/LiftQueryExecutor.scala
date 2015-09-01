@@ -146,11 +146,11 @@ object LiftQueryExecutorHelpers {
   }
 
   def fallbackValueFromDbObject(dbo: DBObject, fieldNames: List[String]): Option[_] = {
-    import scala.collection.JavaConversions._
+    import scala.collection.JavaConverters._
     Box.!!(fieldNames.foldLeft(dbo: Object)((obj: Object, fieldName: String) => {
       obj match {
         case dbl: BasicBSONList =>
-          dbl.map(_.asInstanceOf[DBObject]).map(_.get(fieldName)).toList
+          dbl.asScala.map(_.asInstanceOf[DBObject]).map(_.get(fieldName)).toList
         case dbo: DBObject =>
           dbo.get(fieldName)
         case null => null

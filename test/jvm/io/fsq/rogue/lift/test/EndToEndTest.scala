@@ -338,7 +338,7 @@ class EndToEndTest extends JUnitMustMatchers {
 
     // Modify
     Like.withShardKey(_.userid eqs 2).and(_.checkin eqs 333).modify(_.checkin setTo 334).updateOne()
-    Like.find(l3.id).open_!.checkin.value must_== 334
+    Like.find(l3.id).openOrThrowException("").checkin.value must_== 334
     Like.where(_.checkin eqs 334).allShards.count() must_== 1
 
     Like.where(_.checkin eqs 111).allShards.modify(_.checkin setTo 112).updateMulti()

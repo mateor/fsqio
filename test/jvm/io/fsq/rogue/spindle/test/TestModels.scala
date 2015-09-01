@@ -13,7 +13,7 @@ class TestDatabaseService extends SpindleDatabaseService(new TestDBCollectionFac
 }
 
 class TestDBCollectionFactory extends SpindleDBCollectionFactory {
-  val mongoClient = new MongoClient(new ServerAddress("localhost", 37648))
+  val mongoClient = new MongoClient(new ServerAddress("localhost", 27017))
 
   override def getPrimaryDB(meta: UntypedMetaRecord): DB = {
     val identifierStr = getIdentifier(meta)
