@@ -7,6 +7,7 @@ import com.mongodb.{BasicDBObjectBuilder, DBCollection, DBCursor, DBDecoderFacto
 import io.fsq.rogue.Iter._
 import io.fsq.rogue.Rogue._
 import io.fsq.rogue.index.UntypedMongoIndex
+import java.util.concurrent.TimeUnit
 import scala.collection.mutable.ListBuffer
 
 trait DBCollectionFactory[MB, RB] {
@@ -184,7 +185,7 @@ class MongoJavaDriverAdapter[MB, RB](
                      batchSize: Option[Int],
                      readPreference: Option[ReadPreference])
                     (f: DBObject => Unit): Unit = {
-    doQuery("find", query, batchSize, readPreference){cursor =>
+    doQuery("find", query, batchSize, readPreference, setMaxTimeMS = true){cursor =>
       cursor.setDecoderFactory(decoderFactoryFunc(query.meta))
       while (cursor.hasNext)
         f(cursor.next)
@@ -270,7 +271,7 @@ class MongoJavaDriverAdapter[MB, RB](
 
 
   def explain[M <: MB](query: Query[M, _, _]): String = {
-    doQuery("find", query, None, None){cursor =>
+    doQuery("find", query, None, None, setMaxTimeMS = true){cursor =>
       cursor.explain.toString
     }
   }
@@ -279,7 +280,8 @@ class MongoJavaDriverAdapter[MB, RB](
       operation: String,
       query: Query[M, _, _],
       batchSize: Option[Int],
-      readPreference: Option[ReadPreference]
+      readPreference: Option[ReadPreference],
+      setMaxTimeMS: Boolean = false
   )(
       f: DBCursor => T
   ): T = {
@@ -322,6 +324,10 @@ class MongoJavaDriverAdapter[MB, RB](
       queryClause.maxScan.foreach(cursor addSpecial("$maxScan", _))
       queryClause.comment.foreach(cursor addSpecial("$comment", _))
       hnt.foreach(cursor hint _)
+      if (setMaxTimeMS) {
+        val configName = dbCollectionFactory.getDBCollection(query).getName
+        config.maxTimeMSOpt(configName).foreach(maxTimeMS => cursor.maxTime(maxTimeMS, TimeUnit.MILLISECONDS))
+      }
       val ret = f(cursor)
       cursor.close()
       ret
