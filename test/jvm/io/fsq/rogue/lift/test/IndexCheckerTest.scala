@@ -1,21 +1,20 @@
 // Copyright 2011 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.rogue.lift
+package io.fsq.rogue.lift.test
 
-import com.foursquare.index.{Asc, IndexedRecord, MongoIndexChecker, TwoD}
-import com.foursquare.rogue.{Degrees, LatLong, Query}
-import com.foursquare.rogue.lift.LiftRogue._
+import io.fsq.rogue.{Degrees, LatLong, Query}
+import io.fsq.rogue.index.{Asc, IndexedRecord, TwoD}
+import io.fsq.rogue.indexchecker.MongoIndexChecker
+import io.fsq.rogue.lift.LiftRogue._
+import io.fsq.rogue.lift.ObjectIdKey
 import net.liftweb.mongodb.record._
 import net.liftweb.mongodb.record.field._
 import net.liftweb.record._
-import net.liftweb.record.field.{BooleanField, IntField}
-import scala.collection.immutable.ListMap
-
+import net.liftweb.record.field.IntField
 import org.bson.types.ObjectId
 import org.joda.time.DateTime
 import org.junit._
 import org.specs2.matcher.JUnitMustMatchers
-
 
 class TestModel extends MongoRecord[TestModel] with ObjectIdKey[TestModel] {
   def meta = TestModel

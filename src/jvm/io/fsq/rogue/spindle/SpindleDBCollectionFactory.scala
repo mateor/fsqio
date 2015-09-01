@@ -1,11 +1,11 @@
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.rogue.spindle
+package io.fsq.rogue.spindle
 
-import com.foursquare.index.UntypedMongoIndex
-import com.foursquare.rogue.{DBCollectionFactory, Query => RogueQuery}
-import com.foursquare.spindle.{IndexParser, UntypedMetaRecord, UntypedRecord, StructFieldDescriptor}
+import com.foursquare.spindle.{IndexParser, StructFieldDescriptor, UntypedMetaRecord, UntypedRecord}
 import com.mongodb.{DB, DBCollection}
+import io.fsq.rogue.{DBCollectionFactory, Query => RogueQuery}
+import io.fsq.rogue.index.UntypedMongoIndex
 import scala.collection.immutable.ListMap
 import scala.collection.mutable.{Map => MutableMap}
 

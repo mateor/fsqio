@@ -1,10 +1,10 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.rogue
+package io.fsq.rogue
 
 import com.foursquare.field.Field
-import com.foursquare.rogue.MongoHelpers.{MongoModify, MongoSelect}
 import com.mongodb.{DBObject, ReadPreference, WriteConcern}
+import io.fsq.rogue.MongoHelpers.{MongoModify, MongoSelect}
 import scala.collection.mutable.{Builder, ListBuffer}
 
 trait RogueReadSerializer[R] {

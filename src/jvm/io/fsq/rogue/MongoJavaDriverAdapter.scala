@@ -1,12 +1,12 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.rogue
+package io.fsq.rogue
 
-import com.foursquare.index.UntypedMongoIndex
-import com.foursquare.rogue.Rogue._
-import com.foursquare.rogue.Iter._
-import com.mongodb.{BasicDBObject, BasicDBObjectBuilder, CommandResult, DBCollection,
-  DBCursor, DefaultDBDecoder, DBDecoderFactory, DBObject, ReadPreference, WriteConcern}
+import com.mongodb.{BasicDBObjectBuilder, DBCollection, DBCursor, DBDecoderFactory, DBObject, DefaultDBDecoder,
+    ReadPreference, WriteConcern}
+import io.fsq.rogue.Iter._
+import io.fsq.rogue.Rogue._
+import io.fsq.rogue.index.UntypedMongoIndex
 import scala.collection.mutable.ListBuffer
 
 trait DBCollectionFactory[MB, RB] {
@@ -23,8 +23,8 @@ class MongoJavaDriverAdapter[MB, RB](
   decoderFactoryFunc: (MB) => DBDecoderFactory = (m: MB) => DefaultDBDecoder.FACTORY
 ) {
 
-  import QueryHelpers._
   import MongoHelpers.MongoBuilder._
+  import QueryHelpers._
 
   private[rogue] def runCommand[M <: MB, T](descriptionFunc: () => String,
                                             query: Query[M, _, _])(f: => T): T = {

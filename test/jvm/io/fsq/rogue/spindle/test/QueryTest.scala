@@ -1,16 +1,17 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.rogue.spindle
+package io.fsq.rogue.spindle.test
 
-import com.foursquare.rogue.spindle.gen.{ThriftClaimStatus, ThriftComment, ThriftConsumerPrivilege, ThriftLike,
-    ThriftOAuthConsumer, ThriftRejectReason, ThriftSourceBson, ThriftTip, ThriftVenue, ThriftVenueClaim,
-    ThriftVenueClaimBson, ThriftVenueMeta, ThriftVenueStatus}
 import com.foursquare.field.Field
-import com.foursquare.rogue.{BSONType, MongoType, Query, QueryField, QueryOptimizer}
-import com.foursquare.rogue.spindle.gen.IdsTypedefs.VenueId
-import com.foursquare.rogue.spindle.SpindleRogue._
 import com.foursquare.spindle.{MetaRecord, Record}
 import com.mongodb.ReadPreference
+import io.fsq.rogue.{BSONType, MongoType, Query, QueryField, QueryOptimizer}
+import io.fsq.rogue.spindle.SpindleQuery
+import io.fsq.rogue.spindle.SpindleRogue._
+import io.fsq.rogue.spindle.test.gen.{ThriftClaimStatus, ThriftComment, ThriftConsumerPrivilege, ThriftLike,
+    ThriftOAuthConsumer, ThriftRejectReason, ThriftSourceBson, ThriftTip, ThriftVenue, ThriftVenueClaim,
+    ThriftVenueClaimBson, ThriftVenueMeta, ThriftVenueStatus}
+import io.fsq.rogue.spindle.test.gen.IdsTypedefs.VenueId
 import java.util.regex.Pattern
 import org.bson.types.ObjectId
 import org.joda.time.{DateTime, DateTimeZone}
@@ -654,11 +655,11 @@ class QueryTest extends JUnitMustMatchers {
   @Ignore @Test
   def thingsThatShouldntCompile {
     val compiler = new CompilerForNegativeTests(List(
-      """import com.foursquare.rogue._""",
-      """import com.foursquare.roguev2._""",
-      """import com.foursquare.roguev2.{Query = >Q}""",
+      """import io.fsq.rogue._""",
+      """import io.fsq.roguev2._""",
+      """import io.fsq.roguev2.{Query => Q}""",
       /* TODO(rogue-whenMigrated)
-      """import com.foursquare.rogue.LiftRogue._""",
+      """import io.fsq.rogue.LiftRogue._""",
       */
       """import org.bson.types.ObjectId""",
       """import org.joda.time.DateTime"""))
@@ -772,29 +773,29 @@ class QueryTest extends JUnitMustMatchers {
     //       Some("found.*EqClause.*required.*_id"))
     // // Can't use where with an IndexScan'ing operation.
     // check("""Q(ThriftVenue).useIndex(Q(ThriftVenue).idIdx).where(_.id)(_ after new DateTime())""",
-    //       Some("do not conform to method where.*com.foursquare.rogue.Indexable"))
+    //       Some("do not conform to method where.*io.fsq.rogue.Indexable"))
     // // But you can use iscan with an IndexScan'ing operation.
     // check("""Q(ThriftVenue).useIndex(Q(ThriftVenue).idIdx).iscan(_.id)(_ after new DateTime())""",
     //       None)
 
     // // Can't skip past the first field in an index.
     // check("""Q(ThriftVenue).useIndex(Q(ThriftVenue).idIdx).rangeScan(_.id)""",
-    //       Some("(could not find implicit value for parameter ev|Cannot prove that).*com.foursquare.rogue.UsedIndex"))
+    //       Some("(could not find implicit value for parameter ev|Cannot prove that).*io.fsq.rogue.UsedIndex"))
 
     // // Can't skip past the first field in an index.
     // check("""Q(ThriftVenue).useIndex(Q(ThriftVenue).mayorIdIdx).rangeScan(_.mayor).iscan(_.id)(_ eqs new ObjectId())""",
-    //       Some("(could not find implicit value for parameter ev|Cannot prove that).*com.foursquare.rogue.UsedIndex"))
+    //       Some("(could not find implicit value for parameter ev|Cannot prove that).*io.fsq.rogue.UsedIndex"))
 
     // // If first column is index-scanned, other fields must be marked as iscan too.
     // check("""Q(ThriftVenue).useIndex(Q(ThriftVenue).mayorIdIdx).iscan(_.mayor)(_ lt 10).where(_.id)(_ eqs new ObjectId())""",
-    //       Some("(could not find implicit value for parameter ev|Cannot prove that).*com.foursquare.rogue.Indexable"))
+    //       Some("(could not find implicit value for parameter ev|Cannot prove that).*io.fsq.rogue.Indexable"))
     // // Query should compile fine when the second clause is marked as iscan.
     // check("""Q(ThriftVenue).useIndex(Q(ThriftVenue).mayorIdIdx).iscan(_.mayor)(_ lt 10).iscan(_.id)(_ eqs new ObjectId())""",
     //       None)
 
     // // If you rangeScan past a column, you must iscan all index fields after.
     // check("""Q(ThriftVenue).useIndex(Q(ThriftVenue).mayorIdClosedIdx).where(_.mayor)(_ eqs 10).rangeScan(_.id).where(_.closed)(_ eqs true)""",
-    //       Some("(could not find implicit value for parameter ev|Cannot prove that).*com.foursquare.rogue.Indexable"))
+    //       Some("(could not find implicit value for parameter ev|Cannot prove that).*io.fsq.rogue.Indexable"))
     // // Version of the above with an iscan of later fields.
     // check("""Q(ThriftVenue).useIndex(Q(ThriftVenue).mayorIdClosedIdx).where(_.mayor)(_ eqs 10).rangeScan(_.id).iscan(_.closed)(_ eqs true)""",
     //       None)

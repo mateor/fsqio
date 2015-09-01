@@ -1,11 +1,11 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.rogue.lift
+package io.fsq.rogue.lift
 
+import com.mongodb.DBObject
 import net.liftweb.json.{Extraction, Formats, Serializer, TypeInfo}
 import net.liftweb.json.JsonAST.{JObject, JValue}
 import net.liftweb.mongodb.{JObjectParser, ObjectIdSerializer}
-import com.mongodb.DBObject
 
 object LiftQueryHelpers {
 

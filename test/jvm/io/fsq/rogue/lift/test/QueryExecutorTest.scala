@@ -1,9 +1,11 @@
 // Copyright 2011 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.rogue.lift
 
-import com.foursquare.rogue.{InitialState, Query, RogueException}
-import com.foursquare.rogue.MongoHelpers.AndCondition
-import net.liftweb.mongodb.record.{MongoRecord, MongoMetaRecord}
+package io.fsq.rogue.lift.test
+
+import io.fsq.rogue.{InitialState, Query, RogueException}
+import io.fsq.rogue.MongoHelpers.AndCondition
+import io.fsq.rogue.lift.{LiftAdapter, ObjectIdKey}
+import net.liftweb.mongodb.record.{MongoMetaRecord, MongoRecord}
 import org.junit._
 import org.specs2.matcher.JUnitMustMatchers
 

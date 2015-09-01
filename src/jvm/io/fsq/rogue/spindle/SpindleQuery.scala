@@ -1,10 +1,10 @@
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.rogue.spindle
+package io.fsq.rogue.spindle
 
-import com.foursquare.rogue.{InitialState, Query => RogueQuery}
-import com.foursquare.rogue.MongoHelpers.AndCondition
 import com.foursquare.spindle.{MetaRecord, Record}
+import io.fsq.rogue.{InitialState, Query => RogueQuery}
+import io.fsq.rogue.MongoHelpers.AndCondition
 
 object SpindleQuery {
   def apply[R <: Record[R], M <: MetaRecord[R, M]](

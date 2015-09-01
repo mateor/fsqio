@@ -1,13 +1,13 @@
-package com.foursquare.rogue.lift
-
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
+package io.fsq.rogue.lift
+
 import com.foursquare.field.Field
-import com.foursquare.rogue.{AddLimit, FindAndModifyQuery, Iter, ModifyQuery, Query, QueryExecutor, Required,
-    RequireShardKey, ShardingOk, Unlimited, Unselected, Unskipped}
-import com.foursquare.rogue.MongoHelpers.MongoSelect
-import com.foursquare.rogue.Rogue._
 import com.mongodb.WriteConcern
+import io.fsq.rogue.{AddLimit, FindAndModifyQuery, Iter, ModifyQuery, Query, QueryExecutor, RequireShardKey, Required,
+    ShardingOk, Unlimited, Unselected, Unskipped}
+import io.fsq.rogue.MongoHelpers.MongoSelect
+import io.fsq.rogue.Rogue._
 
 case class ExecutableQuery[MB, M <: MB, RB, R, State](
     query: Query[M, R, State],

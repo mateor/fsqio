@@ -1,6 +1,6 @@
 // Copyright 2011 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.rogue
+package io.fsq.rogue
 
 import com.mongodb.{BasicDBObjectBuilder, DBObject}
 import java.util.regex.Pattern

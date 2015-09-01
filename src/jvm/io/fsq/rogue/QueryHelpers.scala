@@ -1,9 +1,9 @@
 // Copyright 2011 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.rogue
+package io.fsq.rogue
 
-import com.foursquare.index.UntypedMongoIndex
-import com.mongodb.{DBObject, WriteConcern}
+import com.mongodb.WriteConcern
+import io.fsq.rogue.index.UntypedMongoIndex
 
 case class Degrees(value: Double)
 case class Radians(value: Double)

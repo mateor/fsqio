@@ -1,4 +1,6 @@
-namespace java com.foursquare.rogue.spindle.gen
+// Copyright 2015 Foursquare Labs Inc. All Rights Reserved.
+
+namespace java io.fsq.rogue.spindle.test.gen
 
 // A place to store freeform metadata about an entity.
 typedef map<string, string> ThriftMetadata

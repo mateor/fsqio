@@ -1,11 +1,11 @@
 // Copyright 2015 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.rogue.spindle
+package io.fsq.rogue.spindle
 
 import com.foursquare.spindle.{UntypedMetaRecord, UntypedRecord}
-import com.mongodb.{BasicDBObject, DBCursor, DBCallback, DBCollection, DBDecoder, DBDecoderFactory, DBObject}
+import com.mongodb.{DBCallback, DBCollection, DBDecoder, DBDecoderFactory, DBObject}
 import java.io.InputStream
-import org.bson.{BasicBSONDecoder, BSONCallback, BSONObject}
+import org.bson.{BSONCallback, BSONObject}
 
 case class SpindleDBDecoderFactory(
   meta: UntypedMetaRecord,

@@ -1,19 +1,17 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.rogue.lift
+package io.fsq.rogue.lift
 
-import com.foursquare.index.{IndexedRecord, UntypedMongoIndex}
-import com.foursquare.rogue.{DBCollectionFactory, MongoJavaDriverAdapter, Query, QueryExecutor, QueryHelpers,
-    QueryOptimizer, RogueReadSerializer, RogueWriteSerializer}
-import com.foursquare.rogue.MongoHelpers.MongoSelect
 import com.mongodb.{DBCollection, DBObject}
-import net.liftweb.common.{Box, Full}
-import net.liftweb.mongodb.record.{BsonRecord, BsonMetaRecord, MongoRecord, MongoMetaRecord}
+import io.fsq.rogue.{DBCollectionFactory, MongoJavaDriverAdapter, Query, QueryExecutor, QueryHelpers, QueryOptimizer,
+    RogueReadSerializer, RogueWriteSerializer}
+import io.fsq.rogue.MongoHelpers.MongoSelect
+import io.fsq.rogue.index.{IndexedRecord, UntypedMongoIndex}
+import net.liftweb.common.Box
 import net.liftweb.mongodb.MongoDB
+import net.liftweb.mongodb.record.{BsonRecord, MongoMetaRecord, MongoRecord}
 import net.liftweb.mongodb.record.field.BsonRecordField
-import net.liftweb.record.Record
 import org.bson.types.BasicBSONList
-import sun.reflect.generics.reflectiveObjects.NotImplementedException
 
 object LiftDBCollectionFactory extends DBCollectionFactory[MongoRecord[_] with MongoMetaRecord[_], MongoRecord[_]] {
   override def getDBCollection[M <: MongoRecord[_] with MongoMetaRecord[_]](query: Query[M, _, _]): DBCollection = {

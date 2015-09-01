@@ -1,8 +1,10 @@
-namespace java com.foursquare.rogue.spindle.gen
+// Copyright 2015 Foursquare Labs Inc. All Rights Reserved.
 
-include "com/foursquare/rogue/spindle/ids.thrift"
-include "com/foursquare/rogue/spindle/types.thrift"
-include "com/foursquare/rogue/spindle/venue.thrift"
+namespace java io.fsq.rogue.spindle.test.gen
+
+include "io/fsq/rogue/spindle/test/ids.thrift"
+include "io/fsq/rogue/spindle/test/types.thrift"
+include "io/fsq/rogue/spindle/test/venue.thrift"
 
 typedef types.ThriftMetadata ThriftMetadata
 

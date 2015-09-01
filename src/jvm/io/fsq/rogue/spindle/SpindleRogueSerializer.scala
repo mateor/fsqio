@@ -1,12 +1,12 @@
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.rogue.spindle
+package io.fsq.rogue.spindle
 
 import com.foursquare.common.thrift.bson.TBSONObjectProtocol
-import com.foursquare.rogue.MongoHelpers.MongoSelect
-import com.foursquare.rogue.{RogueReadSerializer, RogueWriteSerializer, SelectField}
 import com.foursquare.spindle.{UntypedFieldDescriptor, UntypedMetaRecord, UntypedRecord}
 import com.mongodb.DBObject
+import io.fsq.rogue.{RogueReadSerializer, RogueWriteSerializer}
+import io.fsq.rogue.MongoHelpers.MongoSelect
 
 class SpindleRogueReadSerializer[M <: UntypedMetaRecord, R](meta: M, select: Option[MongoSelect[M, R]])
     extends RogueReadSerializer[R] {

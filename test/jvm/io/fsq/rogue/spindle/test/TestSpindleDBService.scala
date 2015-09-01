@@ -1,13 +1,14 @@
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.rogue.spindle
+package io.fsq.rogue.spindle.test
 
-import com.foursquare.rogue.Rogue._
-import com.foursquare.rogue.spindle.gen.TestStruct
 import com.foursquare.spindle.UntypedMetaRecord
 import com.mongodb.{MongoClient, ServerAddress}
-import org.junit.Test
+import io.fsq.rogue.Rogue._
+import io.fsq.rogue.spindle.{SpindleDBCollectionFactory, SpindleDatabaseService, SpindleQuery}
+import io.fsq.rogue.spindle.test.gen.TestStruct
 import org.junit.Assert._
+import org.junit.Test
 
 class TestSpindleDBService {
   @Test

@@ -1,10 +1,10 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.rogue.lift
+package io.fsq.rogue.lift
 
 import com.foursquare.field.Field
-import com.foursquare.rogue.{AbstractListQueryField, AbstractListModifyField, SelectableDummyField}
 import com.mongodb.DBObject
+import io.fsq.rogue.{AbstractListModifyField, AbstractListQueryField, SelectableDummyField}
 
 class CaseClassQueryField[V, M](val field: Field[V, M]) {
   def unsafeField[F](name: String): SelectableDummyField[F, M] = {

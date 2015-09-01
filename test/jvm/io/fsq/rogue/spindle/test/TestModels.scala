@@ -1,9 +1,10 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.rogue.spindle
+package io.fsq.rogue.spindle.test
 
 import com.foursquare.spindle.UntypedMetaRecord
 import com.mongodb.{DB, MongoClient, ServerAddress}
+import io.fsq.rogue.spindle.{SpindleDBCollectionFactory, SpindleDatabaseService}
 
 class TestDatabaseService extends SpindleDatabaseService(new TestDBCollectionFactory()) {
   def disconnectFromMongo() {

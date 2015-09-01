@@ -1,12 +1,8 @@
 // Copyright 2011 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.rogue
+package io.fsq.rogue
 
-import com.foursquare.field.{
-    Field => RField,
-    OptionalField => ROptionalField,
-    RequiredField => RRequiredField}
-import com.foursquare.rogue.MongoHelpers.MongoModify
+import com.foursquare.field.{Field => RField, OptionalField => ROptionalField, RequiredField => RRequiredField}
 import com.mongodb.DBObject
 import java.util.Date
 import org.bson.types.ObjectId

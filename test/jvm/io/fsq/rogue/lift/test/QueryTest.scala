@@ -1,18 +1,17 @@
 // Copyright 2011 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.rogue.lift
 
-import com.foursquare.rogue.{BSONType, Degrees, LatLong, MongoType, Query, QueryOptimizer, Radians}
-import com.foursquare.rogue.lift.LiftRogue._
+package io.fsq.rogue.lift.test
+
 import com.mongodb.ReadPreference
-
+import io.fsq.rogue.{BSONType, Degrees, LatLong, MongoType, Query, QueryOptimizer, Radians}
+import io.fsq.rogue.lift.LiftRogue._
 import java.util.regex.Pattern
 import net.liftweb.mongodb.record._
 import net.liftweb.mongodb.record.field._
-import net.liftweb.record.field._
 import net.liftweb.record._
+import net.liftweb.record.field._
 import org.bson.types._
 import org.joda.time.{DateTime, DateTimeZone}
-
 import org.junit._
 import org.specs2.matcher.JUnitMustMatchers
 
@@ -746,29 +745,29 @@ class QueryTest extends JUnitMustMatchers {
     //       Some("found.*EqClause.*required.*_id"))
     // // Can't use where with an IndexScan'ing operation.
     // check("""Venue.useIndex(Venue.idIdx).where(_._id)(_ after new DateTime())""",
-    //       Some("do not conform to method where.*com.foursquare.rogue.Indexable"))
+    //       Some("do not conform to method where.*io.fsq.rogue.Indexable"))
     // // But you can use iscan with an IndexScan'ing operation.
     // check("""Venue.useIndex(Venue.idIdx).iscan(_._id)(_ after new DateTime())""",
     //       None)
 
     // // Can't skip past the first field in an index.
     // check("""Venue.useIndex(Venue.idIdx).rangeScan(_._id)""",
-    //       Some("(could not find implicit value for parameter ev|Cannot prove that).*com.foursquare.rogue.UsedIndex"))
+    //       Some("(could not find implicit value for parameter ev|Cannot prove that).*io.fsq.rogue.UsedIndex"))
 
     // // Can't skip past the first field in an index.
     // check("""Venue.useIndex(Venue.mayorIdIdx).rangeScan(_.mayor).iscan(_._id)(_ eqs new ObjectId())""",
-    //       Some("(could not find implicit value for parameter ev|Cannot prove that).*com.foursquare.rogue.UsedIndex"))
+    //       Some("(could not find implicit value for parameter ev|Cannot prove that).*io.fsq.rogue.UsedIndex"))
 
     // // If first column is index-scanned, other fields must be marked as iscan too.
     // check("""Venue.useIndex(Venue.mayorIdIdx).iscan(_.mayor)(_ lt 10).where(_._id)(_ eqs new ObjectId())""",
-    //       Some("(could not find implicit value for parameter ev|Cannot prove that).*com.foursquare.rogue.Indexable"))
+    //       Some("(could not find implicit value for parameter ev|Cannot prove that).*io.fsq.rogue.Indexable"))
     // // Query should compile fine when the second clause is marked as iscan.
     // check("""Venue.useIndex(Venue.mayorIdIdx).iscan(_.mayor)(_ lt 10).iscan(_._id)(_ eqs new ObjectId())""",
     //       None)
 
     // // If you rangeScan past a column, you must iscan all index fields after.
     // check("""Venue.useIndex(Venue.mayorIdClosedIdx).where(_.mayor)(_ eqs 10).rangeScan(_._id).where(_.closed)(_ eqs true)""",
-    //       Some("(could not find implicit value for parameter ev|Cannot prove that).*com.foursquare.rogue.Indexable"))
+    //       Some("(could not find implicit value for parameter ev|Cannot prove that).*io.fsq.rogue.Indexable"))
     // // Version of the above with an iscan of later fields.
     // check("""Venue.useIndex(Venue.mayorIdClosedIdx).where(_.mayor)(_ eqs 10).rangeScan(_._id).iscan(_.closed)(_ eqs true)""",
     //       None)
@@ -777,7 +776,7 @@ class QueryTest extends JUnitMustMatchers {
   class Compiler {
     import java.io.{PrintWriter, Writer}
     import scala.io.Source
-    import scala.tools.nsc.{interpreter => IR, Settings}
+    import scala.tools.nsc.{Settings, interpreter => IR}
 
     class NullWriter extends Writer {
       override def close() = ()
@@ -804,9 +803,9 @@ class QueryTest extends JUnitMustMatchers {
          **/
         new PrintWriter(stringWriter))
 
-    interpreter.interpret("""import com.foursquare.rogue._""")
-    interpreter.interpret("""import com.foursquare.rogue.lift._""")
-    interpreter.interpret("""import com.foursquare.rogue.lift.LiftRogue._""")
+    interpreter.interpret("""import io.fsq.rogue._""")
+    interpreter.interpret("""import io.fsq.rogue.lift._""")
+    interpreter.interpret("""import io.fsq.rogue.lift.LiftRogue._""")
     interpreter.interpret("""import org.bson.types.ObjectId""")
     interpreter.interpret("""import org.joda.time.DateTime""")
 
