@@ -21,8 +21,8 @@ class QueryTest extends JUnitMustMatchers {
   def testProduceACorrectJSONQueryString {
     val d1 = new DateTime(2010, 5, 1, 0, 0, 0, 0, DateTimeZone.UTC)
     val d2 = new DateTime(2010, 5, 2, 0, 0, 0, 0, DateTimeZone.UTC)
-    val oid1 = new ObjectId(d1.toDate, 0, 0)
-    val oid2 = new ObjectId(d2.toDate, 0, 0)
+    val oid1 = ObjectId.createFromLegacyFormat((d1.toDate.getTime / 1000).toInt, 0, 0)
+    val oid2 = ObjectId.createFromLegacyFormat((d2.toDate.getTime / 1000).toInt, 0, 0)
     val oid = new ObjectId
     val ven1 = Venue.createRecord._id(oid1)
 
@@ -300,7 +300,7 @@ class QueryTest extends JUnitMustMatchers {
     Tip.where(_.legacyid eqs 1).modify(_.counts at "foo" setTo 3).toString() must_== query3 + """{ "$set" : { "counts.foo" : 3}}""" + suffix
     Tip.where(_.legacyid eqs 1).modify(_.counts at "foo" inc 5)  .toString() must_== query3 + """{ "$inc" : { "counts.foo" : 5}}""" + suffix
     Tip.where(_.legacyid eqs 1).modify(_.counts at "foo" unset)  .toString() must_== query3 + """{ "$unset" : { "counts.foo" : 1}}""" + suffix
-    Tip.where(_.legacyid eqs 1).modify(_.counts setTo Map("foo" -> 3L, "bar" -> 5L)).toString() must_== query3 + """{ "$set" : { "counts" : { "foo" : 3 , "bar" : 5}}}""" + suffix
+    Tip.where(_.legacyid eqs 1).modify(_.counts setTo Map("foo" -> 3L, "bar" -> 5L)).toString() must_== query3 + """{ "$set" : { "counts" : { "bar" : 5 , "foo" : 3}}}""" + suffix
 
     // Multiple updates
     Venue.where(_.legacyid eqs 1).modify(_.venuename setTo "fshq").and(_.mayor_count setTo 3).toString() must_== query + """{ "$set" : { "mayor_count" : 3 , "venuename" : "fshq"}}""" + suffix
@@ -775,7 +775,6 @@ class QueryTest extends JUnitMustMatchers {
 
   class Compiler {
     import java.io.{PrintWriter, Writer}
-    import scala.io.Source
     import scala.tools.nsc.{Settings, interpreter => IR}
 
     class NullWriter extends Writer {
@@ -785,9 +784,7 @@ class QueryTest extends JUnitMustMatchers {
     }
 
     private val settings = new Settings
-    val loader = manifest[Venue].erasure.getClassLoader
-    settings.classpath.value = Source.fromURL(loader.getResource("app.class.path")).mkString
-    settings.bootclasspath.append(Source.fromURL(loader.getResource("boot.class.path")).mkString)
+    settings.usejavacp.value = true
     settings.deprecation.value = true // enable detailed deprecation warnings
     settings.unchecked.value = true // enable detailed unchecked warnings
 
@@ -805,6 +802,7 @@ class QueryTest extends JUnitMustMatchers {
 
     interpreter.interpret("""import io.fsq.rogue._""")
     interpreter.interpret("""import io.fsq.rogue.lift._""")
+    interpreter.interpret("""import io.fsq.rogue.lift.test._""")
     interpreter.interpret("""import io.fsq.rogue.lift.LiftRogue._""")
     interpreter.interpret("""import org.bson.types.ObjectId""")
     interpreter.interpret("""import org.joda.time.DateTime""")

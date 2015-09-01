@@ -25,7 +25,7 @@ object RogueTestMongo extends MongoIdentifier {
   private var mongo: Option[MongoClient] = None
 
   def connectToMongo = {
-    val MongoPort = Option(System.getenv("MONGO_PORT")).map(_.toInt).getOrElse(37648)
+    val MongoPort = Option(System.getenv("MONGO_PORT")).map(_.toInt).getOrElse(27017)
     mongo = Some(new MongoClient(new ServerAddress("localhost", MongoPort)))
     MongoDB.defineDb(RogueTestMongo, mongo.get, "rogue-test")
   }

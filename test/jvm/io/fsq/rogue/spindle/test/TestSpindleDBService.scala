@@ -13,7 +13,7 @@ import org.junit.Test
 class TestSpindleDBService {
   @Test
   def testSimpleStruct {
-    val MongoPort = Option(System.getenv("MONGO_PORT")).map(_.toInt).getOrElse(37648)
+    val MongoPort = Option(System.getenv("MONGO_PORT")).map(_.toInt).getOrElse(27017)
     val mongo = new MongoClient(new ServerAddress("localhost", MongoPort))
 
     val dbService = new SpindleDatabaseService(

@@ -80,7 +80,7 @@ class EndToEndTest extends JUnitMustMatchers {
     try {
       db.insertAll(vs)
     } catch {
-      case e =>
+      case e: Throwable =>
     }
     db.count(Q(ThriftVenue)) must_== 2
   }
