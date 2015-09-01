@@ -70,6 +70,7 @@ object QueryHelpers {
   trait QueryConfig {
     def defaultWriteConcern: WriteConcern
     def cursorBatchSize: Option[Option[Int]]
+    def maxTimeMSOpt(configName: String): Option[Long]
   }
 
   class DefaultQueryConfig extends QueryConfig {
@@ -81,6 +82,7 @@ object QueryHelpers {
      * Some(Some(n)) = always set batch size to n
      */
     override def cursorBatchSize: Option[Option[Int]] = None
+    override def maxTimeMSOpt(configName: String): Option[Long] = None
   }
 
   object DefaultQueryConfig extends DefaultQueryConfig
