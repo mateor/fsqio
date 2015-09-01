@@ -1,13 +1,14 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.rogue.spindle
+package io.fsq.rogue.spindle.test
 
-import com.foursquare.index.{IndexedRecord, MongoIndexChecker}
-import com.foursquare.rogue.Query
-import com.foursquare.rogue.Rogue._
-import com.foursquare.rogue.spindle.gen.IdsTypedefs.IndexTestId
-import com.foursquare.rogue.spindle.gen.{ThriftIndexTestModel, MutuallyRecursive1}
 import com.foursquare.spindle.UntypedMetaRecord
+import io.fsq.rogue.Query
+import io.fsq.rogue.Rogue._
+import io.fsq.rogue.indexchecker.MongoIndexChecker
+import io.fsq.rogue.spindle.SpindleQuery
+import io.fsq.rogue.spindle.test.gen.{MutuallyRecursive1, ThriftIndexTestModel}
+import io.fsq.rogue.spindle.test.gen.IdsTypedefs.IndexTestId
 import org.bson.types.ObjectId
 import org.joda.time.DateTime
 import org.junit._

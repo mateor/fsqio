@@ -1,15 +1,17 @@
 // Copyright 2011 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.rogue.lift
 
-import com.foursquare.index.{Asc, Desc, IndexedRecord, IndexModifier, TwoD}
-import com.foursquare.rogue.{LatLong, Sharded, ShardKey}
-import com.foursquare.rogue.lift.LiftRogue._
+package io.fsq.rogue.lift.test
+
 import com.mongodb.{MongoClient, ServerAddress}
+import io.fsq.rogue.{LatLong, ShardKey, Sharded}
+import io.fsq.rogue.index.{Asc, Desc, IndexModifier, IndexedRecord, TwoD}
+import io.fsq.rogue.lift.{HasMongoForeignObjectId, ObjectIdKey}
+import io.fsq.rogue.lift.LiftRogue._
 import net.liftweb.mongodb.{MongoDB, MongoIdentifier}
 import net.liftweb.mongodb.record._
 import net.liftweb.mongodb.record.field._
-import net.liftweb.record.field._
 import net.liftweb.record._
+import net.liftweb.record.field._
 import org.bson.types.ObjectId
 
 /////////////////////////////////////////////////

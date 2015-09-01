@@ -1,6 +1,6 @@
 // Copyright 2011 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.rogue
+package io.fsq.rogue
 
 import com.foursquare.field.{Field, OptionalField, RequiredField}
 import com.mongodb.DBObject

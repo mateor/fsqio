@@ -1,5 +1,6 @@
 // Copyright 2011 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.rogue
+
+package io.fsq.rogue
 
 class QueryOptimizer {
   def isEmptyClause(clause: QueryClause[_]): Boolean = clause match {

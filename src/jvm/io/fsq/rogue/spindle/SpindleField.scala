@@ -1,11 +1,12 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.rogue.spindle
+package io.fsq.rogue.spindle
 
 import com.foursquare.common.thrift.bson.TBSONObjectProtocol
 import com.foursquare.field.Field
-import com.foursquare.spindle.{Enum, CompanionProvider, Record, MetaRecord}
-import com.foursquare.rogue.{AbstractListModifyField, AbstractListQueryField, AbstractModifyField, AbstractQueryField, SelectableDummyField}
+import com.foursquare.spindle.{CompanionProvider, Enum, MetaRecord, Record}
+import io.fsq.rogue.{AbstractListModifyField, AbstractListQueryField, AbstractModifyField, AbstractQueryField,
+    SelectableDummyField}
 import org.apache.thrift.TBase
 import org.bson.BSONObject
 

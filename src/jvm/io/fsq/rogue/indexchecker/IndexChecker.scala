@@ -1,7 +1,9 @@
 // Copyright 2011 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.index
 
-import com.foursquare.rogue.{DocumentScan, Index, IndexScan, PartialIndexScan, MongoHelpers, Query, QueryClause, QueryHelpers}
+package io.fsq.rogue.indexchecker
+
+import io.fsq.rogue.{DocumentScan, Index, IndexScan, MongoHelpers, PartialIndexScan, Query, QueryClause, QueryHelpers}
+import io.fsq.rogue.index.UntypedMongoIndex
 
 trait IndexChecker {
   /**

@@ -1,15 +1,17 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.rogue.spindle
 
-import com.foursquare.rogue.spindle.gen.{ThriftClaimStatus, ThriftLike, ThriftTip, ThriftVenue, ThriftVenueClaim,
-    ThriftVenueClaimBson, ThriftVenueStatus}
-import com.foursquare.rogue.spindle.gen.IdsTypedefs.{LikeId, TipId, VenueClaimId, VenueId}
-import com.foursquare.rogue.spindle.SpindleRogue._
-import com.foursquare.rogue.Iter
+package io.fsq.rogue.spindle.test
+
 import com.mongodb.ReadPreference
+import io.fsq.rogue.Iter
+import io.fsq.rogue.spindle.SpindleQuery
+import io.fsq.rogue.spindle.SpindleRogue._
+import io.fsq.rogue.spindle.test.gen.{ThriftClaimStatus, ThriftLike, ThriftTip, ThriftVenue, ThriftVenueClaim,
+    ThriftVenueClaimBson, ThriftVenueStatus}
+import io.fsq.rogue.spindle.test.gen.IdsTypedefs.{LikeId, TipId, VenueClaimId, VenueId}
 import java.util.regex.Pattern
 import org.bson.types.ObjectId
-import org.junit.{After, Before, Ignore, Test}
+import org.junit.{After, Ignore, Test}
 import org.specs2.matcher.JUnitMustMatchers
 
 /**

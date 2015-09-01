@@ -1,9 +1,13 @@
-package com.foursquare.rogue
+// Copyright 2015 Foursquare Labs Inc. All Rights Reserved.
 
-import com.foursquare.index.UntypedMongoIndex
-import com.foursquare.field.{Field, OptionalField}
+package io.fsq.rogue.test
+
+import com.foursquare.field.OptionalField
 import com.mongodb.{BasicDBObjectBuilder, DB, DBCollection, DBObject, MongoClient, ServerAddress, WriteConcern}
-import com.foursquare.rogue.MongoHelpers.{AndCondition, MongoModify, MongoSelect}
+import io.fsq.rogue.{DBCollectionFactory, InitialState, MongoJavaDriverAdapter, Query, QueryExecutor, QueryOptimizer,
+    Rogue, RogueReadSerializer, RogueWriteSerializer}
+import io.fsq.rogue.MongoHelpers.{AndCondition, MongoSelect}
+import io.fsq.rogue.index.UntypedMongoIndex
 import org.junit.{Before, Test}
 import org.specs2.matcher.JUnitMustMatchers
 

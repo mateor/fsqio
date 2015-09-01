@@ -1,12 +1,10 @@
 // Copyright 2011 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.rogue
+package io.fsq.rogue
 
-import com.foursquare.index.MongoIndex
-import com.foursquare.rogue.MongoHelpers.{
-    AndCondition, MongoBuilder, MongoModify, MongoOrder, MongoSelect}
-import com.mongodb.{BasicDBObjectBuilder, DBObject, ReadPreference, WriteConcern}
-import org.bson.types.BasicBSONList
+import com.mongodb.{BasicDBObjectBuilder, DBObject, ReadPreference}
+import io.fsq.rogue.MongoHelpers.{AndCondition, MongoBuilder, MongoModify, MongoOrder, MongoSelect}
+import io.fsq.rogue.index.MongoIndex
 import scala.collection.immutable.ListMap
 
 // ***************************************************************************

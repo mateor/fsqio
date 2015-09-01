@@ -1,12 +1,12 @@
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.rogue.spindle
+package io.fsq.rogue.spindle
 
 import com.foursquare.common.thrift.bson.TBSONObjectProtocol
-import com.foursquare.rogue.{DBCollectionFactory, MongoJavaDriverAdapter, QueryExecutor, QueryOptimizer}
 import com.foursquare.spindle.{UntypedMetaRecord, UntypedRecord}
-import com.foursquare.rogue.MongoHelpers.MongoSelect
-import com.mongodb.{DefaultDBDecoder, DBObject, WriteConcern}
+import com.mongodb.{DBObject, DefaultDBDecoder, WriteConcern}
+import io.fsq.rogue.{MongoJavaDriverAdapter, QueryExecutor, QueryOptimizer}
+import io.fsq.rogue.MongoHelpers.MongoSelect
 import java.io.InputStream
 
 

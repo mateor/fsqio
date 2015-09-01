@@ -1,8 +1,7 @@
 // Copyright 2011 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.rogue
+package io.fsq.rogue
 
-import com.mongodb.DBObject
 import com.mongodb.BasicDBObjectBuilder
 import java.util.regex.Pattern
 
@@ -155,7 +154,7 @@ case class WithinBoxClause[V](override val fieldName: String, lat1: Double, lng1
 case class ElemMatchWithPredicateClause[V](override val fieldName: String, clauses: Seq[QueryClause[_]])
     extends IndexableQueryClause[V, DocumentScan](fieldName, DocumentScan) {
   override def extend(q: BasicDBObjectBuilder, signature: Boolean): Unit = {
-    import com.foursquare.rogue.MongoHelpers.AndCondition
+    import io.fsq.rogue.MongoHelpers.AndCondition
     val nested = q.push("$elemMatch")
     MongoHelpers.MongoBuilder.buildCondition(AndCondition(clauses.toList, None), nested, signature)
     nested.pop
@@ -198,7 +197,7 @@ class ModifyBitClause(fieldName: String, value: Int, op: BitOps.Value) extends M
 class ModifyPullWithPredicateClause[V](fieldName: String, clauses: Seq[QueryClause[_]])
     extends ModifyClause(ModOps.Pull) {
   override def extend(q: BasicDBObjectBuilder): Unit = {
-    import com.foursquare.rogue.MongoHelpers.AndCondition
+    import io.fsq.rogue.MongoHelpers.AndCondition
     MongoHelpers.MongoBuilder.buildCondition(AndCondition(clauses.toList, None), q, false)
   }
 }
@@ -206,7 +205,7 @@ class ModifyPullWithPredicateClause[V](fieldName: String, clauses: Seq[QueryClau
 class ModifyPullObjWithPredicateClause[V](fieldName: String, clauses: Seq[QueryClause[_]])
     extends ModifyClause(ModOps.Pull) {
   override def extend(q: BasicDBObjectBuilder): Unit = {
-    import com.foursquare.rogue.MongoHelpers.AndCondition
+    import io.fsq.rogue.MongoHelpers.AndCondition
     val nested = q.push(fieldName)
     MongoHelpers.MongoBuilder.buildCondition(AndCondition(clauses.toList, None), nested, false)
     nested.pop

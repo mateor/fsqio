@@ -1,4 +1,6 @@
-package com.foursquare.rogue.spindle
+// Copyright 2015 Foursquare Labs Inc. All Rights Reserved.
+
+package io.fsq.rogue.spindle.test
 
 import java.io.{PrintWriter, Writer}
 import org.specs2.matcher.JUnitMustMatchers

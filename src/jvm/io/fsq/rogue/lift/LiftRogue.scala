@@ -1,30 +1,27 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.rogue.lift
+package io.fsq.rogue.lift
 
-import com.foursquare.field.{
-    Field => RField,
-    OptionalField => ROptionalField,
-    RequiredField => RRequiredField}
-import com.foursquare.index.IndexBuilder
-import com.foursquare.rogue.{BSONType, BsonRecordListModifyField, BsonRecordListQueryField, BsonRecordModifyField,
-    BsonRecordQueryField, DateModifyField,
-    DateQueryField, EnumerationListModifyField, EnumerationListQueryField, EnumerationModifyField, EnumIdQueryField,
-    EnumNameQueryField, FindAndModifyQuery, ForeignObjectIdQueryField, GeoModifyField, GeoQueryField, HasOrClause,
-    InitialState, LatLong, ListModifyField, ListQueryField, MandatorySelectField, MapModifyField, MapQueryField,
-    ModifyField, ModifyQuery, NumericModifyField, NumericQueryField, ObjectIdQueryField, OptionalSelectField, Query,
-    QueryField, QueryHelpers, Rogue, RogueException, SafeModifyField, SelectField, ShardingOk, StringsListQueryField,
-    StringQueryField, Unlimited, Unordered, Unselected, Unskipped}
-import com.foursquare.rogue.MongoHelpers.{AndCondition, MongoModify}
+import com.foursquare.field.{Field => RField, OptionalField => ROptionalField}
+import io.fsq.rogue.{BSONType, BsonRecordListModifyField, BsonRecordListQueryField, BsonRecordModifyField,
+    BsonRecordQueryField, DateModifyField, DateQueryField, EnumIdQueryField, EnumNameQueryField,
+    EnumerationListModifyField, EnumerationListQueryField, EnumerationModifyField, FindAndModifyQuery,
+    ForeignObjectIdQueryField, GeoModifyField, GeoQueryField, HasOrClause, InitialState, LatLong, ListModifyField,
+    ListQueryField, MandatorySelectField, MapModifyField, MapQueryField, ModifyField, ModifyQuery, NumericModifyField,
+    NumericQueryField, ObjectIdQueryField, OptionalSelectField, Query, QueryField, QueryHelpers, Rogue, RogueException,
+    SafeModifyField, SelectField, ShardingOk, StringQueryField, StringsListQueryField, Unlimited, Unordered,
+    Unselected, Unskipped}
+import io.fsq.rogue.MongoHelpers.AndCondition
+import io.fsq.rogue.index.IndexBuilder
 import java.util.Date
-import net.liftweb.json.JsonAST.{JArray, JInt}
 import net.liftweb.common.Box.box2Option
-import net.liftweb.mongodb.record.{BsonRecord, MongoRecord, MongoMetaRecord}
+import net.liftweb.json.JsonAST.{JArray, JInt}
+import net.liftweb.mongodb.record.{BsonRecord, MongoMetaRecord, MongoRecord}
+import net.liftweb.mongodb.record.field.{BsonRecordField, BsonRecordListField, MongoCaseClassField,
+    MongoCaseClassListField}
 import net.liftweb.record.{Field, MandatoryTypedField, OptionalTypedField, Record}
-import net.liftweb.mongodb.record.field.{ BsonRecordField, BsonRecordListField, MongoCaseClassField,
-  MongoCaseClassListField}
-import org.bson.types.ObjectId
 import net.liftweb.record.field.EnumField
+import org.bson.types.ObjectId
 
 trait LiftRogue {
   def OrQuery[M <: MongoRecord[M], R]

@@ -1,14 +1,15 @@
 // Copyright 2011 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.rogue.lift
 
-import com.foursquare.rogue.{Iter, LatLong}
-import com.foursquare.rogue.Iter._
-import com.foursquare.rogue.lift.LiftRogue._
+package io.fsq.rogue.lift.test
+
 import com.mongodb.ReadPreference
+import io.fsq.rogue.{Iter, LatLong}
+import io.fsq.rogue.Iter._
+import io.fsq.rogue.lift.LiftRogue._
 import java.util.Calendar
 import java.util.regex.Pattern
 import org.bson.types.ObjectId
-import org.junit.{Before, After, Ignore, Test}
+import org.junit.{After, Before, Ignore, Test}
 import org.specs2.matcher.JUnitMustMatchers
 
 /**

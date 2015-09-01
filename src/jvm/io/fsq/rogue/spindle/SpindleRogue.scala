@@ -1,10 +1,10 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.rogue.spindle
+package io.fsq.rogue.spindle
 
 import com.foursquare.field.Field
-import com.foursquare.rogue.{BSONType, Rogue}
-import com.foursquare.spindle.{Enum, Record, MetaRecord}
+import com.foursquare.spindle.{Enum, MetaRecord, Record}
+import io.fsq.rogue.{BSONType, Rogue}
 
 trait SpindleRogue {
   implicit def enumFieldToSpindleEnumQueryField[M <: MetaRecord[_, _], F <: Enum[F]](f: Field[F, M]): SpindleEnumQueryField[M, F] =
