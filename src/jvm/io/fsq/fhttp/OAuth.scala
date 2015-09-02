@@ -1,17 +1,14 @@
 // Copyright 2011 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.fhttp
+package io.fsq.fhttp
 
 import com.twitter.finagle.{Service, SimpleFilter}
-import com.twitter.util.Throw
-import org.jboss.netty.handler.codec.http._
-import scala.collection.JavaConversions._
 import java.util.UUID
 import javax.crypto.Mac
-import javax.crypto.SecretKey
 import javax.crypto.spec.SecretKeySpec
 import org.apache.commons.codec.binary.Base64
-
+import org.jboss.netty.handler.codec.http._
+import scala.collection.JavaConverters._
 
 case class Token(key: String, secret: String)
 
@@ -68,8 +65,8 @@ class OAuth1Filter (scheme: String,
       case _ => (request.getUri, new QueryStringDecoder("?"))
     }
 
-    val reqParams: List[(String, String)] = paramDecoder.getParameters.toList.flatMap {
-      case (key, values) => values.toList.map(v => (key, v))
+    val reqParams: List[(String, String)] = paramDecoder.getParameters.asScala.toList.flatMap {
+      case (key, values) => values.asScala.toList.map(v => (key, v))
     }
 
     val sigParams = reqParams ::: oauthParams

@@ -1,6 +1,6 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.fhttp
+package io.fsq.fhttp
 
 import com.twitter.finagle.util.TimerFromNettyTimer
 import java.util.concurrent.{Executors, ThreadFactory, TimeUnit}

@@ -1,6 +1,6 @@
 // Copyright 2011 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.fhttp
+package io.fsq.fhttp
 
 import com.twitter.conversions.time._
 import com.twitter.finagle.{Service, SimpleFilter}

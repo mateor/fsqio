@@ -1,11 +1,11 @@
 // Copyright 2011 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.fhttp
+package io.fsq.fhttp
 
 import com.twitter.conversions.time._
 import com.twitter.finagle.{Filter, NoStacktrace, Service, SimpleFilter}
 import com.twitter.finagle.service.TimeoutFilter
-import com.twitter.util.{Await, Future, TimeoutException}
+import com.twitter.util.{Await, Future}
 import java.nio.charset.Charset
 import org.apache.commons.codec.binary.Base64
 import org.apache.commons.httpclient.methods.multipart._
@@ -13,8 +13,7 @@ import org.apache.commons.httpclient.params.HttpMethodParams
 import org.jboss.netty.buffer.{ChannelBuffer, ChannelBufferInputStream, ChannelBufferOutputStream, ChannelBuffers}
 import org.jboss.netty.channel.DefaultChannelConfig
 import org.jboss.netty.handler.codec.http._
-import scala.collection.JavaConversions._
-
+import scala.collection.JavaConverters._
 
 object FHttpRequest {
   type HttpOption = HttpMessage => Unit
@@ -68,7 +67,7 @@ object FHttpRequest {
 
   def asParams: HttpResponse => List[(String, String)] = res => {
     val params = new QueryStringDecoder("/null?" + asString(res)).getParameters
-    params.map(kv => kv._2.toList.map(v => (kv._1, v))).flatten.toList
+    params.asScala.map(kv => kv._2.asScala.toList.map(v => (kv._1, v))).flatten.toList
   }
 
   def asParamMap: HttpResponse => Map[String, String] = res => Map(asParams(res):_*)
@@ -243,7 +242,7 @@ case class FHttpRequest ( client: FHttpClient,
   def hasParams: Boolean = uri.indexOf('?') != -1
 
   def paramList: List[(String, String)] =
-    new QueryStringDecoder(uri).getParameters.map(kv => kv._2.toList.map(v=>(kv._1, v))).flatten.toList
+    new QueryStringDecoder(uri).getParameters.asScala.map(kv => kv._2.asScala.toList.map(v=>(kv._1, v))).flatten.toList
 
 
   // Response retrieval methods
