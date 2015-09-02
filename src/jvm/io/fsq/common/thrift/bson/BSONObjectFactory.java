@@ -1,6 +1,6 @@
 //  Copyright 2011 Foursquare Labs Inc. All Rights Reserved
 
-package com.foursquare.common.thrift.bson;
+package io.fsq.common.thrift.bson;
 
 import org.bson.BSONObject;
 

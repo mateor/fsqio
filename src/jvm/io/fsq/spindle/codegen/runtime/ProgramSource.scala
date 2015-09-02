@@ -1,8 +1,8 @@
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.spindle.codegen.runtime
+package io.fsq.spindle.codegen.runtime
 
-import com.twitter.thrift.descriptors.Program
+import io.fsq.spindle.__shaded_for_spindle_bootstrap__.descriptors.Program
 import java.io.File
 import org.apache.commons.io.FilenameUtils
 

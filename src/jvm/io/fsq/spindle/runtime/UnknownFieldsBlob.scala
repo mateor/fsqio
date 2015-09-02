@@ -1,9 +1,8 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.spindle.runtime
+package io.fsq.spindle.runtime
 
 import java.nio.ByteBuffer
-
 import org.apache.thrift.TBase
 import org.apache.thrift.protocol.{TField, TProtocol, TStruct, TType}
 import org.apache.thrift.transport.TMemoryInputTransport

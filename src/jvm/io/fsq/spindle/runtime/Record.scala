@@ -1,6 +1,6 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.spindle
+package io.fsq.spindle.runtime
 
 import org.apache.thrift.protocol.TProtocol
 

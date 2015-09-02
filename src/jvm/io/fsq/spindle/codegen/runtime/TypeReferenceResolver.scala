@@ -1,9 +1,10 @@
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.spindle.codegen.runtime
+package io.fsq.spindle.codegen.runtime
 
-import com.foursquare.spindle.Annotations
-import com.twitter.thrift.descriptors.{Annotation, BaseType, ContainerType, SimpleBaseType, Type, TypeRegistry, Typeref}
+import io.fsq.spindle.__shaded_for_spindle_bootstrap__.descriptors.{Annotation, BaseType, ContainerType,
+    SimpleBaseType, Type, TypeRegistry, Typeref}
+import io.fsq.spindle.runtime.Annotations
 import scala.{Either, Right}
 
 sealed trait TypeNotFound

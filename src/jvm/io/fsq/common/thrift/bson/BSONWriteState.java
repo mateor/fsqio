@@ -1,8 +1,8 @@
 //  Copyright 2011 Foursquare Labs Inc. All Rights Reserved
 
-package com.foursquare.common.thrift.bson;
+package io.fsq.common.thrift.bson;
 
-import com.foursquare.common.thrift.base.NonStringMapKeyException;
+import io.fsq.common.thrift.base.NonStringMapKeyException;
 import com.mongodb.BasicDBList;
 
 import java.util.EmptyStackException;

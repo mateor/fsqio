@@ -1,4 +1,4 @@
-package com.foursquare.common.thrift.bson;
+package io.fsq.common.thrift.bson;
 
 
 import org.apache.thrift.TException;

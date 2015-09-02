@@ -1,6 +1,6 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.spindle
+package io.fsq.spindle.__shaded_for_spindle_bootstrap__.runtime
 
 abstract class Enum[T <: Enum[T]] extends Ordered[T] { self: T =>
   def meta: EnumMeta[T]

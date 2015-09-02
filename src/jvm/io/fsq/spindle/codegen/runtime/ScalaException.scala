@@ -1,8 +1,8 @@
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.spindle.codegen.runtime
+package io.fsq.spindle.codegen.runtime
 
-import com.twitter.thrift.descriptors.{Exception, ExceptionProxy}
+import io.fsq.spindle.__shaded_for_spindle_bootstrap__.descriptors.{Exception, ExceptionProxy}
 
 class ScalaException(
     override val underlying: Exception,

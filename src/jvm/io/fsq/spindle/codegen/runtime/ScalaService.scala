@@ -1,8 +1,8 @@
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.spindle.codegen.runtime
+package io.fsq.spindle.codegen.runtime
 
-import com.twitter.thrift.descriptors.{Service, ServiceProxy}
+import io.fsq.spindle.__shaded_for_spindle_bootstrap__.descriptors.{Service, ServiceProxy}
 
 class ScalaService(override val underlying: Service, resolver: TypeReferenceResolver) extends ServiceProxy with HasAnnotations {
   val parentServiceName: Option[String] = {

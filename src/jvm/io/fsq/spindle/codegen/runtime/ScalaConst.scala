@@ -1,13 +1,13 @@
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.spindle.codegen.runtime
+package io.fsq.spindle.codegen.runtime
 
-import com.foursquare.spindle.Annotations
-import com.twitter.thrift.descriptors.{Const, ConstProxy}
+import io.fsq.spindle.__shaded_for_spindle_bootstrap__.descriptors.{Const, ConstProxy}
+import io.fsq.spindle.runtime.Annotations
 
 
 
-class ScalaConst(override val underlying: Const, resolver: TypeReferenceResolver) 
+class ScalaConst(override val underlying: Const, resolver: TypeReferenceResolver)
 extends ConstProxy {
   val typeReference: TypeReference =
     resolver.resolveTypeId(underlying.typeId).fold( missingTR =>
@@ -34,5 +34,5 @@ extends ConstProxy {
     case StringRenderType => Some(underlying.value)
     case _ => None
   }
-  
+
 }

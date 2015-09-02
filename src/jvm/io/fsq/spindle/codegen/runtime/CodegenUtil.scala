@@ -1,6 +1,6 @@
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.spindle.codegen.runtime
+package io.fsq.spindle.codegen.runtime
 
 object CodegenUtil {
   // List of Scala reserved words from Scala Language Specification (SLS) Section 1.1

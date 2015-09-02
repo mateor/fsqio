@@ -1,6 +1,6 @@
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.spindle
+package io.fsq.spindle.runtime
 
 sealed trait IndexParseError
 final case class InvalidField(fieldSpecifier: String) extends IndexParseError

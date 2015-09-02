@@ -1,14 +1,20 @@
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.spindle.codegen.parser
+package io.fsq.spindle.codegen.parser
 
-import com.twitter.thrift.descriptors
+import io.fsq.spindle.__shaded_for_spindle_bootstrap__.descriptors.{Annotation => ThriftAnnotation,
+    BaseType => ThriftBaseType, Const => ThriftConst, ContainerType => ThriftContainerType, Enum => ThriftEnum,
+    EnumElement => ThriftEnumElement, Exception => ThriftException, Field => ThriftField, Function => ThriftFunction,
+    Include => ThriftInclude, ListType => ThriftListType, MapType => ThriftMapType, Namespace => ThriftNamespace,
+    Program => ThriftProgram, Requiredness => ThriftRequiredness, Service => ThriftService, SetType => ThriftSetType,
+    SimpleBaseType => ThriftSimpleBaseType, SimpleContainerType => ThriftSimpleContainerType,
+    SimpleType => ThriftSimpleType, Struct => ThriftStruct, Type => ThriftType, TypeRegistry => ThriftTypeRegistry,
+    Typedef => ThriftTypedef, Typeref => ThriftTyperef, Union => ThriftUnion}
 import java.io.File
-import java.nio.charset.Charset
 import org.apache.commons.io.FileUtils
 import org.parboiled.errors.ErrorUtils
 import org.parboiled.matchers.{Matcher, ProxyMatcher}
-import org.parboiled.scala.{ANY, EOI, MemoMismatches, Parser, ParseRunner, ReportingParseRunner, Rule, Rule0, Rule1,
+import org.parboiled.scala.{ANY, EOI, MemoMismatches, ParseRunner, Parser, ReportingParseRunner, Rule, Rule0, Rule1,
     Rule2, RuleOption, SkipNode, SuppressNode, SuppressSubnodes, TracingParseRunner}
 import scala.collection.mutable
 import scala.util.DynamicVariable
@@ -72,13 +78,13 @@ class ThriftParser extends Parser {
     Deadspace ~ "(" ~ Deadspace ~ zeroOrMore(rule, separator) ~ optional(separator) ~ Deadspace ~ ")"
   }
 
-  lazy val Program: Rule1[descriptors.Program] = rule("Program")(
+  lazy val Program: Rule1[ThriftProgram] = rule("Program")(
     (Deadspace ~ zeroOrMore(Header ~ optional(EOC), Lines) ~ Deadspace ~ zeroOrMore(Definition ~ optional(EOC), Lines) ~ Deadspace ~ EOI) ~~> ((headers, definitions) => {
-      val result = descriptors.Program.createRawRecord
+      val result = ThriftProgram.createRawRecord
       headers.foreach(header => result.merge(header))
       definitions.foreach(definition => result.merge(definition))
       val aliasToTypeId = Map() ++ result.typedefs.map(td => td.typeAlias -> td.typeId)
-      val typeRegistry = descriptors.TypeRegistry(idToTypeBuilder.result, aliasToTypeId)
+      val typeRegistry = ThriftTypeRegistry(idToTypeBuilder.result, aliasToTypeId)
       result.typeRegistry_=(typeRegistry)
       if (!result.namespacesIsSet) result.namespaces_=(Nil)
       if (!result.includesIsSet) result.includes_=(Nil)
@@ -93,50 +99,50 @@ class ThriftParser extends Parser {
     })
   )
 
-  lazy val Header: Rule1[descriptors.Program] = rule("Header")(
-    Include ~~> (include => descriptors.Program.newBuilder.includes(List(include)).typeRegistry(null).result()) |
-    Namespace ~~> (namespace => descriptors.Program.newBuilder.namespaces(List(namespace)).typeRegistry(null).result()))
+  lazy val Header: Rule1[ThriftProgram] = rule("Header")(
+    Include ~~> (include => ThriftProgram.newBuilder.includes(List(include)).typeRegistry(null).result()) |
+    Namespace ~~> (namespace => ThriftProgram.newBuilder.namespaces(List(namespace)).typeRegistry(null).result()))
 
-  lazy val Include: Rule1[descriptors.Include] = rule("Include")(
-    ("include" ~ Spaces ~ Literal) ~~> (include => descriptors.Include(include)) |
-    ("cpp_include" ~ Spaces ~ Literal) ~~> (include => descriptors.Include(include)))
+  lazy val Include: Rule1[ThriftInclude] = rule("Include")(
+    ("include" ~ Spaces ~ Literal) ~~> (include => ThriftInclude(include)) |
+    ("cpp_include" ~ Spaces ~ Literal) ~~> (include => ThriftInclude(include)))
 
-  lazy val Namespace: Rule1[descriptors.Namespace] = rule("Namespace")(
-    ("namespace" ~ Spaces ~ Identifier ~ Spaces ~ Identifier) ~~> ((lang, path) => descriptors.Namespace(lang, path)) |
-    ("namespace" ~ Spaces ~ "*" ~ Spaces ~ Identifier) ~~> (path => descriptors.Namespace("*", path)) |
-    ("cpp_namespace" ~ Spaces ~ Identifier) ~~> (path => descriptors.Namespace("cpp", path)) |
-    ("php_namespace" ~ Spaces ~ Identifier) ~~> (path => descriptors.Namespace("php", path)) |
-    ("py_module" ~ Spaces ~ Identifier) ~~> (path => descriptors.Namespace("py", path)) |
-    ("perl_package" ~ Spaces ~ Identifier) ~~> (path => descriptors.Namespace("perl", path)) |
-    ("ruby_namespace" ~ Spaces ~ Identifier) ~~> (path => descriptors.Namespace("ruby", path)) |
-    ("smalltalk_category" ~ Spaces ~ StIdentifier) ~~> (path => descriptors.Namespace("smalltalk_category", path)) |
-    ("smalltalk_prefix" ~ Spaces ~ Identifier) ~~> (path => descriptors.Namespace("smalltalk_prefix", path)) |
-    ("java_package" ~ Spaces ~ Identifier) ~~> (path => descriptors.Namespace("java", path)) |
-    ("scala_package" ~ Spaces ~ Identifier) ~~> (path => descriptors.Namespace("scala", path)) | 
-    ("cocoa_package" ~ Spaces ~ Identifier) ~~> (path => descriptors.Namespace("cocoa", path)) |
-    ("xsd_namespace" ~ Spaces ~ Literal) ~~> (path => descriptors.Namespace("xsd", path)) |
-    ("csharp_namespace" ~ Spaces ~ Identifier) ~~> (path => descriptors.Namespace("csharp", path))
+  lazy val Namespace: Rule1[ThriftNamespace] = rule("Namespace")(
+    ("namespace" ~ Spaces ~ Identifier ~ Spaces ~ Identifier) ~~> ((lang, path) => ThriftNamespace(lang, path)) |
+    ("namespace" ~ Spaces ~ "*" ~ Spaces ~ Identifier) ~~> (path => ThriftNamespace("*", path)) |
+    ("cpp_namespace" ~ Spaces ~ Identifier) ~~> (path => ThriftNamespace("cpp", path)) |
+    ("php_namespace" ~ Spaces ~ Identifier) ~~> (path => ThriftNamespace("php", path)) |
+    ("py_module" ~ Spaces ~ Identifier) ~~> (path => ThriftNamespace("py", path)) |
+    ("perl_package" ~ Spaces ~ Identifier) ~~> (path => ThriftNamespace("perl", path)) |
+    ("ruby_namespace" ~ Spaces ~ Identifier) ~~> (path => ThriftNamespace("ruby", path)) |
+    ("smalltalk_category" ~ Spaces ~ StIdentifier) ~~> (path => ThriftNamespace("smalltalk_category", path)) |
+    ("smalltalk_prefix" ~ Spaces ~ Identifier) ~~> (path => ThriftNamespace("smalltalk_prefix", path)) |
+    ("java_package" ~ Spaces ~ Identifier) ~~> (path => ThriftNamespace("java", path)) |
+    ("scala_package" ~ Spaces ~ Identifier) ~~> (path => ThriftNamespace("scala", path)) |
+    ("cocoa_package" ~ Spaces ~ Identifier) ~~> (path => ThriftNamespace("cocoa", path)) |
+    ("xsd_namespace" ~ Spaces ~ Literal) ~~> (path => ThriftNamespace("xsd", path)) |
+    ("csharp_namespace" ~ Spaces ~ Identifier) ~~> (path => ThriftNamespace("csharp", path))
   )
 
-  lazy val Definition: Rule1[descriptors.Program] = rule("Definition")(
+  lazy val Definition: Rule1[ThriftProgram] = rule("Definition")(
     TypeDefinition |
-    Const ~~> (const => descriptors.Program.newBuilder.constants(List(const)).typeRegistry(null).result()) |
-    Service ~~> (service => descriptors.Program.newBuilder.services(List(service)).typeRegistry(null).result())
+    Const ~~> (const => ThriftProgram.newBuilder.constants(List(const)).typeRegistry(null).result()) |
+    Service ~~> (service => ThriftProgram.newBuilder.services(List(service)).typeRegistry(null).result())
   )
 
-  lazy val TypeDefinition: Rule1[descriptors.Program] = rule("TypeDefinition")(
-    Struct ~~> (struct => descriptors.Program.newBuilder.structs(List(struct)).typeRegistry(null).result()) |
-    Typedef ~~> (typedef => descriptors.Program.newBuilder.typedefs(List(typedef)).typeRegistry(null).result()) |
-    Enum ~~> (enum => descriptors.Program.newBuilder.enums(List(enum)).typeRegistry(null).result()) |
+  lazy val TypeDefinition: Rule1[ThriftProgram] = rule("TypeDefinition")(
+    Struct ~~> (struct => ThriftProgram.newBuilder.structs(List(struct)).typeRegistry(null).result()) |
+    Typedef ~~> (typedef => ThriftProgram.newBuilder.typedefs(List(typedef)).typeRegistry(null).result()) |
+    Enum ~~> (enum => ThriftProgram.newBuilder.enums(List(enum)).typeRegistry(null).result()) |
     // Senums are parsed but not represented in the AST. Return an empty Program.
-    Senum ~~> (senum => descriptors.Program.newBuilder.typeRegistry(null).result()) |
-    Union ~~> (union => descriptors.Program.newBuilder.unions(List(union)).typeRegistry(null).result()) |
-    Xception ~~> (exception => descriptors.Program.newBuilder.exceptions(List(exception)).typeRegistry(null).result())
+    Senum ~~> (senum => ThriftProgram.newBuilder.typeRegistry(null).result()) |
+    Union ~~> (union => ThriftProgram.newBuilder.unions(List(union)).typeRegistry(null).result()) |
+    Xception ~~> (exception => ThriftProgram.newBuilder.exceptions(List(exception)).typeRegistry(null).result())
   )
 
-  lazy val Typedef: Rule1[descriptors.Typedef] = rule("Typedef")(
+  lazy val Typedef: Rule1[ThriftTypedef] = rule("Typedef")(
     ("typedef" ~ Spaces ~ FieldType ~ optional(Spaces) ~ Identifier ~ optional(TypeAnnotations)) ~~> ((tpe, name, annots) => {
-      (descriptors.Typedef.newBuilder
+      (ThriftTypedef.newBuilder
         .typeId(tpe)
         .typeAlias(name)
         .__annotations(annots)
@@ -144,10 +150,10 @@ class ThriftParser extends Parser {
     })
   )
 
-  lazy val EnumDefExplicitId: Rule1[descriptors.EnumElement] = rule("EnumDefExplicitId")(
+  lazy val EnumDefExplicitId: Rule1[ThriftEnumElement] = rule("EnumDefExplicitId")(
     (Identifier ~ optional(Spaces) ~ "=" ~ optional(Spaces) ~ IdConstant ~ optional(TypeAnnotations)) ~~> {
       (name, id, annots) => {
-        (descriptors.EnumElement
+        (ThriftEnumElement
           .newBuilder
           .name(name)
           .value(id)
@@ -157,10 +163,10 @@ class ThriftParser extends Parser {
     }
   )
 
-  lazy val EnumDefImplicitId: Rule1[descriptors.EnumElement] = rule("EnumDefImplicitId")(
+  lazy val EnumDefImplicitId: Rule1[ThriftEnumElement] = rule("EnumDefImplicitId")(
     (Identifier ~ optional(TypeAnnotations)) ~~> {
       (name, annots) => {
-        (descriptors.EnumElement
+        (ThriftEnumElement
           .newBuilder
           .name(name)
           .value(-1)
@@ -170,9 +176,9 @@ class ThriftParser extends Parser {
     }
   )
 
-  lazy val EnumDef: Rule1[descriptors.EnumElement] = rule("EnumDef")(EnumDefExplicitId | EnumDefImplicitId)
+  lazy val EnumDef: Rule1[ThriftEnumElement] = rule("EnumDef")(EnumDefExplicitId | EnumDefImplicitId)
 
-  lazy val Enum: Rule1[descriptors.Enum] = rule("Enum") {
+  lazy val Enum: Rule1[ThriftEnum] = rule("Enum") {
     ("enum" ~ Spaces ~ Identifier ~ block(EnumDef) ~ optional(TypeAnnotations)) ~~> {
       (name, elems, annots) => {
         var _nextId = 0
@@ -186,7 +192,7 @@ class ThriftParser extends Parser {
         val nums = numberedElems.map(_.value)
         assert(nums.size == nums.distinct.size)
 
-        (descriptors.Enum
+        (ThriftEnum
           .newBuilder
           .name(name)
           .elements(numberedElems)
@@ -196,7 +202,7 @@ class ThriftParser extends Parser {
     }
   }
 
-  lazy val Senum: Rule1[Unit] = rule("Senum") { 
+  lazy val Senum: Rule1[Unit] = rule("Senum") {
     ("senum" ~ Spaces ~ Identifier ~ block(SenumDef) ~ optional(TypeAnnotations)) ~~> {
       (name, elems, annots) => {
         // Senums are parsed but not represented in the AST. Return Unit.
@@ -207,9 +213,9 @@ class ThriftParser extends Parser {
 
   lazy val SenumDef: Rule1[String] = rule("SenumDef") { Literal }
 
-  lazy val Const: Rule1[descriptors.Const] = rule("Const")(
+  lazy val Const: Rule1[ThriftConst] = rule("Const")(
     ("const" ~ Spaces ~ FieldType ~ optional(Spaces) ~ Identifier ~ optional(Spaces) ~ "=" ~ optional(Spaces) ~ ConstValue) ~~> { (tpe, name, value) =>
-      descriptors.Const(tpe, name, value)
+      ThriftConst(tpe, name, value)
     }
   )
 
@@ -234,10 +240,10 @@ class ThriftParser extends Parser {
     optional(Spaces) ~ ConstValue ~ optional(Spaces) ~ ":" ~ optional(Spaces) ~ ConstValue
   } ~> identity ~~> ((_, _, s) => s)
 
-  lazy val Struct: Rule1[descriptors.Struct] = rule("Struct")(
+  lazy val Struct: Rule1[ThriftStruct] = rule("Struct")(
     "struct" ~ Spaces ~ Identifier ~ optional(Spaces) ~ optional("xsdAll") ~ block(Field) ~ optional(TypeAnnotations) ~~> {
       (name, fields, annots) => {
-        (descriptors.Struct
+        (ThriftStruct
           .newBuilder
           .name(name)
           .__fields(fields)
@@ -247,10 +253,10 @@ class ThriftParser extends Parser {
     }
   )
 
-  lazy val Union: Rule1[descriptors.Union] = rule("Union")(
+  lazy val Union: Rule1[ThriftUnion] = rule("Union")(
     "union" ~ Spaces ~ Identifier ~ optional(Spaces) ~ optional("xsdAll") ~ block(Field) ~ optional(TypeAnnotations) ~~> {
       (name, fields, annots) => {
-        (descriptors.Union
+        (ThriftUnion
           .newBuilder
           .name(name)
           .__fields(fields)
@@ -260,10 +266,10 @@ class ThriftParser extends Parser {
     }
   )
 
-  lazy val Xception: Rule1[descriptors.Exception] = rule("Xception")(
+  lazy val Xception: Rule1[ThriftException] = rule("Xception")(
     "exception" ~ Spaces ~ Identifier ~ block(Field) ~ optional(TypeAnnotations) ~~> {
       (name, fields, annots) => {
-        (descriptors.Exception
+        (ThriftException
           .newBuilder
           .name(name)
           .__fields(fields)
@@ -273,10 +279,10 @@ class ThriftParser extends Parser {
     }
   )
 
-  lazy val Service: Rule1[descriptors.Service] = rule("Service")(
+  lazy val Service: Rule1[ThriftService] = rule("Service")(
     "service" ~ Spaces ~ Identifier ~ optional(Extends) ~ block(Function) ~ optional(TypeAnnotations) ~~> {
       (name, extendz, functions, annots) => {
-        (descriptors.Service
+        (ThriftService
           .newBuilder
           .name(name)
           .extendz(extendz)
@@ -291,10 +297,10 @@ class ThriftParser extends Parser {
 
   lazy val Oneway: Rule1[Boolean] = rule("Oneway") { optional("oneway" ~ Spaces) ~> (_.startsWith("oneway")) }
 
-  lazy val Function: Rule1[descriptors.Function] = rule("Function")(
+  lazy val Function: Rule1[ThriftFunction] = rule("Function")(
     (Oneway ~ FunctionType ~ Spaces ~ Identifier ~ argList(Field) ~ optional(Throws) ~ optional(TypeAnnotations)) ~~> {
       (oneway, tpe, name, argz, throwz, annots) => {
-        (descriptors.Function
+        (ThriftFunction
           .newBuilder
           .name(name)
           .returnTypeId(tpe)
@@ -307,15 +313,15 @@ class ThriftParser extends Parser {
     }
   )
 
-  lazy val Throws: Rule1[List[descriptors.Field]] = rule("Throws") { Deadspace ~ "throws" ~ argList(Field) }
+  lazy val Throws: Rule1[List[ThriftField]] = rule("Throws") { Deadspace ~ "throws" ~ argList(Field) }
 
-  lazy val Field: Rule1[descriptors.Field] = rule("Field")(
+  lazy val Field: Rule1[ThriftField] = rule("Field")(
     FieldIdentifier ~ optional(Spaces) ~ optional(FieldRequiredness ~ Spaces) ~ FieldType ~ optional(Spaces) ~
     Identifier ~ optional(Spaces) ~ optional(FieldValue) ~ optional(Spaces) ~ optional("xsdOptional") ~
     optional(Spaces) ~ optional("xsdNillable") ~ optional(Spaces) ~ optional(XsdAttributes) ~
     optional(TypeAnnotations) ~~> {
       (id, reqd, tpe, name, value, _, annots) => {
-        (descriptors.Field
+        (ThriftField
           .newBuilder
           .identifier(id.toShort)
           .name(name)
@@ -328,13 +334,13 @@ class ThriftParser extends Parser {
     }
   )
 
-  lazy val XsdAttributes: Rule1[List[descriptors.Field]] = rule("XsdAttributes") { "xsd_attributes" ~ block(Field) }
+  lazy val XsdAttributes: Rule1[List[ThriftField]] = rule("XsdAttributes") { "xsd_attributes" ~ block(Field) }
 
   lazy val FieldIdentifier: Rule1[Int] = rule("FieldIdentifier") { IdConstant ~ optional(Spaces) ~ ":" }
 
-  lazy val FieldRequiredness: Rule1[descriptors.Requiredness] = rule("FieldRequiredness")(
-    "required" ~> (_ => descriptors.Requiredness.REQUIRED) |
-    "optional" ~> (_ => descriptors.Requiredness.OPTIONAL)
+  lazy val FieldRequiredness: Rule1[ThriftRequiredness] = rule("FieldRequiredness")(
+    "required" ~> (_ => ThriftRequiredness.REQUIRED) |
+    "optional" ~> (_ => ThriftRequiredness.OPTIONAL)
   )
 
   lazy val FieldValue: Rule1[String] = rule("FieldValue") { "=" ~ optional(Spaces) ~ ConstValue }
@@ -346,7 +352,7 @@ class ThriftParser extends Parser {
 
   var _nextTypeId = 0
 
-  val idToTypeBuilder = Map.newBuilder[String, descriptors.Type]
+  val idToTypeBuilder = Map.newBuilder[String, ThriftType]
   val aliasToTypeIdBuilder = Map.newBuilder[String, String]
 
   def nextTypeId = {
@@ -355,78 +361,78 @@ class ThriftParser extends Parser {
     "T" + id
   }
 
-  def addType(simpleType: descriptors.SimpleType): String = {
+  def addType(simpleType: ThriftSimpleType): String = {
     val id = nextTypeId
-    val tpe = descriptors.Type(id, simpleType)
+    val tpe = ThriftType(id, simpleType)
     idToTypeBuilder += ((id, tpe))
     id
   }
 
   lazy val FieldType: Rule1[String] = rule("FieldType") {
     BaseType ~~> (baseType => {
-      val simpleType = descriptors.SimpleType.newBuilder.baseType(baseType).result()
+      val simpleType = ThriftSimpleType.newBuilder.baseType(baseType).result()
       addType(simpleType)
     }) |
     ContainerType ~~> (containerType => {
-      val simpleType = descriptors.SimpleType.newBuilder.containerType(containerType).result()
+      val simpleType = ThriftSimpleType.newBuilder.containerType(containerType).result()
       addType(simpleType)
     }) |
     Identifier ~~> (identifier => {
-      val typeref = descriptors.Typeref(identifier)
-      val simpleType = descriptors.SimpleType.newBuilder.typeref(typeref).result()
+      val typeref = ThriftTyperef(identifier)
+      val simpleType = ThriftSimpleType.newBuilder.typeref(typeref).result()
       addType(simpleType)
     })
   }
 
-  lazy val BaseType: Rule1[descriptors.BaseType] = rule("BaseType") {
+  lazy val BaseType: Rule1[ThriftBaseType] = rule("BaseType") {
     SimpleBaseType ~ optional(TypeAnnotations)
-  } ~~> ((sbt, annots) => descriptors.BaseType(sbt, annots.getOrElse(Nil)))
+  } ~~> ((sbt, annots) => ThriftBaseType(sbt, annots.getOrElse(Nil)))
 
-  lazy val SimpleBaseType: Rule1[descriptors.SimpleBaseType] = rule("SimpleBaseType")(
-    "string" ~ push(descriptors.SimpleBaseType.STRING) |
-    "binary" ~ push(descriptors.SimpleBaseType.BINARY) |
+  lazy val SimpleBaseType: Rule1[ThriftSimpleBaseType] = rule("SimpleBaseType")(
+    "string" ~ push(ThriftSimpleBaseType.STRING) |
+    "binary" ~ push(ThriftSimpleBaseType.BINARY) |
     "slist" ~> (_ => throw new RuntimeException("slist not a supported type")) |
-    "bool" ~ push(descriptors.SimpleBaseType.BOOL) |
-    "byte" ~ push(descriptors.SimpleBaseType.BYTE) |
-    "i16" ~ push(descriptors.SimpleBaseType.I16) |
-    "i32" ~ push(descriptors.SimpleBaseType.I32) |
-    "i64" ~ push(descriptors.SimpleBaseType.I64) |
-    "double" ~ push(descriptors.SimpleBaseType.DOUBLE)
+    "bool" ~ push(ThriftSimpleBaseType.BOOL) |
+    "byte" ~ push(ThriftSimpleBaseType.BYTE) |
+    "i16" ~ push(ThriftSimpleBaseType.I16) |
+    "i32" ~ push(ThriftSimpleBaseType.I32) |
+    "i64" ~ push(ThriftSimpleBaseType.I64) |
+    "double" ~ push(ThriftSimpleBaseType.DOUBLE)
   )
 
-  lazy val ContainerType: Rule1[descriptors.ContainerType] = rule("ContainerType") {
+  lazy val ContainerType: Rule1[ThriftContainerType] = rule("ContainerType") {
     SimpleContainerType ~ optional(TypeAnnotations)
-  } ~~> ((simpleContainerType, annots) => descriptors.ContainerType(simpleContainerType, annots.getOrElse(Nil)))
+  } ~~> ((simpleContainerType, annots) => ThriftContainerType(simpleContainerType, annots.getOrElse(Nil)))
 
-  lazy val SimpleContainerType: Rule1[descriptors.SimpleContainerType] = rule("SimpleContainerType") {
-    MapType ~~> (mapType => descriptors.SimpleContainerType.newBuilder.mapType(mapType).result()) |
-    SetType ~~> (setType => descriptors.SimpleContainerType.newBuilder.setType(setType).result()) |
-    ListType ~~> (listType => descriptors.SimpleContainerType.newBuilder.listType(listType).result())
+  lazy val SimpleContainerType: Rule1[ThriftSimpleContainerType] = rule("SimpleContainerType") {
+    MapType ~~> (mapType => ThriftSimpleContainerType.newBuilder.mapType(mapType).result()) |
+    SetType ~~> (setType => ThriftSimpleContainerType.newBuilder.setType(setType).result()) |
+    ListType ~~> (listType => ThriftSimpleContainerType.newBuilder.listType(listType).result())
   }
 
-  lazy val MapType: Rule1[descriptors.MapType] = rule("MapType") {
+  lazy val MapType: Rule1[ThriftMapType] = rule("MapType") {
     ("map" ~ optional(CppType) ~ optional(Spaces) ~ "<" ~ optional(Spaces) ~ FieldType ~ optional(Spaces) ~
       "," ~ optional(Spaces) ~ FieldType ~ optional(Spaces) ~ ">")
-  } ~~> ((_, keyTypeId, valueTypeId) => descriptors.MapType(keyTypeId, valueTypeId))
+  } ~~> ((_, keyTypeId, valueTypeId) => ThriftMapType(keyTypeId, valueTypeId))
 
-  lazy val SetType: Rule1[descriptors.SetType] = rule("SetType") {
+  lazy val SetType: Rule1[ThriftSetType] = rule("SetType") {
     ("set" ~ optional(CppType) ~ optional(Spaces) ~ "<" ~ optional(Spaces) ~ FieldType ~ optional(Spaces) ~
       ">")
-  } ~~> ((_, typeId) => descriptors.SetType(typeId))
+  } ~~> ((_, typeId) => ThriftSetType(typeId))
 
-  lazy val ListType: Rule1[descriptors.ListType] = rule("ListType") {
+  lazy val ListType: Rule1[ThriftListType] = rule("ListType") {
     ("list" ~ "<" ~ optional(Spaces) ~ FieldType ~ optional(Spaces) ~ ">" ~ optional(CppType))
-  } ~~> ((typeId, _) => descriptors.ListType(typeId))
+  } ~~> ((typeId, _) => ThriftListType(typeId))
 
   lazy val CppType: Rule1[String] = rule("CppType") { Spaces ~ "cpp_type" ~ Spaces ~ Literal }
 
-  lazy val TypeAnnotations: Rule1[List[descriptors.Annotation]] = rule("TypeAnnotations") {
+  lazy val TypeAnnotations: Rule1[List[ThriftAnnotation]] = rule("TypeAnnotations") {
     argList(TypeAnnotation, allowNewlineSeparator = true)
   }
 
-  lazy val TypeAnnotation: Rule1[descriptors.Annotation] = rule("TypeAnnotation") {
+  lazy val TypeAnnotation: Rule1[ThriftAnnotation] = rule("TypeAnnotation") {
     Identifier ~ optional(Spaces) ~ "=" ~ optional(Spaces) ~ Literal
-  } ~~> ((key, value) => descriptors.Annotation(key, value))
+  } ~~> ((key, value) => ThriftAnnotation(key, value))
 
   /**
    * The code below is copied from Parboiled's Parser.scala and re-written to avoid getting stack traces.
@@ -473,17 +479,17 @@ object ThriftParser {
       }
     }
 
-  def parseProgram(name: String): descriptors.Program = {
+  def parseProgram(name: String): ThriftProgram = {
     parseProgram(new File(name))
   }
 
-  def parsePrograms(files: Seq[File]): Seq[descriptors.Program] = {
+  def parsePrograms(files: Seq[File]): Seq[ThriftProgram] = {
     files.map(file => parseProgram(file))
   }
 
-  def parseProgram(file: File, trace: Boolean = false): descriptors.Program = {
+  def parseProgram(file: File, trace: Boolean = false): ThriftProgram = {
     val parser = new ThriftParser
-    val runner: ParseRunner[descriptors.Program] =
+    val runner: ParseRunner[ThriftProgram] =
       if (trace) TracingParseRunner(parser.Program) else ReportingParseRunner(parser.Program)
     val thrift = FileUtils.readFileToString(file, "UTF-8")
     val runResult = runner.run(thrift)

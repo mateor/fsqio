@@ -1,8 +1,8 @@
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.spindle.codegen.runtime
+package io.fsq.spindle.codegen.runtime
 
-import com.foursquare.spindle.Annotations
+import io.fsq.spindle.runtime.Annotations
 import scalaj.collection.Imports._
 
 class NotImplementedException(s: String) extends Exception(s)
@@ -136,7 +136,7 @@ case class StructRenderType(override val text: String) extends RefRenderType {
   override def javaText: String = text.replace(".", "_")
   override def javaContainerText: String = javaText
   override def javaTypeParameters: Seq[RenderType] = Vector(this)
-  override def javaUnderlying: String = "com.foursquare.spindle.Record<?>"
+  override def javaUnderlying: String = "io.fsq.spindle.Record<?>"
   override def fieldWriteTemplate: String = "write/struct.ssp"
   override def fieldReadTemplate: String = "read/struct.ssp"
   override def ttype: TType = TType.STRUCT
@@ -147,7 +147,7 @@ case class ExceptionRenderType(override val text: String) extends RefRenderType 
   override def javaText: String = text.replace(".", "_")
   override def javaContainerText: String = javaText
   override def javaTypeParameters: Seq[RenderType] = Vector(this)
-  override def javaUnderlying: String = "com.foursquare.spindle.Record<?>"
+  override def javaUnderlying: String = "io.fsq.spindle.Record<?>"
   override def fieldWriteTemplate: String = "write/exception.ssp"
   override def fieldReadTemplate: String = "read/exception.ssp"
   override def ttype: TType = TType.STRUCT
@@ -402,18 +402,18 @@ case class BitfieldStructRenderType(
   override def hasOrdering: Boolean = false
 
   val bitfieldRead = (hasSetBits, ref.ttype) match {
-    case (true, TType.I32) => "com.foursquare.spindle.BitFieldHelpers.bitFieldToStruct"
-    case (true, TType.I64) => "com.foursquare.spindle.BitFieldHelpers.longBitFieldToStruct"
-    case (false, TType.I32) => "com.foursquare.spindle.BitFieldHelpers.bitFieldToStructNoSetBits"
-    case (false, TType.I64) => "com.foursquare.spindle.BitFieldHelpers.longBitFieldToStructNoSetBits"
+    case (true, TType.I32) => "io.fsq.spindle.BitFieldHelpers.bitFieldToStruct"
+    case (true, TType.I64) => "io.fsq.spindle.BitFieldHelpers.longBitFieldToStruct"
+    case (false, TType.I32) => "io.fsq.spindle.BitFieldHelpers.bitFieldToStructNoSetBits"
+    case (false, TType.I64) => "io.fsq.spindle.BitFieldHelpers.longBitFieldToStructNoSetBits"
     case _ => throw new IllegalArgumentException("Unsupported bitfield type: " + ref.ttype + " with hasSetBits: " + hasSetBits)
   }
 
   val bitfieldWrite = (hasSetBits, ref.ttype) match {
-    case (true, TType.I32) => "com.foursquare.spindle.BitFieldHelpers.structToBitField"
-    case (true, TType.I64) => "com.foursquare.spindle.BitFieldHelpers.structToLongBitField"
-    case (false, TType.I32) => "com.foursquare.spindle.BitFieldHelpers.structToBitFieldNoSetBits"
-    case (false, TType.I64) => "com.foursquare.spindle.BitFieldHelpers.structToLongBitFieldNoSetBits"
+    case (true, TType.I32) => "io.fsq.spindle.BitFieldHelpers.structToBitField"
+    case (true, TType.I64) => "io.fsq.spindle.BitFieldHelpers.structToLongBitField"
+    case (false, TType.I32) => "io.fsq.spindle.BitFieldHelpers.structToBitFieldNoSetBits"
+    case (false, TType.I64) => "io.fsq.spindle.BitFieldHelpers.structToLongBitFieldNoSetBits"
     case _ => throw new IllegalArgumentException("Unsupported bitfield type: " + ref.ttype + " with hasSetBits: " + hasSetBits)
   }
 }

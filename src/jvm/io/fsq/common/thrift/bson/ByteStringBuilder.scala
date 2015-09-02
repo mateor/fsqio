@@ -1,10 +1,10 @@
 // Copyright 2015 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.common.thrift.bson
+package io.fsq.common.thrift.bson
 
-import java.io.{ByteArrayInputStream, InputStream}
-import java.nio.charset.Charset
+import java.io.InputStream
 import java.lang.reflect.Constructor
+import java.nio.charset.Charset
 
 private[bson] object ByteStringBuilder {
   val UTF8_CHARSET = Charset.forName("UTF-8")

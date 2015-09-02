@@ -1,9 +1,10 @@
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.spindle.codegen.runtime
+package io.fsq.spindle.codegen.runtime
 
-import com.foursquare.spindle.Annotations
-import com.twitter.thrift.descriptors.{Annotation, Field, Function, FunctionProxy, Requiredness}
+import io.fsq.spindle.__shaded_for_spindle_bootstrap__.descriptors.{Annotation, Field, Function, FunctionProxy,
+    Requiredness}
+import io.fsq.spindle.runtime.Annotations
 
 class ScalaFunction(override val underlying: Function, resolver: TypeReferenceResolver) extends FunctionProxy with HasAnnotations {
   val returnRenderType: Option[RenderType] = (underlying

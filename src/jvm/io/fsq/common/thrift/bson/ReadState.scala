@@ -1,10 +1,9 @@
 // Copyright 2015 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.common.thrift.bson
+package io.fsq.common.thrift.bson
 
 import java.io.InputStream
 import java.nio.ByteBuffer
-
 import org.apache.thrift.TException
 
 /**
