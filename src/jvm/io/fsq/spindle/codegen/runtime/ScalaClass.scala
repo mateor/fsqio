@@ -1,9 +1,9 @@
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.spindle.codegen.runtime
+package io.fsq.spindle.codegen.runtime
 
-import com.foursquare.spindle.{IndexParser, InvalidField, InvalidIndex}
-import com.twitter.thrift.descriptors.{Struct, StructProxy}
+import io.fsq.spindle.__shaded_for_spindle_bootstrap__.descriptors.{Struct, StructProxy}
+import io.fsq.spindle.runtime.{IndexParser, InvalidField, InvalidIndex}
 
 class ScalaClass(
     override val underlying: Struct,

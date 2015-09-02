@@ -1,8 +1,8 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare
+package io.fsq.spindle
 
-package object spindle {
+package object runtime {
   trait Tagged[U]
   type Id[T, U] = T with Tagged[U]
 }

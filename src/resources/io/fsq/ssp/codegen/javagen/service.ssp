@@ -1,7 +1,7 @@
 <%
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
 
-import com.foursquare.spindle.codegen.runtime.{RenderType, ScalaClass, ScalaFunction, ScalaService,
+import io.fsq.spindle.codegen.runtime.{RenderType, ScalaClass, ScalaFunction, ScalaService,
   TypeReferenceResolver}
 import com.twitter.thrift.descriptors.{Annotation, Field, Requiredness, Struct}
 %>

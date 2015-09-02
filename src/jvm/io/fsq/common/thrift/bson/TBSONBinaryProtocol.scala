@@ -1,17 +1,15 @@
 // Copyright 2015 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.common.thrift.bson
+package io.fsq.common.thrift.bson
 
+import io.fsq.common.thrift.base.TTransportInputStream
 import java.io.InputStream
 import java.lang.UnsupportedOperationException
 import java.nio.ByteBuffer
 import java.util.Stack
-
 import org.apache.thrift.{TBaseHelper, TException}
 import org.apache.thrift.protocol.{TField, TList, TMap, TMessage, TProtocol, TProtocolFactory, TSet, TStruct, TType}
 import org.apache.thrift.transport.TTransport
-
-import com.foursquare.common.thrift.base.TTransportInputStream
 
 
 object TBSONBinaryProtocol {

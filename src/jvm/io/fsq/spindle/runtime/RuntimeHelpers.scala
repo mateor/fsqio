@@ -1,6 +1,6 @@
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.spindle
+package io.fsq.spindle.runtime
 
 object RuntimeHelpers {
   def reportError(e: Throwable): Unit = errorHooks.reportError(e)

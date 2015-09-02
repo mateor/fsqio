@@ -1,10 +1,10 @@
 //  Copyright 2011 Foursquare Labs Inc. All Rights Reserved
 
-package com.foursquare.common.thrift.bson;
+package io.fsq.common.thrift.bson;
 
 import java.io.IOException;
 
-import com.foursquare.common.thrift.base.TTransportInputStream;
+import io.fsq.common.thrift.base.TTransportInputStream;
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.protocol.TProtocolFactory;

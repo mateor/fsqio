@@ -1,10 +1,9 @@
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.spindle.codegen.runtime
+package io.fsq.spindle.codegen.runtime
 
-import com.foursquare.spindle.Annotations
-import com.twitter.thrift.descriptors
-import com.twitter.thrift.descriptors.{TypeRegistry, Typedef}
+import io.fsq.spindle.__shaded_for_spindle_bootstrap__.descriptors.{Annotation, TypeRegistry, Typedef}
+import io.fsq.spindle.runtime.Annotations
 import scala.annotation.tailrec
 
 /**
@@ -195,7 +194,7 @@ class TypeDeclarationResolver(enhancedTypes: EnhancedTypes) {
     "Unresolvable typedef refers to non-existent type " + alias + " in " + unresolvedTypedef.program.file.toString
   }
 
-  def makeAnnotations(annotations: Seq[descriptors.Annotation]): Annotations = {
+  def makeAnnotations(annotations: Seq[Annotation]): Annotations = {
     new Annotations(annotations.map(a => (a.key, a.value)))
   }
 }

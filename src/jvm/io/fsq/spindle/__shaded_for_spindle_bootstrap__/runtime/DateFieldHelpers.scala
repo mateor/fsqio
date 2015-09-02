@@ -1,6 +1,6 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.spindle
+package io.fsq.spindle.__shaded_for_spindle_bootstrap__.runtime
 
 import org.joda.time.format.{DateTimeFormat, DateTimeFormatter}
 

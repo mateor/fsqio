@@ -1,8 +1,8 @@
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.spindle.codegen.runtime
+package io.fsq.spindle.codegen.runtime
 
-import com.foursquare.spindle.Annotations
+import io.fsq.spindle.runtime.Annotations
 
 sealed trait TypeDeclaration {
   def name: String

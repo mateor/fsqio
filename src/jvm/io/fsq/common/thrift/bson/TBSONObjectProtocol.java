@@ -1,13 +1,13 @@
 //  Copyright 2011 Foursquare Labs Inc. All Rights Reserved
 
-package com.foursquare.common.thrift.bson;
+package io.fsq.common.thrift.bson;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.util.Date;
 
-import com.foursquare.common.thrift.base.EnhancedTField;
-import com.foursquare.common.thrift.base.TDummyTransport;
+import io.fsq.common.thrift.base.EnhancedTField;
+import io.fsq.common.thrift.base.TDummyTransport;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import org.apache.thrift.TBaseHelper;

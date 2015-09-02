@@ -1,9 +1,9 @@
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.spindle.codegen.runtime
+package io.fsq.spindle.codegen.runtime
 
-import com.foursquare.spindle.Annotations
-import com.twitter.thrift.descriptors.Annotation
+import io.fsq.spindle.__shaded_for_spindle_bootstrap__.descriptors.Annotation
+import io.fsq.spindle.runtime.Annotations
 
 trait HasAnnotations {
   def __annotations: Seq[Annotation]

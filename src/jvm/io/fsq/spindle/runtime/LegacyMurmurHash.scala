@@ -33,7 +33,7 @@
 **                          |/                                          **
 \*                                                                      */
 
-package com.foursquare.spindle.runtime
+package io.fsq.spindle.runtime
 
 /** An implementation of Austin Appleby's MurmurHash 3.0 algorithm
  *  (32 bit version); reference: http://code.google.com/p/smhasher
@@ -46,7 +46,7 @@ package com.foursquare.spindle.runtime
  *  @since   2.9
  */
 
-import java.lang.Integer.{ rotateLeft => rotl }
+import java.lang.Integer.{rotateLeft => rotl}
 import scala.collection.Iterator
 
 /** A class designed to generate well-distributed non-cryptographic

@@ -1,8 +1,8 @@
 // Copyright 2015 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.common.thrift.bson
+package io.fsq.common.thrift.bson
 
-import java.io.{ByteArrayInputStream, InputStream}
+import java.io.InputStream
 
 /**
  * some helper functions for reading and writing little endian numbers from streams

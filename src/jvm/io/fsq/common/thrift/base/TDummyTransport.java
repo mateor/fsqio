@@ -1,6 +1,6 @@
 //  Copyright 2011 Foursquare Labs Inc. All Rights Reserved
 
-package com.foursquare.common.thrift.base;
+package io.fsq.common.thrift.base;
 
 import org.apache.thrift.transport.TTransport;
 import org.apache.thrift.transport.TTransportException;

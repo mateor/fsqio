@@ -1,4 +1,4 @@
-<%@ val cls: com.foursquare.spindle.codegen.runtime.StructLike  %>
+<%@ val cls: io.fsq.spindle.codegen.runtime.StructLike  %>
 
   override def write(oprot: org.apache.thrift.protocol.TProtocol): Unit = {
     oprot.writeStructBegin(${cls.name}.${cls.tstructName})
@@ -9,7 +9,7 @@
       oprot.writeFieldEnd()
     }
 #end
-  if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+  if (io.fsq.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
     unknownFields.reverse foreach { _.write(oprot) }
   }
     oprot.writeFieldStop()

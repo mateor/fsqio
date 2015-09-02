@@ -1,11 +1,10 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.spindle.runtime
+package io.fsq.spindle.runtime
 
-import com.foursquare.spindle.Record
+import java.nio.ByteBuffer
 import org.apache.thrift.TBase
 import org.apache.thrift.protocol.{TField, TList, TMap, TProtocol, TSet, TStruct, TType}
-import java.nio.ByteBuffer
 
 
 // The value of an unknown field read off the wire.

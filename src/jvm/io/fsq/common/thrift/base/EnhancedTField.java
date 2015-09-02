@@ -1,6 +1,6 @@
 //  Copyright 2012 Foursquare Labs Inc. All Rights Reserved
 
-package com.foursquare.common.thrift.base;
+package io.fsq.common.thrift.base;
 
 import java.util.HashMap;
 import java.util.Map;

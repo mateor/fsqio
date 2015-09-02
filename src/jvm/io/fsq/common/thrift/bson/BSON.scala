@@ -1,6 +1,6 @@
 // Copyright 2015 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.common.thrift.bson
+package io.fsq.common.thrift.bson
 
 // BSON field type constants
 object BSON {

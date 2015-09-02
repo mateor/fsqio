@@ -1,17 +1,17 @@
-package com.foursquare.spindle.runtime
+package io.fsq.spindle.runtime
 
+import io.fsq.common.thrift.bson.{TBSONBinaryProtocol, TBSONProtocol}
+import io.fsq.common.thrift.json.TReadableJSONProtocol
 import org.apache.thrift.protocol.{TBinaryProtocol, TCompactProtocol, TJSONProtocol, TProtocol, TProtocolFactory}
-import com.foursquare.common.thrift.bson.{TBSONProtocol, TBSONBinaryProtocol}
-import com.foursquare.common.thrift.json.TReadableJSONProtocol
 
 
 object KnownTProtocolNames {
   val TBinaryProtocol = "org.apache.thrift.protocol.TBinaryProtocol"
   val TCompactProtocol = "org.apache.thrift.protocol.TCompactProtocol"
   val TJSONProtocol = "org.apache.thrift.protocol.TJSONProtocol"
-  val TBSONProtocol = "com.foursquare.common.thrift.bson.TBSONProtocol"
-  val TReadableJSONProtocol = "com.foursquare.common.thrift.json.TReadableJSONProtocol"
-  val TBSONBinaryProtocol = "com.foursquare.common.thrift.bson.TBSONBinaryProtocol"
+  val TBSONProtocol = "io.fsq.common.thrift.bson.TBSONProtocol"
+  val TReadableJSONProtocol = "io.fsq.common.thrift.json.TReadableJSONProtocol"
+  val TBSONBinaryProtocol = "io.fsq.common.thrift.bson.TBSONBinaryProtocol"
 }
 
 // Utilities related to known TProtocol implementations.
@@ -19,7 +19,7 @@ object TProtocolInfo {
   // Returns the name of the given protocol.
   def getProtocolName(prot: TProtocol): String = prot.getClass.getCanonicalName match {
     // When reading/writing from a BSON object we handle unknown fields as TBSONProtocol.
-    case "com.foursquare.common.thrift.bson.TBSONObjectProtocol" => KnownTProtocolNames.TBSONProtocol
+    case "io.fsq.common.thrift.bson.TBSONObjectProtocol" => KnownTProtocolNames.TBSONProtocol
     case s => s
   }
 

@@ -1,6 +1,6 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.common.thrift.json;
+package io.fsq.common.thrift.json;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -36,11 +36,11 @@ import org.codehaus.jackson.io.SerializedString;
 import org.codehaus.jackson.util.DefaultPrettyPrinter;
 import org.codehaus.jackson.util.TokenBuffer;
 
-import com.foursquare.common.thrift.base.EnhancedTField;
-import com.foursquare.common.thrift.base.NonStringMapKeyException;
-import com.foursquare.common.thrift.base.SerializeDatesAsSeconds;
-import com.foursquare.common.thrift.base.TTransportInputStream;
-import com.foursquare.common.thrift.base.TTransportOutputStream;
+import io.fsq.common.thrift.base.EnhancedTField;
+import io.fsq.common.thrift.base.NonStringMapKeyException;
+import io.fsq.common.thrift.base.SerializeDatesAsSeconds;
+import io.fsq.common.thrift.base.TTransportInputStream;
+import io.fsq.common.thrift.base.TTransportOutputStream;
 
 
 /**

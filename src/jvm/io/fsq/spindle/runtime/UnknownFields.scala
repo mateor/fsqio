@@ -1,8 +1,7 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.spindle.runtime
+package io.fsq.spindle.runtime
 
-import com.foursquare.spindle.{Record, RuntimeHelpers, SemitypedHasPrimaryKey}
 import org.apache.thrift.TBase
 import org.apache.thrift.protocol.{TField, TProtocol, TProtocolUtil, TType}
 
