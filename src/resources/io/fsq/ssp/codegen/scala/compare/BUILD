@@ -1,6 +1,6 @@
 # Copyright 2015 Foursquare Labs Inc. All Rights Reserved.
 
-resources(
+ssp_template(
   name = 'compare',
   sources = globs('*.ssp'),
 )
