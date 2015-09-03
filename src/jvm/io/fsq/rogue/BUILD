@@ -9,7 +9,4 @@ scala_library(
     '3rdparty:rogue-field',
     'src/jvm/io/fsq/rogue/index',
   ],
-  tags = [
-    'fscommon',
-  ],
 )
