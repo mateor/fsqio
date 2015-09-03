@@ -1,9 +1,9 @@
 <%
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-import com.foursquare.spindle.codegen.runtime.{RenderType, ScalaClass, ScalaFunction, ScalaService,
+import io.fsq.spindle.codegen.runtime.{RenderType, ScalaClass, ScalaFunction, ScalaService,
   TypeReferenceResolver}
-import com.twitter.thrift.descriptors.{Annotation, Field, Requiredness, Struct}
+import io.fsq.spindle.__shaded_for_spindle_bootstrap__.descriptors.{Annotation, Field, Requiredness, Struct}
 %>
 <%@ val service: ScalaService %>
 <%@ val resolver: TypeReferenceResolver %>

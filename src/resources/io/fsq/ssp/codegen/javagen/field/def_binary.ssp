@@ -1,7 +1,7 @@
 <%
   // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-  import com.foursquare.spindle.codegen.runtime.ScalaField
+  import io.fsq.spindle.codegen.runtime.ScalaField
 %>
 <%@ val field: ScalaField %>
 <% render("def_ref.ssp", Map("field" -> field)) %>

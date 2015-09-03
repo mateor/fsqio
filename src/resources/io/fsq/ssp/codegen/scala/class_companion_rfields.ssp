@@ -1,7 +1,7 @@
 <%
   // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-  import com.foursquare.spindle.codegen.runtime.StructLike
+  import io.fsq.spindle.codegen.runtime.StructLike
 %>
 <%@ val cls: StructLike %>
   // Spindle Descriptors.
@@ -14,12 +14,12 @@
   val ${field.escapedName} =
 #if (field.isForeignKey)
     new com.foursquare.spindle.ForeignKeyFieldDescriptor[${field.renderType.text}, ${cls.name}, ${cls.name}Meta](
-#elseif (field.renderType.isInstanceOf[com.foursquare.spindle.codegen.runtime.BitfieldStructRenderType])
-<% val structName = field.renderType.asInstanceOf[com.foursquare.spindle.codegen.runtime.BitfieldStructRenderType].className %>
+#elseif (field.renderType.isInstanceOf[io.fsq.spindle.codegen.runtime.BitfieldStructRenderType])
+<% val structName = field.renderType.asInstanceOf[io.fsq.spindle.codegen.runtime.BitfieldStructRenderType].className %>
     new com.foursquare.spindle.BitfieldFieldDescriptor[${field.renderType.text}, ${cls.name}, ${cls.name}Meta, ${structName}, ${structName}Meta](
-#elseif (field.renderType.isInstanceOf[com.foursquare.spindle.codegen.runtime.ExceptionRenderType])
+#elseif (field.renderType.isInstanceOf[io.fsq.spindle.codegen.runtime.ExceptionRenderType])
     new com.foursquare.spindle.ExceptionFieldDescriptor[${cls.name}, ${cls.name}Meta, ${field.renderType.text}.Struct, ${field.renderType.text}.StructMeta, ${field.renderType.text}](
-#elseif (field.renderType.isInstanceOf[com.foursquare.spindle.codegen.runtime.StructRenderType])
+#elseif (field.renderType.isInstanceOf[io.fsq.spindle.codegen.runtime.StructRenderType])
     new com.foursquare.spindle.StructFieldDescriptor[${cls.name}, ${cls.name}Meta, ${field.renderType.text}, ${field.renderType.text}Meta](
 #else
     new com.foursquare.spindle.OptionalFieldDescriptor[${field.renderType.text}, ${cls.name}, ${cls.name}Meta](
@@ -38,12 +38,12 @@
       unsafeObjGetter = (r: Any) => { r.asInstanceOf[${cls.name}].${field.name}GetObj },
       alternateObjSetter = (r: ${cls.name}, obj: AnyRef) => { r.${field.name}SetAlternateObj(obj) },
       alternateObjGetter = (r: ${cls.name}) => { r.${field.name}AlternateFk },
-#elseif (field.renderType.isInstanceOf[com.foursquare.spindle.codegen.runtime.BitfieldStructRenderType])
-<% val structName = field.renderType.asInstanceOf[com.foursquare.spindle.codegen.runtime.BitfieldStructRenderType].className %>
+#elseif (field.renderType.isInstanceOf[io.fsq.spindle.codegen.runtime.BitfieldStructRenderType])
+<% val structName = field.renderType.asInstanceOf[io.fsq.spindle.codegen.runtime.BitfieldStructRenderType].className %>
       structMeta = ${structName},
-#elseif (field.renderType.isInstanceOf[com.foursquare.spindle.codegen.runtime.ExceptionRenderType])
+#elseif (field.renderType.isInstanceOf[io.fsq.spindle.codegen.runtime.ExceptionRenderType])
       structMeta = ${field.renderType.text}.Struct,
-#elseif (field.renderType.isInstanceOf[com.foursquare.spindle.codegen.runtime.StructRenderType])
+#elseif (field.renderType.isInstanceOf[io.fsq.spindle.codegen.runtime.StructRenderType])
       structMeta = ${field.renderType.text},
 #end
       manifest = manifest[${field.renderType.text}]

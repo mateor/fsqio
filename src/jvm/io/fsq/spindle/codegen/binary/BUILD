@@ -15,7 +15,7 @@ scala_library(
 
 jvm_binary(
   name = 'spindle',
-  main = 'com.foursquare.spindle.codegen.binary.ThriftCodegen',
+  main = 'io.fsq.spindle.codegen.binary.ThriftCodegen',
   dependencies = [
     ':binary',
   ],
