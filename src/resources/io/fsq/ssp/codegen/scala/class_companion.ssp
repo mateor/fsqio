@@ -1,7 +1,7 @@
 <%
   // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-  import com.foursquare.spindle.codegen.runtime.{PrimitiveRenderType, StructLike}
+  import io.fsq.spindle.codegen.runtime.{PrimitiveRenderType, StructLike}
 %>
 <%@ val cls: StructLike %>
 <%@ val clsContainer: String %>

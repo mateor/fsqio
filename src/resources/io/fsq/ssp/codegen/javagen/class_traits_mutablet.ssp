@@ -1,7 +1,7 @@
 <%
   // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
 
-  import com.foursquare.spindle.codegen.runtime.StructLike
+  import io.fsq.spindle.codegen.runtime.StructLike
 %>
 <%@ val cls: StructLike %>
 public static interface Java${cls.name}Mutable<#if (cls.typeParameterFields.nonEmpty)${cls.typeParameterFields.map(f => "%s extends %s".format(f.javaText, f.javaUnderlying)).distinct.mkString(", ")},#end<%----%>

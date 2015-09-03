@@ -1,7 +1,7 @@
 <%
   // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
 
-  import com.foursquare.spindle.codegen.runtime.ScalaEnum
+  import io.fsq.spindle.codegen.runtime.ScalaEnum
 %>
 <%@ val enum: ScalaEnum %>
 <%--

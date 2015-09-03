@@ -1,4 +1,4 @@
-<%@ val cls: com.foursquare.spindle.codegen.runtime.StructLike %>
+<%@ val cls: io.fsq.spindle.codegen.runtime.StructLike %>
   override def read(iprot: org.apache.thrift.protocol.TProtocol) {
     // Unknown fields in this read go here.
     var currentUnknownFieldsOpt: Option[com.foursquare.spindle.runtime.UnknownFields] = None

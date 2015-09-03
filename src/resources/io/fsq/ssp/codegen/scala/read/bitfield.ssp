@@ -1,4 +1,4 @@
-<%@ val renderType: com.foursquare.spindle.codegen.runtime.BitfieldStructRenderType %>
+<%@ val renderType: io.fsq.spindle.codegen.runtime.BitfieldStructRenderType %>
 <%@ val lhs: String %>
 <%@ val indent: String %>
 <%@ val wrapLeft: String = "" %>
