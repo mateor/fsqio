@@ -1,4 +1,4 @@
-<%@ val renderType: io.fsq.spindle.codegen.runtime.JavaDateRenderType %>
+<%@ val renderType: com.foursquare.spindle.codegen.runtime.JavaDateRenderType %>
 <%@ val lhs: String %>
 <%@ val indent: String %>
 <%@ val wrapLeft: String = "" %>
@@ -8,5 +8,5 @@
       "renderType" -> renderType.ref,
       "lhs" -> lhs,
       "indent" -> indent,
-      "wrapLeft" -> (wrapLeft + "io.fsq.spindle.DateFieldHelpers.parseJavaDate("),
+      "wrapLeft" -> (wrapLeft + "com.foursquare.spindle.DateFieldHelpers.parseJavaDate("),
       "wrapRight" -> (")" + wrapRight))) %>

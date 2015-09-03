@@ -1,7 +1,7 @@
 <%
   // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-  import io.fsq.spindle.codegen.runtime.{ProgramSource, ScalaProgram}
+  import com.foursquare.spindle.codegen.runtime.{ProgramSource, ScalaProgram}
   import java.net.InetAddress
   import org.joda.time.DateTime
 %>
