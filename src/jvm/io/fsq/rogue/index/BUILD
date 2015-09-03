@@ -6,7 +6,4 @@ scala_library(
   dependencies = [
     '3rdparty:rogue-field',
   ],
-  tags = [
-    'fscommon',
-  ],
 )
