@@ -1,8 +1,9 @@
 # Copyright 2015 Foursquare Labs Inc. All Rights Reserved.
 
-resources(
+ssp_template(
   name = 'scala',
   sources = globs('*.ssp'),
+  entry_point = 'record.ssp',
   dependencies = [
     'src/resources/io/fsq/ssp/codegen/scala/compare',
     'src/resources/io/fsq/ssp/codegen/scala/field',
