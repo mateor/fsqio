@@ -1,7 +1,7 @@
 <%
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
-import io.fsq.spindle.Annotations
-import io.fsq.spindle.codegen.runtime.{RenderType, ScalaFunction, TypeReferenceResolver}
+import com.foursquare.spindle.Annotations
+import com.foursquare.spindle.codegen.runtime.{RenderType, ScalaFunction, TypeReferenceResolver}
 %>
 <%@ val function: ScalaFunction %>
 <%@ val resolver: TypeReferenceResolver %>

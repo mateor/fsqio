@@ -1,12 +1,12 @@
 <%
   // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-  import io.fsq.spindle.codegen.runtime.ScalaField
+  import com.foursquare.spindle.codegen.runtime.ScalaField
 %>
 <%@ val field: ScalaField %>
-  override def ${field.name}Fk[R <: io.fsq.spindle.Record[R] with io.fsq.spindle.HasPrimaryKey[${field.renderType.text}, R]](meta: io.fsq.spindle.MetaRecord[R, _]): Option[R] = underlying.${field.name}Fk[R](meta)
-  override def ${field.name}UntypedFk(meta: io.fsq.spindle.UntypedMetaRecord): Option[io.fsq.spindle.UntypedRecord with io.fsq.spindle.SemitypedHasPrimaryKey[${field.renderType.text}]] = underlying.${field.name}UntypedFk(meta)
-  override def ${field.name}GetObj: Option[io.fsq.spindle.SemitypedHasPrimaryKey[${field.renderType.text}]] = underlying.${field.name}GetObj
-  override def ${field.name}SetObj(x: io.fsq.spindle.SemitypedHasPrimaryKey[${field.renderType.text}]): Unit = underlying.${field.name}SetObj(x)
+  override def ${field.name}Fk[R <: com.foursquare.spindle.Record[R] with com.foursquare.spindle.HasPrimaryKey[${field.renderType.text}, R]](meta: com.foursquare.spindle.MetaRecord[R, _]): Option[R] = underlying.${field.name}Fk[R](meta)
+  override def ${field.name}UntypedFk(meta: com.foursquare.spindle.UntypedMetaRecord): Option[com.foursquare.spindle.UntypedRecord with com.foursquare.spindle.SemitypedHasPrimaryKey[${field.renderType.text}]] = underlying.${field.name}UntypedFk(meta)
+  override def ${field.name}GetObj: Option[com.foursquare.spindle.SemitypedHasPrimaryKey[${field.renderType.text}]] = underlying.${field.name}GetObj
+  override def ${field.name}SetObj(x: com.foursquare.spindle.SemitypedHasPrimaryKey[${field.renderType.text}]): Unit = underlying.${field.name}SetObj(x)
   override def ${field.name}AlternateFk: Option[AnyRef] = underlying.${field.name}AlternateFk
   override def ${field.name}SetAlternateObj(x: AnyRef): Unit = underlying.${field.name}SetAlternateObj(x)

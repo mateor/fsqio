@@ -1,7 +1,7 @@
 <%
   // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-  import io.fsq.spindle.codegen.runtime.StructLike
+  import com.foursquare.spindle.codegen.runtime.StructLike
 %>
 <%@ val cls: StructLike %>
 <%@ val clsContainer: String %>
@@ -12,7 +12,7 @@ trait ${cls.name}
       ${cls.name}, Raw${cls.name}, ${cls.name}Meta
     ]
 #for (pkField <- cls.primaryKeyField)
-    with io.fsq.spindle.HasPrimaryKey[${pkField.renderType.text}, ${cls.name}]
+    with com.foursquare.spindle.HasPrimaryKey[${pkField.renderType.text}, ${cls.name}]
 #end
     with org.apache.thrift.TBase[${cls.name}, ${cls.name}._Fields] {
 

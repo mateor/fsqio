@@ -1,7 +1,7 @@
 <%
   // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
 
-  import io.fsq.spindle.codegen.runtime.{ScalaClass, StructLike, TypeReferenceResolver}
+  import com.foursquare.spindle.codegen.runtime.{ScalaClass, StructLike, TypeReferenceResolver}
   import com.twitter.thrift.descriptors.Struct
 %>
 <%@ val cls: StructLike %>
