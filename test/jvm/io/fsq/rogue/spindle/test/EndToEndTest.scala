@@ -425,10 +425,10 @@ class EndToEndTest extends JUnitMustMatchers {
     db.insertAll((1 to 5).map(_ => baseTestVenue().toBuilder.userid(2).result()))
     db.insertAll((1 to 5).map(_ => baseTestVenue().toBuilder.userid(3).result()))
 
-    val vs: Seq[ThriftVenue] = db.fetchList(Q(ThriftVenue).where(_.mayor eqs 789))
+    val vs: Seq[ThriftVenue] = db.fetch(Q(ThriftVenue).where(_.mayor eqs 789))
     vs.size must_== 15
 
-    val ids: Seq[VenueId] = db.fetchBatchList(Q(ThriftVenue).where(_.mayor eqs 789), 3)(b => b.map(_.id))
+    val ids: Seq[VenueId] = db.fetchBatch(Q(ThriftVenue).where(_.mayor eqs 789), 3)(b => b.map(_.id))
     ids.size must_== 15
   }
 }
