@@ -5,7 +5,6 @@ scala_library(
   sources = globs('*.java', '*.scala'),
   dependencies = [
     '3rdparty:mongodb',  # (mateo) Protect from buildgen - it's a java dep.
-    '3rdparty:thrift',
     'src/jvm/io/fsq/common/thrift/base',
   ],
 )

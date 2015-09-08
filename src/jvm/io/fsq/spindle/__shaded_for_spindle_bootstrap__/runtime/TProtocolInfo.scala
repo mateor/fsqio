@@ -1,6 +1,6 @@
 package io.fsq.spindle.__shaded_for_spindle_bootstrap__.runtime
 
-import io.fsq.common.thrift.bson.{TBSONBinaryProtocol, TBSONProtocol}
+import io.fsq.common.thrift.bson.TBSONProtocol
 import io.fsq.common.thrift.json.TReadableJSONProtocol
 import org.apache.thrift.protocol.{TBinaryProtocol, TCompactProtocol, TJSONProtocol, TProtocol, TProtocolFactory}
 
@@ -11,7 +11,6 @@ object KnownTProtocolNames {
   val TJSONProtocol = "org.apache.thrift.protocol.TJSONProtocol"
   val TBSONProtocol = "io.fsq.common.thrift.bson.TBSONProtocol"
   val TReadableJSONProtocol = "io.fsq.common.thrift.json.TReadableJSONProtocol"
-  val TBSONBinaryProtocol = "io.fsq.common.thrift.bson.TBSONBinaryProtocol"
 }
 
 // Utilities related to known TProtocol implementations.
@@ -45,14 +44,11 @@ object TProtocolInfo {
 
   def getReaderFactory(protocolName: String): TProtocolFactory = protocolName match {
     case KnownTProtocolNames.TBSONProtocol => new TBSONProtocol.ReaderFactory()
-    case KnownTProtocolNames.TBSONBinaryProtocol => new TBSONBinaryProtocol.ReaderFactory()
     case _ => getFactory(protocolName)
   }
 
   def getWriterFactory(protocolName: String): TProtocolFactory = protocolName match {
     case KnownTProtocolNames.TBSONProtocol => new TBSONProtocol.WriterFactory()
-    // just use the DBObject based writer protocol
-    case KnownTProtocolNames.TBSONBinaryProtocol => new TBSONProtocol.WriterFactory()
     case _ => getFactory(protocolName)
   }
 
