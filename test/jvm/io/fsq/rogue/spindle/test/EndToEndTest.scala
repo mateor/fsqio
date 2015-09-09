@@ -279,7 +279,7 @@ class EndToEndTest extends JUnitMustMatchers {
     }
     val ids = vs.map(_.id)
 
-    val empty: Seq[ThriftVenue] = Nil
+    val empty: Seq[ThriftVenue] = Vector.empty
     val items1 = db.iterate(Q(ThriftVenue).where(_.id in ids), empty) { case (accum, event) => {
       if (accum.length >= 3) {
         Iter.Return(accum)
