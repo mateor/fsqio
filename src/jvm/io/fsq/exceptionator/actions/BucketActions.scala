@@ -1,9 +1,9 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.actions
+package io.fsq.exceptionator.actions
 
-import com.foursquare.exceptionator.model.BucketRecordHistogram
-import com.foursquare.exceptionator.model.io.{BucketId, Incoming, Outgoing}
+import io.fsq.exceptionator.model.BucketRecordHistogram
+import io.fsq.exceptionator.model.io.{BucketId, Incoming, Outgoing}
 import org.bson.types.ObjectId
 import org.joda.time.DateTime
 

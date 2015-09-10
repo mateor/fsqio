@@ -1,20 +1,19 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.service
+package io.fsq.exceptionator.service
 
 import com.codahale.jerkson.Json.{generate, parse, stream}
-import com.foursquare.exceptionator.model.io.Incoming
-import com.foursquare.exceptionator.filter.FilteredIncoming
-import com.foursquare.exceptionator.actions.{BackgroundActions, IncomingActions}
-import com.foursquare.exceptionator.util.{Config, Logger}
-import com.twitter.finagle.http.{Response, Request}
 import com.twitter.finagle.Service
+import com.twitter.finagle.http.Response
 import com.twitter.ostrich.stats.Stats
 import com.twitter.util.Future
+import io.fsq.exceptionator.actions.{BackgroundActions, IncomingActions}
+import io.fsq.exceptionator.filter.FilteredIncoming
+import io.fsq.exceptionator.model.io.Incoming
+import io.fsq.exceptionator.util.{Config, Logger}
+import java.io.{BufferedWriter, FileWriter}
 import org.jboss.netty.buffer.ChannelBufferInputStream
 import org.jboss.netty.handler.codec.http._
-import java.io.{BufferedWriter, FileWriter}
-import java.util.concurrent.Executors
 import scalaj.collection.Imports._
 
 class IncomingHttpService(incomingActions: IncomingActions, backgroundActions: BackgroundActions)
@@ -40,7 +39,7 @@ class IncomingHttpService(incomingActions: IncomingActions, backgroundActions: B
               response.contentString = res.mkString(",")
               response
             })
-          case _ => 
+          case _ =>
             ServiceUtil.errorResponse(HttpResponseStatus.NOT_FOUND)
         }
 
@@ -49,7 +48,7 @@ class IncomingHttpService(incomingActions: IncomingActions, backgroundActions: B
     }
   }
 
-  def process(incoming: Incoming) = { 
+  def process(incoming: Incoming) = {
     incomingLog.foreach(log => {
       log.write(generate(incoming))
       log.write("\n")

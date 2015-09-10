@@ -1,11 +1,12 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.util
+package io.fsq.exceptionator.filter
 
 import com.typesafe.config.{Config => TSConfig}
-import com.foursquare.exceptionator.model.io.Incoming
-import scalaj.collection.Imports._
+import io.fsq.exceptionator.model.io.Incoming
+import io.fsq.exceptionator.util.RegexUtil
 import scala.util.matching.Regex
+import scalaj.collection.Imports._
 
 case class FilterResult(matchedConfig: TSConfig, allowed: Option[Boolean], incoming: Incoming)
 

@@ -1,14 +1,17 @@
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.filter
-import com.foursquare.exceptionator.model.io.Incoming
+package io.fsq.exceptionator.filter.test
+
+import com.twitter.finagle.Service
 import com.twitter.util.Future
-import com.twitter.finagle.{Service, SimpleFilter}
+import io.fsq.exceptionator.filter.{BucketSpec, FilteredIncoming, FilteredSaveService, PreSaveFilter,
+    ProcessedIncoming, Registry}
+import io.fsq.exceptionator.model.io.Incoming
 import org.junit.Test
 import org.specs._
 
 class OrderedPreSaveFilter(id: String) extends PreSaveFilter {
-  def register(registry: Registry) {}
+  def register(registry: Registry): Unit = {}
   def apply(
     incoming: FilteredIncoming,
     service: Service[FilteredIncoming, ProcessedIncoming]
@@ -46,7 +49,7 @@ class FilteredSaveServiceTest extends SpecsMatchers {
         new OrderedPreSaveFilter("2"),
         new OrderedPreSaveFilter("3")),
       new Registry {
-        def registerBucket(spec: BucketSpec) {}
+        def registerBucket(spec: BucketSpec): Unit = {}
       })
 
     service(incoming).poll.flatMap(_.toOption.map(_.tags)) must_== Some(Set("123"))

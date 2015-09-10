@@ -1,9 +1,9 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.actions
+package io.fsq.exceptionator.actions
 
-import com.foursquare.exceptionator.filter.{BucketSpec, Registry, ProcessedIncoming, FilteredIncoming}
 import com.twitter.util.Future
+import io.fsq.exceptionator.filter.{BucketSpec, FilteredIncoming, ProcessedIncoming, Registry}
 
 trait HasIncomingActions {
   def incomingActions: IncomingActions

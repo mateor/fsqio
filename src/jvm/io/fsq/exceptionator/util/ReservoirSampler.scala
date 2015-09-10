@@ -1,6 +1,6 @@
 // Copyright 2015 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.util
+package io.fsq.exceptionator.util
 
 import scala.collection.mutable.ArrayBuffer
 import scala.reflect.ClassTag

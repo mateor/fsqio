@@ -1,8 +1,7 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.exceptionator.model.io
+package io.fsq.exceptionator.model.io
 
-import com.foursquare.exceptionator.util.RegexUtil
-import org.bson.types.ObjectId
+import _root_.io.fsq.exceptionator.util.RegexUtil
 
 object BacktraceLine {
   val BacktraceLineRegex = """^(.*) \((.*):(.*)\)$""".r // method, file, line
@@ -28,7 +27,7 @@ case class Incoming (
   n: Option[Int], // count
   d: Option[Long], //date
   tags: Option[List[String]],
-  id: Option[Int] // optional data useful for debugging with tester.py
+  id: Option[Int] = None // optional data useful for debugging with tester.py
 ) {
   def structuredBacktrace: List[List[BacktraceLine]] = bt.map(_.split("\n").map(BacktraceLine(_)).toList)
 

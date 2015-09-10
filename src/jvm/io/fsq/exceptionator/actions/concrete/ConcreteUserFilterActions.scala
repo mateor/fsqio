@@ -1,14 +1,14 @@
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-package  com.foursquare.exceptionator.actions.concrete
+package io.fsq.exceptionator.actions.concrete
 
-import com.foursquare.exceptionator.actions.{UserFilterActions, IndexActions}
-import com.foursquare.exceptionator.model.io.UserFilterView
-import com.foursquare.exceptionator.model.UserFilterRecord
-import com.foursquare.exceptionator.util.{ConcreteBlamer, Logger, ConcreteMailSender, Config, IncomingFilter, PollingCache}
 import com.foursquare.rogue.lift.LiftRogue._
-import net.liftweb.json._
+import io.fsq.exceptionator.actions.{IndexActions, UserFilterActions}
+import io.fsq.exceptionator.model.UserFilterRecord
+import io.fsq.exceptionator.model.io.UserFilterView
+import io.fsq.exceptionator.util.Logger
 import net.liftweb.common.{Failure, Full}
+import net.liftweb.json._
 import org.bson.types.ObjectId
 
 class ConcreteUserFilterActions extends UserFilterActions with IndexActions with Logger {

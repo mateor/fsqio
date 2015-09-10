@@ -1,12 +1,12 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.actions.concrete
+package io.fsq.exceptionator.actions.concrete
 
-import com.foursquare.exceptionator.actions.{BackgroundAction, BackgroundActions}
-import com.foursquare.exceptionator.loader.service.HasPluginLoaderService
-import com.foursquare.exceptionator.filter.ProcessedIncoming
-import com.foursquare.exceptionator.util.{PluginLoader, Config}
 import com.twitter.util.Future
+import io.fsq.exceptionator.actions.{BackgroundAction, BackgroundActions}
+import io.fsq.exceptionator.filter.ProcessedIncoming
+import io.fsq.exceptionator.loader.service.HasPluginLoaderService
+import io.fsq.exceptionator.util.Config
 import scalaj.collection.Imports._
 
 

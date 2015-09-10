@@ -1,21 +1,20 @@
 // Copyright 2015 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.actions.concrete
+package io.fsq.exceptionator.actions.concrete
 
-import com.foursquare.exceptionator.actions.{HasBucketActions, HistoryActions, IndexActions}
-import com.foursquare.exceptionator.model.{BucketRecord, HistoryRecord, MongoOutgoing, NoticeRecord}
-import com.foursquare.exceptionator.model.io.{BucketId, Outgoing}
-import com.foursquare.exceptionator.util.{Config, Logger, ReservoirSampler}
 import com.foursquare.rogue.lift.LiftRogue._
 import com.twitter.conversions.time._
 import com.twitter.ostrich.stats.Stats
 import com.twitter.util.ScheduledThreadPoolTimer
+import io.fsq.exceptionator.actions.{HasBucketActions, HistoryActions, IndexActions}
+import io.fsq.exceptionator.model.{BucketRecord, HistoryRecord, MongoOutgoing, NoticeRecord}
+import io.fsq.exceptionator.model.io.{BucketId, Outgoing}
+import io.fsq.exceptionator.util.{Config, Logger, ReservoirSampler}
 import java.util.concurrent.ConcurrentHashMap
 import net.liftweb.json.{JField, JInt, JObject}
 import org.joda.time.DateTime
 import scala.collection.JavaConverters.mapAsScalaConcurrentMapConverter
 import scala.language.postfixOps
-import scala.util.Random
 
 
 class ConcreteHistoryActions(services: HasBucketActions) extends HistoryActions with IndexActions with Logger {

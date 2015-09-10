@@ -1,9 +1,9 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.util
+package io.fsq.exceptionator.util
 
-import java.io.File
 import com.typesafe.config.{ConfigException, ConfigFactory, ConfigRenderOptions}
+import java.io.File
 
 object Config extends Logger {
   def defaultInit() {

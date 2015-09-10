@@ -1,6 +1,6 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.service
+package io.fsq.exceptionator.service
 
 import com.twitter.finagle.{Filter, Service}
 import com.twitter.finagle.http.{Request, RequestProxy, Response}

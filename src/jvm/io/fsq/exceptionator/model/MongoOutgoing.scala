@@ -1,11 +1,10 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.exceptionator.model
+package io.fsq.exceptionator.model
 
-import com.foursquare.exceptionator.model.io.{BucketId, Outgoing}
+import _root_.io.fsq.exceptionator.model.io.{BucketId, Outgoing}
 import com.foursquare.rogue.lift.LiftRogue._
-import com.twitter.ostrich.stats.Stats
-import net.liftweb.json._
 import net.liftweb.json.JsonDSL._
+import net.liftweb.json._
 import org.bson.types.ObjectId
 import org.joda.time.DateTime
 

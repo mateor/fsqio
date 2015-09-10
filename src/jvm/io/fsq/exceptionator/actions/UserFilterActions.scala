@@ -1,10 +1,8 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.actions
+package io.fsq.exceptionator.actions
 
-import com.foursquare.exceptionator.model.io.{UserFilterView}
-import org.bson.types.ObjectId
-import org.joda.time.DateTime
+import io.fsq.exceptionator.model.io.UserFilterView
 
 trait HasUserFilterActions {
   def userFilterActions: UserFilterActions

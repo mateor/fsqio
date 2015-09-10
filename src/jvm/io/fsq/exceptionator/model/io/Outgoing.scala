@@ -1,9 +1,8 @@
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.model.io
+package io.fsq.exceptionator.model.io
 
-import net.liftweb.json.{JValue, JArray, render}
-import org.bson.types.ObjectId
+import net.liftweb.json.{JArray, JValue, render}
 
 object Outgoing {
   def pretty(outgoings: List[Outgoing]) = {

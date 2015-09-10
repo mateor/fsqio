@@ -1,12 +1,12 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.util
+package io.fsq.exceptionator.util
 
+import com.twitter.util.{Future, FuturePool}
+import java.util.Properties
+import java.util.concurrent.Executors
 import javax.mail._
 import javax.mail.internet._
-import java.util.Properties
-import com.twitter.util.{Future, FuturePool}
-import java.util.concurrent.Executors
 
 
 trait MailSender {

@@ -1,9 +1,8 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.model.io
+package io.fsq.exceptionator.model.io
 
-import net.liftweb.json.{JValue, JArray, render}
-import net.liftweb.json.JValue
+import net.liftweb.json.{JArray, JValue, render}
 
 object UserFilterView {
   def pretty(filters: List[UserFilterView]) = {

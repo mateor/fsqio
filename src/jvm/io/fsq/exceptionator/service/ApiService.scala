@@ -1,18 +1,16 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.service
+package io.fsq.exceptionator.service
 
 import com.codahale.jerkson.Json.{generate, parse}
-import com.foursquare.exceptionator.actions.{HasBucketActions, HasHistoryActions, HasNoticeActions,
-    HasUserFilterActions}
-import com.foursquare.exceptionator.model.io.{Incoming, Outgoing, UserFilterView}
-import com.foursquare.exceptionator.util.{Config, Logger}
-import com.twitter.finagle.http.{Response, Request}
 import com.twitter.finagle.Service
-import com.twitter.util.{Future, FuturePool, Throw}
+import com.twitter.finagle.http.{Request, Response}
+import com.twitter.util.{Future, FuturePool}
+import io.fsq.exceptionator.actions.{HasBucketActions, HasHistoryActions, HasNoticeActions, HasUserFilterActions}
+import io.fsq.exceptionator.model.io.{Outgoing, UserFilterView}
+import io.fsq.exceptionator.util.{Config, Logger}
 import java.net.URLDecoder
 import java.util.concurrent.Executors
-import org.jboss.netty.buffer.{ChannelBufferInputStream, ChannelBuffers}
 import org.jboss.netty.handler.codec.http._
 import org.joda.time.DateTime
 import scalaj.collection.Imports._

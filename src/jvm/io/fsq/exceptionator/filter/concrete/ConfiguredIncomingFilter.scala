@@ -1,11 +1,11 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.filter.concrete
+package io.fsq.exceptionator.filter.concrete
 
-import com.foursquare.exceptionator.filter.{FilteredIncoming, PreSaveFilter, ProcessedIncoming, Registry}
-import com.foursquare.exceptionator.util.{Config, IncomingFilter}
 import com.twitter.finagle.Service
 import com.twitter.util.Future
+import io.fsq.exceptionator.filter.{FilteredIncoming, IncomingFilter, PreSaveFilter, ProcessedIncoming, Registry}
+import io.fsq.exceptionator.util.Config
 import scalaj.collection.Imports._
 
 class ConfiguredIncomingFilter extends PreSaveFilter {

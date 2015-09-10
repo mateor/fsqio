@@ -1,18 +1,16 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.model
+package io.fsq.exceptionator.model
 
-import com.foursquare.exceptionator.model.io.UserFilterView
-import net.liftweb.mongodb.record.{MongoRecord, MongoMetaRecord}
-import net.liftweb.mongodb.record.field.{BsonRecordListField, MongoCaseClassField, MongoListField, ObjectIdPk}
-import net.liftweb.record.field._
-import net.liftweb.json._
-import org.bson.types.ObjectId
-import org.joda.time.{DateTime, DateTimeZone}
-import com.foursquare.rogue._
+import _root_.io.fsq.exceptionator.model.io.UserFilterView
 import com.foursquare.index.{Asc, IndexedRecord}
+import com.foursquare.rogue._
 import com.foursquare.rogue.lift.LiftRogue._
-import java.util.Date
+import net.liftweb.json._
+import net.liftweb.mongodb.record.{MongoMetaRecord, MongoRecord}
+import net.liftweb.mongodb.record.field.{MongoListField, ObjectIdPk}
+import net.liftweb.record.field._
+import org.joda.time.{DateTime, DateTimeZone}
 
 
 // TODO(johng) make a bucket for the filter to keep track of rate?

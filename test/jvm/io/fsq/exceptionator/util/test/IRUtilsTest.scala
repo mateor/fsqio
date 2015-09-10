@@ -1,7 +1,8 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.util
+package io.fsq.exceptionator.util.test
 
+import io.fsq.exceptionator.util.RollingRank
 import org.junit.Test
 import org.specs._
 
