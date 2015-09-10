@@ -1,10 +1,9 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.util
+package io.fsq.exceptionator.util
 
-import com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap
-import com.twitter.util.{ScheduledThreadPoolTimer, TimerTask}
 import com.twitter.conversions.time._
+import com.twitter.util.ScheduledThreadPoolTimer
 
 object PollingCache {
   val timer = new ScheduledThreadPoolTimer(2, "PollingCache", true)

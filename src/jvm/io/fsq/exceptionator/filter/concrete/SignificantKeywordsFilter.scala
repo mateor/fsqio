@@ -1,9 +1,9 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.filter.concrete
+package io.fsq.exceptionator.filter.concrete
 
-import com.foursquare.exceptionator.filter.{FilteredIncoming, KeywordFilter}
-import com.foursquare.exceptionator.util.{Config, IncomingFilter, RollingRank}
+import io.fsq.exceptionator.filter.{FilteredIncoming, IncomingFilter, KeywordFilter}
+import io.fsq.exceptionator.util.{Config, RollingRank}
 import scalaj.collection.Imports._
 
 class SignificantKeywordsFilter extends KeywordFilter {

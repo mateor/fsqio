@@ -1,9 +1,9 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.actions
+package io.fsq.exceptionator.actions
 
-import com.foursquare.exceptionator.filter.ProcessedIncoming
 import com.twitter.util.Future
+import io.fsq.exceptionator.filter.ProcessedIncoming
 
 trait HasBackgroundActions {
   def backgroundActions: BackgroundActions

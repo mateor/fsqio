@@ -1,6 +1,6 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.util
+package io.fsq.exceptionator.util
 
 // TODO: make this useful someday
 object PluginLoader extends Logger {

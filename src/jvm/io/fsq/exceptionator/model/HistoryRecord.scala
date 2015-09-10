@@ -1,17 +1,13 @@
 // Copyright 2015 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.model
+package io.fsq.exceptionator.model
 
-import com.foursquare.exceptionator.model.io.Incoming
-import com.foursquare.exceptionator.util.Config
+import _root_.io.fsq.exceptionator.util.Config
 import com.foursquare.index.{Asc, Desc, IndexedRecord}
 import com.foursquare.rogue._
 import com.foursquare.rogue.lift.LiftRogue._
-import com.mongodb.{BasicDBList, DBObject}
-import com.twitter.ostrich.stats.Stats
-import java.util.concurrent.ConcurrentHashMap
-import net.liftweb.common.{Box, Full}
-import net.liftweb.mongodb.record.{MongoRecord, MongoMetaRecord}
+import net.liftweb.common.Box
+import net.liftweb.mongodb.record.{MongoMetaRecord, MongoRecord}
 import net.liftweb.mongodb.record.field.{BsonRecordListField, DateField, MongoListField}
 import net.liftweb.record.field._
 import org.joda.time.DateTime

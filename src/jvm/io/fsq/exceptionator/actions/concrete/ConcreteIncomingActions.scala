@@ -1,18 +1,16 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.actions.concrete
+package io.fsq.exceptionator.actions.concrete
 
-import com.foursquare.exceptionator.actions.{HasBucketActions, HasHistoryActions, HasNoticeActions, IncomingActions}
-import com.foursquare.exceptionator.filter.{BucketSpec, FilteredIncoming, FilteredSaveService,
-    PreSaveFilter, ProcessedIncoming}
-import com.foursquare.exceptionator.filter.concrete.FreshBucketFilter
-import com.foursquare.exceptionator.model.io.BucketId
-import com.foursquare.exceptionator.util.{Config, Logger, PluginLoader}
-import com.twitter.ostrich.stats.Stats
 import com.twitter.finagle.Service
+import com.twitter.ostrich.stats.Stats
 import com.twitter.util.{Future, FuturePool}
+import io.fsq.exceptionator.actions.{HasBucketActions, HasHistoryActions, HasNoticeActions, IncomingActions}
+import io.fsq.exceptionator.filter.{BucketSpec, FilteredIncoming, FilteredSaveService, PreSaveFilter, ProcessedIncoming}
+import io.fsq.exceptionator.filter.concrete.FreshBucketFilter
+import io.fsq.exceptionator.model.io.BucketId
+import io.fsq.exceptionator.util.{Config, Logger, PluginLoader}
 import java.util.concurrent.Executors
-import org.bson.types.ObjectId
 import scalaj.collection.Imports._
 
 

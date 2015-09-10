@@ -1,9 +1,9 @@
 // Copyright 2015 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.actions
+package io.fsq.exceptionator.actions
 
-import com.foursquare.exceptionator.model.{BucketRecord, NoticeRecord}
-import com.foursquare.exceptionator.model.io.{BucketId, Outgoing}
+import io.fsq.exceptionator.model.NoticeRecord
+import io.fsq.exceptionator.model.io.Outgoing
 import org.joda.time.DateTime
 
 

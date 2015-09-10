@@ -1,11 +1,11 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.util
+package io.fsq.exceptionator.util
 
-import java.util.concurrent.{ConcurrentHashMap, Executors}
+import com.twitter.ostrich.stats.Stats
+import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicInteger
 import scala.util.matching.Regex
-import com.twitter.ostrich.stats.Stats
 
 object RollingRank {
   def apply(name: String): RollingRank =

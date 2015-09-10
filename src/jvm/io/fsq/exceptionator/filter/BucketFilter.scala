@@ -1,9 +1,9 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.filter
+package io.fsq.exceptionator.filter
 
-import com.foursquare.exceptionator.model.io.{BucketId, Incoming}
 import com.twitter.finagle.Service
+import io.fsq.exceptionator.model.io.BucketId
 
 abstract class BucketFilter extends PreSaveFilter with BucketSpec {
   def name: String

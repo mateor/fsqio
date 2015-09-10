@@ -1,19 +1,18 @@
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.actions.concrete
+package io.fsq.exceptionator.actions.concrete
 
-import com.foursquare.exceptionator.actions.{BackgroundAction, HasBucketActions, HasNoticeActions, HasUserFilterActions}
-import com.foursquare.exceptionator.model.{UserFilterRecord, FilterType, TriggerType}
-import com.foursquare.exceptionator.model.io.{BacktraceLine, BucketId, Incoming}
-import com.foursquare.exceptionator.filter.ProcessedIncoming
-import com.foursquare.exceptionator.filter.concrete.FreshBucketFilter
-import com.foursquare.exceptionator.util.{PollingCache}
 import com.foursquare.rogue.lift.LiftRogue._
 import com.twitter.util.{Future, FuturePool}
+import io.fsq.exceptionator.actions.{HasBucketActions, HasNoticeActions, HasUserFilterActions}
+import io.fsq.exceptionator.filter.ProcessedIncoming
+import io.fsq.exceptionator.model.{FilterType, TriggerType, UserFilterRecord}
+import io.fsq.exceptionator.model.io.BucketId
+import io.fsq.exceptionator.util.PollingCache
 import java.util.concurrent.Executors
 import org.joda.time.DateTime
-import scalaj.collection.Imports._
 import scala.collection.GenSet
+import scalaj.collection.Imports._
 
 class ApplyUserFiltersBackgroundAction (
   services: HasBucketActions

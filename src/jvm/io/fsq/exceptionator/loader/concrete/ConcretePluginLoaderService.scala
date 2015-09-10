@@ -1,10 +1,10 @@
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.loader.concrete
+package io.fsq.exceptionator.loader.concrete
 
-import com.foursquare.exceptionator.loader.service.PluginLoaderService
-import com.foursquare.exceptionator.actions.{HasBucketActions, HasNoticeActions, HasUserFilterActions}
-import com.foursquare.exceptionator.util.Logger
+import io.fsq.exceptionator.actions.{HasBucketActions, HasNoticeActions, HasUserFilterActions}
+import io.fsq.exceptionator.loader.service.PluginLoaderService
+import io.fsq.exceptionator.util.Logger
 
 class ConcretePluginLoaderService (
   services: HasBucketActions

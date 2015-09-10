@@ -1,10 +1,10 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.util
+package io.fsq.exceptionator.util
 
+import java.util.concurrent.ConcurrentHashMap
 import scala.util.matching.Regex
 import scalaj.collection.Imports._
-import java.util.concurrent.ConcurrentHashMap
 
 object RegexUtil {
   val cachedPatterns = new ConcurrentHashMap[String, Regex]()

@@ -1,13 +1,13 @@
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.actions.concrete
+package io.fsq.exceptionator.actions.concrete
 
-import com.foursquare.exceptionator.actions.{BackgroundAction, HasBucketActions, HasNoticeActions, HasUserFilterActions}
-import com.foursquare.exceptionator.model.io.{BacktraceLine, BucketId, Incoming}
-import com.foursquare.exceptionator.filter.ProcessedIncoming
-import com.foursquare.exceptionator.filter.concrete.FreshBucketFilter
-import com.foursquare.exceptionator.util.{ConcreteBlamer, ConcreteMailSender, Config, IncomingFilter, Logger}
 import com.twitter.util.Future
+import io.fsq.exceptionator.actions.{BackgroundAction, HasBucketActions, HasNoticeActions, HasUserFilterActions}
+import io.fsq.exceptionator.filter.{IncomingFilter, ProcessedIncoming}
+import io.fsq.exceptionator.filter.concrete.FreshBucketFilter
+import io.fsq.exceptionator.model.io.BacktraceLine
+import io.fsq.exceptionator.util.{ConcreteBlamer, ConcreteMailSender, Config, Logger}
 import scalaj.collection.Imports._
 
 
@@ -102,7 +102,7 @@ abstract class EmailExceptionBackgroundAction extends BackgroundAction with Logg
     val buckets = processedIncoming.buckets
     val subject = incoming.msgs.head.substring(0, math.min(incoming.msgs.head.length, 50))
     interestingInfo.flatMap(info => {
-      val message = 
+      val message =
 """
 %s
 

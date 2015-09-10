@@ -1,8 +1,8 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.util
+package io.fsq.exceptionator.util
 import com.twitter.util.{Future, FuturePool}
-import java.io.{IOException, BufferedReader, InputStreamReader, File}
+import java.io.{BufferedReader, File, IOException, InputStreamReader}
 import java.util.concurrent.Executors
 import scalaj.collection.Imports._
 

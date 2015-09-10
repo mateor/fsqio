@@ -1,17 +1,16 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.actions.concrete
+package io.fsq.exceptionator.actions.concrete
 
-import com.foursquare.exceptionator.actions.{IndexActions, NoticeActions}
-import com.foursquare.exceptionator.model.io.{BucketId, Incoming, Outgoing}
-import com.foursquare.exceptionator.model.{NoticeRecord, MongoOutgoing}
+import com.foursquare.rogue.lift.LiftRogue._
+import com.twitter.ostrich.stats.Stats
+import io.fsq.exceptionator.actions.{IndexActions, NoticeActions}
+import io.fsq.exceptionator.model.{MongoOutgoing, NoticeRecord}
+import io.fsq.exceptionator.model.io.{BucketId, Incoming, Outgoing}
+import io.fsq.exceptionator.util.Logger
 import net.liftweb.json._
 import org.bson.types.ObjectId
 import scalaj.collection.Imports._
-import com.foursquare.rogue.lift.LiftRogue._
-import com.twitter.ostrich.stats.Stats
-
-import com.foursquare.exceptionator.util.{Config, Logger}
 
 class ConcreteNoticeActions extends NoticeActions with IndexActions with Logger {
   def get(ids: List[ObjectId]): List[Outgoing] = {

@@ -1,10 +1,10 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.exceptionator.filter
+package io.fsq.exceptionator.filter
 
-import com.foursquare.exceptionator.model.io.{BucketId, Incoming}
-import com.twitter.util.Future
 import com.twitter.finagle.{Service, SimpleFilter}
+import com.twitter.util.Future
+import io.fsq.exceptionator.model.io.{BucketId, Incoming}
 import org.bson.types.ObjectId
 
 object FilteredIncoming {
