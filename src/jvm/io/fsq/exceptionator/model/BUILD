@@ -13,8 +13,12 @@ scala_library(
     '3rdparty:lift-mongo',
     '3rdparty:lift-record',
     '3rdparty:mongodb',
-    '3rdparty:rogue',
     'src/jvm/io/fsq/exceptionator/model/io',
     'src/jvm/io/fsq/exceptionator/util',
+    'src/jvm/io/fsq/rogue',
+    'src/jvm/io/fsq/rogue/index',
+    'src/jvm/io/fsq/rogue/indexchecker',
+    'src/jvm/io/fsq/rogue/lift',
+    'src/jvm/io/fsq/rogue/spindle',
   ],
 )

@@ -2,13 +2,13 @@
 
 package io.fsq.exceptionator.actions.concrete
 
-import com.foursquare.rogue.lift.LiftRogue._
 import com.twitter.util.{Future, FuturePool}
 import io.fsq.exceptionator.actions.{HasBucketActions, HasNoticeActions, HasUserFilterActions}
 import io.fsq.exceptionator.filter.ProcessedIncoming
 import io.fsq.exceptionator.model.{FilterType, TriggerType, UserFilterRecord}
 import io.fsq.exceptionator.model.io.BucketId
 import io.fsq.exceptionator.util.PollingCache
+import io.fsq.rogue.lift.LiftRogue._
 import java.util.concurrent.Executors
 import org.joda.time.DateTime
 import scala.collection.GenSet

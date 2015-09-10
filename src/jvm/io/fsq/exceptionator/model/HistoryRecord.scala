@@ -3,9 +3,9 @@
 package io.fsq.exceptionator.model
 
 import _root_.io.fsq.exceptionator.util.Config
-import com.foursquare.index.{Asc, Desc, IndexedRecord}
-import com.foursquare.rogue._
-import com.foursquare.rogue.lift.LiftRogue._
+import _root_.io.fsq.rogue._
+import _root_.io.fsq.rogue.index.{Asc, Desc, IndexedRecord}
+import _root_.io.fsq.rogue.lift.LiftRogue._
 import net.liftweb.common.Box
 import net.liftweb.mongodb.record.{MongoMetaRecord, MongoRecord}
 import net.liftweb.mongodb.record.field.{BsonRecordListField, DateField, MongoListField}
