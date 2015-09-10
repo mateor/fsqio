@@ -2,11 +2,11 @@
 
 package io.fsq.exceptionator.actions.concrete
 
-import com.foursquare.rogue.lift.LiftRogue._
 import io.fsq.exceptionator.actions.{IndexActions, UserFilterActions}
 import io.fsq.exceptionator.model.UserFilterRecord
 import io.fsq.exceptionator.model.io.UserFilterView
 import io.fsq.exceptionator.util.Logger
+import io.fsq.rogue.lift.LiftRogue._
 import net.liftweb.common.{Failure, Full}
 import net.liftweb.json._
 import org.bson.types.ObjectId

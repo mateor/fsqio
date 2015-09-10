@@ -13,7 +13,6 @@ scala_library(
     '3rdparty:lift-json',
     '3rdparty:mongodb',
     '3rdparty:ostrich',
-    '3rdparty:rogue',
     '3rdparty:scalaj-collection',
     '3rdparty:twitter-util',
     'src/jvm/io/fsq/exceptionator/actions',
@@ -23,5 +22,6 @@ scala_library(
     'src/jvm/io/fsq/exceptionator/model',
     'src/jvm/io/fsq/exceptionator/model/io',
     'src/jvm/io/fsq/exceptionator/util',
+    'src/jvm/io/fsq/rogue/lift',
   ],
 )

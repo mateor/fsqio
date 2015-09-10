@@ -2,12 +2,12 @@
 
 package io.fsq.exceptionator.actions.concrete
 
-import com.foursquare.rogue.lift.LiftRogue._
 import com.twitter.ostrich.stats.Stats
 import io.fsq.exceptionator.actions.{IndexActions, NoticeActions}
 import io.fsq.exceptionator.model.{MongoOutgoing, NoticeRecord}
 import io.fsq.exceptionator.model.io.{BucketId, Incoming, Outgoing}
 import io.fsq.exceptionator.util.Logger
+import io.fsq.rogue.lift.LiftRogue._
 import net.liftweb.json._
 import org.bson.types.ObjectId
 import scalaj.collection.Imports._
