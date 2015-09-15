@@ -46,9 +46,10 @@ class NoticeRecord extends MongoRecord[NoticeRecord] with ObjectIdPk[NoticeRecor
 object NoticeRecord extends NoticeRecord with MongoMetaRecord[NoticeRecord] with IndexedRecord[NoticeRecord] {
   override def collectionName = "notices"
 
+  val keywordIndex = NoticeRecord.index(_.keywords, Asc)
   override val mongoIndexList = List(
     NoticeRecord.index(_.id, Asc),
-    NoticeRecord.index(_.keywords, Asc))
+    keywordIndex)
 
   def createRecordFrom(incoming: Incoming): NoticeRecord = {
     val rec = createRecord.notice(incoming)
