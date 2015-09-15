@@ -18,7 +18,13 @@ class ConcreteNoticeActions extends NoticeActions with IndexActions with Logger 
   }
 
   def search(keywords: List[String], limit: Option[Int]) = {
-    NoticeRecord.where(_.keywords all keywords).orderDesc(_.id).limitOpt(limit).fetch.map(MongoOutgoing(_))
+    NoticeRecord
+      .where(_.keywords all keywords)
+      .orderDesc(_.id)
+      .limitOpt(limit)
+      .hint(NoticeRecord.keywordIndex)
+      .fetch
+      .map(MongoOutgoing(_))
   }
 
   def ensureIndexes {
