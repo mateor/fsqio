@@ -7,7 +7,7 @@ scala_library(
     '3rdparty:joda-time',
     '3rdparty:rogue-field',
     '3rdparty:thrift',
-    'src/jvm/io/fsq/common/thrift/bson',
-    'src/jvm/io/fsq/common/thrift/json',
+    'src/jvm/io/fsq/spindle/common/thrift/bson',
+    'src/jvm/io/fsq/spindle/common/thrift/json',
   ],
 )
