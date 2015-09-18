@@ -38,7 +38,7 @@ class GeneratedCodeTest {
   }
 
   private def makeEmail(e: String): ContactInfo =
-    ContactInfo.newBuilder.email(e).result
+    ContactInfo.newBuilder.email(e).result()
 
   private def makeMovie() = {
     val vinceVaughn =

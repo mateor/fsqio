@@ -26,7 +26,7 @@ class TestSpindleDBService {
     val record = TestStruct.newBuilder
       .id(1)
       .info("hi")
-      .result
+      .result()
 
     dbService.save(record)
 
