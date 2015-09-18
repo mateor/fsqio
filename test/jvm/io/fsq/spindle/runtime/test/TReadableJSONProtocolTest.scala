@@ -40,7 +40,7 @@ class TReadableJSONProtocolTest {
   def testBinarySerialization {
     val oid = new ObjectId("654321abcdef090909fedcba")
     val binary = ByteBuffer.wrap(Array[Byte](1, 2, 3, 4, 5))
-    val bs = BinaryStruct.newBuilder.anObjectId(oid).aBinary(binary).result
+    val bs = BinaryStruct.newBuilder.anObjectId(oid).aBinary(binary).result()
 
     val js1 = writeJson(bs, false)
     val rs1 = readJson(js1, BinaryStruct, false)

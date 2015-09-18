@@ -30,7 +30,7 @@ class QueryTest extends JUnitMustMatchers {
     val oid1 = ObjectId.createFromLegacyFormat((d1.toDate.getTime / 1000).toInt, 0, 0)
     val oid2 = ObjectId.createFromLegacyFormat((d2.toDate.getTime / 1000).toInt, 0, 0)
     val oid = new ObjectId
-    val ven1 = ThriftVenue.newBuilder.id(VenueId(oid1)).result
+    val ven1 = ThriftVenue.newBuilder.id(VenueId(oid1)).result()
 
     // eqs
     Q(ThriftVenue).where(_.mayor eqs 1)              .toString() must_== """db.venues.find({ "mayor" : 1})"""
@@ -312,8 +312,8 @@ class QueryTest extends JUnitMustMatchers {
     */
 
     // BsonRecordField and BsonRecordListField with nested Enumeration
-    val src = ThriftSourceBson.newBuilder.name("").url("").result
-    val claims = List(ThriftVenueClaimBson.newBuilder.userid(1).status(ThriftClaimStatus.approved).source(src).result)
+    val src = ThriftSourceBson.newBuilder.name("").url("").result()
+    val claims = List(ThriftVenueClaimBson.newBuilder.userid(1).status(ThriftClaimStatus.approved).source(src).result())
     /*  TODO(rogue-named-enums)
     Q(ThriftVenue).where(_.legacyid eqs 1).modify(_.claims setTo claims).toString() must_== query + """{ "$set" : { "claims" : [ { "uid" : 1 , "status" : "Approved" , "source" : { "name" : "" , "url" : ""}}]}}""" + suffix
     Q(ThriftVenue).where(_.legacyid eqs 1).modify(_.lastClaim setTo claims.head).toString() must_== query + """{ "$set" : { "last_claim" : { "uid" : 1 , "status" : "Approved" , "source" : { "name" : "" , "url" : ""}}}}""" + suffix
