@@ -1,14 +1,18 @@
 //  Copyright 2012 Foursquare Labs Inc. All Rights Reserved
-package com.foursquare.twofishes
+package io.fsq.twofishes.server
 
-import com.foursquare.twofishes.Identity._
-import com.foursquare.twofishes.util.{NameUtils, StoredFeatureId}
-import com.foursquare.twofishes.util.Lists.Implicits._
-import com.foursquare.twofishes.util.NameUtils.BestNameMatch
 import com.twitter.ostrich.stats.Stats
 import com.vividsolutions.jts.geom.Geometry
 import com.vividsolutions.jts.io.{WKBWriter, WKTWriter}
 import com.vividsolutions.jts.simplify.DouglasPeuckerSimplifier
+import io.fsq.twofishes.core.YahooWoeTypes
+import io.fsq.twofishes.gen.{CommonGeocodeRequestParams, FeatureName, FeatureNameFlags, GeocodeFeature,
+    GeocodeInterpretation, GeocodeResponse, GeocodeServingFeature, MutableGeocodeFeature, ResponseIncludes,
+    YahooWoeType}
+import io.fsq.twofishes.util.{NameUtils, StoredFeatureId}
+import io.fsq.twofishes.util.Identity._
+import io.fsq.twofishes.util.Lists.Implicits._
+import io.fsq.twofishes.util.NameUtils.BestNameMatch
 import java.nio.ByteBuffer
 import scala.collection.mutable.{HashSet, ListBuffer}
 import scalaj.collection.Implicits._
@@ -228,7 +232,7 @@ class ResponseProcessor(
       parents.find(_.feature.woeType == YahooWoeType.COUNTRY).flatMap(f =>
         NameUtils.bestName(f.feature, Some(req.lang), false).map(_.name))
 
-    var namesToUse: Seq[(com.foursquare.twofishes.FeatureName, Option[String])] = Nil
+    var namesToUse: Seq[(FeatureName, Option[String])] = Nil
 
     // set highlightedName and matchedName
     if (fillHighlightedName) {

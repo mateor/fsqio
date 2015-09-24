@@ -1,6 +1,6 @@
-namespace java com.foursquare.twofishes
+namespace java io.fsq.twofishes.gen
 
-include "geocoder.thrift"
+include "io/fsq/twofishes/geocoder.thrift"
 
 // not all EditTypes are defined in every situation
 enum EditType {

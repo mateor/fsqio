@@ -1,4 +1,4 @@
-package com.foursquare.twofishes.util
+package io.fsq.twofishes.util
 
 import com.twitter.ostrich.stats.Stats
 import com.twitter.util.Duration

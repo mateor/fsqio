@@ -1,5 +1,5 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.util
+package io.fsq.twofishes.util
 
 object Hacks {
   val nycBoroughIds = List(

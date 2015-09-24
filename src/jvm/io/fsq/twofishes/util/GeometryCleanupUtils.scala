@@ -1,5 +1,5 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.util
+package io.fsq.twofishes.util
 
 import com.vividsolutions.jts.geom.Geometry
 import scala.collection.JavaConverters._

@@ -1,4 +1,4 @@
-package com.foursquare.twofishes
+package io.fsq.twofishes.util
 
 sealed class Identity[A](protected val _value: A) {
   def =?(other: A) = _value == other

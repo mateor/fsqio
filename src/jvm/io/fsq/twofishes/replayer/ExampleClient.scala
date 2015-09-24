@@ -1,10 +1,10 @@
-package com.foursquare.twofishes.replayer
+package io.fsq.twofishes.replayer
 
-import com.foursquare.twofishes._
 import com.twitter.conversions.time._
 import com.twitter.finagle.builder.ClientBuilder
 import com.twitter.finagle.thrift.{ThriftClientFramedCodec, ThriftClientRequest}
 import com.twitter.util.Future
+import io.fsq.twofishes.gen.{BulkReverseGeocodeRequest, BulkSlugLookupRequest, GeocodeRequest, Geocoder}
 import java.io.{File, FileWriter}
 import java.nio._
 import org.apache.hadoop.conf.Configuration

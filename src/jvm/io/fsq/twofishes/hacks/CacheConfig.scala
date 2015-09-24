@@ -13,6 +13,9 @@ import java.util.concurrent.atomic.AtomicInteger
 import org.apache.hadoop.conf.Configuration
 import scalaj.collection.Implicits._
 
+package object hacks {
+  class TwofishesFoursquareCacheConfigHack(config: Configuration, cacheLimit: Option[Int] = None) extends TwofishesFoursquareCacheConfig(config, cacheLimit)
+}
 
 // The following is an in-memory BlockCache implementation where all blocks are stored in memory and never evicted.
 private class TwofishesInMemoryBlockCache extends BlockCache {

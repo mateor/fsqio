@@ -1,6 +1,6 @@
-package com.foursquare.twofishes.util
+package io.fsq.twofishes.util
 
-import com.foursquare.twofishes._
+import io.fsq.twofishes.gen.FeatureId
 import org.bson.types.ObjectId
 
 sealed abstract class FeatureNamespace(val name: String, val id: Byte)

@@ -1,11 +1,12 @@
 //  Copyright 2012 Foursquare Labs Inc. All Rights Reserved
-package com.foursquare.twofishes
+package io.fsq.twofishes.server
 
-import com.foursquare.geo.country.DependentCountryInfo
-import com.foursquare.twofishes.Identity._
-import com.foursquare.twofishes.YahooWoeType._
-import com.foursquare.twofishes.util.{GeoTools, NameNormalizer}
-import com.foursquare.twofishes.util.Lists.Implicits._
+import io.fsq.twofishes.country.DependentCountryInfo
+import io.fsq.twofishes.gen.{GeocodeRequest, GeocodeResponse, GeocodeServingFeature, YahooWoeType}
+import io.fsq.twofishes.gen.YahooWoeType.{ADMIN1, ADMIN2, ADMIN3, AIRPORT, COUNTRY, POSTAL_CODE, SUBURB, TOWN}
+import io.fsq.twofishes.util.{GeoTools, NameNormalizer}
+import io.fsq.twofishes.util.Identity._
+import io.fsq.twofishes.util.Lists.Implicits._
 import scala.collection.mutable.ListBuffer
 import scalaj.collection.Implicits._
 

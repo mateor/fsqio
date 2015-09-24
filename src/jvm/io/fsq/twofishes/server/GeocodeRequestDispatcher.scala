@@ -1,9 +1,10 @@
 //  Copyright 2012 Foursquare Labs Inc. All Rights Reserved
-package com.foursquare.twofishes
+package io.fsq.twofishes.server
 
-import com.foursquare.twofishes.Identity._
-import com.foursquare.twofishes.util.Lists.Implicits._
 import com.twitter.ostrich.stats.Stats
+import io.fsq.twofishes.gen.{GeocodeRequest, GeocodeResponse, ResponseIncludes}
+import io.fsq.twofishes.util.Identity._
+import io.fsq.twofishes.util.Lists.Implicits._
 import scalaj.collection.Implicits._
 
 /*

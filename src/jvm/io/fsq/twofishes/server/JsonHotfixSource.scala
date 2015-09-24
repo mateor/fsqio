@@ -1,8 +1,9 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes
+package io.fsq.twofishes.server
 
 import com.foursquare.common.thrift.json.TReadableJSONProtocol
 import com.weiglewilczek.slf4s.Logging
+import io.fsq.twofishes.gen.{GeocodeServingFeatureEdit, RawGeocodeServingFeatureEdits}
 import java.io.File
 import org.apache.thrift.TDeserializer
 

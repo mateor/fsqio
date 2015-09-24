@@ -1,4 +1,4 @@
-package com.foursquare.geo.country
+package io.fsq.twofishes.country
 
 
 object CountryUtils {

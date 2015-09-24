@@ -1,5 +1,5 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.util
+package io.fsq.twofishes.util
 
 import com.twitter.util.Duration
 import com.weiglewilczek.slf4s.Logging
