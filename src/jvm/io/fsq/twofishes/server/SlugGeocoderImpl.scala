@@ -1,10 +1,12 @@
 //  Copyright 2012 Foursquare Labs Inc. All Rights Reserved
-package com.foursquare.twofishes
+package io.fsq.twofishes.server
 
-import com.foursquare.twofishes.Identity._
-import com.foursquare.twofishes.util.Lists.Implicits._
-import com.foursquare.twofishes.util.StoredFeatureId
 import com.vividsolutions.jts.geom.Geometry
+import io.fsq.twofishes.gen.{BulkSlugLookupRequest, BulkSlugLookupResponse, CommonGeocodeRequestParams,
+    GeocodeInterpretation, GeocodeRequest, GeocodeResponse, GeocodeServingFeature, ResponseIncludes}
+import io.fsq.twofishes.util.Identity._
+import io.fsq.twofishes.util.Lists.Implicits._
+import io.fsq.twofishes.util.StoredFeatureId
 import scalaj.collection.Implicits._
 
 class SlugGeocoderImpl(

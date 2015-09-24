@@ -1,4 +1,4 @@
-package com.foursquare.twofishes.util
+package io.fsq.twofishes.util
 
 import java.io.{ByteArrayInputStream, ByteArrayOutputStream, DataInputStream, DataOutputStream}
 

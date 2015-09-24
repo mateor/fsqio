@@ -1,8 +1,8 @@
 //  Copyright 2012 Foursquare Labs Inc. All Rights Reserved
-package com.foursquare.twofishes
+package io.fsq.twofishes.server
 
-import com.foursquare.twofishes.util.{NameNormalizer, TwofishesLogger}
 import com.twitter.ostrich.stats.Stats
+import io.fsq.twofishes.util.{NameNormalizer, TwofishesLogger}
 
 case class ParseParams(
   tokens: List[String] = Nil,

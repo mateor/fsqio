@@ -1,4 +1,4 @@
-package com.foursquare.twofishes
+package io.fsq.twofishes.core
 
 import java.io.{EOFException, File, FileInputStream, IOException, InputStream}
 import java.nio.{ByteBuffer, MappedByteBuffer}

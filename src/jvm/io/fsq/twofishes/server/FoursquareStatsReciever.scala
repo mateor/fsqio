@@ -1,6 +1,6 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.twofishes
+package io.fsq.twofishes.server
 
 import com.twitter.finagle.stats.{Counter, Stat, StatsReceiverWithCumulativeGauges}
 import com.twitter.ostrich.stats.{Stats, StatsProvider}

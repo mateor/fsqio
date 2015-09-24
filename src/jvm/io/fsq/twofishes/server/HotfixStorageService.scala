@@ -1,8 +1,9 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes
+package io.fsq.twofishes.server
 
-import com.foursquare.twofishes.util.StoredFeatureId
 import com.vividsolutions.jts.geom.Geometry
+import io.fsq.twofishes.gen.{CellGeometry, GeocodeServingFeature}
+import io.fsq.twofishes.util.StoredFeatureId
 
 trait HotfixStorageService {
   def getIdsToAddByName(name: String): Seq[StoredFeatureId]

@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package com.foursquare.twofishes.io;
+package io.fsq.twofishes.core;
 
 import java.util.ArrayList;
 import java.util.Arrays;

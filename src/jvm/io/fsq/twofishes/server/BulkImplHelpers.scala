@@ -1,7 +1,8 @@
-package com.foursquare.twofishes
+package io.fsq.twofishes.server
 
-import com.foursquare.twofishes.Identity._
-import com.foursquare.twofishes.util.StoredFeatureId
+import io.fsq.twofishes.gen.{GeocodeFeature, GeocodeInterpretation}
+import io.fsq.twofishes.util.Identity._
+import io.fsq.twofishes.util.StoredFeatureId
 import scalaj.collection.Implicits._
 
 trait BulkImplHelpers {

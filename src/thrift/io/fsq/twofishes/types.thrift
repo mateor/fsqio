@@ -1,3 +1,3 @@
-namespace java com.foursquare.types.gen
+namespace java io.fsq.twofishes.gen
 
 typedef binary ThriftObjectId

@@ -1,12 +1,11 @@
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.twofishes
+package io.fsq.twofishes.util
 
-import com.foursquare.twofishes.util.GeometryUtils
-import com.foursquare.twofishes.util.Lists.Implicits._
 import com.google.caliper.{Runner, SimpleBenchmark}
 import com.vividsolutions.jts.geom.Coordinate
 import com.vividsolutions.jts.util.GeometricShapeFactory
+import io.fsq.twofishes.util.Lists.Implicits._
 //import org.bson.types.ObjectId
 import scala.util.Random
 
@@ -20,8 +19,8 @@ class S2CoverBenchmark extends SimpleBenchmark {
   import com.vividsolutions.jts.geom.Coordinate
   def geocode2(points: Seq[Coordinate], radius: Int, levelMod: Int) = points.map(p => {
     println(p)
-    import com.foursquare.twofishes.util.GeometryUtils
     import com.vividsolutions.jts.util.GeometricShapeFactory
+    import io.fsq.twofishes.util.GeometryUtils
     val sizeDegrees = radius / 111319.9
     val gsf = new GeometricShapeFactory()
     gsf.setSize(sizeDegrees)
@@ -83,7 +82,7 @@ after you change code:
 
 util/assembly
 cd .. && rm -rf benchmark-code && mkdir benchmark-code && cd benchmark-code && jar xvf ../util/target/util-assembly-0.74.7.jar
-java -Xmx5G -Xms5G com.foursquare.twofishes.S2CoverBenchmark
+java -Xmx5G -Xms5G io.fsq.twofishes.util.S2CoverBenchmark
 
 This is sample output:
 

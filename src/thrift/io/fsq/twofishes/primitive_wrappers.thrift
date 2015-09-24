@@ -1,6 +1,6 @@
-namespace java com.foursquare.base.thrift
+namespace java io.fsq.twofishes.gen
 
-include "types.thrift"
+include "io/fsq/twofishes/types.thrift"
 
 typedef types.ThriftObjectId ThriftObjectId
 

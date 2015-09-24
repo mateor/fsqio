@@ -1,5 +1,7 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes
+package io.fsq.twofishes.server
+
+import io.fsq.twofishes.gen.GeocodeServingFeatureEdit
 
 trait HotfixSource {
   def getEdits(): Seq[GeocodeServingFeatureEdit]

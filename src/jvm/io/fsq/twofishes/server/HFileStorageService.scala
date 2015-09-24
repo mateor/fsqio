@@ -1,16 +1,19 @@
-package com.foursquare.twofishes
+package io.fsq.twofishes.server
 
-import com.foursquare.twofishes.util.StoredFeatureId
 import com.twitter.ostrich.stats.Stats
 import com.twitter.util.Duration
 import com.vividsolutions.jts.geom.Geometry
 import com.weiglewilczek.slf4s.Logging
+import io.fsq.twofishes.core.{Index, Indexes, MapFileUtils}
+import io.fsq.twofishes.gen.{CellGeometry, GeocodeServingFeature}
+import io.fsq.twofishes.util.StoredFeatureId
 import java.io._
 import java.net.URI
 import java.nio.ByteBuffer
 import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.{LocalFileSystem, Path}
-import org.apache.hadoop.hbase.io.hfile.{HFile, HFileScanner, TwofishesFoursquareCacheConfig}
+import org.apache.hadoop.hbase.io.hfile.{HFile, HFileScanner}
+import org.apache.hadoop.hbase.io.hfile.hacks.TwofishesFoursquareCacheConfigHack
 import org.apache.hadoop.hbase.util.Bytes._
 import org.apache.hadoop.io.BytesWritable
 import org.apache.thrift.TBaseHelper
@@ -133,7 +136,7 @@ class HFileInput[V](basepath: String, index: Index[String, V], shouldPreload: Bo
   fs.initialize(URI.create("file:///"), conf)
 
   val path = new Path(new File(basepath, index.filename).getAbsolutePath())
-  val cache = new TwofishesFoursquareCacheConfig(conf)
+  val cache = new TwofishesFoursquareCacheConfigHack(conf)
 
   val reader = HFile.createReader(path.getFileSystem(conf), path, cache)
 

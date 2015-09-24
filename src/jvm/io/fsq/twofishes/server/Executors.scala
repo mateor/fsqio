@@ -1,4 +1,4 @@
-package com.foursquare.twofishes
+package io.fsq.twofishes.server
 
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 

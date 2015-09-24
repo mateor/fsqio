@@ -1,9 +1,9 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.util
+package io.fsq.twofishes.util
 
-import com.foursquare.twofishes.{FeatureName, FeatureNameFlags, GeocodeFeature, YahooWoeType, util}
-import com.foursquare.twofishes.Identity._
-import com.foursquare.twofishes.util.Lists.Implicits._
+import io.fsq.twofishes.gen.{FeatureName, FeatureNameFlags, GeocodeFeature, YahooWoeType}
+import io.fsq.twofishes.util.Identity._
+import io.fsq.twofishes.util.Lists.Implicits._
 import scala.io.BufferedSource
 import scalaj.collection.Implicits._
 
@@ -113,7 +113,7 @@ object NameFormatter {
     parents: List[GeocodeFeature],
     lang: Option[String]
   ): Option[String] = {
-    //val possibleTokens = com.foursquare.twofishes.YahooWoeType.values.asScala.map(_.name)
+    //val possibleTokens = YahooWoeType.values.asScala.map(_.name)
     if (pattern.countries.isEmpty || pattern.countries.has(feature.cc)) {
       val re = "\\{([^\\{]+)\\}".r
       val woeTokenStrings = re.findAllIn(pattern.pattern).collect{case re(m) => m}.toList

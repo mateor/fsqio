@@ -1,13 +1,16 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes
+package io.fsq.twofishes.server
 
-import com.foursquare.geo.shapes.ShapefileS2Util
-import com.foursquare.twofishes.util._
 import com.google.common.geometry.S2CellId
 import com.vividsolutions.jts.geom.{Geometry, Point}
 import com.vividsolutions.jts.geom.prep.PreparedGeometryFactory
 import com.vividsolutions.jts.io.{WKBWriter, WKTReader}
 import com.weiglewilczek.slf4s.Logging
+import io.fsq.twofishes.gen.{CellGeometry, EditType, FeatureGeometry, FeatureName, FeatureNameFlags,
+    FeatureNameFlagsListEdit, FeatureNameListEdit, GeocodeFeature, GeocodeFeatureAttributes, GeocodePoint,
+    GeocodeServingFeature, LongListEdit, ScoringFeatures, StringListEdit}
+import io.fsq.twofishes.util.{GeometryCleanupUtils, GeometryUtils, NameNormalizer, RevGeoConstants,
+    S2CoveringConstants, ShapefileS2Util, StoredFeatureId}
 import java.nio.ByteBuffer
 import org.geotools.geojson.geom.GeometryJSON
 

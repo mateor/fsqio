@@ -1,5 +1,5 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.util
+package io.fsq.twofishes.util
 
 import java.text.Normalizer
 import java.util.regex.Pattern

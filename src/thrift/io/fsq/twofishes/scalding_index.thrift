@@ -1,6 +1,6 @@
-namespace java com.foursquare.twofishes
+namespace java io.fsq.twofishes.gen
 
-include "geocoder.thrift"
+include "io/fsq/twofishes/geocoder.thrift"
 
 // index-only data structures to hold transient data produced by scalding pipeline jobs
 

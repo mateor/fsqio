@@ -1,10 +1,13 @@
 //  Copyright 2012 Foursquare Labs Inc. All Rights Reserved
-package com.foursquare.twofishes
+package io.fsq.twofishes.server
 
-import com.foursquare.geo.country.CountryInfo
-import com.foursquare.twofishes.Identity._
-import com.foursquare.twofishes.util.{GeoTools, TwofishesLogger}
-import com.foursquare.twofishes.util.Lists.Implicits._
+import io.fsq.twofishes.core.YahooWoeTypes
+import io.fsq.twofishes.country.CountryInfo
+import io.fsq.twofishes.gen.{CommonGeocodeRequestParams, DebugScoreComponent, FeatureNameFlags, GeocodeBoundingBox,
+    GeocodeFeature, GeocodePoint, GeocodeServingFeature, YahooWoeType}
+import io.fsq.twofishes.util.{GeoTools, TwofishesLogger}
+import io.fsq.twofishes.util.Identity._
+import io.fsq.twofishes.util.Lists.Implicits._
 import scala.collection.mutable.HashMap
 import scalaj.collection.Implicits._
 
