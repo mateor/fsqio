@@ -1,12 +1,14 @@
-package com.foursquare.twofishes
+package io.fsq.twofishes.core.test
 
+import io.fsq.twofishes.core.MMapInputStream
 import java.io.{EOFException, File, FileOutputStream}
 import java.net.URI
 import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.{LocalFileSystem, Path}
-import org.specs2.mutable.Specification
+import org.specs2.mutable.SpecificationWithJUnit
 
-class MMapInputStreamSpec extends Specification {
+// TODO(dan): See if there's a way to clean up the extra noise this sends to stderr.
+class MMapInputStreamSpec extends SpecificationWithJUnit {
   val random = new scala.util.Random(7)
 
   def createTempFile(size: Int): (File, Array[Byte]) = {

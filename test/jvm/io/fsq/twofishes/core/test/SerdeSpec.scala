@@ -1,10 +1,13 @@
-package com.foursquare.twofishes
+package io.fsq.twofishes.core.test
 
-import com.foursquare.twofishes.util.{GeonamesId, GeonamesZip, MaponicsId}
+import io.fsq.twofishes.core.Serde
+import io.fsq.twofishes.gen.CellGeometry
+import io.fsq.twofishes.util.{GeonamesId, GeonamesZip, MaponicsId}
 import org.bson.types.ObjectId
-import org.specs2.mutable.Specification
+import org.specs2.mutable.SpecificationWithJUnit
 
-class SerdeSpec extends Specification {
+// TODO(dan): See if there's a way to clean up the extra noise this sends to stderr.
+class SerdeSpec extends SpecificationWithJUnit {
   def test[T](serde: Serde[T], v: T) = {
     serde.fromBytes(serde.toBytes(v)) must_== v
   }

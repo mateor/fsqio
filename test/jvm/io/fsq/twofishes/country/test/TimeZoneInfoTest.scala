@@ -1,8 +1,10 @@
-package com.foursquare.geo.country
+package io.fsq.twofishes.country.test
 
-import org.specs2.mutable.Specification
+import io.fsq.twofishes.country.TimeZoneInfo
+import org.specs2.mutable.SpecificationWithJUnit
 
-class TimeZoneInfoSpec extends Specification {
+// TODO(dan): See if there's a way to clean up the extra noise this sends to stderr.
+class TimeZoneInfoSpec extends SpecificationWithJUnit {
   "timezone lookup works" in {
     TimeZoneInfo.lookupTzID("America/Anchorage").map(_.cc) mustEqual Some("US")
   }
