@@ -1,4 +1,4 @@
-<%@ val renderType: io.fsq.spindle.codegen.runtime.EnumStringRenderType %>
+<%@ val renderType: _root_.io.fsq.spindle.codegen.runtime.EnumStringRenderType %>
 <%@ val lhs: String %>
 <%@ val indent: String %>
 <%@ val wrapLeft: String = "" %>
