@@ -1,4 +1,4 @@
-<%@ val renderType: io.fsq.spindle.codegen.runtime.NewtypeRenderType %>
+<%@ val renderType: _root_.io.fsq.spindle.codegen.runtime.NewtypeRenderType %>
 <%@ val valueExpr: String %>
 <%@ val indent: String %>
 <% import renderType.ref %>

@@ -1,7 +1,7 @@
 <%
   // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-  import io.fsq.spindle.codegen.runtime.StructLike
+  import _root_.io.fsq.spindle.codegen.runtime.StructLike
 %>
 <%@ val cls: StructLike %>
 
@@ -35,8 +35,8 @@ val requiredTraits = requiredFields.map(field => "Has" + field.name.capitalize)
       this.asInstanceOf[${cls.name}.Builder[State with Builder.${trayt}]]
     }
 
-#if (field.renderType.isInstanceOf[io.fsq.spindle.codegen.runtime.BitfieldStructRenderType])
-<% val renderType = field.renderType.asInstanceOf[io.fsq.spindle.codegen.runtime.BitfieldStructRenderType] %>
+#if (field.renderType.isInstanceOf[_root_.io.fsq.spindle.codegen.runtime.BitfieldStructRenderType])
+<% val renderType = field.renderType.asInstanceOf[_root_.io.fsq.spindle.codegen.runtime.BitfieldStructRenderType] %>
     def ${field.escapedName}Struct(v: ${renderType.className}): ${cls.name}.Builder[State with Builder.${trayt}] = {
       obj.${field.escapedName}_=(${renderType.bitfieldWrite}(v))
       this.asInstanceOf[${cls.name}.Builder[State with Builder.${trayt}]]
@@ -57,8 +57,8 @@ val requiredTraits = requiredFields.map(field => "Has" + field.name.capitalize)
       }
       this
     }
-#if (field.renderType.isInstanceOf[io.fsq.spindle.codegen.runtime.BitfieldStructRenderType])
-<% val renderType = field.renderType.asInstanceOf[io.fsq.spindle.codegen.runtime.BitfieldStructRenderType] %>
+#if (field.renderType.isInstanceOf[_root_.io.fsq.spindle.codegen.runtime.BitfieldStructRenderType])
+<% val renderType = field.renderType.asInstanceOf[_root_.io.fsq.spindle.codegen.runtime.BitfieldStructRenderType] %>
 
     def ${field.escapedName}Struct(v: ${renderType.className}): ${cls.name}.Builder[State] = {
       obj.${field.escapedName}_=(${renderType.bitfieldWrite}(v))
