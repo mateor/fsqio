@@ -1,13 +1,17 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes
+package io.fsq.twofishes.server.test
 
-import com.foursquare.geo.shapes.ShapefileS2Util
-import com.foursquare.twofishes.util.{GeometryUtils, GeonamesId, NameNormalizer, StoredFeatureId}
-import com.foursquare.twofishes.util.Lists.Implicits._
 import com.vividsolutions.jts.geom.Geometry
 import com.vividsolutions.jts.io.{WKBWriter, WKTReader}
+import io.fsq.twofishes.gen.{CellGeometry, FeatureGeometry, FeatureName, FeatureNameFlags, GeocodeFeature,
+    GeocodePoint, GeocodeRequest, GeocodeServingFeature, MutableGeocodeServingFeature, ResponseIncludes,
+    ScoringFeatures, YahooWoeType}
+import io.fsq.twofishes.server.{GeocodeRequestDispatcher, GeocodeServerConfigSingleton, GeocodeStorageReadService,
+    ReverseGeocoderImpl}
+import io.fsq.twofishes.util.{GeometryUtils, GeonamesId, NameNormalizer, ShapefileS2Util, StoredFeatureId}
+import io.fsq.twofishes.util.Lists.Implicits._
 import java.nio.ByteBuffer
-import org.specs2.mutable._
+import org.specs2.mutable.SpecificationWithJUnit
 import scala.collection.JavaConverters._
 import scala.collection.mutable.{HashMap, ListBuffer}
 
@@ -146,7 +150,8 @@ class MockGeocodeStorageReadService extends GeocodeStorageReadService {
   }
 }
 
-class GeocoderSpec extends Specification {
+// TODO(dan): See if there's a way to clean up the extra noise this sends to stderr.
+class GeocoderSpec extends SpecificationWithJUnit {
   GeocodeServerConfigSingleton.init(Array("--hfile_basepath", ""))
 
   def addParisFrance(store: MockGeocodeStorageReadService) = {

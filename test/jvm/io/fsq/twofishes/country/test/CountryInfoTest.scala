@@ -1,8 +1,10 @@
-package com.foursquare.geo.country
+package io.fsq.twofishes.country.test
 
-import org.specs2.mutable.Specification
+import io.fsq.twofishes.country.{CountryInfo, CountryUtils}
+import org.specs2.mutable.SpecificationWithJUnit
 
-class CountryUtilsSpec extends Specification {
+// TODO(dan): See if there's a way to clean up the extra noise this sends to stderr.
+class CountryUtilsSpec extends SpecificationWithJUnit {
   "US should exist" in {
     CountryUtils.getNameByCode("US") mustEqual Some("United States")
     CountryUtils.getNameByCode("USA") mustEqual Some("United States")
