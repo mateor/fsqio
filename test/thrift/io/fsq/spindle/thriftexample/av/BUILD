@@ -3,6 +3,7 @@
 spindle_thrift_library(
   name = 'av',
   dependencies = [
+    'src/jvm/io/fsq/spindle/runtime',
     'test/thrift/io/fsq/spindle/thriftexample/talent',
   ],
   sources = globs('*.thrift'),

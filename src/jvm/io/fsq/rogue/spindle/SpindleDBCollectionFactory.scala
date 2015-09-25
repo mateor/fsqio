@@ -2,10 +2,10 @@
 
 package io.fsq.rogue.spindle
 
-import com.foursquare.spindle.{IndexParser, StructFieldDescriptor, UntypedMetaRecord, UntypedRecord}
 import com.mongodb.{DB, DBCollection}
 import io.fsq.rogue.{DBCollectionFactory, Query => RogueQuery}
 import io.fsq.rogue.index.UntypedMongoIndex
+import io.fsq.spindle.runtime.{IndexParser, StructFieldDescriptor, UntypedMetaRecord, UntypedRecord}
 import scala.collection.immutable.ListMap
 import scala.collection.mutable.{Map => MutableMap}
 
