@@ -118,6 +118,7 @@ class ConcreteBucketActions extends BucketActions with IndexActions with Logger 
       .select(_._id)
       .orderDesc(_.lastSeen)
       .limitOpt(limit)
+      .hint(BucketRecord.idIndex)
       .fetch
   }
 
