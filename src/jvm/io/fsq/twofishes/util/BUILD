@@ -5,6 +5,7 @@ scala_library(
   sources = globs('*.scala'),
   dependencies = [
     '3rdparty:caliper',
+    '3rdparty:geocoder-server',  # TODO(dan): This is here for runtime resources. Fix me.
     '3rdparty:gt-shapefile',
     '3rdparty:jts',
     '3rdparty:mongodb',
