@@ -22,18 +22,18 @@ public static interface JavaRequiredness {
 }
 
 public static abstract class JavaIncludeMeta<
-  IncludeT extends com.foursquare.spindle.Record<IncludeT>,
-  IncludeRaw extends com.foursquare.spindle.MutableRecord<IncludeT>,
+  IncludeT extends io.fsq.spindle.runtime.Record<IncludeT>,
+  IncludeRaw extends io.fsq.spindle.runtime.MutableRecord<IncludeT>,
   IncludeMeta extends JavaIncludeMeta<IncludeT, IncludeRaw, IncludeMeta>
-> implements com.foursquare.spindle.MetaRecord<IncludeT, IncludeMeta> {
+> implements io.fsq.spindle.runtime.MetaRecord<IncludeT, IncludeMeta> {
 
 }
 
 public static interface JavaInclude<
-  IncludeT extends com.foursquare.spindle.Record<IncludeT>,
-  IncludeRaw extends com.foursquare.spindle.MutableRecord<IncludeT>,
+  IncludeT extends io.fsq.spindle.runtime.Record<IncludeT>,
+  IncludeRaw extends io.fsq.spindle.runtime.MutableRecord<IncludeT>,
   IncludeMeta extends JavaIncludeMeta<IncludeT, IncludeRaw, IncludeMeta>
-> extends com.foursquare.spindle.Record<IncludeT> {
+> extends io.fsq.spindle.runtime.Record<IncludeT> {
 
   public String path();
   public scala.Option<String> pathOption();
@@ -43,39 +43,39 @@ public static interface JavaInclude<
 }
 
 public static interface JavaIncludeMutable<
-  IncludeT extends com.foursquare.spindle.Record<IncludeT>,
-  IncludeRaw extends com.foursquare.spindle.MutableRecord<IncludeT>,
+  IncludeT extends io.fsq.spindle.runtime.Record<IncludeT>,
+  IncludeRaw extends io.fsq.spindle.runtime.MutableRecord<IncludeT>,
   IncludeMeta extends JavaIncludeMeta<IncludeT, IncludeRaw, IncludeMeta>
 > extends JavaInclude<
     IncludeT, IncludeRaw, IncludeMeta
   >,
-  com.foursquare.spindle.MutableRecord<IncludeT> {
+  io.fsq.spindle.runtime.MutableRecord<IncludeT> {
 
 }
 
 public static abstract class JavaIncludeRaw<
-  IncludeT extends com.foursquare.spindle.Record<IncludeT>,
-  IncludeRaw extends com.foursquare.spindle.MutableRecord<IncludeT>,
+  IncludeT extends io.fsq.spindle.runtime.Record<IncludeT>,
+  IncludeRaw extends io.fsq.spindle.runtime.MutableRecord<IncludeT>,
   IncludeMeta extends JavaIncludeMeta<IncludeT, IncludeRaw, IncludeMeta>
 > implements JavaIncludeMutable<
     IncludeT, IncludeRaw, IncludeMeta
   >,
-  com.foursquare.spindle.Record<IncludeT> {
+  io.fsq.spindle.runtime.Record<IncludeT> {
 
 }
 public static abstract class JavaNamespaceMeta<
-  NamespaceT extends com.foursquare.spindle.Record<NamespaceT>,
-  NamespaceRaw extends com.foursquare.spindle.MutableRecord<NamespaceT>,
+  NamespaceT extends io.fsq.spindle.runtime.Record<NamespaceT>,
+  NamespaceRaw extends io.fsq.spindle.runtime.MutableRecord<NamespaceT>,
   NamespaceMeta extends JavaNamespaceMeta<NamespaceT, NamespaceRaw, NamespaceMeta>
-> implements com.foursquare.spindle.MetaRecord<NamespaceT, NamespaceMeta> {
+> implements io.fsq.spindle.runtime.MetaRecord<NamespaceT, NamespaceMeta> {
 
 }
 
 public static interface JavaNamespace<
-  NamespaceT extends com.foursquare.spindle.Record<NamespaceT>,
-  NamespaceRaw extends com.foursquare.spindle.MutableRecord<NamespaceT>,
+  NamespaceT extends io.fsq.spindle.runtime.Record<NamespaceT>,
+  NamespaceRaw extends io.fsq.spindle.runtime.MutableRecord<NamespaceT>,
   NamespaceMeta extends JavaNamespaceMeta<NamespaceT, NamespaceRaw, NamespaceMeta>
-> extends com.foursquare.spindle.Record<NamespaceT> {
+> extends io.fsq.spindle.runtime.Record<NamespaceT> {
 
   public String language();
   public scala.Option<String> languageOption();
@@ -91,39 +91,39 @@ public static interface JavaNamespace<
 }
 
 public static interface JavaNamespaceMutable<
-  NamespaceT extends com.foursquare.spindle.Record<NamespaceT>,
-  NamespaceRaw extends com.foursquare.spindle.MutableRecord<NamespaceT>,
+  NamespaceT extends io.fsq.spindle.runtime.Record<NamespaceT>,
+  NamespaceRaw extends io.fsq.spindle.runtime.MutableRecord<NamespaceT>,
   NamespaceMeta extends JavaNamespaceMeta<NamespaceT, NamespaceRaw, NamespaceMeta>
 > extends JavaNamespace<
     NamespaceT, NamespaceRaw, NamespaceMeta
   >,
-  com.foursquare.spindle.MutableRecord<NamespaceT> {
+  io.fsq.spindle.runtime.MutableRecord<NamespaceT> {
 
 }
 
 public static abstract class JavaNamespaceRaw<
-  NamespaceT extends com.foursquare.spindle.Record<NamespaceT>,
-  NamespaceRaw extends com.foursquare.spindle.MutableRecord<NamespaceT>,
+  NamespaceT extends io.fsq.spindle.runtime.Record<NamespaceT>,
+  NamespaceRaw extends io.fsq.spindle.runtime.MutableRecord<NamespaceT>,
   NamespaceMeta extends JavaNamespaceMeta<NamespaceT, NamespaceRaw, NamespaceMeta>
 > implements JavaNamespaceMutable<
     NamespaceT, NamespaceRaw, NamespaceMeta
   >,
-  com.foursquare.spindle.Record<NamespaceT> {
+  io.fsq.spindle.runtime.Record<NamespaceT> {
 
 }
 public static abstract class JavaAnnotationMeta<
-  AnnotationT extends com.foursquare.spindle.Record<AnnotationT>,
-  AnnotationRaw extends com.foursquare.spindle.MutableRecord<AnnotationT>,
+  AnnotationT extends io.fsq.spindle.runtime.Record<AnnotationT>,
+  AnnotationRaw extends io.fsq.spindle.runtime.MutableRecord<AnnotationT>,
   AnnotationMeta extends JavaAnnotationMeta<AnnotationT, AnnotationRaw, AnnotationMeta>
-> implements com.foursquare.spindle.MetaRecord<AnnotationT, AnnotationMeta> {
+> implements io.fsq.spindle.runtime.MetaRecord<AnnotationT, AnnotationMeta> {
 
 }
 
 public static interface JavaAnnotation<
-  AnnotationT extends com.foursquare.spindle.Record<AnnotationT>,
-  AnnotationRaw extends com.foursquare.spindle.MutableRecord<AnnotationT>,
+  AnnotationT extends io.fsq.spindle.runtime.Record<AnnotationT>,
+  AnnotationRaw extends io.fsq.spindle.runtime.MutableRecord<AnnotationT>,
   AnnotationMeta extends JavaAnnotationMeta<AnnotationT, AnnotationRaw, AnnotationMeta>
-> extends com.foursquare.spindle.Record<AnnotationT> {
+> extends io.fsq.spindle.runtime.Record<AnnotationT> {
 
   public String key();
   public scala.Option<String> keyOption();
@@ -139,39 +139,39 @@ public static interface JavaAnnotation<
 }
 
 public static interface JavaAnnotationMutable<
-  AnnotationT extends com.foursquare.spindle.Record<AnnotationT>,
-  AnnotationRaw extends com.foursquare.spindle.MutableRecord<AnnotationT>,
+  AnnotationT extends io.fsq.spindle.runtime.Record<AnnotationT>,
+  AnnotationRaw extends io.fsq.spindle.runtime.MutableRecord<AnnotationT>,
   AnnotationMeta extends JavaAnnotationMeta<AnnotationT, AnnotationRaw, AnnotationMeta>
 > extends JavaAnnotation<
     AnnotationT, AnnotationRaw, AnnotationMeta
   >,
-  com.foursquare.spindle.MutableRecord<AnnotationT> {
+  io.fsq.spindle.runtime.MutableRecord<AnnotationT> {
 
 }
 
 public static abstract class JavaAnnotationRaw<
-  AnnotationT extends com.foursquare.spindle.Record<AnnotationT>,
-  AnnotationRaw extends com.foursquare.spindle.MutableRecord<AnnotationT>,
+  AnnotationT extends io.fsq.spindle.runtime.Record<AnnotationT>,
+  AnnotationRaw extends io.fsq.spindle.runtime.MutableRecord<AnnotationT>,
   AnnotationMeta extends JavaAnnotationMeta<AnnotationT, AnnotationRaw, AnnotationMeta>
 > implements JavaAnnotationMutable<
     AnnotationT, AnnotationRaw, AnnotationMeta
   >,
-  com.foursquare.spindle.Record<AnnotationT> {
+  io.fsq.spindle.runtime.Record<AnnotationT> {
 
 }
 public static abstract class JavaBaseTypeMeta<
-  BaseTypeT extends com.foursquare.spindle.Record<BaseTypeT>,
-  BaseTypeRaw extends com.foursquare.spindle.MutableRecord<BaseTypeT>,
+  BaseTypeT extends io.fsq.spindle.runtime.Record<BaseTypeT>,
+  BaseTypeRaw extends io.fsq.spindle.runtime.MutableRecord<BaseTypeT>,
   BaseTypeMeta extends JavaBaseTypeMeta<BaseTypeT, BaseTypeRaw, BaseTypeMeta>
-> implements com.foursquare.spindle.MetaRecord<BaseTypeT, BaseTypeMeta> {
+> implements io.fsq.spindle.runtime.MetaRecord<BaseTypeT, BaseTypeMeta> {
 
 }
 
-public static interface JavaBaseType<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>,
-  BaseTypeT extends com.foursquare.spindle.Record<BaseTypeT>,
-  BaseTypeRaw extends com.foursquare.spindle.MutableRecord<BaseTypeT>,
+public static interface JavaBaseType<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>,
+  BaseTypeT extends io.fsq.spindle.runtime.Record<BaseTypeT>,
+  BaseTypeRaw extends io.fsq.spindle.runtime.MutableRecord<BaseTypeT>,
   BaseTypeMeta extends JavaBaseTypeMeta<BaseTypeT, BaseTypeRaw, BaseTypeMeta>
-> extends com.foursquare.spindle.Record<BaseTypeT> {
+> extends io.fsq.spindle.runtime.Record<BaseTypeT> {
 
   public com.twitter.thrift.descriptors.SimpleBaseType simpleBaseType();
   public scala.Option<com.twitter.thrift.descriptors.SimpleBaseType> simpleBaseTypeOption();
@@ -186,40 +186,40 @@ public static interface JavaBaseType<com_twitter_thrift_descriptors_Annotation e
   public boolean annotationsIsSet();
 }
 
-public static interface JavaBaseTypeMutable<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>,
-  BaseTypeT extends com.foursquare.spindle.Record<BaseTypeT>,
-  BaseTypeRaw extends com.foursquare.spindle.MutableRecord<BaseTypeT>,
+public static interface JavaBaseTypeMutable<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>,
+  BaseTypeT extends io.fsq.spindle.runtime.Record<BaseTypeT>,
+  BaseTypeRaw extends io.fsq.spindle.runtime.MutableRecord<BaseTypeT>,
   BaseTypeMeta extends JavaBaseTypeMeta<BaseTypeT, BaseTypeRaw, BaseTypeMeta>
 > extends JavaBaseType<com_twitter_thrift_descriptors_Annotation,
     BaseTypeT, BaseTypeRaw, BaseTypeMeta
   >,
-  com.foursquare.spindle.MutableRecord<BaseTypeT> {
+  io.fsq.spindle.runtime.MutableRecord<BaseTypeT> {
 
 }
 
-public static abstract class JavaBaseTypeRaw<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>,
-  BaseTypeT extends com.foursquare.spindle.Record<BaseTypeT>,
-  BaseTypeRaw extends com.foursquare.spindle.MutableRecord<BaseTypeT>,
+public static abstract class JavaBaseTypeRaw<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>,
+  BaseTypeT extends io.fsq.spindle.runtime.Record<BaseTypeT>,
+  BaseTypeRaw extends io.fsq.spindle.runtime.MutableRecord<BaseTypeT>,
   BaseTypeMeta extends JavaBaseTypeMeta<BaseTypeT, BaseTypeRaw, BaseTypeMeta>
 > implements JavaBaseTypeMutable<com_twitter_thrift_descriptors_Annotation,
     BaseTypeT, BaseTypeRaw, BaseTypeMeta
   >,
-  com.foursquare.spindle.Record<BaseTypeT> {
+  io.fsq.spindle.runtime.Record<BaseTypeT> {
 
 }
 public static abstract class JavaListTypeMeta<
-  ListTypeT extends com.foursquare.spindle.Record<ListTypeT>,
-  ListTypeRaw extends com.foursquare.spindle.MutableRecord<ListTypeT>,
+  ListTypeT extends io.fsq.spindle.runtime.Record<ListTypeT>,
+  ListTypeRaw extends io.fsq.spindle.runtime.MutableRecord<ListTypeT>,
   ListTypeMeta extends JavaListTypeMeta<ListTypeT, ListTypeRaw, ListTypeMeta>
-> implements com.foursquare.spindle.MetaRecord<ListTypeT, ListTypeMeta> {
+> implements io.fsq.spindle.runtime.MetaRecord<ListTypeT, ListTypeMeta> {
 
 }
 
 public static interface JavaListType<
-  ListTypeT extends com.foursquare.spindle.Record<ListTypeT>,
-  ListTypeRaw extends com.foursquare.spindle.MutableRecord<ListTypeT>,
+  ListTypeT extends io.fsq.spindle.runtime.Record<ListTypeT>,
+  ListTypeRaw extends io.fsq.spindle.runtime.MutableRecord<ListTypeT>,
   ListTypeMeta extends JavaListTypeMeta<ListTypeT, ListTypeRaw, ListTypeMeta>
-> extends com.foursquare.spindle.Record<ListTypeT> {
+> extends io.fsq.spindle.runtime.Record<ListTypeT> {
 
   public String elementTypeId();
   public scala.Option<String> elementTypeIdOption();
@@ -229,39 +229,39 @@ public static interface JavaListType<
 }
 
 public static interface JavaListTypeMutable<
-  ListTypeT extends com.foursquare.spindle.Record<ListTypeT>,
-  ListTypeRaw extends com.foursquare.spindle.MutableRecord<ListTypeT>,
+  ListTypeT extends io.fsq.spindle.runtime.Record<ListTypeT>,
+  ListTypeRaw extends io.fsq.spindle.runtime.MutableRecord<ListTypeT>,
   ListTypeMeta extends JavaListTypeMeta<ListTypeT, ListTypeRaw, ListTypeMeta>
 > extends JavaListType<
     ListTypeT, ListTypeRaw, ListTypeMeta
   >,
-  com.foursquare.spindle.MutableRecord<ListTypeT> {
+  io.fsq.spindle.runtime.MutableRecord<ListTypeT> {
 
 }
 
 public static abstract class JavaListTypeRaw<
-  ListTypeT extends com.foursquare.spindle.Record<ListTypeT>,
-  ListTypeRaw extends com.foursquare.spindle.MutableRecord<ListTypeT>,
+  ListTypeT extends io.fsq.spindle.runtime.Record<ListTypeT>,
+  ListTypeRaw extends io.fsq.spindle.runtime.MutableRecord<ListTypeT>,
   ListTypeMeta extends JavaListTypeMeta<ListTypeT, ListTypeRaw, ListTypeMeta>
 > implements JavaListTypeMutable<
     ListTypeT, ListTypeRaw, ListTypeMeta
   >,
-  com.foursquare.spindle.Record<ListTypeT> {
+  io.fsq.spindle.runtime.Record<ListTypeT> {
 
 }
 public static abstract class JavaSetTypeMeta<
-  SetTypeT extends com.foursquare.spindle.Record<SetTypeT>,
-  SetTypeRaw extends com.foursquare.spindle.MutableRecord<SetTypeT>,
+  SetTypeT extends io.fsq.spindle.runtime.Record<SetTypeT>,
+  SetTypeRaw extends io.fsq.spindle.runtime.MutableRecord<SetTypeT>,
   SetTypeMeta extends JavaSetTypeMeta<SetTypeT, SetTypeRaw, SetTypeMeta>
-> implements com.foursquare.spindle.MetaRecord<SetTypeT, SetTypeMeta> {
+> implements io.fsq.spindle.runtime.MetaRecord<SetTypeT, SetTypeMeta> {
 
 }
 
 public static interface JavaSetType<
-  SetTypeT extends com.foursquare.spindle.Record<SetTypeT>,
-  SetTypeRaw extends com.foursquare.spindle.MutableRecord<SetTypeT>,
+  SetTypeT extends io.fsq.spindle.runtime.Record<SetTypeT>,
+  SetTypeRaw extends io.fsq.spindle.runtime.MutableRecord<SetTypeT>,
   SetTypeMeta extends JavaSetTypeMeta<SetTypeT, SetTypeRaw, SetTypeMeta>
-> extends com.foursquare.spindle.Record<SetTypeT> {
+> extends io.fsq.spindle.runtime.Record<SetTypeT> {
 
   public String elementTypeId();
   public scala.Option<String> elementTypeIdOption();
@@ -271,39 +271,39 @@ public static interface JavaSetType<
 }
 
 public static interface JavaSetTypeMutable<
-  SetTypeT extends com.foursquare.spindle.Record<SetTypeT>,
-  SetTypeRaw extends com.foursquare.spindle.MutableRecord<SetTypeT>,
+  SetTypeT extends io.fsq.spindle.runtime.Record<SetTypeT>,
+  SetTypeRaw extends io.fsq.spindle.runtime.MutableRecord<SetTypeT>,
   SetTypeMeta extends JavaSetTypeMeta<SetTypeT, SetTypeRaw, SetTypeMeta>
 > extends JavaSetType<
     SetTypeT, SetTypeRaw, SetTypeMeta
   >,
-  com.foursquare.spindle.MutableRecord<SetTypeT> {
+  io.fsq.spindle.runtime.MutableRecord<SetTypeT> {
 
 }
 
 public static abstract class JavaSetTypeRaw<
-  SetTypeT extends com.foursquare.spindle.Record<SetTypeT>,
-  SetTypeRaw extends com.foursquare.spindle.MutableRecord<SetTypeT>,
+  SetTypeT extends io.fsq.spindle.runtime.Record<SetTypeT>,
+  SetTypeRaw extends io.fsq.spindle.runtime.MutableRecord<SetTypeT>,
   SetTypeMeta extends JavaSetTypeMeta<SetTypeT, SetTypeRaw, SetTypeMeta>
 > implements JavaSetTypeMutable<
     SetTypeT, SetTypeRaw, SetTypeMeta
   >,
-  com.foursquare.spindle.Record<SetTypeT> {
+  io.fsq.spindle.runtime.Record<SetTypeT> {
 
 }
 public static abstract class JavaMapTypeMeta<
-  MapTypeT extends com.foursquare.spindle.Record<MapTypeT>,
-  MapTypeRaw extends com.foursquare.spindle.MutableRecord<MapTypeT>,
+  MapTypeT extends io.fsq.spindle.runtime.Record<MapTypeT>,
+  MapTypeRaw extends io.fsq.spindle.runtime.MutableRecord<MapTypeT>,
   MapTypeMeta extends JavaMapTypeMeta<MapTypeT, MapTypeRaw, MapTypeMeta>
-> implements com.foursquare.spindle.MetaRecord<MapTypeT, MapTypeMeta> {
+> implements io.fsq.spindle.runtime.MetaRecord<MapTypeT, MapTypeMeta> {
 
 }
 
 public static interface JavaMapType<
-  MapTypeT extends com.foursquare.spindle.Record<MapTypeT>,
-  MapTypeRaw extends com.foursquare.spindle.MutableRecord<MapTypeT>,
+  MapTypeT extends io.fsq.spindle.runtime.Record<MapTypeT>,
+  MapTypeRaw extends io.fsq.spindle.runtime.MutableRecord<MapTypeT>,
   MapTypeMeta extends JavaMapTypeMeta<MapTypeT, MapTypeRaw, MapTypeMeta>
-> extends com.foursquare.spindle.Record<MapTypeT> {
+> extends io.fsq.spindle.runtime.Record<MapTypeT> {
 
   public String keyTypeId();
   public scala.Option<String> keyTypeIdOption();
@@ -319,39 +319,39 @@ public static interface JavaMapType<
 }
 
 public static interface JavaMapTypeMutable<
-  MapTypeT extends com.foursquare.spindle.Record<MapTypeT>,
-  MapTypeRaw extends com.foursquare.spindle.MutableRecord<MapTypeT>,
+  MapTypeT extends io.fsq.spindle.runtime.Record<MapTypeT>,
+  MapTypeRaw extends io.fsq.spindle.runtime.MutableRecord<MapTypeT>,
   MapTypeMeta extends JavaMapTypeMeta<MapTypeT, MapTypeRaw, MapTypeMeta>
 > extends JavaMapType<
     MapTypeT, MapTypeRaw, MapTypeMeta
   >,
-  com.foursquare.spindle.MutableRecord<MapTypeT> {
+  io.fsq.spindle.runtime.MutableRecord<MapTypeT> {
 
 }
 
 public static abstract class JavaMapTypeRaw<
-  MapTypeT extends com.foursquare.spindle.Record<MapTypeT>,
-  MapTypeRaw extends com.foursquare.spindle.MutableRecord<MapTypeT>,
+  MapTypeT extends io.fsq.spindle.runtime.Record<MapTypeT>,
+  MapTypeRaw extends io.fsq.spindle.runtime.MutableRecord<MapTypeT>,
   MapTypeMeta extends JavaMapTypeMeta<MapTypeT, MapTypeRaw, MapTypeMeta>
 > implements JavaMapTypeMutable<
     MapTypeT, MapTypeRaw, MapTypeMeta
   >,
-  com.foursquare.spindle.Record<MapTypeT> {
+  io.fsq.spindle.runtime.Record<MapTypeT> {
 
 }
 public static abstract class JavaContainerTypeMeta<
-  ContainerTypeT extends com.foursquare.spindle.Record<ContainerTypeT>,
-  ContainerTypeRaw extends com.foursquare.spindle.MutableRecord<ContainerTypeT>,
+  ContainerTypeT extends io.fsq.spindle.runtime.Record<ContainerTypeT>,
+  ContainerTypeRaw extends io.fsq.spindle.runtime.MutableRecord<ContainerTypeT>,
   ContainerTypeMeta extends JavaContainerTypeMeta<ContainerTypeT, ContainerTypeRaw, ContainerTypeMeta>
-> implements com.foursquare.spindle.MetaRecord<ContainerTypeT, ContainerTypeMeta> {
+> implements io.fsq.spindle.runtime.MetaRecord<ContainerTypeT, ContainerTypeMeta> {
 
 }
 
-public static interface JavaContainerType<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_SimpleContainerType extends com.foursquare.spindle.Record<?>,
-  ContainerTypeT extends com.foursquare.spindle.Record<ContainerTypeT>,
-  ContainerTypeRaw extends com.foursquare.spindle.MutableRecord<ContainerTypeT>,
+public static interface JavaContainerType<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_SimpleContainerType extends io.fsq.spindle.runtime.Record<?>,
+  ContainerTypeT extends io.fsq.spindle.runtime.Record<ContainerTypeT>,
+  ContainerTypeRaw extends io.fsq.spindle.runtime.MutableRecord<ContainerTypeT>,
   ContainerTypeMeta extends JavaContainerTypeMeta<ContainerTypeT, ContainerTypeRaw, ContainerTypeMeta>
-> extends com.foursquare.spindle.Record<ContainerTypeT> {
+> extends io.fsq.spindle.runtime.Record<ContainerTypeT> {
 
   public com_twitter_thrift_descriptors_SimpleContainerType simpleContainerType();
   public scala.Option<com_twitter_thrift_descriptors_SimpleContainerType> simpleContainerTypeOption();
@@ -366,40 +366,40 @@ public static interface JavaContainerType<com_twitter_thrift_descriptors_Annotat
   public boolean annotationsIsSet();
 }
 
-public static interface JavaContainerTypeMutable<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_SimpleContainerType extends com.foursquare.spindle.Record<?>,
-  ContainerTypeT extends com.foursquare.spindle.Record<ContainerTypeT>,
-  ContainerTypeRaw extends com.foursquare.spindle.MutableRecord<ContainerTypeT>,
+public static interface JavaContainerTypeMutable<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_SimpleContainerType extends io.fsq.spindle.runtime.Record<?>,
+  ContainerTypeT extends io.fsq.spindle.runtime.Record<ContainerTypeT>,
+  ContainerTypeRaw extends io.fsq.spindle.runtime.MutableRecord<ContainerTypeT>,
   ContainerTypeMeta extends JavaContainerTypeMeta<ContainerTypeT, ContainerTypeRaw, ContainerTypeMeta>
 > extends JavaContainerType<com_twitter_thrift_descriptors_Annotation, com_twitter_thrift_descriptors_SimpleContainerType,
     ContainerTypeT, ContainerTypeRaw, ContainerTypeMeta
   >,
-  com.foursquare.spindle.MutableRecord<ContainerTypeT> {
+  io.fsq.spindle.runtime.MutableRecord<ContainerTypeT> {
 
 }
 
-public static abstract class JavaContainerTypeRaw<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_SimpleContainerType extends com.foursquare.spindle.Record<?>,
-  ContainerTypeT extends com.foursquare.spindle.Record<ContainerTypeT>,
-  ContainerTypeRaw extends com.foursquare.spindle.MutableRecord<ContainerTypeT>,
+public static abstract class JavaContainerTypeRaw<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_SimpleContainerType extends io.fsq.spindle.runtime.Record<?>,
+  ContainerTypeT extends io.fsq.spindle.runtime.Record<ContainerTypeT>,
+  ContainerTypeRaw extends io.fsq.spindle.runtime.MutableRecord<ContainerTypeT>,
   ContainerTypeMeta extends JavaContainerTypeMeta<ContainerTypeT, ContainerTypeRaw, ContainerTypeMeta>
 > implements JavaContainerTypeMutable<com_twitter_thrift_descriptors_Annotation, com_twitter_thrift_descriptors_SimpleContainerType,
     ContainerTypeT, ContainerTypeRaw, ContainerTypeMeta
   >,
-  com.foursquare.spindle.Record<ContainerTypeT> {
+  io.fsq.spindle.runtime.Record<ContainerTypeT> {
 
 }
 public static abstract class JavaTyperefMeta<
-  TyperefT extends com.foursquare.spindle.Record<TyperefT>,
-  TyperefRaw extends com.foursquare.spindle.MutableRecord<TyperefT>,
+  TyperefT extends io.fsq.spindle.runtime.Record<TyperefT>,
+  TyperefRaw extends io.fsq.spindle.runtime.MutableRecord<TyperefT>,
   TyperefMeta extends JavaTyperefMeta<TyperefT, TyperefRaw, TyperefMeta>
-> implements com.foursquare.spindle.MetaRecord<TyperefT, TyperefMeta> {
+> implements io.fsq.spindle.runtime.MetaRecord<TyperefT, TyperefMeta> {
 
 }
 
 public static interface JavaTyperef<
-  TyperefT extends com.foursquare.spindle.Record<TyperefT>,
-  TyperefRaw extends com.foursquare.spindle.MutableRecord<TyperefT>,
+  TyperefT extends io.fsq.spindle.runtime.Record<TyperefT>,
+  TyperefRaw extends io.fsq.spindle.runtime.MutableRecord<TyperefT>,
   TyperefMeta extends JavaTyperefMeta<TyperefT, TyperefRaw, TyperefMeta>
-> extends com.foursquare.spindle.Record<TyperefT> {
+> extends io.fsq.spindle.runtime.Record<TyperefT> {
 
   public String typeAlias();
   public scala.Option<String> typeAliasOption();
@@ -409,39 +409,39 @@ public static interface JavaTyperef<
 }
 
 public static interface JavaTyperefMutable<
-  TyperefT extends com.foursquare.spindle.Record<TyperefT>,
-  TyperefRaw extends com.foursquare.spindle.MutableRecord<TyperefT>,
+  TyperefT extends io.fsq.spindle.runtime.Record<TyperefT>,
+  TyperefRaw extends io.fsq.spindle.runtime.MutableRecord<TyperefT>,
   TyperefMeta extends JavaTyperefMeta<TyperefT, TyperefRaw, TyperefMeta>
 > extends JavaTyperef<
     TyperefT, TyperefRaw, TyperefMeta
   >,
-  com.foursquare.spindle.MutableRecord<TyperefT> {
+  io.fsq.spindle.runtime.MutableRecord<TyperefT> {
 
 }
 
 public static abstract class JavaTyperefRaw<
-  TyperefT extends com.foursquare.spindle.Record<TyperefT>,
-  TyperefRaw extends com.foursquare.spindle.MutableRecord<TyperefT>,
+  TyperefT extends io.fsq.spindle.runtime.Record<TyperefT>,
+  TyperefRaw extends io.fsq.spindle.runtime.MutableRecord<TyperefT>,
   TyperefMeta extends JavaTyperefMeta<TyperefT, TyperefRaw, TyperefMeta>
 > implements JavaTyperefMutable<
     TyperefT, TyperefRaw, TyperefMeta
   >,
-  com.foursquare.spindle.Record<TyperefT> {
+  io.fsq.spindle.runtime.Record<TyperefT> {
 
 }
 public static abstract class JavaTypeMeta<
-  TypeT extends com.foursquare.spindle.Record<TypeT>,
-  TypeRaw extends com.foursquare.spindle.MutableRecord<TypeT>,
+  TypeT extends io.fsq.spindle.runtime.Record<TypeT>,
+  TypeRaw extends io.fsq.spindle.runtime.MutableRecord<TypeT>,
   TypeMeta extends JavaTypeMeta<TypeT, TypeRaw, TypeMeta>
-> implements com.foursquare.spindle.MetaRecord<TypeT, TypeMeta> {
+> implements io.fsq.spindle.runtime.MetaRecord<TypeT, TypeMeta> {
 
 }
 
-public static interface JavaType<com_twitter_thrift_descriptors_SimpleType extends com.foursquare.spindle.Record<?>,
-  TypeT extends com.foursquare.spindle.Record<TypeT>,
-  TypeRaw extends com.foursquare.spindle.MutableRecord<TypeT>,
+public static interface JavaType<com_twitter_thrift_descriptors_SimpleType extends io.fsq.spindle.runtime.Record<?>,
+  TypeT extends io.fsq.spindle.runtime.Record<TypeT>,
+  TypeRaw extends io.fsq.spindle.runtime.MutableRecord<TypeT>,
   TypeMeta extends JavaTypeMeta<TypeT, TypeRaw, TypeMeta>
-> extends com.foursquare.spindle.Record<TypeT> {
+> extends io.fsq.spindle.runtime.Record<TypeT> {
 
   public String id();
   public scala.Option<String> idOption();
@@ -456,40 +456,40 @@ public static interface JavaType<com_twitter_thrift_descriptors_SimpleType exten
   public boolean simpleTypeIsSet();
 }
 
-public static interface JavaTypeMutable<com_twitter_thrift_descriptors_SimpleType extends com.foursquare.spindle.Record<?>,
-  TypeT extends com.foursquare.spindle.Record<TypeT>,
-  TypeRaw extends com.foursquare.spindle.MutableRecord<TypeT>,
+public static interface JavaTypeMutable<com_twitter_thrift_descriptors_SimpleType extends io.fsq.spindle.runtime.Record<?>,
+  TypeT extends io.fsq.spindle.runtime.Record<TypeT>,
+  TypeRaw extends io.fsq.spindle.runtime.MutableRecord<TypeT>,
   TypeMeta extends JavaTypeMeta<TypeT, TypeRaw, TypeMeta>
 > extends JavaType<com_twitter_thrift_descriptors_SimpleType,
     TypeT, TypeRaw, TypeMeta
   >,
-  com.foursquare.spindle.MutableRecord<TypeT> {
+  io.fsq.spindle.runtime.MutableRecord<TypeT> {
 
 }
 
-public static abstract class JavaTypeRaw<com_twitter_thrift_descriptors_SimpleType extends com.foursquare.spindle.Record<?>,
-  TypeT extends com.foursquare.spindle.Record<TypeT>,
-  TypeRaw extends com.foursquare.spindle.MutableRecord<TypeT>,
+public static abstract class JavaTypeRaw<com_twitter_thrift_descriptors_SimpleType extends io.fsq.spindle.runtime.Record<?>,
+  TypeT extends io.fsq.spindle.runtime.Record<TypeT>,
+  TypeRaw extends io.fsq.spindle.runtime.MutableRecord<TypeT>,
   TypeMeta extends JavaTypeMeta<TypeT, TypeRaw, TypeMeta>
 > implements JavaTypeMutable<com_twitter_thrift_descriptors_SimpleType,
     TypeT, TypeRaw, TypeMeta
   >,
-  com.foursquare.spindle.Record<TypeT> {
+  io.fsq.spindle.runtime.Record<TypeT> {
 
 }
 public static abstract class JavaTypedefMeta<
-  TypedefT extends com.foursquare.spindle.Record<TypedefT>,
-  TypedefRaw extends com.foursquare.spindle.MutableRecord<TypedefT>,
+  TypedefT extends io.fsq.spindle.runtime.Record<TypedefT>,
+  TypedefRaw extends io.fsq.spindle.runtime.MutableRecord<TypedefT>,
   TypedefMeta extends JavaTypedefMeta<TypedefT, TypedefRaw, TypedefMeta>
-> implements com.foursquare.spindle.MetaRecord<TypedefT, TypedefMeta> {
+> implements io.fsq.spindle.runtime.MetaRecord<TypedefT, TypedefMeta> {
 
 }
 
-public static interface JavaTypedef<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>,
-  TypedefT extends com.foursquare.spindle.Record<TypedefT>,
-  TypedefRaw extends com.foursquare.spindle.MutableRecord<TypedefT>,
+public static interface JavaTypedef<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>,
+  TypedefT extends io.fsq.spindle.runtime.Record<TypedefT>,
+  TypedefRaw extends io.fsq.spindle.runtime.MutableRecord<TypedefT>,
   TypedefMeta extends JavaTypedefMeta<TypedefT, TypedefRaw, TypedefMeta>
-> extends com.foursquare.spindle.Record<TypedefT> {
+> extends io.fsq.spindle.runtime.Record<TypedefT> {
 
   public String typeId();
   public scala.Option<String> typeIdOption();
@@ -510,40 +510,40 @@ public static interface JavaTypedef<com_twitter_thrift_descriptors_Annotation ex
   public boolean annotationsIsSet();
 }
 
-public static interface JavaTypedefMutable<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>,
-  TypedefT extends com.foursquare.spindle.Record<TypedefT>,
-  TypedefRaw extends com.foursquare.spindle.MutableRecord<TypedefT>,
+public static interface JavaTypedefMutable<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>,
+  TypedefT extends io.fsq.spindle.runtime.Record<TypedefT>,
+  TypedefRaw extends io.fsq.spindle.runtime.MutableRecord<TypedefT>,
   TypedefMeta extends JavaTypedefMeta<TypedefT, TypedefRaw, TypedefMeta>
 > extends JavaTypedef<com_twitter_thrift_descriptors_Annotation,
     TypedefT, TypedefRaw, TypedefMeta
   >,
-  com.foursquare.spindle.MutableRecord<TypedefT> {
+  io.fsq.spindle.runtime.MutableRecord<TypedefT> {
 
 }
 
-public static abstract class JavaTypedefRaw<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>,
-  TypedefT extends com.foursquare.spindle.Record<TypedefT>,
-  TypedefRaw extends com.foursquare.spindle.MutableRecord<TypedefT>,
+public static abstract class JavaTypedefRaw<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>,
+  TypedefT extends io.fsq.spindle.runtime.Record<TypedefT>,
+  TypedefRaw extends io.fsq.spindle.runtime.MutableRecord<TypedefT>,
   TypedefMeta extends JavaTypedefMeta<TypedefT, TypedefRaw, TypedefMeta>
 > implements JavaTypedefMutable<com_twitter_thrift_descriptors_Annotation,
     TypedefT, TypedefRaw, TypedefMeta
   >,
-  com.foursquare.spindle.Record<TypedefT> {
+  io.fsq.spindle.runtime.Record<TypedefT> {
 
 }
 public static abstract class JavaTypeRegistryMeta<
-  TypeRegistryT extends com.foursquare.spindle.Record<TypeRegistryT>,
-  TypeRegistryRaw extends com.foursquare.spindle.MutableRecord<TypeRegistryT>,
+  TypeRegistryT extends io.fsq.spindle.runtime.Record<TypeRegistryT>,
+  TypeRegistryRaw extends io.fsq.spindle.runtime.MutableRecord<TypeRegistryT>,
   TypeRegistryMeta extends JavaTypeRegistryMeta<TypeRegistryT, TypeRegistryRaw, TypeRegistryMeta>
-> implements com.foursquare.spindle.MetaRecord<TypeRegistryT, TypeRegistryMeta> {
+> implements io.fsq.spindle.runtime.MetaRecord<TypeRegistryT, TypeRegistryMeta> {
 
 }
 
-public static interface JavaTypeRegistry<com_twitter_thrift_descriptors_Type extends com.foursquare.spindle.Record<?>,
-  TypeRegistryT extends com.foursquare.spindle.Record<TypeRegistryT>,
-  TypeRegistryRaw extends com.foursquare.spindle.MutableRecord<TypeRegistryT>,
+public static interface JavaTypeRegistry<com_twitter_thrift_descriptors_Type extends io.fsq.spindle.runtime.Record<?>,
+  TypeRegistryT extends io.fsq.spindle.runtime.Record<TypeRegistryT>,
+  TypeRegistryRaw extends io.fsq.spindle.runtime.MutableRecord<TypeRegistryT>,
   TypeRegistryMeta extends JavaTypeRegistryMeta<TypeRegistryT, TypeRegistryRaw, TypeRegistryMeta>
-> extends com.foursquare.spindle.Record<TypeRegistryT> {
+> extends io.fsq.spindle.runtime.Record<TypeRegistryT> {
   public scala.collection.immutable.Map<String, com_twitter_thrift_descriptors_Type> idToType();
   public scala.Option<scala.collection.immutable.Map<String, com_twitter_thrift_descriptors_Type>> idToTypeOption();
   public scala.collection.immutable.Map<String, com_twitter_thrift_descriptors_Type> idToTypeOrDefault();
@@ -558,40 +558,40 @@ public static interface JavaTypeRegistry<com_twitter_thrift_descriptors_Type ext
   public boolean aliasToTypeIdIsSet();
 }
 
-public static interface JavaTypeRegistryMutable<com_twitter_thrift_descriptors_Type extends com.foursquare.spindle.Record<?>,
-  TypeRegistryT extends com.foursquare.spindle.Record<TypeRegistryT>,
-  TypeRegistryRaw extends com.foursquare.spindle.MutableRecord<TypeRegistryT>,
+public static interface JavaTypeRegistryMutable<com_twitter_thrift_descriptors_Type extends io.fsq.spindle.runtime.Record<?>,
+  TypeRegistryT extends io.fsq.spindle.runtime.Record<TypeRegistryT>,
+  TypeRegistryRaw extends io.fsq.spindle.runtime.MutableRecord<TypeRegistryT>,
   TypeRegistryMeta extends JavaTypeRegistryMeta<TypeRegistryT, TypeRegistryRaw, TypeRegistryMeta>
 > extends JavaTypeRegistry<com_twitter_thrift_descriptors_Type,
     TypeRegistryT, TypeRegistryRaw, TypeRegistryMeta
   >,
-  com.foursquare.spindle.MutableRecord<TypeRegistryT> {
+  io.fsq.spindle.runtime.MutableRecord<TypeRegistryT> {
 
 }
 
-public static abstract class JavaTypeRegistryRaw<com_twitter_thrift_descriptors_Type extends com.foursquare.spindle.Record<?>,
-  TypeRegistryT extends com.foursquare.spindle.Record<TypeRegistryT>,
-  TypeRegistryRaw extends com.foursquare.spindle.MutableRecord<TypeRegistryT>,
+public static abstract class JavaTypeRegistryRaw<com_twitter_thrift_descriptors_Type extends io.fsq.spindle.runtime.Record<?>,
+  TypeRegistryT extends io.fsq.spindle.runtime.Record<TypeRegistryT>,
+  TypeRegistryRaw extends io.fsq.spindle.runtime.MutableRecord<TypeRegistryT>,
   TypeRegistryMeta extends JavaTypeRegistryMeta<TypeRegistryT, TypeRegistryRaw, TypeRegistryMeta>
 > implements JavaTypeRegistryMutable<com_twitter_thrift_descriptors_Type,
     TypeRegistryT, TypeRegistryRaw, TypeRegistryMeta
   >,
-  com.foursquare.spindle.Record<TypeRegistryT> {
+  io.fsq.spindle.runtime.Record<TypeRegistryT> {
 
 }
 public static abstract class JavaConstMeta<
-  ConstT extends com.foursquare.spindle.Record<ConstT>,
-  ConstRaw extends com.foursquare.spindle.MutableRecord<ConstT>,
+  ConstT extends io.fsq.spindle.runtime.Record<ConstT>,
+  ConstRaw extends io.fsq.spindle.runtime.MutableRecord<ConstT>,
   ConstMeta extends JavaConstMeta<ConstT, ConstRaw, ConstMeta>
-> implements com.foursquare.spindle.MetaRecord<ConstT, ConstMeta> {
+> implements io.fsq.spindle.runtime.MetaRecord<ConstT, ConstMeta> {
 
 }
 
 public static interface JavaConst<
-  ConstT extends com.foursquare.spindle.Record<ConstT>,
-  ConstRaw extends com.foursquare.spindle.MutableRecord<ConstT>,
+  ConstT extends io.fsq.spindle.runtime.Record<ConstT>,
+  ConstRaw extends io.fsq.spindle.runtime.MutableRecord<ConstT>,
   ConstMeta extends JavaConstMeta<ConstT, ConstRaw, ConstMeta>
-> extends com.foursquare.spindle.Record<ConstT> {
+> extends io.fsq.spindle.runtime.Record<ConstT> {
 
   public String typeId();
   public scala.Option<String> typeIdOption();
@@ -613,39 +613,39 @@ public static interface JavaConst<
 }
 
 public static interface JavaConstMutable<
-  ConstT extends com.foursquare.spindle.Record<ConstT>,
-  ConstRaw extends com.foursquare.spindle.MutableRecord<ConstT>,
+  ConstT extends io.fsq.spindle.runtime.Record<ConstT>,
+  ConstRaw extends io.fsq.spindle.runtime.MutableRecord<ConstT>,
   ConstMeta extends JavaConstMeta<ConstT, ConstRaw, ConstMeta>
 > extends JavaConst<
     ConstT, ConstRaw, ConstMeta
   >,
-  com.foursquare.spindle.MutableRecord<ConstT> {
+  io.fsq.spindle.runtime.MutableRecord<ConstT> {
 
 }
 
 public static abstract class JavaConstRaw<
-  ConstT extends com.foursquare.spindle.Record<ConstT>,
-  ConstRaw extends com.foursquare.spindle.MutableRecord<ConstT>,
+  ConstT extends io.fsq.spindle.runtime.Record<ConstT>,
+  ConstRaw extends io.fsq.spindle.runtime.MutableRecord<ConstT>,
   ConstMeta extends JavaConstMeta<ConstT, ConstRaw, ConstMeta>
 > implements JavaConstMutable<
     ConstT, ConstRaw, ConstMeta
   >,
-  com.foursquare.spindle.Record<ConstT> {
+  io.fsq.spindle.runtime.Record<ConstT> {
 
 }
 public static abstract class JavaEnumElementMeta<
-  EnumElementT extends com.foursquare.spindle.Record<EnumElementT>,
-  EnumElementRaw extends com.foursquare.spindle.MutableRecord<EnumElementT>,
+  EnumElementT extends io.fsq.spindle.runtime.Record<EnumElementT>,
+  EnumElementRaw extends io.fsq.spindle.runtime.MutableRecord<EnumElementT>,
   EnumElementMeta extends JavaEnumElementMeta<EnumElementT, EnumElementRaw, EnumElementMeta>
-> implements com.foursquare.spindle.MetaRecord<EnumElementT, EnumElementMeta> {
+> implements io.fsq.spindle.runtime.MetaRecord<EnumElementT, EnumElementMeta> {
 
 }
 
-public static interface JavaEnumElement<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>,
-  EnumElementT extends com.foursquare.spindle.Record<EnumElementT>,
-  EnumElementRaw extends com.foursquare.spindle.MutableRecord<EnumElementT>,
+public static interface JavaEnumElement<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>,
+  EnumElementT extends io.fsq.spindle.runtime.Record<EnumElementT>,
+  EnumElementRaw extends io.fsq.spindle.runtime.MutableRecord<EnumElementT>,
   EnumElementMeta extends JavaEnumElementMeta<EnumElementT, EnumElementRaw, EnumElementMeta>
-> extends com.foursquare.spindle.Record<EnumElementT> {
+> extends io.fsq.spindle.runtime.Record<EnumElementT> {
 
   public String name();
   public scala.Option<String> nameOption();
@@ -666,40 +666,40 @@ public static interface JavaEnumElement<com_twitter_thrift_descriptors_Annotatio
   public boolean annotationsIsSet();
 }
 
-public static interface JavaEnumElementMutable<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>,
-  EnumElementT extends com.foursquare.spindle.Record<EnumElementT>,
-  EnumElementRaw extends com.foursquare.spindle.MutableRecord<EnumElementT>,
+public static interface JavaEnumElementMutable<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>,
+  EnumElementT extends io.fsq.spindle.runtime.Record<EnumElementT>,
+  EnumElementRaw extends io.fsq.spindle.runtime.MutableRecord<EnumElementT>,
   EnumElementMeta extends JavaEnumElementMeta<EnumElementT, EnumElementRaw, EnumElementMeta>
 > extends JavaEnumElement<com_twitter_thrift_descriptors_Annotation,
     EnumElementT, EnumElementRaw, EnumElementMeta
   >,
-  com.foursquare.spindle.MutableRecord<EnumElementT> {
+  io.fsq.spindle.runtime.MutableRecord<EnumElementT> {
 
 }
 
-public static abstract class JavaEnumElementRaw<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>,
-  EnumElementT extends com.foursquare.spindle.Record<EnumElementT>,
-  EnumElementRaw extends com.foursquare.spindle.MutableRecord<EnumElementT>,
+public static abstract class JavaEnumElementRaw<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>,
+  EnumElementT extends io.fsq.spindle.runtime.Record<EnumElementT>,
+  EnumElementRaw extends io.fsq.spindle.runtime.MutableRecord<EnumElementT>,
   EnumElementMeta extends JavaEnumElementMeta<EnumElementT, EnumElementRaw, EnumElementMeta>
 > implements JavaEnumElementMutable<com_twitter_thrift_descriptors_Annotation,
     EnumElementT, EnumElementRaw, EnumElementMeta
   >,
-  com.foursquare.spindle.Record<EnumElementT> {
+  io.fsq.spindle.runtime.Record<EnumElementT> {
 
 }
 public static abstract class JavaEnumMeta<
-  EnumT extends com.foursquare.spindle.Record<EnumT>,
-  EnumRaw extends com.foursquare.spindle.MutableRecord<EnumT>,
+  EnumT extends io.fsq.spindle.runtime.Record<EnumT>,
+  EnumRaw extends io.fsq.spindle.runtime.MutableRecord<EnumT>,
   EnumMeta extends JavaEnumMeta<EnumT, EnumRaw, EnumMeta>
-> implements com.foursquare.spindle.MetaRecord<EnumT, EnumMeta> {
+> implements io.fsq.spindle.runtime.MetaRecord<EnumT, EnumMeta> {
 
 }
 
-public static interface JavaEnum<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_EnumElement extends com.foursquare.spindle.Record<?>,
-  EnumT extends com.foursquare.spindle.Record<EnumT>,
-  EnumRaw extends com.foursquare.spindle.MutableRecord<EnumT>,
+public static interface JavaEnum<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_EnumElement extends io.fsq.spindle.runtime.Record<?>,
+  EnumT extends io.fsq.spindle.runtime.Record<EnumT>,
+  EnumRaw extends io.fsq.spindle.runtime.MutableRecord<EnumT>,
   EnumMeta extends JavaEnumMeta<EnumT, EnumRaw, EnumMeta>
-> extends com.foursquare.spindle.Record<EnumT> {
+> extends io.fsq.spindle.runtime.Record<EnumT> {
 
   public String name();
   public scala.Option<String> nameOption();
@@ -720,40 +720,40 @@ public static interface JavaEnum<com_twitter_thrift_descriptors_Annotation exten
   public boolean annotationsIsSet();
 }
 
-public static interface JavaEnumMutable<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_EnumElement extends com.foursquare.spindle.Record<?>,
-  EnumT extends com.foursquare.spindle.Record<EnumT>,
-  EnumRaw extends com.foursquare.spindle.MutableRecord<EnumT>,
+public static interface JavaEnumMutable<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_EnumElement extends io.fsq.spindle.runtime.Record<?>,
+  EnumT extends io.fsq.spindle.runtime.Record<EnumT>,
+  EnumRaw extends io.fsq.spindle.runtime.MutableRecord<EnumT>,
   EnumMeta extends JavaEnumMeta<EnumT, EnumRaw, EnumMeta>
 > extends JavaEnum<com_twitter_thrift_descriptors_Annotation, com_twitter_thrift_descriptors_EnumElement,
     EnumT, EnumRaw, EnumMeta
   >,
-  com.foursquare.spindle.MutableRecord<EnumT> {
+  io.fsq.spindle.runtime.MutableRecord<EnumT> {
 
 }
 
-public static abstract class JavaEnumRaw<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_EnumElement extends com.foursquare.spindle.Record<?>,
-  EnumT extends com.foursquare.spindle.Record<EnumT>,
-  EnumRaw extends com.foursquare.spindle.MutableRecord<EnumT>,
+public static abstract class JavaEnumRaw<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_EnumElement extends io.fsq.spindle.runtime.Record<?>,
+  EnumT extends io.fsq.spindle.runtime.Record<EnumT>,
+  EnumRaw extends io.fsq.spindle.runtime.MutableRecord<EnumT>,
   EnumMeta extends JavaEnumMeta<EnumT, EnumRaw, EnumMeta>
 > implements JavaEnumMutable<com_twitter_thrift_descriptors_Annotation, com_twitter_thrift_descriptors_EnumElement,
     EnumT, EnumRaw, EnumMeta
   >,
-  com.foursquare.spindle.Record<EnumT> {
+  io.fsq.spindle.runtime.Record<EnumT> {
 
 }
 public static abstract class JavaFieldMeta<
-  FieldT extends com.foursquare.spindle.Record<FieldT>,
-  FieldRaw extends com.foursquare.spindle.MutableRecord<FieldT>,
+  FieldT extends io.fsq.spindle.runtime.Record<FieldT>,
+  FieldRaw extends io.fsq.spindle.runtime.MutableRecord<FieldT>,
   FieldMeta extends JavaFieldMeta<FieldT, FieldRaw, FieldMeta>
-> implements com.foursquare.spindle.MetaRecord<FieldT, FieldMeta> {
+> implements io.fsq.spindle.runtime.MetaRecord<FieldT, FieldMeta> {
 
 }
 
-public static interface JavaField<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>,
-  FieldT extends com.foursquare.spindle.Record<FieldT>,
-  FieldRaw extends com.foursquare.spindle.MutableRecord<FieldT>,
+public static interface JavaField<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>,
+  FieldT extends io.fsq.spindle.runtime.Record<FieldT>,
+  FieldRaw extends io.fsq.spindle.runtime.MutableRecord<FieldT>,
   FieldMeta extends JavaFieldMeta<FieldT, FieldRaw, FieldMeta>
-> extends com.foursquare.spindle.Record<FieldT> {
+> extends io.fsq.spindle.runtime.Record<FieldT> {
   public short identifier();
   public scala.Option<scala.Short> identifierOption();
   public short identifierOrDefault();
@@ -788,40 +788,40 @@ public static interface JavaField<com_twitter_thrift_descriptors_Annotation exte
   public boolean annotationsIsSet();
 }
 
-public static interface JavaFieldMutable<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>,
-  FieldT extends com.foursquare.spindle.Record<FieldT>,
-  FieldRaw extends com.foursquare.spindle.MutableRecord<FieldT>,
+public static interface JavaFieldMutable<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>,
+  FieldT extends io.fsq.spindle.runtime.Record<FieldT>,
+  FieldRaw extends io.fsq.spindle.runtime.MutableRecord<FieldT>,
   FieldMeta extends JavaFieldMeta<FieldT, FieldRaw, FieldMeta>
 > extends JavaField<com_twitter_thrift_descriptors_Annotation,
     FieldT, FieldRaw, FieldMeta
   >,
-  com.foursquare.spindle.MutableRecord<FieldT> {
+  io.fsq.spindle.runtime.MutableRecord<FieldT> {
 
 }
 
-public static abstract class JavaFieldRaw<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>,
-  FieldT extends com.foursquare.spindle.Record<FieldT>,
-  FieldRaw extends com.foursquare.spindle.MutableRecord<FieldT>,
+public static abstract class JavaFieldRaw<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>,
+  FieldT extends io.fsq.spindle.runtime.Record<FieldT>,
+  FieldRaw extends io.fsq.spindle.runtime.MutableRecord<FieldT>,
   FieldMeta extends JavaFieldMeta<FieldT, FieldRaw, FieldMeta>
 > implements JavaFieldMutable<com_twitter_thrift_descriptors_Annotation,
     FieldT, FieldRaw, FieldMeta
   >,
-  com.foursquare.spindle.Record<FieldT> {
+  io.fsq.spindle.runtime.Record<FieldT> {
 
 }
 public static abstract class JavaStructMeta<
-  StructT extends com.foursquare.spindle.Record<StructT>,
-  StructRaw extends com.foursquare.spindle.MutableRecord<StructT>,
+  StructT extends io.fsq.spindle.runtime.Record<StructT>,
+  StructRaw extends io.fsq.spindle.runtime.MutableRecord<StructT>,
   StructMeta extends JavaStructMeta<StructT, StructRaw, StructMeta>
-> implements com.foursquare.spindle.MetaRecord<StructT, StructMeta> {
+> implements io.fsq.spindle.runtime.MetaRecord<StructT, StructMeta> {
 
 }
 
-public static interface JavaStruct<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Field extends com.foursquare.spindle.Record<?>,
-  StructT extends com.foursquare.spindle.Record<StructT>,
-  StructRaw extends com.foursquare.spindle.MutableRecord<StructT>,
+public static interface JavaStruct<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Field extends io.fsq.spindle.runtime.Record<?>,
+  StructT extends io.fsq.spindle.runtime.Record<StructT>,
+  StructRaw extends io.fsq.spindle.runtime.MutableRecord<StructT>,
   StructMeta extends JavaStructMeta<StructT, StructRaw, StructMeta>
-> extends com.foursquare.spindle.Record<StructT> {
+> extends io.fsq.spindle.runtime.Record<StructT> {
 
   public String name();
   public scala.Option<String> nameOption();
@@ -842,40 +842,40 @@ public static interface JavaStruct<com_twitter_thrift_descriptors_Annotation ext
   public boolean annotationsIsSet();
 }
 
-public static interface JavaStructMutable<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Field extends com.foursquare.spindle.Record<?>,
-  StructT extends com.foursquare.spindle.Record<StructT>,
-  StructRaw extends com.foursquare.spindle.MutableRecord<StructT>,
+public static interface JavaStructMutable<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Field extends io.fsq.spindle.runtime.Record<?>,
+  StructT extends io.fsq.spindle.runtime.Record<StructT>,
+  StructRaw extends io.fsq.spindle.runtime.MutableRecord<StructT>,
   StructMeta extends JavaStructMeta<StructT, StructRaw, StructMeta>
 > extends JavaStruct<com_twitter_thrift_descriptors_Annotation, com_twitter_thrift_descriptors_Field,
     StructT, StructRaw, StructMeta
   >,
-  com.foursquare.spindle.MutableRecord<StructT> {
+  io.fsq.spindle.runtime.MutableRecord<StructT> {
 
 }
 
-public static abstract class JavaStructRaw<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Field extends com.foursquare.spindle.Record<?>,
-  StructT extends com.foursquare.spindle.Record<StructT>,
-  StructRaw extends com.foursquare.spindle.MutableRecord<StructT>,
+public static abstract class JavaStructRaw<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Field extends io.fsq.spindle.runtime.Record<?>,
+  StructT extends io.fsq.spindle.runtime.Record<StructT>,
+  StructRaw extends io.fsq.spindle.runtime.MutableRecord<StructT>,
   StructMeta extends JavaStructMeta<StructT, StructRaw, StructMeta>
 > implements JavaStructMutable<com_twitter_thrift_descriptors_Annotation, com_twitter_thrift_descriptors_Field,
     StructT, StructRaw, StructMeta
   >,
-  com.foursquare.spindle.Record<StructT> {
+  io.fsq.spindle.runtime.Record<StructT> {
 
 }
 public static abstract class JavaUnionMeta<
-  UnionT extends com.foursquare.spindle.Record<UnionT>,
-  UnionRaw extends com.foursquare.spindle.MutableRecord<UnionT>,
+  UnionT extends io.fsq.spindle.runtime.Record<UnionT>,
+  UnionRaw extends io.fsq.spindle.runtime.MutableRecord<UnionT>,
   UnionMeta extends JavaUnionMeta<UnionT, UnionRaw, UnionMeta>
-> implements com.foursquare.spindle.MetaRecord<UnionT, UnionMeta> {
+> implements io.fsq.spindle.runtime.MetaRecord<UnionT, UnionMeta> {
 
 }
 
-public static interface JavaUnion<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Field extends com.foursquare.spindle.Record<?>,
-  UnionT extends com.foursquare.spindle.Record<UnionT>,
-  UnionRaw extends com.foursquare.spindle.MutableRecord<UnionT>,
+public static interface JavaUnion<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Field extends io.fsq.spindle.runtime.Record<?>,
+  UnionT extends io.fsq.spindle.runtime.Record<UnionT>,
+  UnionRaw extends io.fsq.spindle.runtime.MutableRecord<UnionT>,
   UnionMeta extends JavaUnionMeta<UnionT, UnionRaw, UnionMeta>
-> extends com.foursquare.spindle.Record<UnionT> {
+> extends io.fsq.spindle.runtime.Record<UnionT> {
 
   public String name();
   public scala.Option<String> nameOption();
@@ -896,40 +896,40 @@ public static interface JavaUnion<com_twitter_thrift_descriptors_Annotation exte
   public boolean annotationsIsSet();
 }
 
-public static interface JavaUnionMutable<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Field extends com.foursquare.spindle.Record<?>,
-  UnionT extends com.foursquare.spindle.Record<UnionT>,
-  UnionRaw extends com.foursquare.spindle.MutableRecord<UnionT>,
+public static interface JavaUnionMutable<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Field extends io.fsq.spindle.runtime.Record<?>,
+  UnionT extends io.fsq.spindle.runtime.Record<UnionT>,
+  UnionRaw extends io.fsq.spindle.runtime.MutableRecord<UnionT>,
   UnionMeta extends JavaUnionMeta<UnionT, UnionRaw, UnionMeta>
 > extends JavaUnion<com_twitter_thrift_descriptors_Annotation, com_twitter_thrift_descriptors_Field,
     UnionT, UnionRaw, UnionMeta
   >,
-  com.foursquare.spindle.MutableRecord<UnionT> {
+  io.fsq.spindle.runtime.MutableRecord<UnionT> {
 
 }
 
-public static abstract class JavaUnionRaw<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Field extends com.foursquare.spindle.Record<?>,
-  UnionT extends com.foursquare.spindle.Record<UnionT>,
-  UnionRaw extends com.foursquare.spindle.MutableRecord<UnionT>,
+public static abstract class JavaUnionRaw<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Field extends io.fsq.spindle.runtime.Record<?>,
+  UnionT extends io.fsq.spindle.runtime.Record<UnionT>,
+  UnionRaw extends io.fsq.spindle.runtime.MutableRecord<UnionT>,
   UnionMeta extends JavaUnionMeta<UnionT, UnionRaw, UnionMeta>
 > implements JavaUnionMutable<com_twitter_thrift_descriptors_Annotation, com_twitter_thrift_descriptors_Field,
     UnionT, UnionRaw, UnionMeta
   >,
-  com.foursquare.spindle.Record<UnionT> {
+  io.fsq.spindle.runtime.Record<UnionT> {
 
 }
 public static abstract class JavaExceptionMeta<
-  ExceptionT extends com.foursquare.spindle.Record<ExceptionT>,
-  ExceptionRaw extends com.foursquare.spindle.MutableRecord<ExceptionT>,
+  ExceptionT extends io.fsq.spindle.runtime.Record<ExceptionT>,
+  ExceptionRaw extends io.fsq.spindle.runtime.MutableRecord<ExceptionT>,
   ExceptionMeta extends JavaExceptionMeta<ExceptionT, ExceptionRaw, ExceptionMeta>
-> implements com.foursquare.spindle.MetaRecord<ExceptionT, ExceptionMeta> {
+> implements io.fsq.spindle.runtime.MetaRecord<ExceptionT, ExceptionMeta> {
 
 }
 
-public static interface JavaException<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Field extends com.foursquare.spindle.Record<?>,
-  ExceptionT extends com.foursquare.spindle.Record<ExceptionT>,
-  ExceptionRaw extends com.foursquare.spindle.MutableRecord<ExceptionT>,
+public static interface JavaException<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Field extends io.fsq.spindle.runtime.Record<?>,
+  ExceptionT extends io.fsq.spindle.runtime.Record<ExceptionT>,
+  ExceptionRaw extends io.fsq.spindle.runtime.MutableRecord<ExceptionT>,
   ExceptionMeta extends JavaExceptionMeta<ExceptionT, ExceptionRaw, ExceptionMeta>
-> extends com.foursquare.spindle.Record<ExceptionT> {
+> extends io.fsq.spindle.runtime.Record<ExceptionT> {
 
   public String name();
   public scala.Option<String> nameOption();
@@ -950,40 +950,40 @@ public static interface JavaException<com_twitter_thrift_descriptors_Annotation 
   public boolean annotationsIsSet();
 }
 
-public static interface JavaExceptionMutable<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Field extends com.foursquare.spindle.Record<?>,
-  ExceptionT extends com.foursquare.spindle.Record<ExceptionT>,
-  ExceptionRaw extends com.foursquare.spindle.MutableRecord<ExceptionT>,
+public static interface JavaExceptionMutable<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Field extends io.fsq.spindle.runtime.Record<?>,
+  ExceptionT extends io.fsq.spindle.runtime.Record<ExceptionT>,
+  ExceptionRaw extends io.fsq.spindle.runtime.MutableRecord<ExceptionT>,
   ExceptionMeta extends JavaExceptionMeta<ExceptionT, ExceptionRaw, ExceptionMeta>
 > extends JavaException<com_twitter_thrift_descriptors_Annotation, com_twitter_thrift_descriptors_Field,
     ExceptionT, ExceptionRaw, ExceptionMeta
   >,
-  com.foursquare.spindle.MutableRecord<ExceptionT> {
+  io.fsq.spindle.runtime.MutableRecord<ExceptionT> {
 
 }
 
-public static abstract class JavaExceptionRaw<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Field extends com.foursquare.spindle.Record<?>,
-  ExceptionT extends com.foursquare.spindle.Record<ExceptionT>,
-  ExceptionRaw extends com.foursquare.spindle.MutableRecord<ExceptionT>,
+public static abstract class JavaExceptionRaw<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Field extends io.fsq.spindle.runtime.Record<?>,
+  ExceptionT extends io.fsq.spindle.runtime.Record<ExceptionT>,
+  ExceptionRaw extends io.fsq.spindle.runtime.MutableRecord<ExceptionT>,
   ExceptionMeta extends JavaExceptionMeta<ExceptionT, ExceptionRaw, ExceptionMeta>
 > implements JavaExceptionMutable<com_twitter_thrift_descriptors_Annotation, com_twitter_thrift_descriptors_Field,
     ExceptionT, ExceptionRaw, ExceptionMeta
   >,
-  com.foursquare.spindle.Record<ExceptionT> {
+  io.fsq.spindle.runtime.Record<ExceptionT> {
 
 }
 public static abstract class JavaFunctionMeta<
-  FunctionT extends com.foursquare.spindle.Record<FunctionT>,
-  FunctionRaw extends com.foursquare.spindle.MutableRecord<FunctionT>,
+  FunctionT extends io.fsq.spindle.runtime.Record<FunctionT>,
+  FunctionRaw extends io.fsq.spindle.runtime.MutableRecord<FunctionT>,
   FunctionMeta extends JavaFunctionMeta<FunctionT, FunctionRaw, FunctionMeta>
-> implements com.foursquare.spindle.MetaRecord<FunctionT, FunctionMeta> {
+> implements io.fsq.spindle.runtime.MetaRecord<FunctionT, FunctionMeta> {
 
 }
 
-public static interface JavaFunction<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Field extends com.foursquare.spindle.Record<?>,
-  FunctionT extends com.foursquare.spindle.Record<FunctionT>,
-  FunctionRaw extends com.foursquare.spindle.MutableRecord<FunctionT>,
+public static interface JavaFunction<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Field extends io.fsq.spindle.runtime.Record<?>,
+  FunctionT extends io.fsq.spindle.runtime.Record<FunctionT>,
+  FunctionRaw extends io.fsq.spindle.runtime.MutableRecord<FunctionT>,
   FunctionMeta extends JavaFunctionMeta<FunctionT, FunctionRaw, FunctionMeta>
-> extends com.foursquare.spindle.Record<FunctionT> {
+> extends io.fsq.spindle.runtime.Record<FunctionT> {
 
   public String name();
   public scala.Option<String> nameOption();
@@ -1020,40 +1020,40 @@ public static interface JavaFunction<com_twitter_thrift_descriptors_Annotation e
   public boolean annotationsIsSet();
 }
 
-public static interface JavaFunctionMutable<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Field extends com.foursquare.spindle.Record<?>,
-  FunctionT extends com.foursquare.spindle.Record<FunctionT>,
-  FunctionRaw extends com.foursquare.spindle.MutableRecord<FunctionT>,
+public static interface JavaFunctionMutable<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Field extends io.fsq.spindle.runtime.Record<?>,
+  FunctionT extends io.fsq.spindle.runtime.Record<FunctionT>,
+  FunctionRaw extends io.fsq.spindle.runtime.MutableRecord<FunctionT>,
   FunctionMeta extends JavaFunctionMeta<FunctionT, FunctionRaw, FunctionMeta>
 > extends JavaFunction<com_twitter_thrift_descriptors_Annotation, com_twitter_thrift_descriptors_Field,
     FunctionT, FunctionRaw, FunctionMeta
   >,
-  com.foursquare.spindle.MutableRecord<FunctionT> {
+  io.fsq.spindle.runtime.MutableRecord<FunctionT> {
 
 }
 
-public static abstract class JavaFunctionRaw<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Field extends com.foursquare.spindle.Record<?>,
-  FunctionT extends com.foursquare.spindle.Record<FunctionT>,
-  FunctionRaw extends com.foursquare.spindle.MutableRecord<FunctionT>,
+public static abstract class JavaFunctionRaw<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Field extends io.fsq.spindle.runtime.Record<?>,
+  FunctionT extends io.fsq.spindle.runtime.Record<FunctionT>,
+  FunctionRaw extends io.fsq.spindle.runtime.MutableRecord<FunctionT>,
   FunctionMeta extends JavaFunctionMeta<FunctionT, FunctionRaw, FunctionMeta>
 > implements JavaFunctionMutable<com_twitter_thrift_descriptors_Annotation, com_twitter_thrift_descriptors_Field,
     FunctionT, FunctionRaw, FunctionMeta
   >,
-  com.foursquare.spindle.Record<FunctionT> {
+  io.fsq.spindle.runtime.Record<FunctionT> {
 
 }
 public static abstract class JavaServiceMeta<
-  ServiceT extends com.foursquare.spindle.Record<ServiceT>,
-  ServiceRaw extends com.foursquare.spindle.MutableRecord<ServiceT>,
+  ServiceT extends io.fsq.spindle.runtime.Record<ServiceT>,
+  ServiceRaw extends io.fsq.spindle.runtime.MutableRecord<ServiceT>,
   ServiceMeta extends JavaServiceMeta<ServiceT, ServiceRaw, ServiceMeta>
-> implements com.foursquare.spindle.MetaRecord<ServiceT, ServiceMeta> {
+> implements io.fsq.spindle.runtime.MetaRecord<ServiceT, ServiceMeta> {
 
 }
 
-public static interface JavaService<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Function extends com.foursquare.spindle.Record<?>,
-  ServiceT extends com.foursquare.spindle.Record<ServiceT>,
-  ServiceRaw extends com.foursquare.spindle.MutableRecord<ServiceT>,
+public static interface JavaService<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Function extends io.fsq.spindle.runtime.Record<?>,
+  ServiceT extends io.fsq.spindle.runtime.Record<ServiceT>,
+  ServiceRaw extends io.fsq.spindle.runtime.MutableRecord<ServiceT>,
   ServiceMeta extends JavaServiceMeta<ServiceT, ServiceRaw, ServiceMeta>
-> extends com.foursquare.spindle.Record<ServiceT> {
+> extends io.fsq.spindle.runtime.Record<ServiceT> {
 
   public String name();
   public scala.Option<String> nameOption();
@@ -1078,40 +1078,40 @@ public static interface JavaService<com_twitter_thrift_descriptors_Annotation ex
   public boolean annotationsIsSet();
 }
 
-public static interface JavaServiceMutable<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Function extends com.foursquare.spindle.Record<?>,
-  ServiceT extends com.foursquare.spindle.Record<ServiceT>,
-  ServiceRaw extends com.foursquare.spindle.MutableRecord<ServiceT>,
+public static interface JavaServiceMutable<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Function extends io.fsq.spindle.runtime.Record<?>,
+  ServiceT extends io.fsq.spindle.runtime.Record<ServiceT>,
+  ServiceRaw extends io.fsq.spindle.runtime.MutableRecord<ServiceT>,
   ServiceMeta extends JavaServiceMeta<ServiceT, ServiceRaw, ServiceMeta>
 > extends JavaService<com_twitter_thrift_descriptors_Annotation, com_twitter_thrift_descriptors_Function,
     ServiceT, ServiceRaw, ServiceMeta
   >,
-  com.foursquare.spindle.MutableRecord<ServiceT> {
+  io.fsq.spindle.runtime.MutableRecord<ServiceT> {
 
 }
 
-public static abstract class JavaServiceRaw<com_twitter_thrift_descriptors_Annotation extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Function extends com.foursquare.spindle.Record<?>,
-  ServiceT extends com.foursquare.spindle.Record<ServiceT>,
-  ServiceRaw extends com.foursquare.spindle.MutableRecord<ServiceT>,
+public static abstract class JavaServiceRaw<com_twitter_thrift_descriptors_Annotation extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Function extends io.fsq.spindle.runtime.Record<?>,
+  ServiceT extends io.fsq.spindle.runtime.Record<ServiceT>,
+  ServiceRaw extends io.fsq.spindle.runtime.MutableRecord<ServiceT>,
   ServiceMeta extends JavaServiceMeta<ServiceT, ServiceRaw, ServiceMeta>
 > implements JavaServiceMutable<com_twitter_thrift_descriptors_Annotation, com_twitter_thrift_descriptors_Function,
     ServiceT, ServiceRaw, ServiceMeta
   >,
-  com.foursquare.spindle.Record<ServiceT> {
+  io.fsq.spindle.runtime.Record<ServiceT> {
 
 }
 public static abstract class JavaProgramMeta<
-  ProgramT extends com.foursquare.spindle.Record<ProgramT>,
-  ProgramRaw extends com.foursquare.spindle.MutableRecord<ProgramT>,
+  ProgramT extends io.fsq.spindle.runtime.Record<ProgramT>,
+  ProgramRaw extends io.fsq.spindle.runtime.MutableRecord<ProgramT>,
   ProgramMeta extends JavaProgramMeta<ProgramT, ProgramRaw, ProgramMeta>
-> implements com.foursquare.spindle.MetaRecord<ProgramT, ProgramMeta> {
+> implements io.fsq.spindle.runtime.MetaRecord<ProgramT, ProgramMeta> {
 
 }
 
-public static interface JavaProgram<com_twitter_thrift_descriptors_Const extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Enum extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Exception extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Include extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Namespace extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Service extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Struct extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_TypeRegistry extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Typedef extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Union extends com.foursquare.spindle.Record<?>,
-  ProgramT extends com.foursquare.spindle.Record<ProgramT>,
-  ProgramRaw extends com.foursquare.spindle.MutableRecord<ProgramT>,
+public static interface JavaProgram<com_twitter_thrift_descriptors_Const extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Enum extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Exception extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Include extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Namespace extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Service extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Struct extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_TypeRegistry extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Typedef extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Union extends io.fsq.spindle.runtime.Record<?>,
+  ProgramT extends io.fsq.spindle.runtime.Record<ProgramT>,
+  ProgramRaw extends io.fsq.spindle.runtime.MutableRecord<ProgramT>,
   ProgramMeta extends JavaProgramMeta<ProgramT, ProgramRaw, ProgramMeta>
-> extends com.foursquare.spindle.Record<ProgramT> {
+> extends io.fsq.spindle.runtime.Record<ProgramT> {
   public scala.collection.Seq<com_twitter_thrift_descriptors_Namespace> namespaces();
   public scala.Option<scala.collection.Seq<com_twitter_thrift_descriptors_Namespace>> namespacesOption();
   public scala.collection.Seq<com_twitter_thrift_descriptors_Namespace> namespacesOrDefault();
@@ -1174,42 +1174,42 @@ public static interface JavaProgram<com_twitter_thrift_descriptors_Const extends
   public boolean typeRegistryIsSet();
 }
 
-public static interface JavaProgramMutable<com_twitter_thrift_descriptors_Const extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Enum extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Exception extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Include extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Namespace extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Service extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Struct extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_TypeRegistry extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Typedef extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Union extends com.foursquare.spindle.Record<?>,
-  ProgramT extends com.foursquare.spindle.Record<ProgramT>,
-  ProgramRaw extends com.foursquare.spindle.MutableRecord<ProgramT>,
+public static interface JavaProgramMutable<com_twitter_thrift_descriptors_Const extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Enum extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Exception extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Include extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Namespace extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Service extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Struct extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_TypeRegistry extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Typedef extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Union extends io.fsq.spindle.runtime.Record<?>,
+  ProgramT extends io.fsq.spindle.runtime.Record<ProgramT>,
+  ProgramRaw extends io.fsq.spindle.runtime.MutableRecord<ProgramT>,
   ProgramMeta extends JavaProgramMeta<ProgramT, ProgramRaw, ProgramMeta>
 > extends JavaProgram<com_twitter_thrift_descriptors_Const, com_twitter_thrift_descriptors_Enum, com_twitter_thrift_descriptors_Exception, com_twitter_thrift_descriptors_Include, com_twitter_thrift_descriptors_Namespace, com_twitter_thrift_descriptors_Service, com_twitter_thrift_descriptors_Struct, com_twitter_thrift_descriptors_TypeRegistry, com_twitter_thrift_descriptors_Typedef, com_twitter_thrift_descriptors_Union,
     ProgramT, ProgramRaw, ProgramMeta
   >,
-  com.foursquare.spindle.MutableRecord<ProgramT> {
+  io.fsq.spindle.runtime.MutableRecord<ProgramT> {
 
 }
 
-public static abstract class JavaProgramRaw<com_twitter_thrift_descriptors_Const extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Enum extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Exception extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Include extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Namespace extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Service extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Struct extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_TypeRegistry extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Typedef extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Union extends com.foursquare.spindle.Record<?>,
-  ProgramT extends com.foursquare.spindle.Record<ProgramT>,
-  ProgramRaw extends com.foursquare.spindle.MutableRecord<ProgramT>,
+public static abstract class JavaProgramRaw<com_twitter_thrift_descriptors_Const extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Enum extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Exception extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Include extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Namespace extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Service extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Struct extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_TypeRegistry extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Typedef extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Union extends io.fsq.spindle.runtime.Record<?>,
+  ProgramT extends io.fsq.spindle.runtime.Record<ProgramT>,
+  ProgramRaw extends io.fsq.spindle.runtime.MutableRecord<ProgramT>,
   ProgramMeta extends JavaProgramMeta<ProgramT, ProgramRaw, ProgramMeta>
 > implements JavaProgramMutable<com_twitter_thrift_descriptors_Const, com_twitter_thrift_descriptors_Enum, com_twitter_thrift_descriptors_Exception, com_twitter_thrift_descriptors_Include, com_twitter_thrift_descriptors_Namespace, com_twitter_thrift_descriptors_Service, com_twitter_thrift_descriptors_Struct, com_twitter_thrift_descriptors_TypeRegistry, com_twitter_thrift_descriptors_Typedef, com_twitter_thrift_descriptors_Union,
     ProgramT, ProgramRaw, ProgramMeta
   >,
-  com.foursquare.spindle.Record<ProgramT> {
+  io.fsq.spindle.runtime.Record<ProgramT> {
 
 }
 
 
 public static abstract class JavaSimpleContainerTypeMeta<
-  SimpleContainerTypeT extends com.foursquare.spindle.Record<SimpleContainerTypeT>,
-  SimpleContainerTypeRaw extends com.foursquare.spindle.MutableRecord<SimpleContainerTypeT>,
+  SimpleContainerTypeT extends io.fsq.spindle.runtime.Record<SimpleContainerTypeT>,
+  SimpleContainerTypeRaw extends io.fsq.spindle.runtime.MutableRecord<SimpleContainerTypeT>,
   SimpleContainerTypeMeta extends JavaSimpleContainerTypeMeta<SimpleContainerTypeT, SimpleContainerTypeRaw, SimpleContainerTypeMeta>
-> implements com.foursquare.spindle.MetaRecord<SimpleContainerTypeT, SimpleContainerTypeMeta> {
+> implements io.fsq.spindle.runtime.MetaRecord<SimpleContainerTypeT, SimpleContainerTypeMeta> {
 
 }
 
-public static interface JavaSimpleContainerType<com_twitter_thrift_descriptors_ListType extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_MapType extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_SetType extends com.foursquare.spindle.Record<?>,
-  SimpleContainerTypeT extends com.foursquare.spindle.Record<SimpleContainerTypeT>,
-  SimpleContainerTypeRaw extends com.foursquare.spindle.MutableRecord<SimpleContainerTypeT>,
+public static interface JavaSimpleContainerType<com_twitter_thrift_descriptors_ListType extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_MapType extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_SetType extends io.fsq.spindle.runtime.Record<?>,
+  SimpleContainerTypeT extends io.fsq.spindle.runtime.Record<SimpleContainerTypeT>,
+  SimpleContainerTypeRaw extends io.fsq.spindle.runtime.MutableRecord<SimpleContainerTypeT>,
   SimpleContainerTypeMeta extends JavaSimpleContainerTypeMeta<SimpleContainerTypeT, SimpleContainerTypeRaw, SimpleContainerTypeMeta>
-> extends com.foursquare.spindle.Record<SimpleContainerTypeT> {
+> extends io.fsq.spindle.runtime.Record<SimpleContainerTypeT> {
   public scala.Option<com_twitter_thrift_descriptors_ListType> listTypeOption();
   public com_twitter_thrift_descriptors_ListType listTypeOrNull();
   public com_twitter_thrift_descriptors_ListType listTypeOrThrow();
@@ -1224,41 +1224,41 @@ public static interface JavaSimpleContainerType<com_twitter_thrift_descriptors_L
   public boolean mapTypeIsSet();
 }
 
-public static interface JavaSimpleContainerTypeMutable<com_twitter_thrift_descriptors_ListType extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_MapType extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_SetType extends com.foursquare.spindle.Record<?>,
-  SimpleContainerTypeT extends com.foursquare.spindle.Record<SimpleContainerTypeT>,
-  SimpleContainerTypeRaw extends com.foursquare.spindle.MutableRecord<SimpleContainerTypeT>,
+public static interface JavaSimpleContainerTypeMutable<com_twitter_thrift_descriptors_ListType extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_MapType extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_SetType extends io.fsq.spindle.runtime.Record<?>,
+  SimpleContainerTypeT extends io.fsq.spindle.runtime.Record<SimpleContainerTypeT>,
+  SimpleContainerTypeRaw extends io.fsq.spindle.runtime.MutableRecord<SimpleContainerTypeT>,
   SimpleContainerTypeMeta extends JavaSimpleContainerTypeMeta<SimpleContainerTypeT, SimpleContainerTypeRaw, SimpleContainerTypeMeta>
 > extends JavaSimpleContainerType<com_twitter_thrift_descriptors_ListType, com_twitter_thrift_descriptors_MapType, com_twitter_thrift_descriptors_SetType,
     SimpleContainerTypeT, SimpleContainerTypeRaw, SimpleContainerTypeMeta
   >,
-  com.foursquare.spindle.MutableRecord<SimpleContainerTypeT> {
+  io.fsq.spindle.runtime.MutableRecord<SimpleContainerTypeT> {
 
 }
 
-public static abstract class JavaSimpleContainerTypeRaw<com_twitter_thrift_descriptors_ListType extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_MapType extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_SetType extends com.foursquare.spindle.Record<?>,
-  SimpleContainerTypeT extends com.foursquare.spindle.Record<SimpleContainerTypeT>,
-  SimpleContainerTypeRaw extends com.foursquare.spindle.MutableRecord<SimpleContainerTypeT>,
+public static abstract class JavaSimpleContainerTypeRaw<com_twitter_thrift_descriptors_ListType extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_MapType extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_SetType extends io.fsq.spindle.runtime.Record<?>,
+  SimpleContainerTypeT extends io.fsq.spindle.runtime.Record<SimpleContainerTypeT>,
+  SimpleContainerTypeRaw extends io.fsq.spindle.runtime.MutableRecord<SimpleContainerTypeT>,
   SimpleContainerTypeMeta extends JavaSimpleContainerTypeMeta<SimpleContainerTypeT, SimpleContainerTypeRaw, SimpleContainerTypeMeta>
 > implements JavaSimpleContainerTypeMutable<com_twitter_thrift_descriptors_ListType, com_twitter_thrift_descriptors_MapType, com_twitter_thrift_descriptors_SetType,
     SimpleContainerTypeT, SimpleContainerTypeRaw, SimpleContainerTypeMeta
   >,
-  com.foursquare.spindle.Record<SimpleContainerTypeT> {
+  io.fsq.spindle.runtime.Record<SimpleContainerTypeT> {
 
 }
 
 public static abstract class JavaSimpleTypeMeta<
-  SimpleTypeT extends com.foursquare.spindle.Record<SimpleTypeT>,
-  SimpleTypeRaw extends com.foursquare.spindle.MutableRecord<SimpleTypeT>,
+  SimpleTypeT extends io.fsq.spindle.runtime.Record<SimpleTypeT>,
+  SimpleTypeRaw extends io.fsq.spindle.runtime.MutableRecord<SimpleTypeT>,
   SimpleTypeMeta extends JavaSimpleTypeMeta<SimpleTypeT, SimpleTypeRaw, SimpleTypeMeta>
-> implements com.foursquare.spindle.MetaRecord<SimpleTypeT, SimpleTypeMeta> {
+> implements io.fsq.spindle.runtime.MetaRecord<SimpleTypeT, SimpleTypeMeta> {
 
 }
 
-public static interface JavaSimpleType<com_twitter_thrift_descriptors_BaseType extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_ContainerType extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Typeref extends com.foursquare.spindle.Record<?>,
-  SimpleTypeT extends com.foursquare.spindle.Record<SimpleTypeT>,
-  SimpleTypeRaw extends com.foursquare.spindle.MutableRecord<SimpleTypeT>,
+public static interface JavaSimpleType<com_twitter_thrift_descriptors_BaseType extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_ContainerType extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Typeref extends io.fsq.spindle.runtime.Record<?>,
+  SimpleTypeT extends io.fsq.spindle.runtime.Record<SimpleTypeT>,
+  SimpleTypeRaw extends io.fsq.spindle.runtime.MutableRecord<SimpleTypeT>,
   SimpleTypeMeta extends JavaSimpleTypeMeta<SimpleTypeT, SimpleTypeRaw, SimpleTypeMeta>
-> extends com.foursquare.spindle.Record<SimpleTypeT> {
+> extends io.fsq.spindle.runtime.Record<SimpleTypeT> {
   public scala.Option<com_twitter_thrift_descriptors_BaseType> baseTypeOption();
   public com_twitter_thrift_descriptors_BaseType baseTypeOrNull();
   public com_twitter_thrift_descriptors_BaseType baseTypeOrThrow();
@@ -1273,25 +1273,25 @@ public static interface JavaSimpleType<com_twitter_thrift_descriptors_BaseType e
   public boolean typerefIsSet();
 }
 
-public static interface JavaSimpleTypeMutable<com_twitter_thrift_descriptors_BaseType extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_ContainerType extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Typeref extends com.foursquare.spindle.Record<?>,
-  SimpleTypeT extends com.foursquare.spindle.Record<SimpleTypeT>,
-  SimpleTypeRaw extends com.foursquare.spindle.MutableRecord<SimpleTypeT>,
+public static interface JavaSimpleTypeMutable<com_twitter_thrift_descriptors_BaseType extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_ContainerType extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Typeref extends io.fsq.spindle.runtime.Record<?>,
+  SimpleTypeT extends io.fsq.spindle.runtime.Record<SimpleTypeT>,
+  SimpleTypeRaw extends io.fsq.spindle.runtime.MutableRecord<SimpleTypeT>,
   SimpleTypeMeta extends JavaSimpleTypeMeta<SimpleTypeT, SimpleTypeRaw, SimpleTypeMeta>
 > extends JavaSimpleType<com_twitter_thrift_descriptors_BaseType, com_twitter_thrift_descriptors_ContainerType, com_twitter_thrift_descriptors_Typeref,
     SimpleTypeT, SimpleTypeRaw, SimpleTypeMeta
   >,
-  com.foursquare.spindle.MutableRecord<SimpleTypeT> {
+  io.fsq.spindle.runtime.MutableRecord<SimpleTypeT> {
 
 }
 
-public static abstract class JavaSimpleTypeRaw<com_twitter_thrift_descriptors_BaseType extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_ContainerType extends com.foursquare.spindle.Record<?>, com_twitter_thrift_descriptors_Typeref extends com.foursquare.spindle.Record<?>,
-  SimpleTypeT extends com.foursquare.spindle.Record<SimpleTypeT>,
-  SimpleTypeRaw extends com.foursquare.spindle.MutableRecord<SimpleTypeT>,
+public static abstract class JavaSimpleTypeRaw<com_twitter_thrift_descriptors_BaseType extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_ContainerType extends io.fsq.spindle.runtime.Record<?>, com_twitter_thrift_descriptors_Typeref extends io.fsq.spindle.runtime.Record<?>,
+  SimpleTypeT extends io.fsq.spindle.runtime.Record<SimpleTypeT>,
+  SimpleTypeRaw extends io.fsq.spindle.runtime.MutableRecord<SimpleTypeT>,
   SimpleTypeMeta extends JavaSimpleTypeMeta<SimpleTypeT, SimpleTypeRaw, SimpleTypeMeta>
 > implements JavaSimpleTypeMutable<com_twitter_thrift_descriptors_BaseType, com_twitter_thrift_descriptors_ContainerType, com_twitter_thrift_descriptors_Typeref,
     SimpleTypeT, SimpleTypeRaw, SimpleTypeMeta
   >,
-  com.foursquare.spindle.Record<SimpleTypeT> {
+  io.fsq.spindle.runtime.Record<SimpleTypeT> {
 
 }
 
