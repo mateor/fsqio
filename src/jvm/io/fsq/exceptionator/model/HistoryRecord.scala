@@ -60,7 +60,9 @@ object HistoryRecord extends HistoryRecord with MongoMetaRecord[HistoryRecord] w
   def roundMod(base: Long, mod: Long): Long = (base/mod) * mod
   def idForTime(date: DateTime): DateTime = new DateTime(roundMod(date.getMillis, windowMillis))
 
+  val bucketIdIndex = HistoryRecord.index(_.buckets, Asc, _.id, Desc)
+
   override val mongoIndexList = List(
     HistoryRecord.index(_.id, Asc),
-    HistoryRecord.index(_.buckets, Asc, _.id, Desc))
+    bucketIdIndex)
 }

@@ -52,8 +52,10 @@ class BucketRecord extends MongoRecord[BucketRecord] {
 object BucketRecord extends BucketRecord with MongoMetaRecord[BucketRecord] with IndexedRecord[BucketRecord] {
   override def collectionName = "buckets"
 
+  val idIndex = BucketRecord.index(_._id, Asc)
+
   override val mongoIndexList = List(
-    BucketRecord.index(_._id, Asc),
+    idIndex,
     BucketRecord.index(_.lastSeen, Asc)) // finding old buckets
 }
 

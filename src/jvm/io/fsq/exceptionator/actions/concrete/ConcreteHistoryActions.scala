@@ -102,6 +102,7 @@ class ConcreteHistoryActions(services: HasBucketActions) extends HistoryActions 
       .where(_.buckets in buckets)
       .and(_.id lte historyId)
       .orderDesc(_.id)
+      .hint(HistoryRecord.bucketIdIndex)
       .get()
 
     historyOpt.map { history =>
@@ -126,6 +127,7 @@ class ConcreteHistoryActions(services: HasBucketActions) extends HistoryActions 
       .where(_.buckets startsWith name + ":")
       .and(_.id lte historyId)
       .orderDesc(_.id)
+      .hint(HistoryRecord.bucketIdIndex)
       .get()
 
     historyOpt.map { history =>
