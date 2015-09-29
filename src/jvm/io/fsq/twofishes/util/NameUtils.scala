@@ -193,7 +193,7 @@ trait NameUtils {
     CountryConstants.countryUsesCountyAsState.has(cc)
 
   private val blacklistedParentIds =
-    new BufferedSource(getClass.getResourceAsStream("/blacklist_parents.txt"))
+    new BufferedSource(getClass.getResourceAsStream("/io/fsq/twofishes/util/data/blacklist_parents.txt"))
       .getLines.filterNot(_.startsWith("#"))
       .flatMap(l => StoredFeatureId.fromHumanReadableString(l, Some(GeonamesNamespace)))
       .map(_.longId)

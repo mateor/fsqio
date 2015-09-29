@@ -83,7 +83,7 @@ object CountryInfo {
     "PN" -> "Pitcairn Islands"
   )
 
-  val countryLines = new BufferedSource(getClass.getResourceAsStream("/countryInfo.txt")).getLines
+  val countryLines = new BufferedSource(getClass.getResourceAsStream("/io/fsq/twofishes/country/data/countryInfo.txt")).getLines
   val countryInfos = countryLines.filterNot(l => l.startsWith("#") || l.isEmpty).toList.flatMap(l => {
     val parts = l.split("\t")
     try {
