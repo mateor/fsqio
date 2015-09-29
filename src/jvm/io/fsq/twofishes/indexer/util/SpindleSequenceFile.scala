@@ -1,12 +1,11 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.hadoop.cascading.io
+package io.fsq.twofishes.indexer.util
 
 import cascading.flow.FlowProcess
 import cascading.scheme.{Scheme, SinkCall, SourceCall}
 import cascading.tap.Tap
 import cascading.tuple.Fields
-import com.foursquare.common.thrift.ThriftConverter
 import org.apache.hadoop.io.{BytesWritable, NullWritable, Writable}
 import org.apache.hadoop.mapred.{JobConf, OutputCollector, RecordReader, SequenceFileInputFormat,
     SequenceFileOutputFormat}

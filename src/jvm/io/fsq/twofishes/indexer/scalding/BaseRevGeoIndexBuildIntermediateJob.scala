@@ -1,18 +1,16 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.scalding
+package io.fsq.twofishes.indexer.scalding
 
-import java.nio.ByteBuffer
-
-import com.foursquare.geo.shapes.ShapefileS2Util
-import com.foursquare.hadoop.scalding.SpindleSequenceFileSource
-import com.foursquare.twofishes._
-import com.foursquare.twofishes.util.{GeometryCleanupUtils, GeometryUtils, RevGeoConstants}
 import com.twitter.scalding._
 import com.twitter.scalding.typed.TypedSink
 import com.vividsolutions.jts.geom.Point
 import com.vividsolutions.jts.geom.prep.PreparedGeometryFactory
-import com.vividsolutions.jts.io.{WKBWriter, WKBReader}
-import org.apache.hadoop.io.{Text, LongWritable}
+import com.vividsolutions.jts.io.{WKBReader, WKBWriter}
+import io.fsq.twofishes.gen._
+import io.fsq.twofishes.indexer.util.SpindleSequenceFileSource
+import io.fsq.twofishes.util.{GeometryCleanupUtils, GeometryUtils, RevGeoConstants, ShapefileS2Util}
+import java.nio.ByteBuffer
+import org.apache.hadoop.io.LongWritable
 
 class BaseRevGeoIndexBuildIntermediateJob(
   name: String,

@@ -1,9 +1,9 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.scalding
+package io.fsq.twofishes.indexer.scalding
 
+import io.fsq.twofishes.gen._
+import io.fsq.twofishes.util._
 import org.apache.hadoop.io.LongWritable
-import com.foursquare.twofishes._
-import com.foursquare.twofishes.util._
 
 object FeatureEditLineProcessors {
 

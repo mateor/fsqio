@@ -1,16 +1,15 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.importers.geonames
+package io.fsq.twofishes.indexer.importers.geonames
 
-import java.io.{File, FileWriter, Writer}
-
-import com.foursquare.geo.shapes.ShapefileIterator
-import com.foursquare.geo.shapes.FsqSimpleFeatureImplicits._
 import com.weiglewilczek.slf4s.Logging
+import io.fsq.twofishes.indexer.util.FsqSimpleFeatureImplicits._
+import io.fsq.twofishes.indexer.util.ShapefileIterator
+import java.io.FileWriter
 
 // Tool to flatten NaturalEarth Populated Places Shapefile to a single text file
 // to simplify scalding index build
 // run from twofishes root directory using the following command:
-// ./sbt "indexer/run-main com.foursquare.twofishes.importers.geonames.NaturalEarthAttributesFlattener"
+// ./sbt "indexer/run-main io.fsq.twofishes.indexer.importers.geonames.NaturalEarthAttributesFlattener"
 //
 // NOTE(rahul): This is a temporary workaround until I find/write an implementation
 // of FileInputFormat and RecordReader for shapefiles that can split

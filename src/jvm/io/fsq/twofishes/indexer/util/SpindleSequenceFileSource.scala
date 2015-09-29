@@ -1,13 +1,11 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.hadoop.scalding
+package io.fsq.twofishes.indexer.util
 
 import cascading.scheme.Scheme
-import com.foursquare.common.thrift.ThriftConverter
-import com.foursquare.hadoop.cascading.io.SpindleSequenceFile
 import com.twitter.scalding._
+import org.apache.hadoop.io.Writable
 import org.apache.hadoop.mapred.{JobConf, OutputCollector, RecordReader}
-import org.apache.hadoop.io.{BytesWritable, NullWritable, Writable}
 
 case class SpindleSequenceFileSource[K <: Writable: Manifest, T <: ThriftConverter.TType](paths: Seq[String])(implicit mf: Manifest[T], conv: TupleConverter[(K, T)], tset: TupleSetter[(K, T)])
   extends FixedPathSource(paths: _*) with Mappable[(K, T)] with TypedSink[(K, T)] {

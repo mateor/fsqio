@@ -1,12 +1,11 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.scalding
+package io.fsq.twofishes.indexer.scalding
 
-import java.nio.ByteBuffer
-
-import com.foursquare.hadoop.scalding.SpindleSequenceFileSource
-import com.foursquare.twofishes._
 import com.twitter.scalding._
 import com.twitter.scalding.typed.TypedSink
+import io.fsq.twofishes.gen._
+import io.fsq.twofishes.indexer.util.SpindleSequenceFileSource
+import java.nio.ByteBuffer
 import org.apache.hadoop.io.LongWritable
 
 class BasePolygonIndexBuildIntermediateJob(

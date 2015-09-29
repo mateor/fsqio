@@ -1,5 +1,5 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.mongo
+package io.fsq.twofishes.indexer.mongo
 
 import com.mongodb.casbah.Imports._
 import com.mongodb.casbah.MongoConnection

@@ -1,7 +1,7 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.scalding
+package io.fsq.twofishes.indexer.scalding
 
-import com.foursquare.twofishes._
+import io.fsq.twofishes.gen._
 
 object FeatureMergers {
 

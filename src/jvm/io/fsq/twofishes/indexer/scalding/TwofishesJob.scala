@@ -1,15 +1,15 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.scalding
+package io.fsq.twofishes.indexer.scalding
 
 import cascading.tap.hadoop.HfsProps
 import cascading.util.Update
 import com.twitter.scalding._
-import org.apache.hadoop.fs.{Path, FileSystem}
-import org.apache.hadoop.io.{LongWritable, Text, BytesWritable}
-import scala.collection.mutable.ListBuffer
+import com.twitter.scalding.filecache.{CachedFile, DistributedCacheFile}
 import org.apache.hadoop.conf.Configuration
+import org.apache.hadoop.fs.{FileSystem, Path}
+import org.apache.hadoop.io.Text
+import scala.collection.mutable.ListBuffer
 import scala.util.matching.Regex
-import com.twitter.scalding.filecache.{DistributedCacheFile, CachedFile}
 
 class TwofishesJob(name: String, args: Args) extends Job(args) {
 

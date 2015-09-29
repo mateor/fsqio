@@ -1,7 +1,7 @@
-package com.foursquare.twofishes.mongo
+package io.fsq.twofishes.indexer.mongo
 
-import com.foursquare.twofishes.{BoundingBox, DisplayName, GeocodeRecord}
-import com.foursquare.twofishes.util.StoredFeatureId
+import io.fsq.twofishes.indexer.util.{BoundingBox, DisplayName, GeocodeRecord}
+import io.fsq.twofishes.util.StoredFeatureId
 import org.bson.types.ObjectId
 
 trait GeocodeStorageWriteService {

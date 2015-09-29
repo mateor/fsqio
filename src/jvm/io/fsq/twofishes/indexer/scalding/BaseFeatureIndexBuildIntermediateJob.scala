@@ -1,12 +1,11 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.scalding
+package io.fsq.twofishes.indexer.scalding
 
-import com.foursquare.hadoop.scalding.SpindleSequenceFileSource
-import com.foursquare.twofishes._
-import com.foursquare.twofishes.util.StoredFeatureId
 import com.twitter.scalding._
 import com.twitter.scalding.typed.TypedSink
-import org.apache.hadoop.io.{LongWritable, Text}
+import io.fsq.twofishes.gen._
+import io.fsq.twofishes.indexer.util.SpindleSequenceFileSource
+import org.apache.hadoop.io.LongWritable
 
 class BaseFeatureIndexBuildIntermediateJob(
   name: String,

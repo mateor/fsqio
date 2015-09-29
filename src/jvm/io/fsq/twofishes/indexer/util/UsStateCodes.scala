@@ -1,8 +1,6 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.geo
-
-// import com.foursquare.base2.Lists.Implicits._
+package io.fsq.twofishes.indexer.util
 
 object UsStateCodes {
   val fipsMap = Map(

@@ -1,5 +1,5 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.scalding
+package io.fsq.twofishes.indexer.scalding
 
 case class DirectoryEnumerationSpec(
   relativePath: String,

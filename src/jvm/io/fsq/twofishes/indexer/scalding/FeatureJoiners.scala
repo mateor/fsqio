@@ -1,13 +1,13 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.scalding
+package io.fsq.twofishes.indexer.scalding
 
-import java.nio.ByteBuffer
-
-import com.foursquare.twofishes._
-import com.vividsolutions.jts.geom.{GeometryFactory, Coordinate}
-import org.apache.hadoop.io.LongWritable
 import com.twitter.scalding._
-import com.foursquare.twofishes.util.StoredFeatureId
+import com.vividsolutions.jts.geom.{Coordinate, GeometryFactory}
+import io.fsq.twofishes.gen._
+import io.fsq.twofishes.indexer.util.SlugEntry
+import io.fsq.twofishes.util.StoredFeatureId
+import java.nio.ByteBuffer
+import org.apache.hadoop.io.LongWritable
 
 object FeatureJoiners {
 

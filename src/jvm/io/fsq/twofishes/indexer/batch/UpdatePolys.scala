@@ -1,15 +1,15 @@
 //  Copyright 2012 Foursquare Labs Inc. All Rights Reserved
-package com.foursquare.twofishes.batch
+package io.fsq.twofishes.indexer.batch
 
-import com.foursquare.twofishes._
-import com.foursquare.twofishes.importers.geonames._
-import com.foursquare.twofishes.mongo.MongoGeocodeStorageService
-import com.foursquare.twofishes.util.GeonamesNamespace
 import com.mongodb.casbah.Imports._
 import com.novus.salat._
 import com.novus.salat.annotations._
 import com.novus.salat.dao._
 import com.novus.salat.global._
+import io.fsq.twofishes.gen._
+import io.fsq.twofishes.indexer.importers.geonames._
+import io.fsq.twofishes.indexer.mongo.MongoGeocodeStorageService
+import io.fsq.twofishes.util.GeonamesNamespace
 
 object UpdatePolys {
   def main(args: Array[String]) {

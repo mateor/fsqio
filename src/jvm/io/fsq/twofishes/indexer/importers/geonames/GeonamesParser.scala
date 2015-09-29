@@ -1,24 +1,25 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.importers.geonames
+package io.fsq.twofishes.indexer.importers.geonames
 
 import akka.actor.{ActorSystem, Props}
 import com.foursquare.geo.quadtree.CountryRevGeo
-import com.foursquare.geo.shapes.FsqSimpleFeatureImplicits._
-import com.foursquare.geo.shapes.ShapefileIterator
-import com.foursquare.twofishes.Identity._
-import com.foursquare.twofishes._
-import com.foursquare.twofishes.mongo._
-import com.foursquare.twofishes.output._
-import com.foursquare.twofishes.util.{DurationUtils, GeoTools, GeonamesId, GeonamesNamespace, Helpers, NameNormalizer,
-    StoredFeatureId}
-import com.foursquare.twofishes.util.Helpers._
-import com.foursquare.twofishes.util.Lists.Implicits._
 import com.twitter.ostrich.admin.RuntimeEnvironment
 import com.twitter.ostrich.admin.config.AdminServiceConfig
 import com.twitter.ostrich.stats.Stats
 import com.vividsolutions.jts.geom.Geometry
 import com.vividsolutions.jts.io.{WKBWriter, WKTReader}
 import com.weiglewilczek.slf4s.Logging
+import io.fsq.twofishes.gen._
+import io.fsq.twofishes.indexer.mongo._
+import io.fsq.twofishes.indexer.output._
+import io.fsq.twofishes.indexer.util.{BoundingBox, DisplayName, GeocodeRecord, Point, SlugEntry}
+import io.fsq.twofishes.indexer.util.FsqSimpleFeatureImplicits._
+import io.fsq.twofishes.indexer.util.ShapefileIterator
+import io.fsq.twofishes.util.{DurationUtils, GeoTools, GeonamesId, GeonamesNamespace, Helpers, NameNormalizer,
+    StoredFeatureId}
+import io.fsq.twofishes.util.Helpers._
+import io.fsq.twofishes.util.Identity._
+import io.fsq.twofishes.util.Lists.Implicits._
 import java.io.File
 import java.util.concurrent.CountDownLatch
 import org.bson.types.ObjectId
@@ -150,7 +151,7 @@ object GeonamesParser extends DurationUtils {
 // (country -> tokenlist)
 case class ShortenInfo(from: Regex, to: String, flags: Int)
 
-import GeonamesParser._
+import io.fsq.twofishes.indexer.importers.geonames.GeonamesParser._
 class GeonamesParser(
   store: GeocodeStorageWriteService,
   slugIndexer: SlugIndexer

@@ -1,13 +1,14 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.importers.geonames
+package io.fsq.twofishes.indexer.importers.geonames
 
-import com.foursquare.twofishes._
-import com.foursquare.twofishes.mongo.{GeocodeStorageWriteService, MongoGeocodeDAO}
-import com.foursquare.twofishes.util.{Helpers, NameUtils, SlugBuilder, StoredFeatureId}
+import io.fsq.twofishes.core.YahooWoeTypes
+import io.fsq.twofishes.gen._
+import io.fsq.twofishes.indexer.mongo.{GeocodeStorageWriteService, MongoGeocodeDAO}
+import io.fsq.twofishes.indexer.util.{SlugEntry, SlugEntryMap}
+import io.fsq.twofishes.util.{Helpers, NameUtils, SlugBuilder, StoredFeatureId}
 import java.io.File
 import scala.collection.mutable.{HashMap, HashSet}
 import scalaj.collection.Implicits._
-
 
 // TODO
 // stop using string representations of "a:b" featureids everywhere, PLEASE

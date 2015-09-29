@@ -1,12 +1,13 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.scalding.output
+package io.fsq.twofishes.indexer.scalding.output
 
-import com.foursquare.common.thrift.ThriftConverter
-import com.foursquare.twofishes._
-import com.foursquare.twofishes.output._
+import io.fsq.twofishes.core.Index
+import io.fsq.twofishes.gen._
+import io.fsq.twofishes.indexer.output._
+import io.fsq.twofishes.indexer.util.ThriftConverter
 import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.Path
-import org.apache.hadoop.io.{Writable, BytesWritable}
+import org.apache.hadoop.io.{BytesWritable, Writable}
 import org.apache.hadoop.io.SequenceFile.Reader
 
 object IndexOutputType extends Enumeration {

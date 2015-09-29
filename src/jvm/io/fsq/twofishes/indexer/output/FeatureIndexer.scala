@@ -1,9 +1,5 @@
-package com.foursquare.twofishes.output
+package io.fsq.twofishes.indexer.output
 
-import com.foursquare.twofishes.{GeocodeRecord, GeocodeServingFeature, Indexes, YahooWoeType}
-import com.foursquare.twofishes.Identity._
-import com.foursquare.twofishes.mongo.{MongoGeocodeDAO, PolygonIndex, PolygonIndexDAO, RevGeoIndexDAO}
-import com.foursquare.twofishes.util.{GeoTools, GeometryUtils, StoredFeatureId}
 import com.mongodb.Bytes
 import com.mongodb.casbah.Imports._
 import com.novus.salat._
@@ -11,6 +7,12 @@ import com.novus.salat.annotations._
 import com.novus.salat.dao._
 import com.novus.salat.global._
 import com.vividsolutions.jts.io.WKBReader
+import io.fsq.twofishes.core.Indexes
+import io.fsq.twofishes.gen.{GeocodeServingFeature, YahooWoeType}
+import io.fsq.twofishes.indexer.mongo.{MongoGeocodeDAO, PolygonIndex, PolygonIndexDAO, RevGeoIndexDAO}
+import io.fsq.twofishes.indexer.util.GeocodeRecord
+import io.fsq.twofishes.util.{GeoTools, GeometryUtils, StoredFeatureId}
+import io.fsq.twofishes.util.Identity._
 import java.io._
 import org.apache.hadoop.hbase.util.Bytes._
 import scalaj.collection.Implicits._

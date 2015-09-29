@@ -1,14 +1,14 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.scalding
+package io.fsq.twofishes.indexer.scalding
 
 import com.twitter.scalding._
-import org.apache.hadoop.io.LongWritable
 import com.twitter.scalding.typed.TypedSink
-import com.foursquare.twofishes._
-import com.foursquare.hadoop.scalding.SpindleSequenceFileSource
-import com.foursquare.twofishes.importers.geonames.GeonamesFeature
-import com.foursquare.twofishes.util._
 import com.vividsolutions.jts.io.{WKBWriter, WKTReader}
+import io.fsq.twofishes.gen._
+import io.fsq.twofishes.indexer.importers.geonames.GeonamesFeature
+import io.fsq.twofishes.indexer.util.{BoundingBox, DisplayName, GeocodeRecord, Point, SpindleSequenceFileSource}
+import io.fsq.twofishes.util._
+import org.apache.hadoop.io.LongWritable
 
 class BaseFeaturesImporterJob(
   name: String,

@@ -1,8 +1,6 @@
 
-package com.foursquare.twofishes.output
+package io.fsq.twofishes.indexer.output
 
-import com.foursquare.twofishes.Indexes
-import com.foursquare.twofishes.mongo.{MongoGeocodeDAO, PolygonIndex, PolygonIndexDAO}
 import com.mongodb.Bytes
 import com.mongodb.casbah.Imports._
 import com.novus.salat._
@@ -10,6 +8,8 @@ import com.novus.salat.annotations._
 import com.novus.salat.dao._
 import com.novus.salat.global._
 import com.vividsolutions.jts.io.WKBReader
+import io.fsq.twofishes.core.Indexes
+import io.fsq.twofishes.indexer.mongo.{MongoGeocodeDAO, PolygonIndex, PolygonIndexDAO}
 import java.io._
 import org.apache.hadoop.hbase.util.Bytes._
 import scalaj.collection.Implicits._

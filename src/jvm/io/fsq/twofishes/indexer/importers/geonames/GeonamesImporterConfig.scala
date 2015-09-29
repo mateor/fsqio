@@ -1,5 +1,5 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.importers.geonames
+package io.fsq.twofishes.indexer.importers.geonames
 
 case class GeonamesImporterConfig(
   // Buildings are places like the eiffel tower, but also schools and federal offices.
