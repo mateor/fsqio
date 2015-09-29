@@ -6,7 +6,7 @@ import scala.io.BufferedSource
 
 object DependentCountryInfo {
   private val dependentCountryRelationships =
-    new BufferedSource(getClass.getResourceAsStream("/dependent_countries.txt"))
+    new BufferedSource(getClass.getResourceAsStream("/io/fsq/twofishes/country/data/dependent_countries.txt"))
       .getLines.filterNot(_.startsWith("#"))
       .map(line => {
           var parts = line.split("\\|")
