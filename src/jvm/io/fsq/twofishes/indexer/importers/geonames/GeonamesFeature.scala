@@ -1,11 +1,11 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.importers.geonames
+package io.fsq.twofishes.indexer.importers.geonames
 
-import com.foursquare.twofishes.Identity._
-import com.foursquare.twofishes.YahooWoeType
-import com.foursquare.twofishes.util.{GeonamesNamespace, GeonamesZip, StoredFeatureId}
-import com.foursquare.twofishes.util.Helpers._
 import com.weiglewilczek.slf4s.Logging
+import io.fsq.twofishes.gen.YahooWoeType
+import io.fsq.twofishes.util.{GeonamesNamespace, GeonamesZip, StoredFeatureId}
+import io.fsq.twofishes.util.Helpers._
+import io.fsq.twofishes.util.Identity._
 
 
 object GeonamesFeatureColumns extends Enumeration {
@@ -16,7 +16,7 @@ object GeonamesFeatureColumns extends Enumeration {
       MODIFICATION_DATE, ACCURACY, EXTRA = Value
 }
 
-import GeonamesFeatureColumns._
+import io.fsq.twofishes.indexer.importers.geonames.GeonamesFeatureColumns._
 
 object GeonamesFeature extends Logging {
   val adminColumns = List(
@@ -132,7 +132,7 @@ object AdminLevel extends Enumeration {
   val COUNTRY, ADM1, ADM2, ADM3, ADM4, OTHER = Value
 }
 
-import AdminLevel._
+import io.fsq.twofishes.indexer.importers.geonames.AdminLevel._
 
 trait FeatureClass {
   def woeType: YahooWoeType

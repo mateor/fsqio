@@ -1,17 +1,18 @@
-  package com.foursquare.twofishes.output
+  package io.fsq.twofishes.indexer.output
 
-import com.foursquare.twofishes.{Index, MapFileUtils}
-import com.foursquare.twofishes.util.{DurationUtils, StoredFeatureId}
 import com.mongodb.casbah.Imports._
 import com.novus.salat._
 import com.novus.salat.annotations._
 import com.novus.salat.dao._
 import com.novus.salat.global._
+import io.fsq.twofishes.core.{Index, MapFileUtils}
+import io.fsq.twofishes.util.{DurationUtils, StoredFeatureId}
 import java.io._
 import java.net.URI
 import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.{LocalFileSystem, Path}
-import org.apache.hadoop.hbase.io.hfile.{Compression, HFile, TwofishesFoursquareCacheConfig}
+import org.apache.hadoop.hbase.io.hfile.{Compression, HFile}
+import org.apache.hadoop.hbase.io.hfile.hacks.TwofishesFoursquareCacheConfigHack
 import org.apache.hadoop.hbase.util.Bytes._
 import org.apache.hadoop.io.{BytesWritable, MapFile}
 import org.apache.thrift.protocol.TCompactProtocol
@@ -66,10 +67,10 @@ abstract class Indexer extends DurationUtils {
 
   // this is all weirdly 4sq specific logic :-(
   def fixThriftClassName(n: String) = {
-    if (n.contains("com.foursquare.twofishes.gen")) {
+    if (n.contains("io.fsq.twofishes.gen")) {
       n
     } else {
-      n.replace("com.foursquare.twofishes", "com.foursquare.twofishes.gen")
+      n.replace("com.foursquare.twofishes", "io.fsq.twofishes.gen")
         .replace("com.foursquare.base.thrift", "com.foursquare.base.gen")
 
     }
@@ -92,7 +93,7 @@ abstract class Indexer extends DurationUtils {
     val compressionAlgorithm: Compression.Algorithm =
       Compression.getCompressionAlgorithmByName("none")
 
-    val writer = HFile.getWriterFactory(hadoopConfiguration, new TwofishesFoursquareCacheConfig(hadoopConfiguration))
+    val writer = HFile.getWriterFactory(hadoopConfiguration, new TwofishesFoursquareCacheConfigHack(hadoopConfiguration))
       .withPath(fs, path)
       .withBlockSize(blockSize)
       .withCompression(compressionAlgorithm)

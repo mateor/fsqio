@@ -1,14 +1,14 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.scalding
+package io.fsq.twofishes.indexer.scalding
 
-import com.foursquare.twofishes._
-import com.foursquare.twofishes.util.NameNormalizer
-import com.foursquare.hadoop.scalding.SpindleSequenceFileSource
-import com.twitter.scalding._
-import com.twitter.scalding.typed.TypedSink
-import org.apache.hadoop.io.LongWritable
 import com.rockymadden.stringmetric.similarity.JaroWinklerMetric
 import com.rockymadden.stringmetric.transform._
+import com.twitter.scalding._
+import com.twitter.scalding.typed.TypedSink
+import io.fsq.twofishes.gen._
+import io.fsq.twofishes.indexer.util.SpindleSequenceFileSource
+import io.fsq.twofishes.util.NameNormalizer
+import org.apache.hadoop.io.LongWritable
 
 class BaseUnmatchedPolygonFeatureMatchingIntermediateJob(
   name: String,

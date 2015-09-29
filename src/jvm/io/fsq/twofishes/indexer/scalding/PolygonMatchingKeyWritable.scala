@@ -1,9 +1,8 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.scalding
+package io.fsq.twofishes.indexer.scalding
 
-import java.io.{DataOutput, IOException, DataInput}
-
-import com.foursquare.twofishes._
+import io.fsq.twofishes.gen.{PolygonMatchingKey, YahooWoeType}
+import java.io.{DataInput, DataOutput, IOException}
 import org.apache.hadoop.io.WritableComparable
 
 class PolygonMatchingKeyWritable(value: PolygonMatchingKey) extends WritableComparable[PolygonMatchingKeyWritable] {

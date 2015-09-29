@@ -1,10 +1,10 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.scalding
+package io.fsq.twofishes.indexer.scalding
 
-import com.foursquare.twofishes._
-import java.nio.ByteBuffer
-import com.foursquare.twofishes.util.NameNormalizer
 import com.vividsolutions.jts.io.{WKBWriter, WKTReader}
+import io.fsq.twofishes.gen._
+import io.fsq.twofishes.util.NameNormalizer
+import java.nio.ByteBuffer
 import org.geotools.geojson.geom.GeometryJSON
 
 object FeatureEditHelper {

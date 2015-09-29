@@ -1,6 +1,6 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.common.reflection
+package io.fsq.twofishes.indexer.util
 
 import java.lang.reflect.{Field, Method}
 

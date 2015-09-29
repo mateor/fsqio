@@ -1,11 +1,11 @@
 
-package com.foursquare.twofishes.output
+package io.fsq.twofishes.indexer.output
 
-import com.foursquare.twofishes.Indexes
-import com.foursquare.twofishes.mongo.{MongoGeocodeDAO, S2InteriorIndex, S2InteriorIndexDAO}
-import com.foursquare.twofishes.util.S2CoveringConstants
 import com.mongodb.Bytes
 import com.mongodb.casbah.Imports._
+import io.fsq.twofishes.core.Indexes
+import io.fsq.twofishes.indexer.mongo.{MongoGeocodeDAO, S2InteriorIndex, S2InteriorIndexDAO}
+import io.fsq.twofishes.util.S2CoveringConstants
 
 class S2InteriorIndexer(
   override val basepath: String,

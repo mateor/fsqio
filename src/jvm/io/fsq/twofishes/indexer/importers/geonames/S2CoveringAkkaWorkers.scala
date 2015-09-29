@@ -1,12 +1,7 @@
-package com.foursquare.twofishes
+package io.fsq.twofishes.indexer.importers.geonames
 
 import akka.actor.{Actor, ActorSystem, PoisonPill, Props}
 import akka.routing.{Broadcast, RoundRobinRouter}
-import com.foursquare.geo.shapes.ShapefileS2Util
-import com.foursquare.twofishes.mongo.{PolygonIndexDAO, RevGeoIndex, RevGeoIndexDAO, S2CoveringIndex,
-    S2CoveringIndexDAO, S2InteriorIndex, S2InteriorIndexDAO}
-import com.foursquare.twofishes.util.{DurationUtils, GeometryCleanupUtils, GeometryUtils, RevGeoConstants,
-    S2CoveringConstants}
 import com.google.common.geometry.S2CellId
 import com.mongodb.Bytes
 import com.mongodb.casbah.Imports._
@@ -15,6 +10,10 @@ import com.vividsolutions.jts.geom.{Point => JTSPoint}
 import com.vividsolutions.jts.geom.prep.PreparedGeometryFactory
 import com.vividsolutions.jts.io.{WKBReader, WKBWriter}
 import com.weiglewilczek.slf4s.Logging
+import io.fsq.twofishes.indexer.mongo.{PolygonIndexDAO, RevGeoIndex, RevGeoIndexDAO, S2CoveringIndex,
+    S2CoveringIndexDAO, S2InteriorIndex, S2InteriorIndexDAO}
+import io.fsq.twofishes.util.{DurationUtils, GeometryCleanupUtils, GeometryUtils, RevGeoConstants, S2CoveringConstants,
+    ShapefileS2Util}
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.atomic.AtomicInteger
 import org.bson.types.ObjectId

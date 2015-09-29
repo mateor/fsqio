@@ -1,11 +1,10 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.scalding
+package io.fsq.twofishes.indexer.scalding
 
-import com.foursquare.common.thrift.ThriftConverter
-import com.foursquare.twofishes._
 import com.ibm.icu.text.Transliterator
 import com.vividsolutions.jts.geom.Geometry
-import com.vividsolutions.jts.io.{WKBWriter, WKBReader}
+import com.vividsolutions.jts.io.{WKBReader, WKBWriter}
+import io.fsq.twofishes.gen._
 import org.apache.commons.net.util.Base64
 
 object PolygonMatchingHelper {

@@ -1,15 +1,16 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.scalding.output
+package io.fsq.twofishes.indexer.scalding.output
 
-import com.foursquare.twofishes._
-import com.foursquare.twofishes.util.{RevGeoConstants, S2CoveringConstants, StoredFeatureId}
 import com.vividsolutions.jts.geom.Geometry
 import com.vividsolutions.jts.io.WKBReader
-import org.apache.hadoop.io.{Text, LongWritable}
+import io.fsq.twofishes.core.Indexes
+import io.fsq.twofishes.gen._
+import io.fsq.twofishes.util.{RevGeoConstants, S2CoveringConstants, StoredFeatureId}
+import org.apache.hadoop.io.{LongWritable, Text}
 
 // copy scalding index build intermediate job output sequence files locally
 // run any indexer as follows:
-// java -cp indexer-assembly-[version].jar com.foursquare.twofishes.scalding.output.[indexer class name] [path to scalding intermediate sequence files] [output path]
+// java -cp indexer-assembly-[version].jar io.fsq.twofishes.indexer.scalding.output.[indexer class name] [path to scalding intermediate sequence files] [output path]
 // TODO(rahul): make it so mapfiles/hfile can be directly produced by scalding jobs
 
 object NameIndexer {
@@ -41,8 +42,8 @@ object PrefixIndexer {
       options = IndexerOptions(
         IndexOutputType.MAPFILE_OUTPUT,
         Map(
-          "MAX_PREFIX_LENGTH" -> com.foursquare.twofishes.output.PrefixIndexer.MaxPrefixLength.toString,
-          "MAX_FIDS_PER_PREFIX" -> com.foursquare.twofishes.output.PrefixIndexer.MaxFidsToStorePerPrefix.toString
+          "MAX_PREFIX_LENGTH" -> io.fsq.twofishes.indexer.output.PrefixIndexer.MaxPrefixLength.toString,
+          "MAX_FIDS_PER_PREFIX" -> io.fsq.twofishes.indexer.output.PrefixIndexer.MaxFidsToStorePerPrefix.toString
         )),
       processor = NameIndexer.processor
     ).writeIndex()

@@ -1,19 +1,18 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.importers.geonames
+package io.fsq.twofishes.indexer.importers.geonames
 
-import com.foursquare.geo.shapes.{FsqSimpleFeature, GeoJsonIterator, ShapeIterator, ShapefileIterator}
-import com.foursquare.twofishes.DisplayName
-import com.foursquare.twofishes.util.{FeatureNamespace, GeonamesNamespace, Helpers, StoredFeatureId}
-import com.foursquare.twofishes.util.Lists.Implicits._
 import com.vividsolutions.jts.io.WKBWriter
 import com.weiglewilczek.slf4s.Logging
+import io.fsq.twofishes.indexer.util.{DisplayName, FsqSimpleFeature, GeoJsonIterator, ShapeIterator, ShapefileIterator}
+import io.fsq.twofishes.util.{FeatureNamespace, GeonamesNamespace, Helpers, StoredFeatureId}
+import io.fsq.twofishes.util.Lists.Implicits._
 import java.io.{File, FileWriter, Writer}
 import org.apache.commons.net.util.Base64
 
 // Tool to flatten all polygons and matching metadata to a single text file
 // to simplify scalding index build
 // run from twofishes root directory using the following command:
-// ./sbt "indexer/run-main com.foursquare.twofishes.importers.geonames.PolygonDataFlattener"
+// ./sbt "indexer/run-main io.fsq.twofishes.indexer.importers.geonames.PolygonDataFlattener"
 //
 // NOTE(rahul): This is a temporary workaround until I find/write an implementation
 // of FileInputFormat and RecordReader for shapefiles/geojson that can split

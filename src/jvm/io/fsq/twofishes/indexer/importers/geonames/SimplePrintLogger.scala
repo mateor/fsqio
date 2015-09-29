@@ -1,5 +1,5 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.importers.geonames
+package io.fsq.twofishes.indexer.importers.geonames
   
 trait SimplePrintLogger {
   object logger {

@@ -1,5 +1,5 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes
+package io.fsq.twofishes.indexer.util
 
 import scala.collection.mutable.HashMap
 

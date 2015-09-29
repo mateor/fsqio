@@ -1,8 +1,7 @@
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.common.thrift
+package io.fsq.twofishes.indexer.util
 
-import com.foursquare.common.reflection.ScalaReflection
 import com.foursquare.spindle.{Record, RecordProvider}
 import java.lang.reflect.Modifier
 import org.apache.thrift.{TBase, TDeserializer, TFieldIdEnum, TSerializer}

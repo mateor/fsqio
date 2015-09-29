@@ -1,9 +1,8 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.scalding
+package io.fsq.twofishes.indexer.scalding
 
-import com.foursquare.twofishes.scalding.tgn._
 import com.twitter.scalding.Args
-import com.foursquare.twofishes.importers.geonames.GeonamesFeature
+import io.fsq.twofishes.indexer.importers.geonames.GeonamesFeature
 
 class GeonamesFeaturesImporterJob(args: Args) extends BaseFeaturesImporterJob(
   name = "geonames_features_import",

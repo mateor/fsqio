@@ -1,10 +1,11 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.importers.geonames
+package io.fsq.twofishes.indexer.importers.geonames
 
-import com.foursquare.twofishes._
-import com.foursquare.twofishes.mongo.GeocodeStorageWriteService
-import com.foursquare.twofishes.util.{GeonamesNamespace, StoredFeatureId}
 import com.weiglewilczek.slf4s.Logging
+import io.fsq.twofishes.gen._
+import io.fsq.twofishes.indexer.mongo.GeocodeStorageWriteService
+import io.fsq.twofishes.indexer.util.{BoundingBox, Point}
+import io.fsq.twofishes.util.{GeonamesNamespace, StoredFeatureId}
 import java.io.File
 import scala.collection.mutable.HashMap
 

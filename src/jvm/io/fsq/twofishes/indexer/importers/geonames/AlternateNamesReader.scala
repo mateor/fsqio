@@ -1,8 +1,8 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.importers.geonames
+package io.fsq.twofishes.indexer.importers.geonames
 
-import com.foursquare.twofishes._
-import com.foursquare.twofishes.util.{GeonamesNamespace, StoredFeatureId}
+import io.fsq.twofishes.gen._
+import io.fsq.twofishes.util.{GeonamesNamespace, StoredFeatureId}
 import java.io.File
 import scala.collection.mutable.HashMap
 

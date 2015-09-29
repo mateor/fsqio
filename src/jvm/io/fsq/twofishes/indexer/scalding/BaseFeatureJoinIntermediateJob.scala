@@ -1,11 +1,10 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.scalding
+package io.fsq.twofishes.indexer.scalding
 
 import com.twitter.scalding._
-import org.apache.hadoop.io.Writable
 import com.twitter.scalding.typed.TypedSink
-import com.foursquare.hadoop.scalding.SpindleSequenceFileSource
-import com.foursquare.common.thrift.ThriftConverter
+import io.fsq.twofishes.indexer.util.{SpindleSequenceFileSource, ThriftConverter}
+import org.apache.hadoop.io.Writable
 
 class BaseFeatureJoinIntermediateJob[
   K <: Writable with Comparable[K]: Manifest,

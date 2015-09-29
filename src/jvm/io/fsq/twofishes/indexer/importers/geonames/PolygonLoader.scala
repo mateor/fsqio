@@ -1,18 +1,8 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.importers.geonames
+package io.fsq.twofishes.indexer.importers.geonames
 
 import com.cybozu.labs.langdetect.DetectorFactory
-import com.foursquare.geo.country.CountryInfo
 import com.foursquare.geo.quadtree.CountryRevGeo
-import com.foursquare.geo.shapes.{FsqSimpleFeature, GeoJsonIterator, ShapeIterator, ShapefileIterator}
-import com.foursquare.twofishes.Identity._
-import com.foursquare.twofishes._
-import com.foursquare.twofishes.mongo.{GeocodeStorageWriteService, MongoGeocodeDAO, PolygonIndex, PolygonIndexDAO,
-    RevGeoIndexDAO}
-import com.foursquare.twofishes.util.{AdHocId, DurationUtils, FeatureNamespace, GeonamesNamespace, Helpers,
-    NameNormalizer, StoredFeatureId}
-import com.foursquare.twofishes.util.Helpers._
-import com.foursquare.twofishes.util.Lists.Implicits._
 import com.ibm.icu.text.Transliterator
 import com.mongodb.{Bytes, MongoException}
 import com.mongodb.casbah.Imports._
@@ -22,6 +12,17 @@ import com.rockymadden.stringmetric.transform._
 import com.twitter.ostrich.stats.Stats
 import com.vividsolutions.jts.geom.Geometry
 import com.vividsolutions.jts.io.{WKBReader, WKBWriter}
+import io.fsq.twofishes.country.CountryInfo
+import io.fsq.twofishes.gen._
+import io.fsq.twofishes.indexer.mongo.{GeocodeStorageWriteService, MongoGeocodeDAO, PolygonIndex, PolygonIndexDAO,
+    RevGeoIndexDAO}
+import io.fsq.twofishes.indexer.util.{DisplayName, FsqSimpleFeature, GeoJsonIterator, GeocodeRecord, ShapeIterator,
+    ShapefileIterator}
+import io.fsq.twofishes.util.{AdHocId, DurationUtils, FeatureNamespace, GeonamesNamespace, Helpers, NameNormalizer,
+    StoredFeatureId}
+import io.fsq.twofishes.util.Helpers._
+import io.fsq.twofishes.util.Identity._
+import io.fsq.twofishes.util.Lists.Implicits._
 import java.io.{File, FileWriter, Writer}
 import java.nio.charset.Charset
 import org.bson.types.ObjectId
@@ -29,7 +30,6 @@ import org.geotools.geojson.geom.GeometryJSON
 import org.json4s._
 import org.json4s.jackson.JsonMethods._
 import scalaj.collection.Implicits._
-
 
 object LanguageDetector {
   DetectorFactory.loadProfile("./indexer/src/main/resources/profiles.sm/")

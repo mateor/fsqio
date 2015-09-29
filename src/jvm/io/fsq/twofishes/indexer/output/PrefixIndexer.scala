@@ -1,14 +1,15 @@
-package com.foursquare.twofishes.output
+package io.fsq.twofishes.indexer.output
 
-import com.foursquare.twofishes.{FeatureNameFlags, Indexes, YahooWoeType}
-import com.foursquare.twofishes.mongo.{NameIndex, NameIndexDAO}
-import com.foursquare.twofishes.util.StoredFeatureId
 import com.mongodb.Bytes
 import com.mongodb.casbah.Imports._
 import com.novus.salat._
 import com.novus.salat.annotations._
 import com.novus.salat.dao._
 import com.novus.salat.global._
+import io.fsq.twofishes.core.Indexes
+import io.fsq.twofishes.gen.{FeatureNameFlags, YahooWoeType}
+import io.fsq.twofishes.indexer.mongo.{NameIndex, NameIndexDAO}
+import io.fsq.twofishes.util.StoredFeatureId
 import java.io._
 import org.apache.hadoop.hbase.util.Bytes._
 import scala.collection.mutable.HashSet

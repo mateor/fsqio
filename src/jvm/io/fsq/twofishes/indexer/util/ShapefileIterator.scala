@@ -1,6 +1,6 @@
 // Copyright 2011 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.geo.shapes
+package io.fsq.twofishes.indexer.util
 
 import com.vividsolutions.jts.geom.Geometry
 import java.io.File

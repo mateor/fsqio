@@ -1,15 +1,13 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
-package com.foursquare.twofishes.scalding.tgn
+package io.fsq.twofishes.indexer.scalding
 
 import com.foursquare.geo.quadtree.CountryRevGeo
-import com.foursquare.hadoop.scalding.SpindleSequenceFileSource
-import com.foursquare.twofishes.{DisplayName, YahooWoeType, _}
-import com.foursquare.twofishes.scalding.{TwofishesImporterInputSpec, TwofishesImporterJob}
-import com.foursquare.twofishes.util.{GettyId, StoredFeatureId}
 import com.twitter.scalding._
 import com.twitter.scalding.typed.TypedSink
 import com.vividsolutions.jts.geom.Geometry
-import com.vividsolutions.jts.io.{WKBWriter, WKTReader}
+import io.fsq.twofishes.gen.{YahooWoeType, _}
+import io.fsq.twofishes.indexer.util.{DisplayName, GeocodeRecord, SpindleSequenceFileSource}
+import io.fsq.twofishes.util.{GettyId, StoredFeatureId}
 import org.apache.hadoop.io.LongWritable
 import org.geotools.geojson.GeoJSONUtil
 import org.geotools.geojson.feature.FeatureJSON
