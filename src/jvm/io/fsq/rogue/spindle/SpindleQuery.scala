@@ -2,9 +2,9 @@
 
 package io.fsq.rogue.spindle
 
+import com.foursquare.spindle.{MetaRecord, Record}
 import io.fsq.rogue.{InitialState, Query => RogueQuery}
 import io.fsq.rogue.MongoHelpers.AndCondition
-import io.fsq.spindle.runtime.{MetaRecord, Record}
 
 object SpindleQuery {
   def apply[R <: Record[R], M <: MetaRecord[R, M]](

@@ -3,10 +3,10 @@
 package io.fsq.rogue.spindle
 
 import com.foursquare.common.thrift.bson.TBSONObjectProtocol
+import com.foursquare.spindle.{UntypedFieldDescriptor, UntypedMetaRecord, UntypedRecord}
 import com.mongodb.DBObject
 import io.fsq.rogue.{RogueReadSerializer, RogueWriteSerializer}
 import io.fsq.rogue.MongoHelpers.MongoSelect
-import io.fsq.spindle.runtime.{UntypedFieldDescriptor, UntypedMetaRecord, UntypedRecord}
 
 class SpindleRogueReadSerializer[M <: UntypedMetaRecord, R](meta: M, select: Option[MongoSelect[M, R]])
     extends RogueReadSerializer[R] {

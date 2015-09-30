@@ -9,10 +9,10 @@ junit_tests(
     '3rdparty:mongodb',
     '3rdparty:rogue-field',
     '3rdparty:specs2',
+    '3rdparty:spindle-runtime',
     'src/jvm/io/fsq/rogue',
     'src/jvm/io/fsq/rogue/indexchecker',
     'src/jvm/io/fsq/rogue/spindle',
-    'src/jvm/io/fsq/spindle/runtime',
     'test/thrift/io/fsq/rogue/spindle/test',
   ],
 )

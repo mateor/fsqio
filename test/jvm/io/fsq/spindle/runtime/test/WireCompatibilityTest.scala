@@ -2,8 +2,9 @@
 
 package io.fsq.spindle.runtime.test
 
+import com.foursquare.spindle.MetaRecord
+import com.foursquare.spindle.runtime.{KnownTProtocolNames, TProtocolInfo}
 import io.fsq.spindle.codegen.test.gen._
-import io.fsq.spindle.runtime.{KnownTProtocolNames, MetaRecord, TProtocolInfo}
 import java.nio.ByteBuffer
 import org.apache.thrift.TBase
 import org.apache.thrift.transport.{AutoExpandingBufferReadTransport, TMemoryBuffer}

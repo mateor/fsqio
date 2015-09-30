@@ -2,9 +2,9 @@
 
 package io.fsq.rogue.spindle.test
 
+import com.foursquare.spindle.UntypedMetaRecord
 import com.mongodb.{DB, MongoClient, ServerAddress}
 import io.fsq.rogue.spindle.{SpindleDBCollectionFactory, SpindleDatabaseService}
-import io.fsq.spindle.runtime.UntypedMetaRecord
 
 class TestDatabaseService extends SpindleDatabaseService(new TestDBCollectionFactory()) {
   def disconnectFromMongo() {

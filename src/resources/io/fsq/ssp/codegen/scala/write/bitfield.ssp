@@ -1,4 +1,4 @@
-<%@ val renderType: _root_.io.fsq.spindle.codegen.runtime.BitfieldStructRenderType %>
+<%@ val renderType: io.fsq.spindle.codegen.runtime.BitfieldStructRenderType %>
 <%@ val valueExpr: String %>
 <%@ val indent: String %>
 <% import renderType.ref %>
