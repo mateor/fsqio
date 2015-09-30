@@ -638,15 +638,15 @@ class QueryTest extends JUnitMustMatchers {
     val optimizer = new QueryOptimizer
 
     optimizer.isEmptyQuery(Q(ThriftVenue).where(_.mayor eqs 1)) must_== false
-    optimizer.isEmptyQuery(Q(ThriftVenue).where(_.mayor in List())) must_== true
-    optimizer.isEmptyQuery(Q(ThriftVenue).where(_.tags in List())) must_== true
-    optimizer.isEmptyQuery(Q(ThriftVenue).where(_.tags all List())) must_== true
-    optimizer.isEmptyQuery(Q(ThriftVenue).where(_.tags contains "karaoke").and(_.mayor in List())) must_== true
-    optimizer.isEmptyQuery(Q(ThriftVenue).where(_.mayor in List()).and(_.tags contains "karaoke")) must_== true
-    optimizer.isEmptyQuery(Q(ThriftComment).where(_.comments in List())) must_== true
-    optimizer.isEmptyQuery(Q(ThriftVenue).where(_.mayor in List()).scan(_.mayor_count eqs 5)) must_== true
+    optimizer.isEmptyQuery(Q(ThriftVenue).where(_.mayor in Nil)) must_== true
+    optimizer.isEmptyQuery(Q(ThriftVenue).where(_.tags in Nil)) must_== true
+    optimizer.isEmptyQuery(Q(ThriftVenue).where(_.tags all Nil)) must_== true
+    optimizer.isEmptyQuery(Q(ThriftVenue).where(_.tags contains "karaoke").and(_.mayor in Nil)) must_== true
+    optimizer.isEmptyQuery(Q(ThriftVenue).where(_.mayor in Nil).and(_.tags contains "karaoke")) must_== true
+    optimizer.isEmptyQuery(Q(ThriftComment).where(_.comments in Nil)) must_== true
+    optimizer.isEmptyQuery(Q(ThriftVenue).where(_.mayor in Nil).scan(_.mayor_count eqs 5)) must_== true
     optimizer.isEmptyQuery(Q(ThriftVenue).where(_.mayor eqs 1).modify(_.venuename setTo "fshq")) must_== false
-    optimizer.isEmptyQuery(Q(ThriftVenue).where(_.mayor in List()).modify(_.venuename setTo "fshq")) must_== true
+    optimizer.isEmptyQuery(Q(ThriftVenue).where(_.mayor in Nil).modify(_.venuename setTo "fshq")) must_== true
   }
 
   /* TODO(rogue-whenMigrated): creating a new Compiler object fails here, but should work in rogue package
