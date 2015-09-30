@@ -20,7 +20,7 @@ case class TimeZoneInfo(
 object TimeZoneInfo {
   import TimeZoneInfoFields._
 
-  private val tzLines = new BufferedSource(getClass.getResourceAsStream("/io/fsq/twofishes/country/data/timeZones.txt")).getLines.drop(1)
+  private val tzLines = new BufferedSource(getClass.getResourceAsStream("/timeZones.txt")).getLines.drop(1)
   private val timeZoneInfos: Seq[TimeZoneInfo] = tzLines.filterNot(l => l.startsWith("#") || l.isEmpty).toList.map(l => {
     val parts = l.split("\t")
     TimeZoneInfo(
