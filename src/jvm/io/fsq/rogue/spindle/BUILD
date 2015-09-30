@@ -7,9 +7,9 @@ scala_library(
     '3rdparty:fscommon-thrift-bson',
     '3rdparty:mongodb',
     '3rdparty:rogue-field',
+    '3rdparty:spindle-runtime',
     '3rdparty:thrift',
     'src/jvm/io/fsq/rogue',
     'src/jvm/io/fsq/rogue/index',
-    'src/jvm/io/fsq/spindle/runtime',
   ],
 )

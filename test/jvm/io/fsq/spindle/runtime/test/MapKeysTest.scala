@@ -2,9 +2,9 @@
 
 package io.fsq.spindle.runtime.test
 
+import com.foursquare.common.thrift.base.NonStringMapKeyException
+import com.foursquare.spindle.runtime.{KnownTProtocolNames, TProtocolInfo}
 import io.fsq.spindle.codegen.test.gen.MapWithI32Keys
-import io.fsq.spindle.common.thrift.base.NonStringMapKeyException
-import io.fsq.spindle.runtime.{KnownTProtocolNames, TProtocolInfo}
 import org.apache.thrift.transport.TMemoryBuffer
 import org.junit.Test
 

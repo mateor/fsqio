@@ -3,7 +3,4 @@
 spindle_thrift_library(
   name = 'people',
   sources = globs('*.thrift'),
-  dependencies = [
-    'src/jvm/io/fsq/spindle/runtime',
-  ],
 )
