@@ -19,6 +19,7 @@ class WireCompatibilityTest {
     KnownTProtocolNames.TBinaryProtocol,
     KnownTProtocolNames.TCompactProtocol,
     KnownTProtocolNames.TJSONProtocol,
+    KnownTProtocolNames.TBSONBinaryProtocol,
     KnownTProtocolNames.TBSONProtocol,
     KnownTProtocolNames.TReadableJSONProtocol,
     KnownTProtocolNames.TReadableJSONProtocolLegacy,
@@ -31,6 +32,7 @@ class WireCompatibilityTest {
     // This verifies that unknown fields will survive that trip, so we single it out here for emphasis and
     // ease of debugging, even though this combo is also tested in testAllCompatibilityCombos().
     doTestUnknownFieldCompatibility(KnownTProtocolNames.TBSONProtocol, KnownTProtocolNames.TCompactProtocol)
+    doTestUnknownFieldCompatibility(KnownTProtocolNames.TBSONBinaryProtocol, KnownTProtocolNames.TCompactProtocol)
   }
 
   @Test
@@ -95,8 +97,6 @@ class WireCompatibilityTest {
 
   @Test
   def testAllCompatibilityCombos() {
-    // Test all possible combinations of src and dst protocol.
-
     for (src <- protocols; dst <- protocols) {
       println("Testing unknown field compatibility between: %s -> %s".format(src, dst))
       doTestUnknownFieldCompatibility(src, dst)
@@ -247,14 +247,22 @@ class WireCompatibilityTest {
 
       // Check that we got what we expect.
       val expected = {
-        if (areSameProtocol(srcProtocol, dstProtocol) ||
-          TProtocolInfo.isRobust(srcProtocol) && TProtocolInfo.isRobust(dstProtocol)) {
+        if (
+          (
+            areSameProtocol(srcProtocol, dstProtocol) &&
+            srcProtocol != KnownTProtocolNames.TBSONBinaryProtocol
+          ) ||
+          // TBSONBinaryProtocol uses the same writer as TBSONProtocol
+          (srcProtocol == KnownTProtocolNames.TBSONProtocol && dstProtocol == KnownTProtocolNames.TBSONBinaryProtocol) ||
+          (srcProtocol == KnownTProtocolNames.TBSONProtocolLegacy && dstProtocol == KnownTProtocolNames.TBSONBinaryProtocol) ||
+          (TProtocolInfo.isRobust(srcProtocol) && TProtocolInfo.isRobust(dstProtocol))
+        ) {
           expectedRoundTrippedObjSameProto.getOrElse(newObj)
         } else {
           expectedRoundTrippedObj.getOrElse(newObj)
         }
       }
-      Assert.assertEquals(expected, roundtrippedNewObj)
+      Assert.assertEquals(s"Unexpected value for $oldMeta -> $newMeta, $srcProtocol -> $dstProtocol", expected, roundtrippedNewObj)
     }
   }
 
