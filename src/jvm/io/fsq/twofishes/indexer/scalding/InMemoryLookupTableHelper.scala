@@ -4,6 +4,7 @@ package io.fsq.twofishes.indexer.scalding
 import com.twitter.scalding.filecache.CachedFile
 import io.fsq.twofishes.gen.FeatureNameFlags
 import io.fsq.twofishes.indexer.importers.geonames.ShortenInfo
+import io.fsq.twofishes.util.Lists.Implicits._
 import scala.io.Source
 import scala.util.matching.Regex
 
@@ -92,7 +93,7 @@ object InMemoryLookupTableHelper {
       cc <- countries
     } yield {
       (cc -> ShortenInfo(toShortenFrom.r, toShortenTo, flagsMask))
-    }).groupBy(_._1).mapValues(_.map(_._2)).toList.toMap
+    }).groupBy(_._1).mappedValues(_.map(_._2)).toList.toMap
   }
 
   def buildNameDeletesList(cachedFiles: Seq[CachedFile]): Seq[String] = {

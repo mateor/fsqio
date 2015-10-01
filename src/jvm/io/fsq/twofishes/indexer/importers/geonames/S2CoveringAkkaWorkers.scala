@@ -1,7 +1,7 @@
 package io.fsq.twofishes.indexer.importers.geonames
 
 import akka.actor.{Actor, ActorSystem, PoisonPill, Props}
-import akka.routing.{Broadcast, RoundRobinRouter}
+import akka.routing.{Broadcast, RoundRobinPool}
 import com.google.common.geometry.S2CellId
 import com.mongodb.Bytes
 import com.mongodb.casbah.Imports._
@@ -172,7 +172,7 @@ class S2CoveringMaster(val latch: CountDownLatch) extends Actor with Logging {
   var start: Long = 0
 
   val _system = ActorSystem("RoundRobinRouterExample")
-  val router = _system.actorOf(Props[S2CoveringWorker].withRouter(RoundRobinRouter(8)), name = "myRoundRobinRouterActor")
+  val router = _system.actorOf(Props[S2CoveringWorker].withRouter(new RoundRobinPool(8)), name = "myRoundRobinRouterActor")
   var inFlight = 0
   var seenDone = false
 

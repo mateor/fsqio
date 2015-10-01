@@ -85,7 +85,7 @@ class BulkSlugLookupImpl(
 
     val (interpIdxs, retInterps, parents) = makeBulkReply(
       req.slugs,
-      featureMap.mapValues(servingFeature => StoredFeatureId.fromLong(servingFeature.feature.longId).toList),
+      featureMap.mappedValues(servingFeature => StoredFeatureId.fromLong(servingFeature.feature.longId).toList),
       interps)
 
     val respBuilder = BulkSlugLookupResponse.newBuilder

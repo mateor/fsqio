@@ -98,9 +98,9 @@ object NameFormatter {
     def applyToString(input: String): String = {
       val replaceString = {
         if (woeToken.preferAbbrev) {
-          "{%s+ABBR}".format(woeToken.woeType.toString)
+          "{%s+ABBR}".format(woeToken.woeType.stringValue)
         } else {
-          "{%s}".format(woeToken.woeType.toString)
+          "{%s}".format(woeToken.woeType.stringValue)
         }
       }
 

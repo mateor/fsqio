@@ -1,7 +1,8 @@
 package io.fsq.twofishes.util
 
 import scala.collection.TraversableLike
-import scala.collection.generic.GenericTraversableTemplate
+import scala.collection.generic.{CanBuildFrom, GenericTraversableTemplate, MapFactory}
+import scala.collection.mutable.Builder
 
 object Lists {
   trait Implicits {
@@ -9,6 +10,9 @@ object Lists {
 
     implicit def opt2FSOpt[T](o: Option[T]) = new FSOption(o)
     implicit def fsopt2Opt[T](fso: FSOption[T]) = fso.opt
+
+    implicit def immutable2FSMap[A, B](m: Map[A, B]): FSMap[A, B, Map[A, B], Map] = new FSMap[A, B, Map[A, B], Map](m, Map)
+    implicit def mutable2FSMap[A, B](m: scala.collection.mutable.Map[A, B]): FSMap[A, B, scala.collection.mutable.Map[A, B], scala.collection.mutable.Map] = new FSMap[A, B, scala.collection.mutable.Map[A, B], scala.collection.mutable.Map](m, scala.collection.mutable.Map)
   }
 
   object Implicits extends Implicits
@@ -69,5 +73,63 @@ class FSOption[T](val opt: Option[T]) {
       (Some(pair._1), Some(pair._2))
     }
     case None => (None, None)
+  }
+}
+
+class FSMap[
+  A,
+  B,
+  This <: scala.collection.Map[A, B] with scala.collection.MapLike[A, B, This],
+  CC[X, Y] <: scala.collection.Map[X, Y] with scala.collection.MapLike[X, Y, CC[X, Y]]
+](
+  m: This,
+  factory: MapFactory[CC]
+)(
+  implicit ev1: CC[A, B] =:= This, ev2: This =:= CC[A, B]
+) {
+  def invert[DD[X] <: Traversable[X], B1](
+    implicit traversable: B => DD[B1],
+    cbf: CanBuildFrom[DD[B1], A, DD[A]]
+  ): CC[B1, DD[A]] = {
+    val intermediate = scala.collection.mutable.Map.empty[B1, Builder[A, DD[A]]]
+    for {
+      (a, bs) <- m
+      b <- bs
+    } {
+      val builder = intermediate.getOrElseUpdate(b, cbf())
+      builder += a
+    }
+
+    val rv = factory.newBuilder[B1, DD[A]]
+    for ((k, v) <- intermediate)
+      rv += ((k, v.result()))
+
+    rv.result()
+  }
+
+  def flattenValues[B1](implicit option: B => Option[B1]): CC[A, B1] = {
+    val rv = factory.newBuilder[A, B1]
+    for {
+      (k, vOpt) <- m
+      v <- option(vOpt)
+    } rv += ((k, v))
+    rv.result()
+  }
+
+  def mappedValues[C](f: B => C): CC[A, C] = {
+    val rv = factory.newBuilder[A, C]
+    for {
+      (a, b) <- m
+    } rv += ((a, f(b)))
+    rv.result()
+  }
+
+  def flatMapValues[C](f: B => Option[C]): CC[A, C] = {
+    val rv = factory.newBuilder[A, C]
+    for {
+      (a, b) <- m
+      c <- f(b)
+    } rv += ((a, c))
+    rv.result()
   }
 }

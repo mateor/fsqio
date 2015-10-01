@@ -8,21 +8,20 @@ import com.twitter.finagle.{Service, SimpleFilter}
 import com.twitter.finagle.builder.{Server, ServerBuilder}
 import com.twitter.finagle.http.Http
 import com.twitter.finagle.thrift.ThriftServerFramedCodec
-import com.twitter.json.Json
-import com.twitter.ostrich.admin._
+import com.twitter.ostrich.admin.{AdminServiceFactory, RuntimeEnvironment, StatsFactory, TimeSeriesCollectorFactory, _}
 import com.twitter.ostrich.admin.config._
 import com.twitter.ostrich.stats.Stats
-import com.twitter.util.{Await, Future, FuturePool, RingBuffer}
+import com.twitter.util.{Await, Future, FuturePool}
 import com.vividsolutions.jts.io.WKTWriter
 import com.weiglewilczek.slf4s.Logging
 import io.fsq.twofishes.gen.{AutocompleteBias, BulkReverseGeocodeRequest, BulkReverseGeocodeResponse,
     BulkSlugLookupRequest, BulkSlugLookupResponse, CommonGeocodeRequestParams, GeocodePoint, GeocodeRequest,
     GeocodeResponse, Geocoder, RefreshStoreRequest, RefreshStoreResponse, ResponseIncludes, S2CellIdInfo,
     S2CellInfoRequest, S2CellInfoResponse, YahooWoeType}
-import io.fsq.twofishes.util.Helpers
+import io.fsq.twofishes.util.{Helpers, RingBuffer}
 import io.fsq.twofishes.util.Lists.Implicits._
 import io.fsq.twofishes.util.ShapefileS2Util
-import java.io.InputStream
+import java.io.{ByteArrayOutputStream, InputStream}
 import java.net.InetSocketAddress
 import java.nio.charset.Charset
 import java.util.Date
@@ -30,6 +29,7 @@ import java.util.concurrent.{ConcurrentHashMap, Executors}
 import org.apache.thrift.{TBase, TDeserializer, TFieldIdEnum, TSerializer}
 import org.apache.thrift.protocol.{TBinaryProtocol, TSimpleJSONProtocol}
 import org.bson.types.ObjectId
+import org.codehaus.jackson.JsonFactory
 import org.jboss.netty.buffer.ChannelBuffers
 import org.jboss.netty.handler.codec.http._
 import org.jboss.netty.util.CharsetUtil
@@ -69,7 +69,7 @@ class QueryLogHttpHandler(
       }}).mkString("\n")
     )
 
-    response.setHeader("Content-Type", "text/plain")
+    response.headers.set("Content-Type", "text/plain")
     response.setContent(ChannelBuffers.copiedBuffer(content, CharsetUtil.UTF_8))
     Future.value(response)
   }
@@ -86,6 +86,8 @@ class QueryLoggingGeocodeServerImpl(service: Geocoder.ServiceIface) extends Geoc
 
   val queryMap = new ConcurrentHashMap[ObjectId, (TBase[_, _], Long)]
 
+  // TODO(dan): I've copied in RingBuffer from com.twitter.util to get around
+  // deprecation warnings, but we really should just be getting off the dep.
   val recentQueries = new RingBuffer[(TBase[_, _], Long, Long)](1000)
   val slowQueries = new RingBuffer[(TBase[_, _], Long, Long)](1000)
 
@@ -253,6 +255,7 @@ class GeocodeServerImpl(
 }
 
 class HandleExceptions extends SimpleFilter[HttpRequest, HttpResponse] with Logging {
+  val jsonFactory = new JsonFactory
   def apply(request: HttpRequest, service: Service[HttpRequest, HttpResponse]) = {
     // `handle` asynchronously handles exceptions.
     service(request) handle {
@@ -261,11 +264,19 @@ class HandleExceptions extends SimpleFilter[HttpRequest, HttpResponse] with Logg
         error.printStackTrace
         val statusCode = HttpResponseStatus.INTERNAL_SERVER_ERROR
         val errorResponse = new DefaultHttpResponse(HttpVersion.HTTP_1_1, statusCode)
-        errorResponse.setHeader("Content-Type", "application/json; charset=utf-8")
+        errorResponse.headers.set("Content-Type", "application/json; charset=utf-8")
         val errorMap = Map(
           "exception" -> error.toString,
           "stacktrace" -> error.getStackTraceString)
-        errorResponse.setContent(ChannelBuffers.copiedBuffer(Json.build(errorMap).toString, CharsetUtil.UTF_8))
+        val jsonBytes = {
+          val baos = new ByteArrayOutputStream
+          val generator = jsonFactory.createJsonGenerator(baos)
+          generator.writeStringField("exception", error.toString)
+          generator.writeStringField("stacktrace", error.getStackTraceString)
+          generator.flush()
+          baos.toByteArray
+        }
+        errorResponse.setContent(ChannelBuffers.copiedBuffer(jsonBytes))
         errorResponse
     }
   }
@@ -339,7 +350,7 @@ class GeocoderHttpService(geocoder: Geocoder.ServiceIface) extends Service[HttpR
         }).getOrElse(fixedJson)
       }
 
-      response.setHeader("Content-Type", "application/json; charset=utf-8")
+      response.headers.set("Content-Type", "application/json; charset=utf-8")
       response.setContent(ChannelBuffers.copiedBuffer(json, CharsetUtil.UTF_8))
       response
     })
@@ -419,7 +430,7 @@ class GeocoderHttpService(geocoder: Geocoder.ServiceIface) extends Service[HttpR
 
   def apply(request: HttpRequest) = {
     val queryString = new QueryStringDecoder(request.getUri())
-    val params = queryString.getParameters().asScala.mapValues(_.asScala)
+    val params = queryString.getParameters().asScala.toMap.mappedValues(_.asScala)
     val path = queryString.getPath()
     val callback = params.get("callback").flatMap(_.headOption)
 
@@ -444,7 +455,7 @@ class GeocoderHttpService(geocoder: Geocoder.ServiceIface) extends Service[HttpR
       diskIoFuturePool(dataRead).map(data => {
         val response = new DefaultHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK)
         if (path.endsWith("png")) {
-          response.setHeader("Content-Type", "image/png")
+          response.headers.set("Content-Type", "image/png")
         }
         response.setContent(ChannelBuffers.copiedBuffer(data))
         response
@@ -535,14 +546,10 @@ object GeocodeFinagleServer extends Logging {
       .name("geocoder")
       .build(service)
 
-    val adminConfig = new AdminServiceConfig {
-      httpPort = config.thriftServerPort + 2
-      statsNodes = new StatsConfig {
-        reporters = new TimeSeriesCollectorConfig
-      }
-    }
     val runtime = RuntimeEnvironment(this, Nil.toArray)
-    val admin = adminConfig()(runtime)
+    val adminConfig = AdminServiceFactory(httpPort = config.thriftServerPort + 2)
+      .addStatsFactory(StatsFactory(reporters = List(TimeSeriesCollectorFactory())))
+      .apply(runtime)
 
     if (config.runHttpServer) {
       ServerBuilder()

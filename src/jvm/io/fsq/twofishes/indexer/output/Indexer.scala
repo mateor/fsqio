@@ -109,8 +109,8 @@ abstract class Indexer extends DurationUtils {
       info: Map[String, String] = Map.empty,
       indexInterval: Option[Int] = None) = {
 
-    val keyClassName = fixThriftClassName(manifest[K].erasure.getName)
-    val valueClassName = fixThriftClassName(manifest[V].erasure.getName)
+    val keyClassName = fixThriftClassName(manifest[K].runtimeClass.getName)
+    val valueClassName = fixThriftClassName(manifest[V].runtimeClass.getName)
 
     val finalInfoMap = info ++ Map(
       (ThriftClassKey, keyClassName),
