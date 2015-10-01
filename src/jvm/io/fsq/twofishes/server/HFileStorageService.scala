@@ -1,12 +1,11 @@
 package io.fsq.twofishes.server
 
 import com.twitter.ostrich.stats.Stats
-import com.twitter.util.Duration
 import com.vividsolutions.jts.geom.Geometry
 import com.weiglewilczek.slf4s.Logging
 import io.fsq.twofishes.core.{Index, Indexes, MapFileUtils}
 import io.fsq.twofishes.gen.{CellGeometry, GeocodeServingFeature}
-import io.fsq.twofishes.util.StoredFeatureId
+import io.fsq.twofishes.util.{DurationUtils, StoredFeatureId}
 import java.io._
 import java.net.URI
 import java.nio.ByteBuffer
@@ -144,7 +143,7 @@ class HFileInput[V](basepath: String, index: Index[String, V], shouldPreload: Bo
 
   // prefetch the hfile
   if (shouldPreload) {
-    val (rv, duration) = Duration.inMilliseconds({
+    val (rv, duration) = DurationUtils.inMilliseconds({
       val scanner = reader.getScanner(true, false) // Seek, caching.
       scanner.seekTo()
       while(scanner.next()) {}
@@ -191,7 +190,7 @@ class HFileInput[V](basepath: String, index: Index[String, V], shouldPreload: Bo
 
 class MapFileInput[K, V](basepath: String, index: Index[K, V], shouldPreload: Boolean) extends Logging {
   val (reader, fileInfo) = {
-    val (rv, duration) = Duration.inMilliseconds({
+    val (rv, duration) = DurationUtils.inMilliseconds({
       MapFileUtils.readerAndInfoFromLocalPath(new File(basepath, index.filename).toString, shouldPreload)
     })
     logger.info("took %s seconds to read %s".format(duration.inSeconds, index.filename))
@@ -201,7 +200,7 @@ class MapFileInput[K, V](basepath: String, index: Index[K, V], shouldPreload: Bo
   val lookupMetricKey = "mapfile-%s-lookup_msec".format(index.filename)
   def lookup(key: K): Option[V] = {
     val valueBytes = new BytesWritable
-    val (rv, duration) = Duration.inMilliseconds {
+    val (rv, duration) = DurationUtils.inMilliseconds {
       val keyBytes = index.keySerde.toBytes(key)
       if (reader.get(new BytesWritable(keyBytes), valueBytes) != null) {
         Some(index.valueSerde.fromBytes(valueBytes.copyBytes))

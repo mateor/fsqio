@@ -6,10 +6,11 @@ import com.novus.salat._
 import com.novus.salat.annotations._
 import com.novus.salat.dao._
 import com.novus.salat.global._
-import com.twitter.util.{Future, FuturePool}
+import com.twitter.util.{Await, Future, FuturePool}
 import io.fsq.twofishes.indexer.mongo.MongoGeocodeDAO
 import io.fsq.twofishes.indexer.util.SlugEntryMap
 import io.fsq.twofishes.util.DurationUtils
+import io.fsq.twofishes.util.Lists.Implicits._
 import java.io._
 import java.util.concurrent.{CountDownLatch, Executors}
 import org.apache.hadoop.hbase.util.Bytes._
@@ -39,7 +40,7 @@ class OutputIndexes(
     val polygonMap = logPhase("preloading polygon map") {
       hasPolyCursor.map(r => (r.polyId, (r._id, r.woeType))).toList
         .groupBy(_._1)
-        .mapValues(v => v.map(_._2).toList)
+        .mappedValues(v => v.map(_._2).toList)
         .toMap
     }
 
@@ -61,7 +62,7 @@ class OutputIndexes(
       diskIoFuturePool(indexer.writeIndex())
     )
     // wait forever to finish
-    Future.collect(indexFutures).apply()
+    Await.result(Future.collect(indexFutures))
 
     logger.info("all done with output")
   }

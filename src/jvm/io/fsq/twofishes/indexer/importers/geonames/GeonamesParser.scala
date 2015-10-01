@@ -3,8 +3,7 @@ package io.fsq.twofishes.indexer.importers.geonames
 
 import akka.actor.{ActorSystem, Props}
 import com.foursquare.geo.quadtree.CountryRevGeo
-import com.twitter.ostrich.admin.RuntimeEnvironment
-import com.twitter.ostrich.admin.config.AdminServiceConfig
+import com.twitter.ostrich.admin.{AdminServiceFactory, RuntimeEnvironment}
 import com.twitter.ostrich.stats.Stats
 import com.vividsolutions.jts.geom.Geometry
 import com.vividsolutions.jts.io.{WKBWriter, WKTReader}
@@ -38,12 +37,10 @@ object GeonamesParser extends DurationUtils {
   var countryNameMap = new HashMap[String, String]()
   var adminIdMap = new HashMap[String, String]()
 
-  val adminConfig = new AdminServiceConfig {
-    httpPort = 7655
-  }
   val runtime = RuntimeEnvironment(this, Array.empty)
-  val admin = adminConfig()(runtime)
-
+  val admin = AdminServiceFactory(httpPort = 7655)
+    .apply(runtime)
+  
   lazy val naturalEarthPopulatedPlacesMap: Map[StoredFeatureId, SimpleFeature] = {
     new ShapefileIterator("data/downloaded/ne_10m_populated_places_simple.shp").flatMap(f => {
       f.propMap.get("geonameid").map(id => {
@@ -113,7 +110,7 @@ object GeonamesParser extends DurationUtils {
     val prettyJsonStats = Serialization.writePretty(JsonMethods.parse(Stats.get().toJson))
     logger.info(prettyJsonStats)
     logger.info("all done with parse, trying to shutdown admin server and exit")
-    admin.foreach(_.shutdown())
+    admin.shutdown()
     System.exit(0)
   }
 
@@ -181,7 +178,7 @@ class GeonamesParser(
         val toShortenTo = shortenParts.lift(1).getOrElse("")
         val shortenFlags = parseFeatureNameFlags(shortenParts.lift(2))
         countries.map(cc => (cc -> ShortenInfo(toShortenFrom.r, toShortenTo, shortenFlags)))
-      }).groupBy(_._1).mapValues(_.map(_._2)).toList.toMap
+      }).groupBy(_._1).mappedValues(_.map(_._2)).toList.toMap
     }
   // geonameid -> boost value
   lazy val boostTable = new GeoIdTsvHelperFileParser(GeonamesNamespace,

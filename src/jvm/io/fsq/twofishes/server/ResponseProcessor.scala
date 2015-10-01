@@ -144,7 +144,7 @@ class ResponseProcessor(
     val dedupedMap: Seq[(Parse[Sorted], Int)] = for {
       (textKey, parsePairs) <- parseMap.toSeq
       // bucket into 0.1 degree buckets (= 11km)
-      val geoBuckets = parsePairs.groupBy({case (parse, index) => findBucket(parse) })
+      geoBuckets = parsePairs.groupBy({case (parse, index) => findBucket(parse) })
       (geoKey, parses) <- geoBuckets
     } yield {
       logger.ifDebug("for %s, have %d parses in bucket %s: %s".format(textKey, parses.size, geoKey,
@@ -606,7 +606,7 @@ class ResponseProcessor(
     // primary feature id -> list of parses containing that id, sorted by
     val parsesByMainId: Map[Long, Seq[SortedParseWithPosition]] = parses.zipWithIndex.map({
       case (parse, index) => SortedParseWithPosition(parse, index)
-    }).groupBy(_.parse.headOption.map(_.fmatch.longId).getOrElse(-1L)).mapValues(parses => {
+    }).groupBy(_.parse.headOption.map(_.fmatch.longId).getOrElse(-1L)).mappedValues(parses => {
       parses.sortBy(p => {
         // prefer interpretations that are shorter and don't have reused features
         val dupeWeight = if (p.parse.hasDupeFeature) { 10 } else { 0 }

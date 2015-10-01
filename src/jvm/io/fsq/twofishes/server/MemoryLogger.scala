@@ -2,11 +2,10 @@
 package io.fsq.twofishes.server
 
 import com.twitter.ostrich.stats.Stats
-import com.twitter.util.Duration
 import io.fsq.twofishes.gen.{CommonGeocodeRequestParams, GeocodeRequest}
+import io.fsq.twofishes.util.{DurationUtils, TwofishesLogger}
 import io.fsq.twofishes.util.Identity._
 import io.fsq.twofishes.util.Lists.Implicits._
-import io.fsq.twofishes.util.TwofishesLogger
 import java.util.Date
 import scala.collection.mutable.ListBuffer
 import scalaj.collection.Implicits._
@@ -48,7 +47,7 @@ class MemoryLogger(req: CommonGeocodeRequestParams) extends TwofishesLogger {
   def toOutput(): String = lines.mkString("<br>\n");
 
   def logDuration[T](ostrichKey: String, what: String)(f: => T): T = {
-    val (rv, duration) = Duration.inNanoseconds(f)
+    val (rv, duration) = DurationUtils.inNanoseconds(f)
     Stats.addMetric(ostrichKey + "_usec", duration.inMicroseconds.toInt)
     ifDebug("%s in %s µs / %s ms", what, duration.inMicroseconds, duration.inMilliseconds)
     rv

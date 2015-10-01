@@ -4,6 +4,7 @@ scala_library(
   name = 'replayer',
   sources = globs('*.scala'),
   dependencies = [
+    '3rdparty:commons-logging',  # Runtime dep.
     '3rdparty:finagle',
     '3rdparty:hadoop-common',
     '3rdparty:thrift',

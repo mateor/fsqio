@@ -8,7 +8,7 @@ import io.fsq.twofishes.gen.{BulkReverseGeocodeRequest, BulkSlugLookupRequest, G
 import java.io.{File, FileWriter}
 import java.nio._
 import org.apache.hadoop.conf.Configuration
-import org.apache.hadoop.fs.{FileSystem, Path}
+import org.apache.hadoop.fs.Path
 import org.apache.hadoop.io.{BytesWritable, NullWritable, SequenceFile}
 import org.apache.hadoop.io.SequenceFile.Reader
 import org.apache.thrift._
@@ -99,9 +99,8 @@ object ThriftPrinter {
 class SeqFileByteIterator(fname: String) extends Iterator[Array[Byte]] {
   println("loading: " + fname)
   val conf = new Configuration()
-  val fs = FileSystem.get(conf)
   val key = NullWritable.get()
-  val reader = new SequenceFile.Reader(fs, new Path(fname), conf)
+  val reader = new SequenceFile.Reader(conf, SequenceFile.Reader.file(new Path(fname)))
   var i = 0
   val bw = new BytesWritable()
   var done: Boolean = false
@@ -219,7 +218,7 @@ object ConvertSeqToJavascript {
 
     val field = req.fieldForId(1)
     val innerReq = req.getFieldValue(field)
-    output.write("/" + msg.name + "?json=" + URLEncoder.encode(innerReq.asInstanceOf[TBase[_, _]].toString) + "\n")
+    output.write("/" + msg.name + "?json=" + URLEncoder.encode(innerReq.asInstanceOf[TBase[_, _]].toString, "UTF-8") + "\n")
 
     // val params = new scala.collection.mutable.HashMap[String, String]()
     // params("method") = msg.name

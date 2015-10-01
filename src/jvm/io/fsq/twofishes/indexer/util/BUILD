@@ -13,6 +13,7 @@ scala_library(
     '3rdparty:mongodb',
     '3rdparty:scalaj-collection',
     '3rdparty:scalding',
+    '3rdparty:slf4j-log4j',  # Runtime dep.
     '3rdparty:spindle-runtime',
     '3rdparty:thrift',
     'src/jvm/io/fsq/twofishes/core',

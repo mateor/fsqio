@@ -89,7 +89,7 @@ object GeometryUtils extends RevGeoConstants {
 
     val polygons: List[S2Polygon] = (for {
      i <- 0.until(geomCollection.getNumGeometries()).toList
-     val geom = geomCollection.getGeometryN(i)
+     geom = geomCollection.getGeometryN(i)
      if (geom.isInstanceOf[Polygon])
     } yield {
       val poly = geom.asInstanceOf[Polygon]

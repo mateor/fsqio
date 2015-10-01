@@ -10,6 +10,7 @@ scala_library(
     '3rdparty:gt-geojson',
     '3rdparty:hadoop-common',
     '3rdparty:hbase',  # TODO(dan): This is only here while we transition twofishes to our hfile reader.
+    '3rdparty:jackson',
     '3rdparty:jts',
     '3rdparty:mongodb',
     '3rdparty:netty',
@@ -20,7 +21,6 @@ scala_library(
     '3rdparty:slf4s',
     '3rdparty:spindle-runtime',
     '3rdparty:thrift',
-    '3rdparty:twitter-json',
     '3rdparty:twitter-util',
     'src/jvm/io/fsq/twofishes/core',
     'src/jvm/io/fsq/twofishes/country',

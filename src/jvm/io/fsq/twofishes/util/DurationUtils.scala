@@ -1,12 +1,26 @@
 package io.fsq.twofishes.util
 
 import com.twitter.ostrich.stats.Stats
-import com.twitter.util.Duration
+import com.twitter.util.{Duration, Stopwatch}
 import com.weiglewilczek.slf4s.Logging
+
+object DurationUtils {
+  def inMilliseconds[T](f: => T): (T, Duration) = {
+    val elapsed = Stopwatch.start()
+    val ret = f
+    (ret, elapsed())
+  }
+
+  def inNanoseconds[T](f: => T): (T, Duration) = {
+    val elapsed = Stopwatch.start()
+    val ret = f
+    (ret, elapsed())
+  }
+}
 
 trait DurationUtils extends Logging {
   def logDuration[T](ostrichKey: String, extraInfo: String = "")(f: => T): T = {
-    val (rv, duration) = Duration.inNanoseconds(f)
+    val (rv, duration) = DurationUtils.inNanoseconds(f)
     if (duration.inMilliseconds > 200) {
       logger.debug(ostrichKey + ": " + extraInfo + " in %s µs / %s ms".format(duration.inMicroseconds, duration.inMilliseconds))
     }
@@ -16,7 +30,7 @@ trait DurationUtils extends Logging {
 
   def logPhase[T](what: String)(f: => T): T = {
     logger.info("starting: " + what)
-    val (rv, duration) = Duration.inNanoseconds(f)
+    val (rv, duration) = DurationUtils.inNanoseconds(f)
     logger.info("finished: %s in %s secs / %s mins".format(
     	what, duration.inSeconds, duration.inMinutes
     ))
