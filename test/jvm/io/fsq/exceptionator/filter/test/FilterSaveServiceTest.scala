@@ -40,7 +40,7 @@ class FilteredSaveServiceTest extends SpecsMatchers {
   @Test
   def testFilterOrder {
     val incoming = FilteredIncoming(Incoming(
-        Nil, Nil, Nil, Map(), Map(), "", "", None, None, None)).copy(tags = Set(""))
+        Nil, Nil, Nil, Map.empty, Map.empty, "", "", None, None, None)).copy(tags = Set(""))
 
     val service = new FilteredSaveService(
       new TestService,
