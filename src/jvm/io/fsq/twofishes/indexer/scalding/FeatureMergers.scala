@@ -26,8 +26,8 @@ object FeatureMergers {
           // hasPoly
           extraRelationIds = extraRelations.scoringFeatures.extraRelationIdsOrNull),
         feature = bboxes.feature.copy(
-          geometry = bboxes.feature.geometry.copy(
-            displayBounds = displayBboxes.feature.geometry.displayBoundsOrNull),// wkbGeometry, source
+          geometry = bboxes.feature.geometryOrThrow.copy(
+            displayBounds = displayBboxes.feature.geometryOrThrow.displayBoundsOrNull),// wkbGeometry, source
           ids = concordances.feature.idsOrNull,
           names = altNames.feature.namesOrNull,
           slug = slugs.feature.slugOrNull),
@@ -47,7 +47,7 @@ object FeatureMergers {
 
       ignores.copy(
         feature = ignores.feature.copy(
-          geometry = moves.feature.geometry,
+          geometry = moves.feature.geometryOrThrow,
           names = names.feature.namesOrNull)
       )
     }

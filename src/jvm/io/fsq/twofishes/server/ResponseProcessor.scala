@@ -118,8 +118,8 @@ class ResponseProcessor(
     // to fall very near a cell border still end up in the same cell.
     def findBucket(parse: Parse[_]): String = {
       val quantize = 0.15
-      val startLat = parse.headOption.map(_.fmatch.feature.geometry.center.lat / quantize).getOrElse(0.0).toInt
-      val startLng = parse.headOption.map(_.fmatch.feature.geometry.center.lng / quantize).getOrElse(0.0).toInt
+      val startLat = parse.headOption.map(_.fmatch.feature.geometryOrThrow.center.lat / quantize).getOrElse(0.0).toInt
+      val startLng = parse.headOption.map(_.fmatch.feature.geometryOrThrow.center.lng / quantize).getOrElse(0.0).toInt
       val checks = List(0, -1, 1)
       for {
         latOffset <- checks
@@ -216,11 +216,11 @@ class ResponseProcessor(
     parentsToUse.appendAll(
       parents.filter(p => p.feature.woeType == YahooWoeType.TOWN))
 
-    if (NameUtils.countryUsesState(f.cc)) {
+    if (NameUtils.countryUsesState(f.ccOrThrow)) {
       parentsToUse.appendAll(
         parents.filter(p => {
           !NameUtils.isFeatureBlacklistedforParent(f.longId) &&
-            (if (NameUtils.countryUsesCountyAsState(f.cc)) {
+            (if (NameUtils.countryUsesCountyAsState(f.ccOrThrow)) {
               p.feature.woeType =? YahooWoeType.ADMIN2
             } else {
               p.feature.woeType =? YahooWoeType.ADMIN1
@@ -262,7 +262,7 @@ class ResponseProcessor(
           // awful hack because most states outside the US don't actually
           // use their abbrev names
           val name = bestNameWithMatch(servingFeature.feature, Some(req.lang),
-            preferAbbrev = (i != 0 && NameUtils.countryUsesStateAbbrev(servingFeature.feature.cc)),
+            preferAbbrev = (i != 0 && NameUtils.countryUsesStateAbbrev(servingFeature.feature.ccOrThrow)),
             fmatchOpt.map(_.phrase))
           i += 1
           name
@@ -282,7 +282,7 @@ class ResponseProcessor(
           }}))
 
        if (f.woeType != YahooWoeType.COUNTRY
-          && req.ccOrNull != f.cc
+          && req.ccOrNull != f.ccOrThrow
           && !partsToUse.exists(_._2.feature.woeType == YahooWoeType.COUNTRY)) {
           matchedNameParts ++= countryName.toList
           highlightedNameParts ++= countryName.toList
@@ -317,7 +317,7 @@ class ResponseProcessor(
       .distinct
 
     var displayNameParts = Vector(name) ++ parentNames
-    if (f.woeType != YahooWoeType.COUNTRY && req.ccOrNull != f.cc) {
+    if (f.woeType != YahooWoeType.COUNTRY && req.ccOrNull != f.ccOrThrow) {
       displayNameParts ++= countryName.toList
     }
     mutableFeature.displayName_=(displayNameParts.mkString(", "))
@@ -331,7 +331,7 @@ class ResponseProcessor(
         fid <- StoredFeatureId.fromLong(longId)
         geom <- polygonMap.get(fid)
       } {
-        val mutableGeometry = mutableFeature.geometry.mutableCopy
+        val mutableGeometry = mutableFeature.geometryOrThrow.mutableCopy
         if (req.responseIncludes.has(ResponseIncludes.WKB_GEOMETRY_SIMPLIFIED)) {
           val wkbWriter = new WKBWriter()
           mutableGeometry.wkbGeometrySimplified_=(ByteBuffer.wrap(wkbWriter.write(
@@ -365,7 +365,7 @@ class ResponseProcessor(
         fid <- StoredFeatureId.fromLong(longId)
         s2Covering <- s2CoveringMap.get(fid)
       } {
-        val mutableGeometry = mutableFeature.geometry.mutableCopy
+        val mutableGeometry = mutableFeature.geometryOrThrow.mutableCopy
         mutableGeometry.s2Covering_=(s2Covering.toList)
         mutableFeature.geometry_=(mutableGeometry)
       }
@@ -377,7 +377,7 @@ class ResponseProcessor(
         fid <- StoredFeatureId.fromLong(longId)
         s2Interior <- s2InteriorMap.get(fid)
       } {
-        val mutableGeometry = mutableFeature.geometry.mutableCopy
+        val mutableGeometry = mutableFeature.geometryOrThrow.mutableCopy
         mutableGeometry.s2Interior_=(s2Interior.toList)
         mutableFeature.geometry_=(mutableGeometry)
       }

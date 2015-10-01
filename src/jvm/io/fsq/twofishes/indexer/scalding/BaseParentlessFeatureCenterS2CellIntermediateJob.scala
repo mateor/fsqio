@@ -24,7 +24,7 @@ class BaseParentlessFeatureCenterS2CellIntermediateJob(
   (for {
     (featureId, servingFeature) <- features
     if servingFeature.scoringFeatures.parentIds.isEmpty
-    center = servingFeature.feature.geometry.center
+    center = servingFeature.feature.geometryOrThrow.center
     woeType = servingFeature.feature.woeTypeOrDefault
     s2Level <- s2Levels
     cellId = GeometryUtils.getS2CellIdForLevel(center.lat, center.lng, s2Level).id

@@ -116,7 +116,7 @@ class SlugIndexer {
       servingFeature <- findFeature(fid)
       if (servingFeature.scoringFeatures.population > 0 ||
           servingFeature.scoringFeatures.boost > 0 ||
-          servingFeature.feature.geometry.wkbGeometryOption.nonEmpty ||
+          servingFeature.feature.geometryOrThrow.wkbGeometryOption.nonEmpty ||
           servingFeature.feature.woeTypeOption.exists(YahooWoeTypes.isAdminWoeType) ||
            (servingFeature.feature.attributesOption.exists(_.adm1capOption.exists(a => a)) ||
             servingFeature.feature.attributesOption.exists(_.adm0capOption.exists(a => a)))
@@ -129,7 +129,7 @@ class SlugIndexer {
 
       // if a city is bigger than 2 million people, we'll attempt to use the bare city name as the slug
       // unless it's the US, where I'd rather have consistency of always doing city-state
-      if (servingFeature.scoringFeatures.population > 2000000 && servingFeature.feature.cc != "US") {
+      if (servingFeature.scoringFeatures.population > 2000000 && servingFeature.feature.ccOrThrow != "US") {
         possibleSlugs = NameUtils.bestName(servingFeature.feature, Some("en"), false).toList.map(n => SlugBuilder.normalize(n.name)) ++ possibleSlugs
       }
 

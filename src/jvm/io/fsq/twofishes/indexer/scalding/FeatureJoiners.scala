@@ -19,7 +19,7 @@ object FeatureJoiners {
       .map({case (k: LongWritable, (f: GeocodeServingFeature, bboxOpt: Option[GeocodeBoundingBox])) => {
         bboxOpt match {
           case Some(bbox) =>
-            (k -> f.copy(feature = f.feature.copy(geometry = f.feature.geometry.copy(bounds = bbox))))
+            (k -> f.copy(feature = f.feature.copy(geometry = f.feature.geometryOrThrow.copy(bounds = bbox))))
           case None =>
             (k -> f)
         }
@@ -34,7 +34,7 @@ object FeatureJoiners {
       .map({case (k: LongWritable, (f: GeocodeServingFeature, displayBboxOpt: Option[GeocodeBoundingBox])) => {
         displayBboxOpt match {
           case Some(displayBbox) =>
-            (k -> f.copy(feature = f.feature.copy(geometry = f.feature.geometry.copy(displayBounds = displayBbox))))
+            (k -> f.copy(feature = f.feature.copy(geometry = f.feature.geometryOrThrow.copy(displayBounds = displayBbox))))
           case None =>
             (k -> f)
         }
@@ -159,7 +159,7 @@ object FeatureJoiners {
       .flatMap({case (k: LongWritable, (f: GeocodeServingFeature, polygonOpt: Option[PolygonMatchingValue])) => {
         polygonOpt match {
           case Some(polygon) => {
-            val center = f.feature.geometry.center
+            val center = f.feature.geometryOrThrow.center
             val centerPoint = new GeometryFactory().createPoint(new Coordinate(center.lng, center.lat))
             for {
               source <- polygon.sourceOption
@@ -176,7 +176,7 @@ object FeatureJoiners {
               (k -> f.copy(
                 scoringFeatures = f.scoringFeatures.copy(hasPoly = true),
                 feature = f.feature.copy(
-                  geometry = f.feature.geometry.copy(
+                  geometry = f.feature.geometryOrThrow.copy(
                     wkbGeometry = ByteBuffer.wrap(wkbGeometry),
                     bounds = bounds,
                     source = source))))

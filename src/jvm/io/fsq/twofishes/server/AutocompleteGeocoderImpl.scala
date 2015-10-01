@@ -22,8 +22,8 @@ trait GeocoderUtils {
       (
       // bounds or ll+radius contains the center
       requestGeom.isEmptyOr(g =>
-        g.contains(GeoTools.pointToGeometry(servingFeature.feature.geometry.center))) &&
-      req.ccOption.isEmptyOr(_ =? servingFeature.feature.cc)
+        g.contains(GeoTools.pointToGeometry(servingFeature.feature.geometryOrThrow.center))) &&
+      req.ccOption.isEmptyOr(_ =? servingFeature.feature.ccOrThrow)
       )
   }
 }
@@ -134,7 +134,7 @@ class AutocompleteGeocoderImpl(
 
         matches.flatMap(featureMatch => {
           val fid = featureMatch.fmatch.longId
-          val fcc = featureMatch.fmatch.feature.cc
+          val fcc = featureMatch.fmatch.feature.ccOrThrow
           if (req.debug > 0) {
             logger.ifDebug("checking if %s is an unused parent of %s",
               fid, parse.map(_.fmatch.longId))
@@ -145,7 +145,7 @@ class AutocompleteGeocoderImpl(
           val featureHasDependentCountryRelation =
             featureMatch.fmatch.feature.woeType == YahooWoeType.COUNTRY &&
             parse.exists(p =>
-              DependentCountryInfo.isCountryDependentOnCountry(p.fmatch.feature.cc, fcc))
+              DependentCountryInfo.isCountryDependentOnCountry(p.fmatch.feature.ccOrThrow, fcc))
 
           val featureIsNotRepeat = !parse.exists(_.fmatch.longId.toString == fid)
           val featureNameHitsInAllowedLanguage =
@@ -234,7 +234,7 @@ class AutocompleteGeocoderImpl(
           } else {
             val parents = store.getByFeatureIds(possibleParents).toSeq
             val countriesOnWhichParentsAreDependent =
-              parents.map(_._2.feature.cc)
+              parents.map(_._2.feature.ccOrThrow)
               .toList
               .distinct
               .flatMap(dcc => DependentCountryInfo.getCountryIdOnWhichCountryIsDependent(dcc).map(id => GeonamesId(id)))

@@ -111,7 +111,7 @@ class GeocoderImpl(
         val subParses = cache.get(tokens.size - i)
 
         val subParsesByCountry: Map[String, SortedParseSeq] = subParses.groupBy(_.countryCode)
-        val featuresByCountry: Map[String, Seq[FeatureMatch]] = featureMatches.groupBy(_.fmatch.feature.cc)
+        val featuresByCountry: Map[String, Seq[FeatureMatch]] = featureMatches.groupBy(_.fmatch.feature.ccOrThrow)
 
         /*
          * augment with duplicate subparses for dependent countries
@@ -173,10 +173,10 @@ class GeocoderImpl(
         first.fmatch.feature.woeType == YahooWoeType.POSTAL_CODE &&
         isValidParseHelper(Parse[Sorted](sorted_parse.fmatches.drop(1))) &&
         GeoTools.getDistance(
-          second.fmatch.feature.geometry.center.lat,
-          second.fmatch.feature.geometry.center.lng,
-          first.fmatch.feature.geometry.center.lat,
-          first.fmatch.feature.geometry.center.lng) < 200000
+          second.fmatch.feature.geometryOrThrow.center.lat,
+          second.fmatch.feature.geometryOrThrow.center.lng,
+          first.fmatch.feature.geometryOrThrow.center.lat,
+          first.fmatch.feature.geometryOrThrow.center.lng) < 200000
       }).getOrElse(false)
     } else {
       false
@@ -195,7 +195,7 @@ class GeocoderImpl(
       // "pizza in cincinnati" picks cincinnati IN over cincinnati OH
       // little hack--
       // if in the US, admin1 comes earlier in the parse than city, neighborhood, reject it
-      if (most_specific.fmatch.feature.cc =? "CA" || most_specific.fmatch.feature.cc =? "US") {
+      if (most_specific.fmatch.feature.ccOrThrow =? "CA" || most_specific.fmatch.feature.ccOrThrow =? "US") {
         for {
           stateTokenPos: Int <- parse.filter(_.fmatch.feature.woeType =? YahooWoeType.ADMIN1).minByOption(_.tokenStart).map(_.tokenStart)
           cityOrNeighborhoodTokenPos: Int <- parse.filter(f =>
@@ -213,7 +213,7 @@ class GeocoderImpl(
         most_specific.fmatch.scoringFeatures.parentIds.has(f.fmatch.longId) ||
         most_specific.fmatch.scoringFeatures.extraRelationIds.has(f.fmatch.longId) ||
         (f.fmatch.feature.woeType =? YahooWoeType.COUNTRY &&
-          DependentCountryInfo.isCountryDependentOnCountry(most_specific.fmatch.feature.cc, f.fmatch.feature.cc))
+          DependentCountryInfo.isCountryDependentOnCountry(most_specific.fmatch.feature.ccOrThrow, f.fmatch.feature.ccOrThrow))
       })
     }
   }

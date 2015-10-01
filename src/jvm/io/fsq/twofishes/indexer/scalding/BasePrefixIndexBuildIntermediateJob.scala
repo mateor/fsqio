@@ -82,7 +82,7 @@ class BasePrefixIndexBuildIntermediateJob(
     population = servingFeature.scoringFeatures.populationOption.getOrElse(0)
     boost = servingFeature.scoringFeatures.boostOption.getOrElse(0)
     score = population + boost
-    cc = servingFeature.feature.cc
+    cc = servingFeature.feature.ccOrThrow
     woeType = servingFeature.feature.woeTypeOrDefault
     // unlike with the name index, we can't just choose distinct normalized names up front because we need
     // to know which name each prefix came from

@@ -229,7 +229,7 @@ class BaseAlternateNamesJoinIntermediateJob(
       altNamesOpt match {
         case Some(altNamesContainer) => {
           val woeType = f.feature.woeTypeOption.getOrElse(YahooWoeType.UNKNOWN)
-          val cc = f.feature.cc
+          val cc = f.feature.ccOrThrow
 
           val altNames = altNamesContainer.names
           val featureNames = f.feature.names

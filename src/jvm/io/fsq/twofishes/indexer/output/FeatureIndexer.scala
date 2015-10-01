@@ -36,7 +36,7 @@ class FeatureIndexer(
 
     val partialFeature = fullFeature.copy(
       feature = fullFeature.feature.copy(
-        geometry = fullFeature.feature.geometry.copy(wkbGeometry = null)
+        geometry = fullFeature.feature.geometryOrThrow.copy(wkbGeometry = null)
       )
     )
 

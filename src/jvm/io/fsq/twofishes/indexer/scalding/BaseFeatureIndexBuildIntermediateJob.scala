@@ -20,7 +20,7 @@ class BaseFeatureIndexBuildIntermediateJob(
     val partialFeature = servingFeature.copy(
       slugs = null,
       feature = servingFeature.feature.copy(
-        geometry = servingFeature.feature.geometry.copy(wkbGeometry = null)))
+        geometry = servingFeature.feature.geometryOrThrow.copy(wkbGeometry = null)))
 
     (featureId -> partialFeature)
   }}).group

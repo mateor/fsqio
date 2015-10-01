@@ -114,7 +114,7 @@ object NameFormatter {
     lang: Option[String]
   ): Option[String] = {
     //val possibleTokens = YahooWoeType.values.asScala.map(_.name)
-    if (pattern.countries.isEmpty || pattern.countries.has(feature.cc)) {
+    if (pattern.countries.isEmpty || pattern.countries.has(feature.ccOrThrow)) {
       val re = "\\{([^\\{]+)\\}".r
       val woeTokenStrings = re.findAllIn(pattern.pattern).collect{case re(m) => m}.toList
       val hasGeneralFeatureToken = woeTokenStrings.exists(_ == "FEATURE")
@@ -269,7 +269,7 @@ trait NameUtils {
     } else {
       val modifiedPreferAbbrev = preferAbbrev &&
         f.woeTypeOption.exists(_ =? YahooWoeType.ADMIN1) &&
-        countryUsesStateAbbrev(f.cc)
+        countryUsesStateAbbrev(f.ccOrThrow)
       val scorer = new FeatureNameScorer(lang, modifiedPreferAbbrev)
       var bestScore = 0.0
       var bestName = names.headOption
@@ -340,7 +340,7 @@ trait NameUtils {
 
       val modifiedPreferAbbrev = preferAbbrev &&
         f.woeTypeOption.exists(_ =? YahooWoeType.ADMIN1) &&
-        countryUsesStateAbbrev(f.cc)
+        countryUsesStateAbbrev(f.ccOrThrow)
 
       val bestNameMatch = bestNameFromList(f, nameCandidates, lang, modifiedPreferAbbrev)
 
