@@ -96,6 +96,7 @@ class PrefixIndexer(
       YahooWoeType.SUBURB,
       YahooWoeType.ADMIN3,
       YahooWoeType.AIRPORT,
+      YahooWoeType.ADMIN1,
       YahooWoeType.COUNTRY
     ).map(_.getValue)
 
