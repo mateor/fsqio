@@ -36,8 +36,8 @@ class BaseRevGeoIndexBuildIntermediateJob(
 
   (for {
     (featureId, servingFeature) <- features
-    if servingFeature.feature.geometry.wkbGeometryIsSet
-    geometry = new WKBReader().read(servingFeature.feature.geometry.wkbGeometryByteArray)
+    if servingFeature.feature.geometryOrThrow.wkbGeometryIsSet
+    geometry = new WKBReader().read(servingFeature.feature.geometryOrThrow.wkbGeometryByteArray)
     bufferedShape = geometry.buffer(0)
     preparedShape = PreparedGeometryFactory.prepare(bufferedShape)
     woeType = servingFeature.feature.woeTypeOrDefault

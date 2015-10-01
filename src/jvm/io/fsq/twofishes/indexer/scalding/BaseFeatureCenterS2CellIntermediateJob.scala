@@ -26,7 +26,7 @@ class BaseFeatureCenterS2CellIntermediateJob(
     } else {
       val woeType = f.feature.woeType
       val s2Level = PolygonMatchingHelper.getS2LevelForWoeType(woeType)
-      val center = f.feature.geometry.center
+      val center = f.feature.geometryOrThrow.center
       val centerS2CellId = GeometryUtils.getS2CellIdForLevel(center.lat, center.lng, s2Level).id
       val matchingValue = PolygonMatchingValue.newBuilder
         .featureId(id.get)

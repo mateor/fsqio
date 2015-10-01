@@ -19,8 +19,8 @@ class BaseS2CoveringIndexBuildIntermediateJob(
 
   (for {
     (featureId, servingFeature) <- features
-    if servingFeature.feature.geometry.wkbGeometryIsSet
-    geometry = new WKBReader().read(servingFeature.feature.geometry.wkbGeometryByteArray)
+    if servingFeature.feature.geometryOrThrow.wkbGeometryIsSet
+    geometry = new WKBReader().read(servingFeature.feature.geometryOrThrow.wkbGeometryByteArray)
     cellIds = GeometryUtils.s2PolygonCovering(
       geometry,
       S2CoveringConstants.minS2LevelForS2Covering,

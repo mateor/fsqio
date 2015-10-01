@@ -314,7 +314,7 @@ class ConcreteHotfixStorageService(
             newSlugIndex = newSlugIndex + (slug -> edit.longId)
           }
 
-          val geometryMutable = featureMutable.geometry.mutableCopy
+          val geometryMutable = featureMutable.geometryOrThrow.mutableCopy
           // center
           if (edit.centerIsSet) {
             geometryMutable.center_=(edit.centerOrThrow)

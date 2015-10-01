@@ -45,7 +45,7 @@ object GeocodeParseOrdering {
   }
 
   val promoteFeatureWithBounds: ScoringFunc = {
-    case args if (args.primaryFeature.feature.geometry.boundsOption.nonEmpty) => {
+    case args if (args.primaryFeature.feature.geometryOrThrow.boundsOption.nonEmpty) => {
       ScorerResponseWithScoreAndMessage(1000, "promoting feature with bounds")
     }
   }
@@ -71,7 +71,7 @@ object GeocodeParseOrdering {
           primaryMatchLangs.has("icao") ||
           primaryMatchLangs.has("") || // a lot of aliases tend to be names without a language
           args.req.langOption.exists(lang => primaryMatchLangs.has(lang)) ||
-          primaryMatchLangs.exists(lang => CountryInfo.getCountryInfo(args.primaryFeature.feature.cc).exists(_.isLocalLanguage(lang)))) {
+          primaryMatchLangs.exists(lang => CountryInfo.getCountryInfo(args.primaryFeature.feature.ccOrThrow).exists(_.isLocalLanguage(lang)))) {
         ScorerResponse.Empty
       } else {
         ScorerResponseWithScoreAndMessage(-100000000, "penalizing name match in irrelevant language")
@@ -104,7 +104,7 @@ object GeocodeParseOrdering {
   }
 
   val promoteCountryHintMatch: ScoringFunc = {
-    case args if (args.req.ccOption.exists(_ == args.primaryFeature.feature.cc)) => {
+    case args if (args.req.ccOption.exists(_ == args.primaryFeature.feature.ccOrThrow)) => {
       if (args.primaryFeature.feature.woeType =? YahooWoeType.POSTAL_CODE) {
         ScorerResponseWithScoreAndMessage(10000000, "postal code country code match")
       } else {
@@ -114,7 +114,7 @@ object GeocodeParseOrdering {
   }
 
   val penalizeCountryHintMismatch: ScoringFunc = {
-    case args if (args.req.ccOption.exists(_ != args.primaryFeature.feature.cc)) => {
+    case args if (args.req.ccOption.exists(_ != args.primaryFeature.feature.ccOrThrow)) => {
       ScorerResponseWithScoreAndMessage(-100000000, "country code mismatch")
     }
   }
@@ -135,12 +135,12 @@ object GeocodeParseOrdering {
   }
 
   def distanceBoostForPoint(args: ScorerArguments, ll: GeocodePoint, clampPenalty: Boolean): ScorerResponse = {
-    val distance = if (args.primaryFeature.feature.geometry.boundsOption.nonEmpty) {
-      GeoTools.distanceFromPointToBounds(ll, args.primaryFeature.feature.geometry.boundsOrThrow)
+    val distance = if (args.primaryFeature.feature.geometryOrThrow.boundsOption.nonEmpty) {
+      GeoTools.distanceFromPointToBounds(ll, args.primaryFeature.feature.geometryOrThrow.boundsOrThrow)
     } else {
       GeoTools.getDistance(ll.lat, ll.lng,
-        args.primaryFeature.feature.geometry.center.lat,
-        args.primaryFeature.feature.geometry.center.lng)
+        args.primaryFeature.feature.geometryOrThrow.center.lat,
+        args.primaryFeature.feature.geometryOrThrow.center.lng)
     }
 
     val (bucketName, distanceBoost, woeTypeBoost) = if (distance < 5000) {
@@ -186,9 +186,9 @@ object GeocodeParseOrdering {
     // if it's smaller than looking at 1/4 of new york state, then
     // boost everything in it by a lot
     val bboxContainsCenter =
-      GeoTools.boundsContains(bounds, args.primaryFeature.feature.geometry.center)
+      GeoTools.boundsContains(bounds, args.primaryFeature.feature.geometryOrThrow.center)
     val bboxesIntersect =
-      args.primaryFeature.feature.geometry.boundsOption.map(fBounds =>
+      args.primaryFeature.feature.geometryOrThrow.boundsOption.map(fBounds =>
         GeoTools.boundsIntersect(bounds, fBounds)).getOrElse(false)
 
     if (bbox.lo().getEarthDistance(bbox.hi()) < 200 * 1000 &&
@@ -239,7 +239,7 @@ object GeocodeParseOrdering {
   }
 
   val usTieBreak: ScoringFunc = {
-    case args if (args.primaryFeature.feature.cc == "US") => {
+    case args if (args.primaryFeature.feature.ccOrThrow == "US") => {
       // as a terrible tie break, things in the US > elsewhere
       // meant primarily for zipcodes
       ScorerResponseWithScoreAndMessage(1, "US tie-break")
@@ -247,7 +247,7 @@ object GeocodeParseOrdering {
   }
 
   val penalizeCounties: ScoringFunc = {
-    case args if (args.primaryFeature.feature.cc == "US" && args.primaryFeature.feature.woeType == YahooWoeType.ADMIN2) => {
+    case args if (args.primaryFeature.feature.ccOrThrow == "US" && args.primaryFeature.feature.woeType == YahooWoeType.ADMIN2) => {
       // no one likes counties
       ScorerResponseWithScoreAndMessage(-30000, "no one likes counties in the US")
     }

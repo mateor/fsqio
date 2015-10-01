@@ -61,7 +61,7 @@ case class Parse[T <: MaybeSorted](
   override def toString: String = {
     val namesandids = this.map(f => {
       val name = NameUtils.bestName(f.fmatch.feature, None, false).map(_.name).getOrElse("UNKNOWN")
-      val cc = f.fmatch.feature.cc
+      val cc = f.fmatch.feature.ccOrThrow
       val id = f.fmatch.feature.ids.headOption.map(
         fid => "%s:%s".format(fid.source, fid.id)).getOrElse("no:id")
       "%s %s %s".format(id, name, cc)
@@ -78,7 +78,7 @@ case class Parse[T <: MaybeSorted](
   def addSortedFeature(f: FeatureMatch) =
     Parse.makeSortedParse(fmatches ++ List(f), scoringFeaturesOption)
 
-  def countryCode = fmatches.headOption.map(_.fmatch.feature.cc).getOrElse("XX")
+  def countryCode = fmatches.headOption.map(_.fmatch.feature.ccOrThrow).getOrElse("XX")
 
   lazy val featureId = StoredFeatureId.fromLong(fmatches(0).fmatch.longId).get
 
@@ -106,17 +106,17 @@ object Parse {
 object ParseUtils {
   def featureDistance(f1: GeocodeFeature, f2: GeocodeFeature) = {
     GeoTools.getDistance(
-      f1.geometry.center.lat,
-      f1.geometry.center.lng,
-      f2.geometry.center.lat,
-      f2.geometry.center.lng)
+      f1.geometryOrThrow.center.lat,
+      f1.geometryOrThrow.center.lng,
+      f2.geometryOrThrow.center.lat,
+      f2.geometryOrThrow.center.lng)
   }
 
   def boundsContains(f1: GeocodeFeature, f2: GeocodeFeature) = {
-    f1.geometry.boundsOption.exists(bb =>
-      GeoTools.boundsContains(bb, f2.geometry.center)) ||
-    f2.geometry.boundsOption.exists(bb =>
-      GeoTools.boundsContains(bb, f1.geometry.center))
+    f1.geometryOrThrow.boundsOption.exists(bb =>
+      GeoTools.boundsContains(bb, f2.geometryOrThrow.center)) ||
+    f2.geometryOrThrow.boundsOption.exists(bb =>
+      GeoTools.boundsContains(bb, f1.geometryOrThrow.center))
   }
 
   def parsesNear(p1: Parse[Sorted], p2: Parse[Sorted]): Boolean = {

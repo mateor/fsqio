@@ -18,8 +18,8 @@ class BasePolygonIndexBuildIntermediateJob(
 
   (for {
     (featureId, servingFeature) <- features
-    if servingFeature.feature.geometry.wkbGeometryIsSet
-    wkbGeometryByteBuffer = ByteBuffer.wrap(servingFeature.feature.geometry.wkbGeometryByteArray)
+    if servingFeature.feature.geometryOrThrow.wkbGeometryIsSet
+    wkbGeometryByteBuffer = ByteBuffer.wrap(servingFeature.feature.geometryOrThrow.wkbGeometryByteArray)
   } yield {
     (featureId -> IntermediateDataContainer.newBuilder.bytes(wkbGeometryByteBuffer).result)
   }).group

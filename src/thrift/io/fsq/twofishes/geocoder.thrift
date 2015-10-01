@@ -186,8 +186,8 @@ struct ScoringFeatures {
 
 struct GeocodeFeature {
   // country code
-  1: string cc
-  2: FeatureGeometry geometry
+  1: optional string cc
+  2: optional FeatureGeometry geometry
 
   //
   3: optional string name

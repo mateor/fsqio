@@ -219,7 +219,7 @@ object FeatureEditHelper {
       featureMutable.slug_=(slug)
     }
 
-    val geometryMutable = featureMutable.geometry.mutableCopy
+    val geometryMutable = featureMutable.geometryOrThrow.mutableCopy
     // center
     if (edit.centerIsSet) {
       geometryMutable.center_=(edit.centerOrThrow)

@@ -258,8 +258,8 @@ class GeocoderSpec extends SpecificationWithJUnit {
     r.interpretations.size aka r.toString must_== 1
     val interp = r.interpretations()(0)
     interp.whatOrNull must_== ""
-    interp.feature.geometry.center.lat must_== 5
-    interp.feature.geometry.center.lng must_== 6
+    interp.feature.geometryOrThrow.center.lat must_== 5
+    interp.feature.geometryOrThrow.center.lng must_== 6
     interp.feature.displayNameOrNull must_== "Rego Park, New York, US"
     interp.feature.woeTypeOrNull must_== YahooWoeType.TOWN
     interp.whereOrNull must_== "rego park"
@@ -275,8 +275,8 @@ class GeocoderSpec extends SpecificationWithJUnit {
     r.interpretations.size aka r.toString must_== 1
     val interp = r.interpretations()(0)
     interp.whatOrNull must_== "new york"
-    interp.feature.geometry.center.lat must_== 5
-    interp.feature.geometry.center.lng must_== 6
+    interp.feature.geometryOrThrow.center.lat must_== 5
+    interp.feature.geometryOrThrow.center.lng must_== 6
     interp.feature.displayNameOrNull must_== "Rego Park, New York, US"
     interp.feature.woeTypeOrNull must_== YahooWoeType.TOWN
     interp.whereOrNull must_== "rego park"
@@ -317,8 +317,8 @@ class GeocoderSpec extends SpecificationWithJUnit {
     r.interpretations.size must_== 1
     val interp = r.interpretations()(0)
     interp.whatOrNull aka r.toString must_== ""
-    interp.feature.geometry.center.lat must_== 5
-    interp.feature.geometry.center.lng must_== 6
+    interp.feature.geometryOrThrow.center.lat must_== 5
+    interp.feature.geometryOrThrow.center.lng must_== 6
     interp.whereOrNull must_== "rego park new york"
   }
 
@@ -331,8 +331,8 @@ class GeocoderSpec extends SpecificationWithJUnit {
     r.interpretations.size must_== 1
     val interp = r.interpretations()(0)
     interp.whatOrNull must_== ""
-    interp.feature.geometry.center.lat must_== 5
-    interp.feature.geometry.center.lng must_== 6
+    interp.feature.geometryOrThrow.center.lat must_== 5
+    interp.feature.geometryOrThrow.center.lng must_== 6
     interp.whereOrNull must_== "rego park new york"
   }
 
@@ -345,8 +345,8 @@ class GeocoderSpec extends SpecificationWithJUnit {
     r.interpretations.size must_== 1
     val interp = r.interpretations()(0)
     interp.whatOrNull must_== "pizza"
-    interp.feature.geometry.center.lat must_== 5
-    interp.feature.geometry.center.lng must_== 6
+    interp.feature.geometryOrThrow.center.lat must_== 5
+    interp.feature.geometryOrThrow.center.lng must_== 6
     interp.whereOrNull must_== "rego park new york"
   }
 
@@ -371,8 +371,8 @@ class GeocoderSpec extends SpecificationWithJUnit {
     r.interpretations.size must_== 1
     val interp = r.interpretations()(0)
     interp.whatOrNull must_== "rego park"
-    interp.feature.geometry.center.lat must_== 10
-    interp.feature.geometry.center.lng must_== 11
+    interp.feature.geometryOrThrow.center.lat must_== 10
+    interp.feature.geometryOrThrow.center.lng must_== 11
     interp.whereOrNull must_== "california"
   }
 
@@ -387,8 +387,8 @@ class GeocoderSpec extends SpecificationWithJUnit {
     val interp = r.interpretations()(0)
     interp.whatOrNull must_== ""
     interp.whereOrNull must_== "rego park new york"
-    interp.feature.geometry.center.lat must_== 5
-    interp.feature.geometry.center.lng must_== 6
+    interp.feature.geometryOrThrow.center.lat must_== 5
+    interp.feature.geometryOrThrow.center.lng must_== 6
 
     val parents = interp.parents
     parents.size must_== 2
@@ -410,12 +410,12 @@ class GeocoderSpec extends SpecificationWithJUnit {
     val interp1 = r.interpretations()(0)
     interp1.whatOrNull must_== ""
     interp1.whereOrNull must_== "paris"
-    interp1.feature.cc must_== "FR"
+    interp1.feature.ccOrThrow must_== "FR"
 
     val interp2 = r.interpretations()(1)
     interp2.whatOrNull must_== ""
     interp2.whereOrNull must_== "paris"
-    interp2.feature.cc must_== "US"
+    interp2.feature.ccOrThrow must_== "US"
   }
 
  "ambiguous names" in {
@@ -544,8 +544,8 @@ class GeocoderSpec extends SpecificationWithJUnit {
     val r = new GeocodeRequestDispatcher(store).geocode(req)
     r.interpretations.size must_== 1
     val interp = r.interpretations()(0)
-    interp.feature.geometry.center.lat must_== 10
-    interp.feature.geometry.center.lng must_== 11
+    interp.feature.geometryOrThrow.center.lat must_== 10
+    interp.feature.geometryOrThrow.center.lng must_== 11
 
     val req2 = req.mutableCopy
     req2.woeRestrict_=(List(YahooWoeType.ADMIN2))
@@ -567,8 +567,8 @@ class GeocoderSpec extends SpecificationWithJUnit {
     val r = new GeocodeRequestDispatcher(store).geocode(req)
     r.interpretations.size must_== 2
     val interp = r.interpretations()(0)
-    interp.feature.geometry.center.lat must_== 10
-    interp.feature.geometry.center.lng must_== 11
+    interp.feature.geometryOrThrow.center.lat must_== 10
+    interp.feature.geometryOrThrow.center.lng must_== 11
   }
 
   "slug lookup works" in {
@@ -581,8 +581,8 @@ class GeocoderSpec extends SpecificationWithJUnit {
     val r = new GeocodeRequestDispatcher(store).geocode(req)
     r.interpretations.size must_== 1
     val interp = r.interpretations()(0)
-    interp.feature.geometry.center.lat must_== 5
-    interp.feature.geometry.center.lng must_== 6
+    interp.feature.geometryOrThrow.center.lat must_== 5
+    interp.feature.geometryOrThrow.center.lng must_== 6
   }
 
   "bad slug lookup fails" in {
