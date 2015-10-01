@@ -8,7 +8,7 @@ import io.fsq.exceptionator.model.io.{BucketId, Incoming}
 import org.bson.types.ObjectId
 
 object FilteredIncoming {
-  def apply(incoming: Incoming): FilteredIncoming = FilteredIncoming(incoming, Set(), Set(), Set())
+  def apply(incoming: Incoming): FilteredIncoming = FilteredIncoming(incoming, Set.empty, Set.empty, Set.empty)
 }
 
 case class FilteredIncoming(

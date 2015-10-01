@@ -52,7 +52,7 @@ object FreshBucketFilter extends BucketFilter {
 }
 
 class IncomingTagsFilter extends TagFilter {
-  def tags(incoming: FilteredIncoming): Set[String] = incoming.incoming.tags.map(_.toSet).getOrElse(Set())
+  def tags(incoming: FilteredIncoming): Set[String] = incoming.incoming.tags.map(_.toSet).getOrElse(Set.empty)
 }
 
 // Probably want to place this on the filter stack below all tag filters

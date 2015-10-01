@@ -8,7 +8,7 @@ case class OrderedParseGroup(ranker: GeocodeParseOrdering, scoreCutoff: Option[I
 class OrderedParseGroupMerger(parses: Seq[Parse[Sorted]], groups: Seq[OrderedParseGroup]) {
 
   def merge() = {
-    var uniqueFeatureIds: Set[Long] = Set()
+    var uniqueFeatureIds: Set[Long] = Set.empty
     val finalParsesFromGroups = groups.flatMap(group => {
       val finalParses = parses.sorted(group.ranker).filter(r => {
         (r.finalScore >= group.scoreCutoff.getOrElse(Int.MinValue) &&

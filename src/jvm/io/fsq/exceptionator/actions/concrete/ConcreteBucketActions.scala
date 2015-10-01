@@ -52,7 +52,7 @@ class ConcreteBucketActions extends BucketActions with IndexActions with Logger 
         Set(now.minusMonths(1), now).map(monthFmt _)
         .flatMap(month => ids.map("%s:%s".format(month, _)))
       } else {
-        Set()
+        Set.empty
       })
 
       ++
@@ -62,7 +62,7 @@ class ConcreteBucketActions extends BucketActions with IndexActions with Logger 
       Set(now.minusDays(1), now).map(dayFmt _)
         .flatMap(day => ids.map("%s:%s".format(day, _)))
       } else {
-        Set()
+        Set.empty
       })
 
       ++
@@ -72,7 +72,7 @@ class ConcreteBucketActions extends BucketActions with IndexActions with Logger 
         Set(now.minusHours(1), now).map(hourFmt _)
         .flatMap(hour => ids.map("%s:%s".format(hour, _)))
       } else {
-        Set()
+        Set.empty
       })
     )
     BucketRecordHistogram.where(_._id in bucketHistogramIds).fetch
