@@ -1,14 +1,14 @@
 # Copyright 2015 Foursquare Labs Inc. All Rights Reserved.
 
-scala_library(
-  name = 'runtime',
+junit_tests(
+  name = 'test',
   sources = globs('*.scala'),
-  tags = ['fscommon'],
   dependencies = [
-    '3rdparty:joda-time',
-    '3rdparty:rogue-field',
+    '3rdparty:junit',
+    '3rdparty:mongodb',
     '3rdparty:thrift',
     'src/jvm/io/fsq/spindle/common/thrift/bson',
-    'src/jvm/io/fsq/spindle/common/thrift/json',
+    'src/jvm/io/fsq/spindle/runtime',
+    'test/thrift/io/fsq/spindle/codegen/test',
   ],
 )

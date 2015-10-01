@@ -21,6 +21,7 @@ class EnhancedTypesTest {
       KnownTProtocolNames.TCompactProtocol ::
       KnownTProtocolNames.TJSONProtocol ::
       KnownTProtocolNames.TBSONProtocol ::
+      KnownTProtocolNames.TBSONBinaryProtocol ::
       KnownTProtocolNames.TReadableJSONProtocol ::
       Nil
 

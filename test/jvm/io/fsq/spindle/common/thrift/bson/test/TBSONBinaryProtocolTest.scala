@@ -3,8 +3,9 @@
 package io.fsq.spindle.common.thrift.bson.test
 
 import com.mongodb.{BasicDBObjectBuilder, DBObject}
+import io.fsq.spindle.codegen.test.gen._
+import io.fsq.spindle.common.thrift.bson.{TBSONBinaryProtocol, TBSONObjectProtocol}
 import io.fsq.spindle.runtime.UntypedRecord
-import io.fsq.spindle.runtime.test.gen.{InnerStruct, RawTestStruct, TestStruct, TestStructNestedCollections}
 import java.io.ByteArrayInputStream
 import java.nio.ByteBuffer
 import org.bson.BasicBSONEncoder
