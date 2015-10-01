@@ -152,7 +152,10 @@ class MockGeocodeStorageReadService extends GeocodeStorageReadService {
 
 // TODO(dan): See if there's a way to clean up the extra noise this sends to stderr.
 class GeocoderSpec extends SpecificationWithJUnit {
-  GeocodeServerConfigSingleton.init(Array("--hfile_basepath", ""))
+  GeocodeServerConfigSingleton.init(Array(
+    "--vm_map_count", "65530",
+    "--hfile_basepath", ""
+  ))
 
   def addParisFrance(store: MockGeocodeStorageReadService) = {
     val frRecord = store.addGeocode("FR", Nil, 1, 2, YahooWoeType.COUNTRY, cc="FR")
