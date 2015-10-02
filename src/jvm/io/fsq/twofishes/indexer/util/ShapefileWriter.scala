@@ -18,7 +18,7 @@
 // import org.geotools.feature.simple.SimpleFeatureBuilder
 // import org.geotools.referencing.crs.DefaultGeographicCRS
 // import org.opengis.feature.simple.SimpleFeatureType
-// import scalaj.collection.Imports._
+// import scala.collection.JavaConverters._
 
 
 // object BuildPolygonShapefile {

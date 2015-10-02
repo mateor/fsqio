@@ -3,7 +3,7 @@
 package io.fsq.spindle.codegen.runtime
 
 import io.fsq.spindle.runtime.Annotations
-import scalaj.collection.Imports._
+import scala.collection.JavaConverters._
 
 class NotImplementedException(s: String) extends Exception(s)
 

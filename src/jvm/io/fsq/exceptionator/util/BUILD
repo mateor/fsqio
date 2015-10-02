@@ -11,7 +11,6 @@ scala_library(
     '3rdparty:joda-time',
     '3rdparty:mail',
     '3rdparty:ostrich',
-    '3rdparty:scalaj-collection',
     '3rdparty:twitter-util',
     '3rdparty:typesafe-config',
   ],

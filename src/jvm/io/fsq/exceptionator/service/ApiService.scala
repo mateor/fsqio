@@ -13,7 +13,7 @@ import java.net.URLDecoder
 import java.util.concurrent.Executors
 import org.jboss.netty.handler.codec.http._
 import org.joda.time.DateTime
-import scalaj.collection.Imports._
+import scala.collection.JavaConverters._
 
 object ApiHttpService {
    val Notices = """/api/notices(?:/([^/]+)(?:/([^/?&=]+))?)?""".r

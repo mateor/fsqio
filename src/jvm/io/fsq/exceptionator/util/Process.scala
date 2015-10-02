@@ -4,7 +4,7 @@ package io.fsq.exceptionator.util
 import com.twitter.util.{Future, FuturePool}
 import java.io.{BufferedReader, File, IOException, InputStreamReader}
 import java.util.concurrent.Executors
-import scalaj.collection.Imports._
+import scala.collection.JavaConverters._
 
 object Process {
   val processFuturePool = FuturePool(Executors.newFixedThreadPool(10))

@@ -9,7 +9,6 @@ scala_library(
   dependencies = [
     '3rdparty:finagle',
     '3rdparty:mongodb',
-    '3rdparty:scalaj-collection',
     '3rdparty:twitter-util',
     '3rdparty:typesafe-config',
     'src/jvm/io/fsq/exceptionator/model/io',

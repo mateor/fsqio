@@ -12,7 +12,7 @@ import io.fsq.rogue.lift.LiftRogue._
 import java.util.concurrent.Executors
 import org.joda.time.DateTime
 import scala.collection.GenSet
-import scalaj.collection.Imports._
+import scala.collection.JavaConverters._
 
 class ApplyUserFiltersBackgroundAction (
   services: HasBucketActions

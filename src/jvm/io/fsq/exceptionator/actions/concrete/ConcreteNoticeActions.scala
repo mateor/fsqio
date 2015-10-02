@@ -10,7 +10,7 @@ import io.fsq.exceptionator.util.Logger
 import io.fsq.rogue.lift.LiftRogue._
 import net.liftweb.json._
 import org.bson.types.ObjectId
-import scalaj.collection.Imports._
+import scala.collection.JavaConverters._
 
 class ConcreteNoticeActions extends NoticeActions with IndexActions with Logger {
   def get(ids: List[ObjectId]): List[Outgoing] = {

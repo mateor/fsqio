@@ -12,8 +12,8 @@ import java.util.regex.Pattern
 import net.liftweb.json._
 import org.bson.types.ObjectId
 import org.joda.time.DateTime
+import scala.collection.JavaConverters._
 import scala.collection.immutable.NumericRange
-import scalaj.collection.Imports._
 
 
 

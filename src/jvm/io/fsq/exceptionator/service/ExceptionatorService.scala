@@ -24,8 +24,8 @@ import java.util.concurrent.Executors
 import net.liftweb.mongodb.{DefaultMongoIdentifier, MongoDB}
 import org.jboss.netty.buffer.ChannelBuffers
 import org.jboss.netty.handler.codec.http._
+import scala.collection.JavaConverters._
 import scala.collection.mutable.ListBuffer
-import scalaj.collection.Imports._
 
 
 object ServiceUtil {

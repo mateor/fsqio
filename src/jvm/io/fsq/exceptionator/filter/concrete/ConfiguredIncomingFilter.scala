@@ -6,12 +6,12 @@ import com.twitter.finagle.Service
 import com.twitter.util.Future
 import io.fsq.exceptionator.filter.{FilteredIncoming, IncomingFilter, PreSaveFilter, ProcessedIncoming, Registry}
 import io.fsq.exceptionator.util.Config
-import scalaj.collection.Imports._
+import scala.collection.JavaConverters._
 
 class ConfiguredIncomingFilter extends PreSaveFilter {
   def register(registry: Registry) {}
 
-  val incomingFilters = Config.opt(_.getConfigList("incoming.filters").asScala).toList.flatten
+  val incomingFilters = Config.opt(_.getConfigList("incoming.filters").asScala.toList).toList.flatten
 
   def apply(incoming: FilteredIncoming, service: Service[FilteredIncoming, ProcessedIncoming]) = {
     val filterRes = IncomingFilter.checkFilters(incoming.incoming, incomingFilters)
