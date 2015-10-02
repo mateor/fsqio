@@ -13,7 +13,6 @@ scala_library(
     '3rdparty:lift-json',
     '3rdparty:mongodb',
     '3rdparty:ostrich',
-    '3rdparty:scalaj-collection',
     '3rdparty:twitter-util',
     'src/jvm/io/fsq/exceptionator/actions',
     'src/jvm/io/fsq/exceptionator/filter',

@@ -7,7 +7,7 @@ import io.fsq.exceptionator.actions.{BackgroundAction, BackgroundActions}
 import io.fsq.exceptionator.filter.ProcessedIncoming
 import io.fsq.exceptionator.loader.service.HasPluginLoaderService
 import io.fsq.exceptionator.util.Config
-import scalaj.collection.Imports._
+import scala.collection.JavaConverters._
 
 
 class ConcreteBackgroundActions(

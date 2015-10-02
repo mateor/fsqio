@@ -9,7 +9,7 @@ import org.geotools.data.shapefile.ShapefileDataStore
 import org.geotools.geojson.GeoJSONUtil
 import org.geotools.geojson.feature.FeatureJSON
 import org.opengis.feature.simple.SimpleFeature
-import scalaj.collection.Imports._
+import scala.collection.JavaConverters._
 
 object FsqSimpleFeatureImplicits {
   implicit def simpleFeatureToFsqSimpleFeature(f: SimpleFeature) =

@@ -5,8 +5,8 @@ package io.fsq.exceptionator.filter
 import com.typesafe.config.{Config => TSConfig}
 import io.fsq.exceptionator.model.io.Incoming
 import io.fsq.exceptionator.util.RegexUtil
+import scala.collection.JavaConverters._
 import scala.util.matching.Regex
-import scalaj.collection.Imports._
 
 case class FilterResult(matchedConfig: TSConfig, allowed: Option[Boolean], incoming: Incoming)
 

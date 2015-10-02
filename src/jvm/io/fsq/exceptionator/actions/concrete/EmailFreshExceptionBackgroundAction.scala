@@ -8,7 +8,7 @@ import io.fsq.exceptionator.filter.{IncomingFilter, ProcessedIncoming}
 import io.fsq.exceptionator.filter.concrete.FreshBucketFilter
 import io.fsq.exceptionator.model.io.BacktraceLine
 import io.fsq.exceptionator.util.{ConcreteBlamer, ConcreteMailSender, Config, Logger}
-import scalaj.collection.Imports._
+import scala.collection.JavaConverters._
 
 
 class EmailFreshExceptionBackgroundAction (

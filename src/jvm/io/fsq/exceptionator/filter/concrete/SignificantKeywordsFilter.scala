@@ -4,7 +4,7 @@ package io.fsq.exceptionator.filter.concrete
 
 import io.fsq.exceptionator.filter.{FilteredIncoming, IncomingFilter, KeywordFilter}
 import io.fsq.exceptionator.util.{Config, RollingRank}
-import scalaj.collection.Imports._
+import scala.collection.JavaConverters._
 
 class SignificantKeywordsFilter extends KeywordFilter {
   val keywordProcessors = Config.opt(_.getStringList("incoming.keywordFields").asScala)

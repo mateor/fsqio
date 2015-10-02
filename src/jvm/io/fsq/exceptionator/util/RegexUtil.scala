@@ -3,8 +3,8 @@
 package io.fsq.exceptionator.util
 
 import java.util.concurrent.ConcurrentHashMap
+import scala.collection.JavaConverters._
 import scala.util.matching.Regex
-import scalaj.collection.Imports._
 
 object RegexUtil {
   val cachedPatterns = new ConcurrentHashMap[String, Regex]()

@@ -14,7 +14,7 @@ import io.fsq.exceptionator.util.{Config, Logger}
 import java.io.{BufferedWriter, FileWriter}
 import org.jboss.netty.buffer.ChannelBufferInputStream
 import org.jboss.netty.handler.codec.http._
-import scalaj.collection.Imports._
+import scala.collection.JavaConverters._
 
 class IncomingHttpService(incomingActions: IncomingActions, backgroundActions: BackgroundActions)
     extends Service[ExceptionatorRequest, Response] with Logger {

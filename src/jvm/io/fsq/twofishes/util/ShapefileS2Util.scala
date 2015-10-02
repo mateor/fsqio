@@ -5,8 +5,8 @@ package io.fsq.twofishes.util
 import com.vividsolutions.jts.geom.{Coordinate, Geometry, GeometryFactory, LinearRing}
 import org.opengis.feature.`type`.{GeometryType, AttributeDescriptor, AttributeType}
 import com.google.common.geometry.{S2Cell, S2CellId, S2LatLng}
+import scala.collection.JavaConverters._
 import scala.collection.mutable
-import scalaj.collection.Imports._
 
 object ShapefileS2Util {
   def fullGeometryForCell(cellid: S2CellId): Geometry = {

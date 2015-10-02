@@ -8,7 +8,6 @@ scala_library(
   ],
   dependencies = [
     '3rdparty:finagle',
-    '3rdparty:scalaj-collection',
     '3rdparty:twitter-util',
     'src/jvm/io/fsq/exceptionator/filter',
     'src/jvm/io/fsq/exceptionator/model/io',

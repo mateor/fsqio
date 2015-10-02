@@ -11,7 +11,7 @@ import io.fsq.exceptionator.filter.concrete.FreshBucketFilter
 import io.fsq.exceptionator.model.io.BucketId
 import io.fsq.exceptionator.util.{Config, Logger, PluginLoader}
 import java.util.concurrent.Executors
-import scalaj.collection.Imports._
+import scala.collection.JavaConverters._
 
 
 class FilteredConcreteIncomingActions(service: Service[FilteredIncoming, ProcessedIncoming] with IncomingActions)
@@ -33,7 +33,7 @@ class ConcreteIncomingActions(services: HasBucketActions with HasHistoryActions 
 
   val saveFuturePool = FuturePool(Executors.newFixedThreadPool(10))
   val bucketSpecs = scala.collection.mutable.Map[String, BucketSpec]()
-  val incomingFilters = Config.opt(_.getConfigList("incoming.filters").asScala).toList.flatten
+  val incomingFilters = Config.opt(_.getConfigList("incoming.filters").asScala.toList).toList.flatten
 
   var currentTime: Long = 0
   var lastHistogramTrim: Long = 0
