@@ -12,7 +12,7 @@ import java.nio.ByteBuffer
 import org.apache.thrift.{TDeserializer, TSerializer}
 import org.apache.thrift.protocol.TCompactProtocol
 import org.bson.types.ObjectId
-import scalaj.collection.Implicits._
+import scala.collection.JavaConverters._
 
 case class DisplayName(
   lang: String,

@@ -19,7 +19,6 @@ scala_library(
     '3rdparty:rockymadden',
     '3rdparty:s2',
     '3rdparty:salat',
-    '3rdparty:scalaj-collection',
     '3rdparty:scopt',
     '3rdparty:slf4s',
     'src/jvm/io/fsq/twofishes/core',

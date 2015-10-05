@@ -33,9 +33,9 @@ import org.codehaus.jackson.JsonFactory
 import org.jboss.netty.buffer.ChannelBuffers
 import org.jboss.netty.handler.codec.http._
 import org.jboss.netty.util.CharsetUtil
+import scala.collection.JavaConverters._
 import scala.collection.mutable.ListBuffer
 import scala.io.BufferedSource
-import scalaj.collection.Implicits._
 
 class QueryLogHttpHandler(
   queryMap: ConcurrentHashMap[ObjectId, (TBase[_, _], Long)],

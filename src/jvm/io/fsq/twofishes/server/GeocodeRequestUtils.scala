@@ -8,7 +8,7 @@ import io.fsq.twofishes.gen.{CommonGeocodeRequestParams, GeocodePoint, GeocodeRe
 import io.fsq.twofishes.util.GeoTools
 import io.fsq.twofishes.util.Identity._
 import io.fsq.twofishes.util.Lists.Implicits._
-import scalaj.collection.Implicits._
+import scala.collection.JavaConverters._
 
 object GeocodeRequestUtils {
   val maxRadius = 5000 // 5 km

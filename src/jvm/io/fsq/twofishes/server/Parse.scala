@@ -7,8 +7,8 @@ import io.fsq.twofishes.util.{GeoTools, StoredFeatureId}
 import io.fsq.twofishes.util.Identity._
 import io.fsq.twofishes.util.Lists.Implicits._
 import io.fsq.twofishes.util.NameUtils
+import scala.collection.JavaConverters._
 import scala.collection.mutable.ListBuffer
-import scalaj.collection.Implicits._
 
 // Represents a match from a run of tokens to one particular feature
 case class FeatureMatch(

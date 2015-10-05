@@ -11,8 +11,8 @@ import io.fsq.twofishes.util.{GeoTools, GeometryUtils, StoredFeatureId}
 import io.fsq.twofishes.util.Identity._
 import io.fsq.twofishes.util.Lists.Implicits._
 import org.apache.thrift.TBaseHelper
+import scala.collection.JavaConverters._
 import scala.collection.mutable.ListBuffer
-import scalaj.collection.Implicits._
 
 object ReverseGeocodeParseOrdering {
   def parseToSortKey(p: Parse[Sorted]) = {

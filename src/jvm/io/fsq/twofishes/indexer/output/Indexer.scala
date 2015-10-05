@@ -16,7 +16,7 @@ import org.apache.hadoop.hbase.io.hfile.hacks.TwofishesFoursquareCacheConfigHack
 import org.apache.hadoop.hbase.util.Bytes._
 import org.apache.hadoop.io.{BytesWritable, MapFile}
 import org.apache.thrift.protocol.TCompactProtocol
-import scalaj.collection.Implicits._
+import scala.collection.JavaConverters._
 
 trait WrappedWriter[K, V] {
   def append(k: K, v: V)

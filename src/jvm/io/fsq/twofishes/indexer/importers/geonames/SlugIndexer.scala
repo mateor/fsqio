@@ -7,8 +7,8 @@ import io.fsq.twofishes.indexer.mongo.{GeocodeStorageWriteService, MongoGeocodeD
 import io.fsq.twofishes.indexer.util.{SlugEntry, SlugEntryMap}
 import io.fsq.twofishes.util.{Helpers, NameUtils, SlugBuilder, StoredFeatureId}
 import java.io.File
+import scala.collection.JavaConverters._
 import scala.collection.mutable.{HashMap, HashSet}
-import scalaj.collection.Implicits._
 
 // TODO
 // stop using string representations of "a:b" featureids everywhere, PLEASE

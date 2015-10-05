@@ -14,8 +14,8 @@ import io.fsq.twofishes.util.Lists.Implicits._
 import java.io._
 import java.util.concurrent.{CountDownLatch, Executors}
 import org.apache.hadoop.hbase.util.Bytes._
+import scala.collection.JavaConverters._
 import scala.collection.mutable.HashMap
-import scalaj.collection.Implicits._
 
 class OutputIndexes(
   basepath: String,

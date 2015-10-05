@@ -15,7 +15,7 @@ import io.fsq.twofishes.util.{GeoTools, GeometryUtils, StoredFeatureId}
 import io.fsq.twofishes.util.Identity._
 import java.io._
 import org.apache.hadoop.hbase.util.Bytes._
-import scalaj.collection.Implicits._
+import scala.collection.JavaConverters._
 
 class FeatureIndexer(
   override val basepath: String, 

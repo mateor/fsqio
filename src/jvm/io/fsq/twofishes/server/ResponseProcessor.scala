@@ -14,8 +14,8 @@ import io.fsq.twofishes.util.Identity._
 import io.fsq.twofishes.util.Lists.Implicits._
 import io.fsq.twofishes.util.NameUtils.BestNameMatch
 import java.nio.ByteBuffer
+import scala.collection.JavaConverters._
 import scala.collection.mutable.{HashSet, ListBuffer}
-import scalaj.collection.Implicits._
 
 // Sort a list of features, smallest to biggest
 object GeocodeServingFeatureOrdering extends Ordering[GeocodeServingFeature] {

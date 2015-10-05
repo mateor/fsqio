@@ -11,7 +11,6 @@ scala_library(
     '3rdparty:mongodb',
     '3rdparty:ostrich',
     '3rdparty:s2',
-    '3rdparty:scalaj-collection',
     '3rdparty:slf4s',
     '3rdparty:twitter-util',
     'src/thrift/io/fsq/twofishes',

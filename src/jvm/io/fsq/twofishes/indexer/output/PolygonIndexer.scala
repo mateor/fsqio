@@ -12,7 +12,7 @@ import io.fsq.twofishes.core.Indexes
 import io.fsq.twofishes.indexer.mongo.{MongoGeocodeDAO, PolygonIndex, PolygonIndexDAO}
 import java.io._
 import org.apache.hadoop.hbase.util.Bytes._
-import scalaj.collection.Implicits._
+import scala.collection.JavaConverters._
 
 class PolygonIndexer(override val basepath: String, override val fidMap: FidMap) extends Indexer {
   val index = Indexes.GeometryIndex

@@ -4,7 +4,7 @@ package io.fsq.twofishes.util
 
 import com.google.common.geometry.{S2CellId, S2LatLng, S2LatLngRect, S2Polygon, S2PolygonBuilder, S2RegionCoverer}
 import com.vividsolutions.jts.geom.{Geometry, Point, Polygon}
-import scalaj.collection.Implicits._
+import scala.collection.JavaConverters._
 
 trait RevGeoConstants {
   val minS2LevelForRevGeo = 8

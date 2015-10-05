@@ -13,8 +13,8 @@ import io.fsq.twofishes.util.RevGeoConstants
 import java.io._
 import java.nio.ByteBuffer
 import org.apache.hadoop.hbase.util.Bytes._
+import scala.collection.JavaConverters._
 import scala.collection.mutable.ListBuffer
-import scalaj.collection.Implicits._
 
 class RevGeoIndexer(
   override val basepath: String,

@@ -16,7 +16,6 @@ scala_library(
     '3rdparty:netty',
     '3rdparty:ostrich',
     '3rdparty:s2',
-    '3rdparty:scalaj-collection',
     '3rdparty:scopt',
     '3rdparty:slf4s',
     '3rdparty:spindle-runtime',

@@ -7,7 +7,7 @@ import io.fsq.twofishes.gen.{BulkSlugLookupRequest, BulkSlugLookupResponse, Comm
 import io.fsq.twofishes.util.Identity._
 import io.fsq.twofishes.util.Lists.Implicits._
 import io.fsq.twofishes.util.StoredFeatureId
-import scalaj.collection.Implicits._
+import scala.collection.JavaConverters._
 
 class SlugGeocoderImpl(
   store: GeocodeStorageReadService,

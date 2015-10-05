@@ -8,8 +8,8 @@ import io.fsq.twofishes.gen.{CommonGeocodeRequestParams, DebugScoreComponent, Fe
 import io.fsq.twofishes.util.{GeoTools, TwofishesLogger}
 import io.fsq.twofishes.util.Identity._
 import io.fsq.twofishes.util.Lists.Implicits._
+import scala.collection.JavaConverters._
 import scala.collection.mutable.HashMap
-import scalaj.collection.Implicits._
 
 // Comparator for parses, we score by a number of different features
 //

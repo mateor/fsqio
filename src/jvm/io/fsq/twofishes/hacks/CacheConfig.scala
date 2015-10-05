@@ -11,7 +11,7 @@ package org.apache.hadoop.hbase.io.hfile
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicInteger
 import org.apache.hadoop.conf.Configuration
-import scalaj.collection.Implicits._
+import scala.collection.JavaConverters._
 
 package object hacks {
   class TwofishesFoursquareCacheConfigHack(config: Configuration, cacheLimit: Option[Int] = None) extends TwofishesFoursquareCacheConfig(config, cacheLimit)
