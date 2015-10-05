@@ -5,7 +5,7 @@ import com.twitter.ostrich.stats.Stats
 import io.fsq.twofishes.gen.{GeocodeRequest, GeocodeResponse, ResponseIncludes}
 import io.fsq.twofishes.util.Identity._
 import io.fsq.twofishes.util.Lists.Implicits._
-import scalaj.collection.Implicits._
+import scala.collection.JavaConverters._
 
 /*
  This class is responsible for taking in a GeocodeRequest, which can either be a geocode, a slug lookup,

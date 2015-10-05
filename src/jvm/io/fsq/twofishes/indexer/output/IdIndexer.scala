@@ -13,7 +13,7 @@ import io.fsq.twofishes.util.Identity._
 import io.fsq.twofishes.util.StoredFeatureId
 import java.io._
 import org.apache.hadoop.hbase.util.Bytes._
-import scalaj.collection.Implicits._
+import scala.collection.JavaConverters._
 
 class IdIndexer(
   override val basepath: String,

@@ -4,7 +4,7 @@ import io.fsq.twofishes.gen.{GeocodeFeature, GeocodeInterpretation}
 import io.fsq.twofishes.util.Identity._
 import io.fsq.twofishes.util.Lists.Implicits._
 import io.fsq.twofishes.util.StoredFeatureId
-import scalaj.collection.Implicits._
+import scala.collection.JavaConverters._
 
 trait BulkImplHelpers {
   def makeBulkReply[T](

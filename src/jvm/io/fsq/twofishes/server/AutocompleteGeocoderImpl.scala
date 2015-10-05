@@ -9,8 +9,8 @@ import io.fsq.twofishes.util.{GeoTools, GeonamesId, NameNormalizer, NameUtils, S
 import io.fsq.twofishes.util.Identity._
 import io.fsq.twofishes.util.Lists.Implicits._
 import io.fsq.twofishes.util.NameUtils.BestNameMatch
+import scala.collection.JavaConverters._
 import scala.collection.mutable.HashMap
-import scalaj.collection.Implicits._
 
 trait GeocoderUtils {
   def req: GeocodeRequest

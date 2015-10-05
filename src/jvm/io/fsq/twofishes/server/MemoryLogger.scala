@@ -7,8 +7,8 @@ import io.fsq.twofishes.util.{DurationUtils, TwofishesLogger}
 import io.fsq.twofishes.util.Identity._
 import io.fsq.twofishes.util.Lists.Implicits._
 import java.util.Date
+import scala.collection.JavaConverters._
 import scala.collection.mutable.ListBuffer
-import scalaj.collection.Implicits._
 
 class MemoryLogger(req: CommonGeocodeRequestParams) extends TwofishesLogger {
   def this(req: GeocodeRequest) {

@@ -7,8 +7,8 @@ import io.fsq.twofishes.gen.YahooWoeType.{ADMIN1, ADMIN2, ADMIN3, AIRPORT, COUNT
 import io.fsq.twofishes.util.{GeoTools, NameNormalizer}
 import io.fsq.twofishes.util.Identity._
 import io.fsq.twofishes.util.Lists.Implicits._
+import scala.collection.JavaConverters._
 import scala.collection.mutable.ListBuffer
-import scalaj.collection.Implicits._
 
 // TODO
 // --make autocomplete faster

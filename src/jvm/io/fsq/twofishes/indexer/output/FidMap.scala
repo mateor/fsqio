@@ -10,8 +10,8 @@ import io.fsq.twofishes.indexer.mongo.MongoGeocodeDAO
 import io.fsq.twofishes.util.{DurationUtils, StoredFeatureId}
 import java.io._
 import org.apache.hadoop.hbase.util.Bytes._
+import scala.collection.JavaConverters._
 import scala.collection.mutable.HashMap
-import scalaj.collection.Implicits._
 
 class FidMap(preload: Boolean) extends DurationUtils {
   val fidMap = new HashMap[StoredFeatureId, Option[StoredFeatureId]]

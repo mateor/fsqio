@@ -6,7 +6,7 @@ import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.{FSDataInputStream, FileSystem, LocalFileSystem, Path}
 import org.apache.hadoop.io.{BytesWritable, MapFile, SequenceFile, Text, Writable, WritableComparator}
 import org.apache.hadoop.util.Options
-import scalaj.collection.Implicits._
+import scala.collection.JavaConverters._
 
 class MemoryMappedSequenceFileReader(conf: Configuration, val shouldPreload: Boolean, options: SequenceFile.Reader.Option*)
     extends SequenceFile.Reader(conf, options: _*) {

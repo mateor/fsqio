@@ -10,7 +10,6 @@ scala_library(
     '3rdparty:jts',
     '3rdparty:mongodb',
     '3rdparty:salat',
-    '3rdparty:scalaj-collection',
     '3rdparty:thrift',
     '3rdparty:twitter-util',
     'src/jvm/io/fsq/twofishes/core',

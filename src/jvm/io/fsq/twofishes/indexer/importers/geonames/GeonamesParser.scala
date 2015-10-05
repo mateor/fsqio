@@ -25,10 +25,10 @@ import org.bson.types.ObjectId
 import org.json4s.NoTypeHints
 import org.json4s.jackson.{JsonMethods, Serialization}
 import org.opengis.feature.simple.SimpleFeature
+import scala.collection.JavaConverters._
 import scala.collection.mutable.{HashMap, HashSet}
 import scala.io.Source
 import scala.util.matching.Regex
-import scalaj.collection.Implicits._
 
 object GeonamesParser extends DurationUtils {
   var config: GeonamesImporterConfig = null

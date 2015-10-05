@@ -11,8 +11,8 @@ import io.fsq.twofishes.indexer.mongo.NameIndexDAO
 import io.fsq.twofishes.util.StoredFeatureId
 import java.io._
 import org.apache.hadoop.hbase.util.Bytes._
+import scala.collection.JavaConverters._
 import scala.collection.mutable.{HashSet, ListBuffer}
-import scalaj.collection.Implicits._
 
 
 class NameIndexer(

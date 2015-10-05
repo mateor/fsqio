@@ -17,7 +17,7 @@ import io.fsq.twofishes.util.{DurationUtils, GeometryCleanupUtils, GeometryUtils
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.atomic.AtomicInteger
 import org.bson.types.ObjectId
-import scalaj.collection.Implicits._
+import scala.collection.JavaConverters._
 
 // ====================
 // ===== Messages =====

@@ -16,7 +16,7 @@ import org.apache.hadoop.hbase.io.hfile.hacks.TwofishesFoursquareCacheConfigHack
 import org.apache.hadoop.hbase.util.Bytes._
 import org.apache.hadoop.io.BytesWritable
 import org.apache.thrift.TBaseHelper
-import scalaj.collection.Implicits._
+import scala.collection.JavaConverters._
 
 class HFileStorageService(originalBasepath: String, shouldPreload: Boolean) extends GeocodeStorageReadService with Logging {
   // Do this to ensure that our data doesn't get rewritten out from under us if we're pointing at a symlink

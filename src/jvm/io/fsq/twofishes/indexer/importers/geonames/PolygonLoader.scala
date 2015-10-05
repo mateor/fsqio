@@ -29,7 +29,7 @@ import org.bson.types.ObjectId
 import org.geotools.geojson.geom.GeometryJSON
 import org.json4s._
 import org.json4s.jackson.JsonMethods._
-import scalaj.collection.Implicits._
+import scala.collection.JavaConverters._
 
 object LanguageDetector {
   DetectorFactory.loadProfile("./indexer/src/main/resources/profiles.sm/")
