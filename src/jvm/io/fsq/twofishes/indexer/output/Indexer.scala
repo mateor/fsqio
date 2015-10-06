@@ -70,7 +70,7 @@ abstract class Indexer extends DurationUtils {
     if (n.contains("io.fsq.twofishes.gen")) {
       n
     } else {
-      n.replace("com.foursquare.twofishes", "io.fsq.twofishes.gen")
+      n.replace("io.fsq.twofishes", "io.fsq.twofishes.gen")
         .replace("com.foursquare.base.thrift", "com.foursquare.base.gen")
 
     }
