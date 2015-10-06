@@ -1,5 +1,7 @@
 namespace java io.fsq.twofishes.gen
 
+typedef i64 GeocodeFeatureLongId
+
 // "woe types" ie "where on earth types," these are represent various types
 // of geographic features in the world
 //
