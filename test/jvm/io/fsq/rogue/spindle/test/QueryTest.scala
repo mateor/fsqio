@@ -10,7 +10,7 @@ import io.fsq.rogue.spindle.SpindleQuery
 import io.fsq.rogue.spindle.SpindleRogue._
 import io.fsq.rogue.spindle.test.gen.{ThriftClaimStatus, ThriftComment, ThriftConsumerPrivilege, ThriftLike,
     ThriftOAuthConsumer, ThriftRejectReason, ThriftSourceBson, ThriftTip, ThriftVenue, ThriftVenueClaim,
-    ThriftVenueClaimBson, ThriftVenueMeta, ThriftVenueStatus}
+    ThriftVenueClaimBson, ThriftVenueMeta}
 import io.fsq.rogue.spindle.test.gen.IdsTypedefs.VenueId
 import java.util.regex.Pattern
 import org.bson.types.ObjectId
