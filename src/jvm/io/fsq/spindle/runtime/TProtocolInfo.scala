@@ -63,6 +63,7 @@ object TProtocolInfo {
     // Keep com.foursquare package names around for a deprecation cycle or three.
     case KnownTProtocolNames.TBSONProtocolLegacy => new TBSONProtocol.Factory()
     case KnownTProtocolNames.TReadableJSONProtocolLegacy => new TReadableJSONProtocol.Factory()
+    case "com.foursquare.common.thrift.bson.TBSONObjectProtocol" => new TBSONProtocol.Factory()
     case _ => throw new Exception("Unrecognized protocol: %s".format(protocolName))
   }
 }
