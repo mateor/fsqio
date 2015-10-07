@@ -47,7 +47,7 @@ object NoticeRecord extends NoticeRecord with MongoMetaRecord[NoticeRecord] with
   override def collectionName = "notices"
 
   val keywordIndex = NoticeRecord.index(_.keywords, Asc)
-  override val mongoIndexList = List(
+  override val mongoIndexList = Vector(
     NoticeRecord.index(_.id, Asc),
     keywordIndex)
 

@@ -34,7 +34,7 @@ class ConcreteHistoryActions(services: HasBucketActions) extends HistoryActions 
   }
 
   def ensureIndexes {
-    List(HistoryRecord).foreach(metaRecord => {
+    Vector(HistoryRecord).foreach(metaRecord => {
       metaRecord.mongoIndexList.foreach(i =>
         metaRecord.ensureIndex(JObject(i.asListMap.map(fld => JField(fld._1, JInt(fld._2.toString.toInt))).toList)))
     })
