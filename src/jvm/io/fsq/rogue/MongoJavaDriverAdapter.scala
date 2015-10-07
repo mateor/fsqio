@@ -16,7 +16,7 @@ trait DBCollectionFactory[MB, RB] {
   def getPrimaryDBCollection(record: RB): DBCollection
   def getInstanceName[M <: MB](query: Query[M, _, _]): String
   // A set of of indexes, which are ordered lists of field names
-  def getIndexes[M <: MB](query: Query[M, _, _]): Option[List[UntypedMongoIndex]]
+  def getIndexes[M <: MB](query: Query[M, _, _]): Option[Seq[UntypedMongoIndex]]
 }
 
 class MongoJavaDriverAdapter[MB, RB](

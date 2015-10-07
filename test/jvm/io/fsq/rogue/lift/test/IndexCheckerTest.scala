@@ -31,7 +31,7 @@ class TestModel extends MongoRecord[TestModel] with ObjectIdKey[TestModel] {
 object TestModel extends TestModel with MongoMetaRecord[TestModel] with IndexedRecord[TestModel] {
   override def collectionName = "model"
 
-  override val mongoIndexList = List(
+  override val mongoIndexList = Vector(
     TestModel.index(_._id, Asc),
     TestModel.index(_.a, Asc, _.b, Asc, _.c, Asc),
     TestModel.index(_.m, Asc, _.a, Asc),
@@ -175,7 +175,7 @@ class MongoIndexCheckerTest extends JUnitMustMatchers {
     val id = new ObjectId
     val d = new DateTime
     yes(TestModel where (_._id eqs id) and (_.d eqs 4))
-    yes(TestModel where (_._id in List(id)) and (_.d eqs 4))
+    yes(TestModel where (_._id in Vector(id)) and (_.d eqs 4))
     no(TestModel where (_._id after d) scan (_.d eqs 4))
     no(TestModel iscan (_._id after d) iscan (_.d eqs 4))
     yes(TestModel iscan (_._id after d) scan (_.d eqs 4))

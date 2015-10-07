@@ -71,7 +71,7 @@ object Venue extends Venue with MongoMetaRecord[Venue] {
   val legIdx = Venue.index(_.legacyid, Desc)
   val geoIdx = Venue.index(_.geolatlng, TwoD)
   val geoCustomIdx = Venue.index(_.geolatlng, CustomIndex, _.tags, Asc)
-  override val mongoIndexList = List(idIdx, mayorIdIdx, mayorIdClosedIdx, legIdx, geoIdx, geoCustomIdx)
+  override val mongoIndexList = Vector(idIdx, mayorIdIdx, mayorIdClosedIdx, legIdx, geoIdx, geoCustomIdx)
 
   trait FK[T <: FK[T]] extends MongoRecord[T] {
     self: T=>

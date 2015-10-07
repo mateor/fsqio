@@ -40,7 +40,7 @@ object LiftDBCollectionFactory extends DBCollectionFactory[MongoRecord[_] with M
    * @param query the query
    * @return the list of indexes, or an empty list.
    */
-  override def getIndexes[M <: MongoRecord[_] with MongoMetaRecord[_]](query: Query[M, _, _]): Option[List[UntypedMongoIndex]] = {
+  override def getIndexes[M <: MongoRecord[_] with MongoMetaRecord[_]](query: Query[M, _, _]): Option[Seq[UntypedMongoIndex]] = {
     val queryMetaRecord = query.meta
     if (queryMetaRecord.isInstanceOf[IndexedRecord[_]]) {
       Some(queryMetaRecord.asInstanceOf[IndexedRecord[_]].mongoIndexList)
