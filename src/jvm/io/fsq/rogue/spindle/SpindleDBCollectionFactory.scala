@@ -51,7 +51,7 @@ trait SpindleDBCollectionFactory extends DBCollectionFactory[UntypedMetaRecord, 
    * Implementations should use a concurrent map. Unfortunately there is no common supertype for concurrent
    * maps that works in both 2.9.2 and 2.10.
    */
-  protected def indexCache: Option[MutableMap[UntypedMetaRecord, List[UntypedMongoIndex]]]
+  protected def indexCache: Option[MutableMap[UntypedMetaRecord, Seq[UntypedMongoIndex]]]
 
   /**
    * Retrieves the list of indexes declared for the record type associated with a
@@ -59,7 +59,7 @@ trait SpindleDBCollectionFactory extends DBCollectionFactory[UntypedMetaRecord, 
    * @param query the query
    * @return the list of indexes, or an empty list.
    */
-  override def getIndexes[M <: UntypedMetaRecord](query: RogueQuery[M, _, _]): Option[List[UntypedMongoIndex]] = {
+  override def getIndexes[M <: UntypedMetaRecord](query: RogueQuery[M, _, _]): Option[Seq[UntypedMongoIndex]] = {
     val cachedIndexes = indexCache.flatMap(_.get(query.meta))
     if (cachedIndexes.isDefined) {
       cachedIndexes

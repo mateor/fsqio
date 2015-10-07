@@ -50,7 +50,7 @@ object TrivialORM {
     override def getInstanceName[M <: MB](query: Query[M, _, _]): String = {
       db.getName
     }
-    override def getIndexes[M <: MB](query: Query[M, _, _]): Option[List[UntypedMongoIndex]] = {
+    override def getIndexes[M <: MB](query: Query[M, _, _]): Option[Seq[UntypedMongoIndex]] = {
       None
     }
   }

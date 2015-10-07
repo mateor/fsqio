@@ -7,5 +7,5 @@ package io.fsq.rogue.index
  * of the indexes that exist in MongoDB for that type.
  */
 trait IndexedRecord[M] {
-  val mongoIndexList: List[MongoIndex[_]] = Nil
+  val mongoIndexList: Seq[MongoIndex[_]] = Vector.empty
 }
