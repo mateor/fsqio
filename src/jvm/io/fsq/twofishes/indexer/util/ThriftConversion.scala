@@ -2,7 +2,7 @@
 
 package io.fsq.twofishes.indexer.util
 
-import io.fsq.spindle.runtime.{Record, RecordProvider}
+import com.foursquare.spindle.{Record, RecordProvider}
 import java.lang.reflect.Modifier
 import org.apache.thrift.{TBase, TDeserializer, TFieldIdEnum, TSerializer}
 import org.apache.thrift.protocol.{TCompactProtocol, TProtocolFactory}

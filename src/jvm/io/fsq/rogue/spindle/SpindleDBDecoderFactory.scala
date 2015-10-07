@@ -2,8 +2,8 @@
 
 package io.fsq.rogue.spindle
 
+import com.foursquare.spindle.{UntypedMetaRecord, UntypedRecord}
 import com.mongodb.{DBCallback, DBCollection, DBDecoder, DBDecoderFactory, DBObject}
-import io.fsq.spindle.runtime.{UntypedMetaRecord, UntypedRecord}
 import java.io.InputStream
 import org.bson.{BSONCallback, BSONObject}
 

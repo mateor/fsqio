@@ -2,11 +2,11 @@
 
 package io.fsq.rogue.spindle.test
 
+import com.foursquare.spindle.UntypedMetaRecord
 import com.mongodb.{MongoClient, ServerAddress}
 import io.fsq.rogue.Rogue._
 import io.fsq.rogue.spindle.{SpindleDBCollectionFactory, SpindleDatabaseService, SpindleQuery}
 import io.fsq.rogue.spindle.test.gen.TestStruct
-import io.fsq.spindle.runtime.UntypedMetaRecord
 import org.junit.Assert._
 import org.junit.Test
 

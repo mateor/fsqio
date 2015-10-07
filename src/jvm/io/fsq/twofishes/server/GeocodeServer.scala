@@ -2,6 +2,7 @@
 package io.fsq.twofishes.server
 
 import com.foursquare.common.thrift.json.TReadableJSONProtocol
+import com.foursquare.spindle.{MetaRecord, Record}
 import com.google.common.geometry.S2CellId
 import com.twitter.finagle.{Service, SimpleFilter}
 import com.twitter.finagle.builder.{Server, ServerBuilder}
@@ -13,7 +14,6 @@ import com.twitter.ostrich.stats.Stats
 import com.twitter.util.{Await, Future, FuturePool}
 import com.vividsolutions.jts.io.WKTWriter
 import com.weiglewilczek.slf4s.Logging
-import io.fsq.spindle.runtime.{MetaRecord, Record}
 import io.fsq.twofishes.gen.{AutocompleteBias, BulkReverseGeocodeRequest, BulkReverseGeocodeResponse,
     BulkSlugLookupRequest, BulkSlugLookupResponse, CommonGeocodeRequestParams, GeocodePoint, GeocodeRequest,
     GeocodeResponse, Geocoder, RefreshStoreRequest, RefreshStoreResponse, ResponseIncludes, S2CellIdInfo,

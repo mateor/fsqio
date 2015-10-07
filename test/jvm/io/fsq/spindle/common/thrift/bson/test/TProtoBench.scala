@@ -2,9 +2,9 @@
 
 package io.fsq.spindle.common.thrift.bson.test
 
+import com.foursquare.spindle.UntypedRecord
+import com.foursquare.spindle.test.gen.{InnerStruct, TestStruct}
 import com.mongodb.DBObject
-import io.fsq.spindle.runtime.UntypedRecord
-import io.fsq.spindle.runtime.test.gen.{InnerStruct, TestStruct}
 import java.io.{ByteArrayInputStream, InputStream}
 import java.nio.ByteBuffer
 import org.apache.thrift.protocol.{TProtocol, TProtocolUtil, TType}

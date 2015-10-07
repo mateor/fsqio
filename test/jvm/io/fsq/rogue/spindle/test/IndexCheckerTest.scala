@@ -2,13 +2,13 @@
 
 package io.fsq.rogue.spindle.test
 
+import com.foursquare.spindle.UntypedMetaRecord
 import io.fsq.rogue.Query
 import io.fsq.rogue.Rogue._
 import io.fsq.rogue.indexchecker.MongoIndexChecker
 import io.fsq.rogue.spindle.SpindleQuery
 import io.fsq.rogue.spindle.test.gen.{MutuallyRecursive1, ThriftIndexTestModel}
 import io.fsq.rogue.spindle.test.gen.IdsTypedefs.IndexTestId
-import io.fsq.spindle.runtime.UntypedMetaRecord
 import org.bson.types.ObjectId
 import org.joda.time.DateTime
 import org.junit._
