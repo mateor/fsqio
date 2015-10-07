@@ -1,9 +1,9 @@
 <%
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-import _root_.io.fsq.spindle.codegen.runtime.{RenderType, ScalaClass, ScalaFunction, ScalaService,
+import io.fsq.spindle.codegen.runtime.{RenderType, ScalaClass, ScalaFunction, ScalaService,
   TypeReferenceResolver}
-import _root_.io.fsq.spindle.__shaded_for_spindle_bootstrap__.descriptors.{Annotation, Field, Requiredness, Struct}
+import io.fsq.spindle.__shaded_for_spindle_bootstrap__.descriptors.{Annotation, Field, Requiredness, Struct}
 %>
 <%@ val service: ScalaService %>
 <%@ val resolver: TypeReferenceResolver %>
@@ -14,7 +14,7 @@ trait Has${service.name} {
   def get${service.name}: ${service.name}.ServiceIface
 }
 
-object ${service.name} extends _root_.io.fsq.spindle.runtime.ServiceDescriptor {
+object ${service.name} extends com.foursquare.spindle.ServiceDescriptor {
 <%--  Synchronous client interface --%>
   trait Iface #if (parentServiceName != "")extends ${parentServiceName}.Iface #(end){
 #for (function <- service.functions)
@@ -353,9 +353,9 @@ object ${service.name} extends _root_.io.fsq.spindle.runtime.ServiceDescriptor {
   class Service(
       iface: ServiceIface,
       protocolFactory: org.apache.thrift.protocol.TProtocolFactory
-  ) extends #if (parentServiceName != "")${parentServiceName}.Service(iface, protocolFactory)#(else)com.twitter.finagle.Service[Array[Byte], Array[Byte]]#(end) with _root_.io.fsq.spindle.runtime.ServiceDescriptor {
+  ) extends #if (parentServiceName != "")${parentServiceName}.Service(iface, protocolFactory)#(else)com.twitter.finagle.Service[Array[Byte], Array[Byte]]#(end) with com.foursquare.spindle.ServiceDescriptor {
   override def serviceName = ${service.name}.serviceName
-  override def functionDescriptors: Seq[_root_.io.fsq.spindle.runtime.FunctionDescriptor[_,_]] = ${service.name}.functionDescriptors
+  override def functionDescriptors: Seq[com.foursquare.spindle.FunctionDescriptor[_,_]] = ${service.name}.functionDescriptors
 
 #for (function <- service.functions)
 
@@ -499,8 +499,8 @@ object ${service.name} extends _root_.io.fsq.spindle.runtime.ServiceDescriptor {
 
 <%-- Output the ServiceDescriptor and FunctionDescriptors. --%>
   override val serviceName: String = "${service.name}"
-  override val functionDescriptors: Seq[_root_.io.fsq.spindle.runtime.FunctionDescriptor[_,_]] = #if (parentServiceName != "")${parentServiceName}.functionDescriptors ++ #(end)Seq(
-<% val items = for (function <- service.functions) yield ("""    new _root_.io.fsq.spindle.runtime.FunctionDescriptor[%s_%s_args, %s_%s_result] {
+  override val functionDescriptors: Seq[com.foursquare.spindle.FunctionDescriptor[_,_]] = #if (parentServiceName != "")${parentServiceName}.functionDescriptors ++ #(end)Seq(
+<% val items = for (function <- service.functions) yield ("""    new com.foursquare.spindle.FunctionDescriptor[%s_%s_args, %s_%s_result] {
       override val functionName = "%s"
       override val requestMetaRecord = %s_%s_args
       override val responseMetaRecord = %s_%s_result

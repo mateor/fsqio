@@ -4,9 +4,9 @@ package io.fsq.rogue.spindle
 
 import com.foursquare.common.thrift.bson.TBSONObjectProtocol
 import com.foursquare.field.Field
+import com.foursquare.spindle.{CompanionProvider, Enum, MetaRecord, Record}
 import io.fsq.rogue.{AbstractListModifyField, AbstractListQueryField, AbstractModifyField, AbstractQueryField,
     SelectableDummyField}
-import io.fsq.spindle.runtime.{CompanionProvider, Enum, MetaRecord, Record}
 import org.apache.thrift.TBase
 import org.bson.BSONObject
 

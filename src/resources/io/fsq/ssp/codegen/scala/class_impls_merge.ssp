@@ -1,4 +1,4 @@
-<%@ val cls: _root_.io.fsq.spindle.codegen.runtime.StructLike %>
+<%@ val cls: io.fsq.spindle.codegen.runtime.StructLike %>
   override def merge(that: ${cls.name}): Unit = {
 #for (field <- cls.fields)
     if (that.${field.isSetName} && !this.${field.isSetName}) {

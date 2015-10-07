@@ -11,8 +11,6 @@ object KnownTProtocolNames {
   val TJSONProtocol = "org.apache.thrift.protocol.TJSONProtocol"
   val TBSONProtocol = "io.fsq.spindle.common.thrift.bson.TBSONProtocol"
   val TReadableJSONProtocol = "io.fsq.spindle.common.thrift.json.TReadableJSONProtocol"
-  val TBSONProtocolLegacy = "com.foursquare.common.thrift.bson.TBSONProtocol"
-  val TReadableJSONProtocolLegacy = "com.foursquare.common.thrift.json.TReadableJSONProtocol"
 }
 
 // Utilities related to known TProtocol implementations.
@@ -21,7 +19,6 @@ object TProtocolInfo {
   def getProtocolName(prot: TProtocol): String = prot.getClass.getCanonicalName match {
     // When reading/writing from a BSON object we handle unknown fields as TBSONProtocol.
     case "io.fsq.spindle.common.thrift.bson.TBSONObjectProtocol" => KnownTProtocolNames.TBSONProtocol
-    case "com.foursquare.common.thrift.bson.TBSONObjectProtocol" => KnownTProtocolNames.TBSONProtocol
     case s => s
   }
 
@@ -60,10 +57,6 @@ object TProtocolInfo {
     case KnownTProtocolNames.TCompactProtocol => new TCompactProtocol.Factory()
     case KnownTProtocolNames.TJSONProtocol => new TJSONProtocol.Factory()
     case KnownTProtocolNames.TReadableJSONProtocol => new TReadableJSONProtocol.Factory()
-    case KnownTProtocolNames.TBSONProtocol => new TBSONProtocol.Factory()
-    // Keep com.foursquare package names around for a deprecation cycle or three.
-    case KnownTProtocolNames.TBSONProtocolLegacy => new TBSONProtocol.Factory()
-    case KnownTProtocolNames.TReadableJSONProtocolLegacy => new TReadableJSONProtocol.Factory()
     case _ => throw new Exception("Unrecognized protocol: %s".format(protocolName))
   }
 }

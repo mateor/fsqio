@@ -3,6 +3,7 @@
 package io.fsq.rogue.spindle.test
 
 import com.foursquare.field.Field
+import com.foursquare.spindle.{MetaRecord, Record}
 import com.mongodb.ReadPreference
 import io.fsq.rogue.{BSONType, MongoType, Query, QueryField, QueryOptimizer}
 import io.fsq.rogue.spindle.SpindleQuery
@@ -11,7 +12,6 @@ import io.fsq.rogue.spindle.test.gen.{ThriftClaimStatus, ThriftComment, ThriftCo
     ThriftOAuthConsumer, ThriftRejectReason, ThriftSourceBson, ThriftTip, ThriftVenue, ThriftVenueClaim,
     ThriftVenueClaimBson, ThriftVenueMeta}
 import io.fsq.rogue.spindle.test.gen.IdsTypedefs.VenueId
-import io.fsq.spindle.runtime.{MetaRecord, Record}
 import java.util.regex.Pattern
 import org.bson.types.ObjectId
 import org.joda.time.{DateTime, DateTimeZone}
