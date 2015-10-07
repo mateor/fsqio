@@ -108,7 +108,7 @@ object UserFilterRecord
   with IndexedRecord[UserFilterRecord] {
   override def collectionName = "user_filters"
 
-  override val mongoIndexList = List(
+  override val mongoIndexList = Vector(
     UserFilterRecord.index(_.id, Asc),
     UserFilterRecord.index(_.userId, Asc))
 }

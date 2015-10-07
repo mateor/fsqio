@@ -28,7 +28,7 @@ class ConcreteNoticeActions extends NoticeActions with IndexActions with Logger 
   }
 
   def ensureIndexes {
-    List(NoticeRecord).foreach(metaRecord => {
+    Vector(NoticeRecord).foreach(metaRecord => {
       metaRecord.mongoIndexList.foreach(i =>
         metaRecord.ensureIndex(JObject(i.asListMap.map(fld => JField(fld._1, JInt(fld._2.toString.toInt))).toList)))
     })

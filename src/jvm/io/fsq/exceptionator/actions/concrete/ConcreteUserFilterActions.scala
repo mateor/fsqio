@@ -14,7 +14,7 @@ import org.bson.types.ObjectId
 class ConcreteUserFilterActions extends UserFilterActions with IndexActions with Logger {
 
   def ensureIndexes {
-    List(UserFilterRecord).foreach(metaRecord => {
+    Vector(UserFilterRecord).foreach(metaRecord => {
         metaRecord.mongoIndexList.foreach(i =>
           metaRecord.ensureIndex(JObject(i.asListMap.map(fld => JField(fld._1, JInt(fld._2.toString.toInt))).toList)))
     })

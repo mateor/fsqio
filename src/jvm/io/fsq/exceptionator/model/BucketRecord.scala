@@ -54,7 +54,7 @@ object BucketRecord extends BucketRecord with MongoMetaRecord[BucketRecord] with
 
   val idIndex = BucketRecord.index(_._id, Asc)
 
-  override val mongoIndexList = List(
+  override val mongoIndexList = Vector(
     idIndex,
     BucketRecord.index(_.lastSeen, Asc)) // finding old buckets
 }
@@ -124,7 +124,7 @@ object BucketRecordHistogram
     with IndexedRecord[BucketRecordHistogram] {
   override def collectionName = "bucket_histograms"
 
-  override val mongoIndexList = List(
+  override val mongoIndexList = Vector(
     BucketRecord.index(_._id, Asc))
 
 }

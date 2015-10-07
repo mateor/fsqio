@@ -62,7 +62,7 @@ object HistoryRecord extends HistoryRecord with MongoMetaRecord[HistoryRecord] w
 
   val bucketIdIndex = HistoryRecord.index(_.buckets, Asc, _.id, Desc)
 
-  override val mongoIndexList = List(
+  override val mongoIndexList = Vector(
     HistoryRecord.index(_.id, Asc),
     bucketIdIndex)
 }
