@@ -21,6 +21,7 @@ object TProtocolInfo {
   def getProtocolName(prot: TProtocol): String = prot.getClass.getCanonicalName match {
     // When reading/writing from a BSON object we handle unknown fields as TBSONProtocol.
     case "io.fsq.spindle.common.thrift.bson.TBSONObjectProtocol" => KnownTProtocolNames.TBSONProtocol
+    case "com.foursquare.common.thrift.bson.TBSONObjectProtocol" => KnownTProtocolNames.TBSONProtocol
     case s => s
   }
 
@@ -63,7 +64,6 @@ object TProtocolInfo {
     // Keep com.foursquare package names around for a deprecation cycle or three.
     case KnownTProtocolNames.TBSONProtocolLegacy => new TBSONProtocol.Factory()
     case KnownTProtocolNames.TReadableJSONProtocolLegacy => new TReadableJSONProtocol.Factory()
-    case "com.foursquare.common.thrift.bson.TBSONObjectProtocol" => new TBSONProtocol.Factory()
     case _ => throw new Exception("Unrecognized protocol: %s".format(protocolName))
   }
 }
