@@ -2,17 +2,27 @@
 
 package io.fsq.spindle.runtime.test
 
-import com.foursquare.spindle.MetaRecord
-import com.foursquare.spindle.runtime.{KnownTProtocolNames, TProtocolInfo}
 import io.fsq.spindle.codegen.test.gen._
+import io.fsq.spindle.common.thrift.json.TReadableJSONProtocol
+import io.fsq.spindle.runtime.{KnownTProtocolNames, MetaRecord, TProtocolInfo}
 import java.nio.ByteBuffer
-import org.apache.thrift.TBase
+import net.liftweb.json.{Diff, JsonAST, JsonParser, Printer}
+import org.apache.thrift.{TBase, TDeserializer, TFieldIdEnum}
+import org.apache.thrift.protocol.TType
 import org.apache.thrift.transport.{AutoExpandingBufferReadTransport, TMemoryBuffer}
-import org.junit.Assert.assertEquals
-import org.junit.Test
+import org.junit.{Assert, Test}
 
 
 class WireCompatibilityTest {
+
+  val protocols = Set(
+    KnownTProtocolNames.TBinaryProtocol,
+    KnownTProtocolNames.TCompactProtocol,
+    KnownTProtocolNames.TJSONProtocol,
+    KnownTProtocolNames.TBSONProtocol,
+    KnownTProtocolNames.TReadableJSONProtocol,
+    KnownTProtocolNames.TReadableJSONProtocolLegacy,
+    KnownTProtocolNames.TBSONProtocolLegacy)
 
   @Test
   def testBSON2CompactCrossCompatibility() {
@@ -21,6 +31,43 @@ class WireCompatibilityTest {
     // This verifies that unknown fields will survive that trip, so we single it out here for emphasis and
     // ease of debugging, even though this combo is also tested in testAllCompatibilityCombos().
     doTestUnknownFieldCompatibility(KnownTProtocolNames.TBSONProtocol, KnownTProtocolNames.TCompactProtocol)
+  }
+
+  @Test
+  def testUnkownFieldsProtocol(){
+    // Ensure that unknown fields is not mangling data whether through using the wrong protocol or something else.
+    type TType = TBase[_ <: TBase[_ <: AnyRef, _ <: TFieldIdEnum], _ <: TFieldIdEnum]
+
+    def parse[T <: TType](rawResponse: String, responseObj: T): Unit = {
+      val deserializer =
+        new TDeserializer(new TReadableJSONProtocol.Factory())
+      deserializer.deserialize(responseObj, rawResponse.getBytes)
+    }
+
+    def toJson[T <: TType](thrift: T): JsonAST.JObject = {
+      val trans = new TMemoryBuffer(1024)
+      val oprot = (new TReadableJSONProtocol.Factory).getProtocol(trans)
+      thrift.write(oprot)
+      JsonParser.parse(trans.toString("UTF-8")).asInstanceOf[JsonAST.JObject]
+    }
+
+    val jsonString = """{"user": { "id": "12", "firstName": "Tester", "gender": "female"}}"""
+    val jsonObj = JsonParser.parse(jsonString).asInstanceOf[JsonAST.JObject]
+    val thriftResponse = StructWithNoFields.createRecord
+
+    parse(jsonString, thriftResponse)
+    val backToJson = toJson(thriftResponse)
+    val diff = Diff.diff(jsonObj, backToJson)
+
+    for (
+      x <- diff.added
+      if x != JsonAST.JNothing
+    ) {
+      throw new RuntimeException(
+        "Thrift object %s contains different fields than original json. Diff: %s. Original json: %s".format(
+          thriftResponse, diff, jsonString))
+    }
+    Assert.assertEquals(Printer.compact(JsonAST.render(jsonObj)), Printer.compact(JsonAST.render(backToJson)))
   }
 
   @Test
@@ -43,18 +90,12 @@ class WireCompatibilityTest {
     doRead(srcProtocol, newBuf2, oldObj)
     val oldStr2 = oldObj.toString
 
-    assertEquals(oldStr1, oldStr2)
+    Assert.assertEquals(oldStr1, oldStr2)
   }
 
   @Test
   def testAllCompatibilityCombos() {
-    // Test all 25 possible combinations of src and dst protocol.
-    val protocols = List(
-      KnownTProtocolNames.TBinaryProtocol,
-      KnownTProtocolNames.TCompactProtocol,
-      KnownTProtocolNames.TJSONProtocol,
-      KnownTProtocolNames.TBSONProtocol,
-      KnownTProtocolNames.TReadableJSONProtocol)
+    // Test all possible combinations of src and dst protocol.
 
     for (src <- protocols; dst <- protocols) {
       println("Testing unknown field compatibility between: %s -> %s".format(src, dst))
@@ -76,6 +117,16 @@ class WireCompatibilityTest {
     val sNoUnknownFieldsInnerStructNoString = testStructNoUnknownFieldsTrackingInnerStructNoString()
     val sCollections = testStructCollections()
     val sNestedCollections = testStructNestedCollections()
+
+    def getProtocolName(protocolName: String) = {
+      protocolName.split("\\.").last
+    }
+
+    def areSameProtocol(firstProtocol: String, secondProtocol: String) = {
+      // Compare protocols based on the protocol name instead of including the package name in the comparison.
+      // This assumes that there aren't two different versions of the same protocol available in different packages.
+      getProtocolName(firstProtocol) == getProtocolName(secondProtocol)
+    }
 
     // Test reading via versions of the struct missing one field.
     val structsMissingOneField: List[MetaRecord[_, _]] = List(
@@ -185,7 +236,7 @@ class WireCompatibilityTest {
       doRead(dstProtocol, oldBuf1, roundtrippedOldObj)
 
       // Check that we got what we expect.
-      assertEquals(oldObj, roundtrippedOldObj)
+      Assert.assertEquals(oldObj, roundtrippedOldObj)
 
       // Write the old object back out.
       val oldBuf2 = doWrite(dstProtocol, oldObj)
@@ -196,15 +247,55 @@ class WireCompatibilityTest {
 
       // Check that we got what we expect.
       val expected = {
-        if (srcProtocol == dstProtocol ||
+        if (areSameProtocol(srcProtocol, dstProtocol) ||
           TProtocolInfo.isRobust(srcProtocol) && TProtocolInfo.isRobust(dstProtocol)) {
           expectedRoundTrippedObjSameProto.getOrElse(newObj)
         } else {
           expectedRoundTrippedObj.getOrElse(newObj)
         }
       }
-      assertEquals(expected, roundtrippedNewObj)
+      Assert.assertEquals(expected, roundtrippedNewObj)
     }
+  }
+
+  @Test
+  def testPatternMatchforIsTextBased() {
+    for (protocol <- protocols) {
+      // Just checking to ensure that this function call does not end in an exception.
+      TProtocolInfo.isTextBased(protocol)
+    }
+  }
+
+  @Test
+  def testPatternMatchforIsRobust() {
+    for (protocol <- protocols) {
+      // Just checking to ensure that this function call does not end in an exception.
+      TProtocolInfo.isRobust(protocol)
+    }
+  }
+
+  // Test that unknown protocols raise an exception when passed to the pattern matching functions.
+  def testUnregisteredProtocolInPatternMatchingFunctions(unknownProtocol: String, protocolFunction: String => Boolean) {
+    try {
+      // If it were a case in the pattern match it would return as true or false.
+      protocolFunction(unknownProtocol)
+      Assert.fail()
+    }
+    catch {
+      case e: TProtocolInfo.ProtocolNotFoundException => // Expected
+    }
+  }
+
+  @Test
+  def testIsRobustUnknownProtocol() {
+    val unknownProtocol = "com.notfoursquare.unknown.UnknownProtocol"
+    testUnregisteredProtocolInPatternMatchingFunctions(unknownProtocol, TProtocolInfo.isRobust)
+  }
+
+  @Test
+  def testIsTextBasedUnknownProtocol() {
+    val unknownProtocol = "com.notfoursquare.unknown.UnknownProtocol"
+    testUnregisteredProtocolInPatternMatchingFunctions(unknownProtocol, TProtocolInfo.isTextBased)
   }
 
   private def doWrite(protocolName: String, thriftObj: TBase[_, _]): TMemoryBuffer = {

@@ -18,13 +18,13 @@ sealed abstract class SimpleBaseType private (
     override val id: Int,
     override val name: String,
     override val stringValue: String
-) extends com.foursquare.spindle.Enum[SimpleBaseType] with JavaSimpleBaseType with org.apache.thrift.TEnum {
+) extends _root_.io.fsq.spindle.runtime.Enum[SimpleBaseType] with JavaSimpleBaseType with org.apache.thrift.TEnum {
   override def toString: String = stringValue
   override def getValue: Int = id
   override def meta = SimpleBaseType
 }
 
-object SimpleBaseType extends com.foursquare.spindle.EnumMeta[SimpleBaseType] {
+object SimpleBaseType extends _root_.io.fsq.spindle.runtime.EnumMeta[SimpleBaseType] {
 
     object BOOL extends SimpleBaseType(0, "BOOL", "BOOL")
     object BYTE extends SimpleBaseType(1, "BYTE", "BYTE")
@@ -100,21 +100,21 @@ sealed abstract class Requiredness private (
     override val id: Int,
     override val name: String,
     override val stringValue: String
-) extends com.foursquare.spindle.Enum[Requiredness] with JavaRequiredness with org.apache.thrift.TEnum {
+) extends _root_.io.fsq.spindle.runtime.Enum[Requiredness] with JavaRequiredness with org.apache.thrift.TEnum {
   override def toString: String = stringValue
   override def getValue: Int = id
   override def meta = Requiredness
 }
 
-object Requiredness extends com.foursquare.spindle.EnumMeta[Requiredness] {
+object Requiredness extends _root_.io.fsq.spindle.runtime.EnumMeta[Requiredness] {
 
     object REQUIRED extends Requiredness(0, "REQUIRED", "REQUIRED")
     object OPTIONAL extends Requiredness(1, "OPTIONAL", "OPTIONAL")
 
   final case class UnknownWireValue(val v: Any) extends Requiredness(if (v.isInstanceOf[Int]) v.asInstanceOf[Int] else -1, "?", if (v.isInstanceOf[String]) v.asInstanceOf[String] else "?")
 
-  override val annotations: com.foursquare.spindle.Annotations =
-    new com.foursquare.spindle.Annotations(scala.collection.immutable.Vector(
+  override val annotations: _root_.io.fsq.spindle.runtime.Annotations =
+    new _root_.io.fsq.spindle.runtime.Annotations(scala.collection.immutable.Vector(
       ("generate_proxy", "true")
     ))
 
@@ -198,7 +198,7 @@ object Include extends IncludeMeta {
 
 class IncludeMeta
     extends JavaIncludeMeta[Include, RawInclude, IncludeMeta]
-    with com.foursquare.spindle.RecordProvider[Include] {
+    with _root_.io.fsq.spindle.runtime.RecordProvider[Include] {
   override def recordName: String = "Include"
 
 
@@ -235,39 +235,39 @@ class IncludeMeta
     1.toShort -> _Fields.path
   )
 
-  override def createUntypedRawRecord: com.foursquare.spindle.UntypedRecord = createRawRecord
+  override def createUntypedRawRecord: _root_.io.fsq.spindle.runtime.UntypedRecord = createRawRecord
   override def createRecord: Include = createRawRecord
   override def createRawRecord: RawInclude = new RawInclude
 
-  override def untypedIfInstanceFrom(x: AnyRef): Option[com.foursquare.spindle.UntypedRecord] = ifInstanceFrom(x)
+  override def untypedIfInstanceFrom(x: AnyRef): Option[_root_.io.fsq.spindle.runtime.UntypedRecord] = ifInstanceFrom(x)
   override def ifInstanceFrom(x: AnyRef): Option[Include] = {
     if (x.isInstanceOf[Include]) Some(x.asInstanceOf[Include]) else None
   }
 
-  override val annotations: com.foursquare.spindle.Annotations =
+  override val annotations: _root_.io.fsq.spindle.runtime.Annotations =
 
-    com.foursquare.spindle.Annotations.empty
+    _root_.io.fsq.spindle.runtime.Annotations.empty
 
   // Spindle Descriptors.
 
 
   val path =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[String, Include, IncludeMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[String, Include, IncludeMeta](
       name = "path",
       longName = "path",
       id = 1,
       annotations = Map(),
       owner = this,
       getter = _.pathOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Include], v: String) => { r.asInstanceOf[RawInclude].path_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Include]) => { r.asInstanceOf[RawInclude].pathUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Include], v: String) => { r.asInstanceOf[RawInclude].path_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Include]) => { r.asInstanceOf[RawInclude].pathUnset() },
       manifest = manifest[String]
     )
 
-  override def untypedFields: Seq[com.foursquare.spindle.UntypedFieldDescriptor] = fields
-  override val fields: Seq[com.foursquare.spindle.FieldDescriptor[_, Include, IncludeMeta]] =
-    Vector[com.foursquare.spindle.FieldDescriptor[_, Include, IncludeMeta]](
+  override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
+  override val fields: Seq[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, Include, IncludeMeta]] =
+    Vector[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, Include, IncludeMeta]](
       path
     )
 
@@ -281,7 +281,7 @@ class IncludeMeta
   }
 }
 
-class IncludeCompanionProvider extends com.foursquare.spindle.CompanionProvider[Include] {
+class IncludeCompanionProvider extends _root_.io.fsq.spindle.runtime.CompanionProvider[Include] {
   type CompanionT = IncludeMeta
   override def provide: IncludeMeta = Include
 }
@@ -392,7 +392,7 @@ final class RawInclude extends JavaIncludeRaw[
   // end fields
 
 
-  private var unknownFields: List[com.foursquare.spindle.runtime.UnknownFields] = Nil
+  private var unknownFields: List[_root_.io.fsq.spindle.runtime.UnknownFields] = Nil
 
 
   override def write(oprot: org.apache.thrift.protocol.TProtocol): Unit = {
@@ -402,7 +402,7 @@ final class RawInclude extends JavaIncludeRaw[
       oprot.writeString(_path)
       oprot.writeFieldEnd()
     }
-  if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+  if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
     unknownFields.reverse foreach { _.write(oprot) }
   }
     oprot.writeFieldStop()
@@ -411,13 +411,13 @@ final class RawInclude extends JavaIncludeRaw[
 
   override def read(iprot: org.apache.thrift.protocol.TProtocol) {
     // Unknown fields in this read go here.
-    var currentUnknownFieldsOpt: Option[com.foursquare.spindle.runtime.UnknownFields] = None
-    def currentUnknownFields(): com.foursquare.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
+    var currentUnknownFieldsOpt: Option[_root_.io.fsq.spindle.runtime.UnknownFields] = None
+    def currentUnknownFields(): _root_.io.fsq.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
       case Some(uf) => uf
       case None => {
-        val uf = new com.foursquare.spindle.runtime.UnknownFields(
+        val uf = new _root_.io.fsq.spindle.runtime.UnknownFields(
           this,
-          com.foursquare.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
+          _root_.io.fsq.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
         )
         unknownFields = uf :: unknownFields
         currentUnknownFieldsOpt = Some(uf)
@@ -446,7 +446,7 @@ final class RawInclude extends JavaIncludeRaw[
             }
           }
           case _ => {
-            if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+            if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
               currentUnknownFields().readUnknownField(iprot, field_header, this)  // May call this method recursively.
             } else {
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field_header.`type`)
@@ -490,7 +490,7 @@ final class RawInclude extends JavaIncludeRaw[
 
   override def hashCode(): Int = {
     // We use a fixed seed, for consistency.
-    val hasher = new com.foursquare.spindle.runtime.MurmurHash[AnyRef](0)
+    val hasher = new _root_.io.fsq.spindle.runtime.MurmurHash[AnyRef](0)
     if (pathIsSet) hasher.append(_path.##)
     hasher.hash
   }
@@ -604,7 +604,7 @@ object Namespace extends NamespaceMeta {
 
 class NamespaceMeta
     extends JavaNamespaceMeta[Namespace, RawNamespace, NamespaceMeta]
-    with com.foursquare.spindle.RecordProvider[Namespace] {
+    with _root_.io.fsq.spindle.runtime.RecordProvider[Namespace] {
   override def recordName: String = "Namespace"
 
 
@@ -654,53 +654,53 @@ class NamespaceMeta
     2.toShort -> _Fields.name
   )
 
-  override def createUntypedRawRecord: com.foursquare.spindle.UntypedRecord = createRawRecord
+  override def createUntypedRawRecord: _root_.io.fsq.spindle.runtime.UntypedRecord = createRawRecord
   override def createRecord: Namespace = createRawRecord
   override def createRawRecord: RawNamespace = new RawNamespace
 
-  override def untypedIfInstanceFrom(x: AnyRef): Option[com.foursquare.spindle.UntypedRecord] = ifInstanceFrom(x)
+  override def untypedIfInstanceFrom(x: AnyRef): Option[_root_.io.fsq.spindle.runtime.UntypedRecord] = ifInstanceFrom(x)
   override def ifInstanceFrom(x: AnyRef): Option[Namespace] = {
     if (x.isInstanceOf[Namespace]) Some(x.asInstanceOf[Namespace]) else None
   }
 
-  override val annotations: com.foursquare.spindle.Annotations =
+  override val annotations: _root_.io.fsq.spindle.runtime.Annotations =
 
-    com.foursquare.spindle.Annotations.empty
+    _root_.io.fsq.spindle.runtime.Annotations.empty
 
   // Spindle Descriptors.
 
 
   val language =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[String, Namespace, NamespaceMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[String, Namespace, NamespaceMeta](
       name = "language",
       longName = "language",
       id = 1,
       annotations = Map(),
       owner = this,
       getter = _.languageOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Namespace], v: String) => { r.asInstanceOf[RawNamespace].language_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Namespace]) => { r.asInstanceOf[RawNamespace].languageUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Namespace], v: String) => { r.asInstanceOf[RawNamespace].language_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Namespace]) => { r.asInstanceOf[RawNamespace].languageUnset() },
       manifest = manifest[String]
     )
 
   val name =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[String, Namespace, NamespaceMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[String, Namespace, NamespaceMeta](
       name = "name",
       longName = "name",
       id = 2,
       annotations = Map(),
       owner = this,
       getter = _.nameOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Namespace], v: String) => { r.asInstanceOf[RawNamespace].name_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Namespace]) => { r.asInstanceOf[RawNamespace].nameUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Namespace], v: String) => { r.asInstanceOf[RawNamespace].name_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Namespace]) => { r.asInstanceOf[RawNamespace].nameUnset() },
       manifest = manifest[String]
     )
 
-  override def untypedFields: Seq[com.foursquare.spindle.UntypedFieldDescriptor] = fields
-  override val fields: Seq[com.foursquare.spindle.FieldDescriptor[_, Namespace, NamespaceMeta]] =
-    Vector[com.foursquare.spindle.FieldDescriptor[_, Namespace, NamespaceMeta]](
+  override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
+  override val fields: Seq[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, Namespace, NamespaceMeta]] =
+    Vector[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, Namespace, NamespaceMeta]](
       language,
       name
     )
@@ -717,7 +717,7 @@ class NamespaceMeta
   }
 }
 
-class NamespaceCompanionProvider extends com.foursquare.spindle.CompanionProvider[Namespace] {
+class NamespaceCompanionProvider extends _root_.io.fsq.spindle.runtime.CompanionProvider[Namespace] {
   type CompanionT = NamespaceMeta
   override def provide: NamespaceMeta = Namespace
 }
@@ -852,7 +852,7 @@ final class RawNamespace extends JavaNamespaceRaw[
   // end fields
 
 
-  private var unknownFields: List[com.foursquare.spindle.runtime.UnknownFields] = Nil
+  private var unknownFields: List[_root_.io.fsq.spindle.runtime.UnknownFields] = Nil
 
 
   override def write(oprot: org.apache.thrift.protocol.TProtocol): Unit = {
@@ -867,7 +867,7 @@ final class RawNamespace extends JavaNamespaceRaw[
       oprot.writeString(_name)
       oprot.writeFieldEnd()
     }
-  if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+  if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
     unknownFields.reverse foreach { _.write(oprot) }
   }
     oprot.writeFieldStop()
@@ -876,13 +876,13 @@ final class RawNamespace extends JavaNamespaceRaw[
 
   override def read(iprot: org.apache.thrift.protocol.TProtocol) {
     // Unknown fields in this read go here.
-    var currentUnknownFieldsOpt: Option[com.foursquare.spindle.runtime.UnknownFields] = None
-    def currentUnknownFields(): com.foursquare.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
+    var currentUnknownFieldsOpt: Option[_root_.io.fsq.spindle.runtime.UnknownFields] = None
+    def currentUnknownFields(): _root_.io.fsq.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
       case Some(uf) => uf
       case None => {
-        val uf = new com.foursquare.spindle.runtime.UnknownFields(
+        val uf = new _root_.io.fsq.spindle.runtime.UnknownFields(
           this,
-          com.foursquare.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
+          _root_.io.fsq.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
         )
         unknownFields = uf :: unknownFields
         currentUnknownFieldsOpt = Some(uf)
@@ -919,7 +919,7 @@ final class RawNamespace extends JavaNamespaceRaw[
             }
           }
           case _ => {
-            if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+            if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
               currentUnknownFields().readUnknownField(iprot, field_header, this)  // May call this method recursively.
             } else {
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field_header.`type`)
@@ -967,7 +967,7 @@ final class RawNamespace extends JavaNamespaceRaw[
 
   override def hashCode(): Int = {
     // We use a fixed seed, for consistency.
-    val hasher = new com.foursquare.spindle.runtime.MurmurHash[AnyRef](0)
+    val hasher = new _root_.io.fsq.spindle.runtime.MurmurHash[AnyRef](0)
     if (languageIsSet) hasher.append(_language.##)
     if (nameIsSet) hasher.append(_name.##)
     hasher.hash
@@ -1090,7 +1090,7 @@ object Annotation extends AnnotationMeta {
 
 class AnnotationMeta
     extends JavaAnnotationMeta[Annotation, RawAnnotation, AnnotationMeta]
-    with com.foursquare.spindle.RecordProvider[Annotation] {
+    with _root_.io.fsq.spindle.runtime.RecordProvider[Annotation] {
   override def recordName: String = "Annotation"
 
 
@@ -1140,53 +1140,53 @@ class AnnotationMeta
     2.toShort -> _Fields.value
   )
 
-  override def createUntypedRawRecord: com.foursquare.spindle.UntypedRecord = createRawRecord
+  override def createUntypedRawRecord: _root_.io.fsq.spindle.runtime.UntypedRecord = createRawRecord
   override def createRecord: Annotation = createRawRecord
   override def createRawRecord: RawAnnotation = new RawAnnotation
 
-  override def untypedIfInstanceFrom(x: AnyRef): Option[com.foursquare.spindle.UntypedRecord] = ifInstanceFrom(x)
+  override def untypedIfInstanceFrom(x: AnyRef): Option[_root_.io.fsq.spindle.runtime.UntypedRecord] = ifInstanceFrom(x)
   override def ifInstanceFrom(x: AnyRef): Option[Annotation] = {
     if (x.isInstanceOf[Annotation]) Some(x.asInstanceOf[Annotation]) else None
   }
 
-  override val annotations: com.foursquare.spindle.Annotations =
+  override val annotations: _root_.io.fsq.spindle.runtime.Annotations =
 
-    com.foursquare.spindle.Annotations.empty
+    _root_.io.fsq.spindle.runtime.Annotations.empty
 
   // Spindle Descriptors.
 
 
   val key =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[String, Annotation, AnnotationMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[String, Annotation, AnnotationMeta](
       name = "key",
       longName = "key",
       id = 1,
       annotations = Map(),
       owner = this,
       getter = _.keyOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Annotation], v: String) => { r.asInstanceOf[RawAnnotation].key_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Annotation]) => { r.asInstanceOf[RawAnnotation].keyUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Annotation], v: String) => { r.asInstanceOf[RawAnnotation].key_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Annotation]) => { r.asInstanceOf[RawAnnotation].keyUnset() },
       manifest = manifest[String]
     )
 
   val value =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[String, Annotation, AnnotationMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[String, Annotation, AnnotationMeta](
       name = "value",
       longName = "value",
       id = 2,
       annotations = Map(),
       owner = this,
       getter = _.valueOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Annotation], v: String) => { r.asInstanceOf[RawAnnotation].value_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Annotation]) => { r.asInstanceOf[RawAnnotation].valueUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Annotation], v: String) => { r.asInstanceOf[RawAnnotation].value_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Annotation]) => { r.asInstanceOf[RawAnnotation].valueUnset() },
       manifest = manifest[String]
     )
 
-  override def untypedFields: Seq[com.foursquare.spindle.UntypedFieldDescriptor] = fields
-  override val fields: Seq[com.foursquare.spindle.FieldDescriptor[_, Annotation, AnnotationMeta]] =
-    Vector[com.foursquare.spindle.FieldDescriptor[_, Annotation, AnnotationMeta]](
+  override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
+  override val fields: Seq[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, Annotation, AnnotationMeta]] =
+    Vector[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, Annotation, AnnotationMeta]](
       key,
       value
     )
@@ -1203,7 +1203,7 @@ class AnnotationMeta
   }
 }
 
-class AnnotationCompanionProvider extends com.foursquare.spindle.CompanionProvider[Annotation] {
+class AnnotationCompanionProvider extends _root_.io.fsq.spindle.runtime.CompanionProvider[Annotation] {
   type CompanionT = AnnotationMeta
   override def provide: AnnotationMeta = Annotation
 }
@@ -1338,7 +1338,7 @@ final class RawAnnotation extends JavaAnnotationRaw[
   // end fields
 
 
-  private var unknownFields: List[com.foursquare.spindle.runtime.UnknownFields] = Nil
+  private var unknownFields: List[_root_.io.fsq.spindle.runtime.UnknownFields] = Nil
 
 
   override def write(oprot: org.apache.thrift.protocol.TProtocol): Unit = {
@@ -1353,7 +1353,7 @@ final class RawAnnotation extends JavaAnnotationRaw[
       oprot.writeString(_value)
       oprot.writeFieldEnd()
     }
-  if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+  if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
     unknownFields.reverse foreach { _.write(oprot) }
   }
     oprot.writeFieldStop()
@@ -1362,13 +1362,13 @@ final class RawAnnotation extends JavaAnnotationRaw[
 
   override def read(iprot: org.apache.thrift.protocol.TProtocol) {
     // Unknown fields in this read go here.
-    var currentUnknownFieldsOpt: Option[com.foursquare.spindle.runtime.UnknownFields] = None
-    def currentUnknownFields(): com.foursquare.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
+    var currentUnknownFieldsOpt: Option[_root_.io.fsq.spindle.runtime.UnknownFields] = None
+    def currentUnknownFields(): _root_.io.fsq.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
       case Some(uf) => uf
       case None => {
-        val uf = new com.foursquare.spindle.runtime.UnknownFields(
+        val uf = new _root_.io.fsq.spindle.runtime.UnknownFields(
           this,
-          com.foursquare.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
+          _root_.io.fsq.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
         )
         unknownFields = uf :: unknownFields
         currentUnknownFieldsOpt = Some(uf)
@@ -1405,7 +1405,7 @@ final class RawAnnotation extends JavaAnnotationRaw[
             }
           }
           case _ => {
-            if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+            if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
               currentUnknownFields().readUnknownField(iprot, field_header, this)  // May call this method recursively.
             } else {
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field_header.`type`)
@@ -1453,7 +1453,7 @@ final class RawAnnotation extends JavaAnnotationRaw[
 
   override def hashCode(): Int = {
     // We use a fixed seed, for consistency.
-    val hasher = new com.foursquare.spindle.runtime.MurmurHash[AnyRef](0)
+    val hasher = new _root_.io.fsq.spindle.runtime.MurmurHash[AnyRef](0)
     if (keyIsSet) hasher.append(_key.##)
     if (valueIsSet) hasher.append(_value.##)
     hasher.hash
@@ -1583,7 +1583,7 @@ object BaseType extends BaseTypeMeta {
 
 class BaseTypeMeta
     extends JavaBaseTypeMeta[BaseType, RawBaseType, BaseTypeMeta]
-    with com.foursquare.spindle.RecordProvider[BaseType] {
+    with _root_.io.fsq.spindle.runtime.RecordProvider[BaseType] {
   override def recordName: String = "BaseType"
 
 
@@ -1633,53 +1633,53 @@ class BaseTypeMeta
     99.toShort -> _Fields.__annotations
   )
 
-  override def createUntypedRawRecord: com.foursquare.spindle.UntypedRecord = createRawRecord
+  override def createUntypedRawRecord: _root_.io.fsq.spindle.runtime.UntypedRecord = createRawRecord
   override def createRecord: BaseType = createRawRecord
   override def createRawRecord: RawBaseType = new RawBaseType
 
-  override def untypedIfInstanceFrom(x: AnyRef): Option[com.foursquare.spindle.UntypedRecord] = ifInstanceFrom(x)
+  override def untypedIfInstanceFrom(x: AnyRef): Option[_root_.io.fsq.spindle.runtime.UntypedRecord] = ifInstanceFrom(x)
   override def ifInstanceFrom(x: AnyRef): Option[BaseType] = {
     if (x.isInstanceOf[BaseType]) Some(x.asInstanceOf[BaseType]) else None
   }
 
-  override val annotations: com.foursquare.spindle.Annotations =
+  override val annotations: _root_.io.fsq.spindle.runtime.Annotations =
 
-    com.foursquare.spindle.Annotations.empty
+    _root_.io.fsq.spindle.runtime.Annotations.empty
 
   // Spindle Descriptors.
 
 
   val simpleBaseType =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[com.twitter.thrift.descriptors.SimpleBaseType, BaseType, BaseTypeMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[com.twitter.thrift.descriptors.SimpleBaseType, BaseType, BaseTypeMeta](
       name = "simpleBaseType",
       longName = "simpleBaseType",
       id = 1,
       annotations = Map(),
       owner = this,
       getter = _.simpleBaseTypeOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[BaseType], v: com.twitter.thrift.descriptors.SimpleBaseType) => { r.asInstanceOf[RawBaseType].simpleBaseType_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[BaseType]) => { r.asInstanceOf[RawBaseType].simpleBaseTypeUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[BaseType], v: com.twitter.thrift.descriptors.SimpleBaseType) => { r.asInstanceOf[RawBaseType].simpleBaseType_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[BaseType]) => { r.asInstanceOf[RawBaseType].simpleBaseTypeUnset() },
       manifest = manifest[com.twitter.thrift.descriptors.SimpleBaseType]
     )
 
   val __annotations =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation], BaseType, BaseTypeMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation], BaseType, BaseTypeMeta](
       name = "annotations",
       longName = "annotations",
       id = 99,
       annotations = Map(),
       owner = this,
       getter = _.annotationsOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[BaseType], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]) => { r.asInstanceOf[RawBaseType].__annotations_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[BaseType]) => { r.asInstanceOf[RawBaseType].annotationsUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[BaseType], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]) => { r.asInstanceOf[RawBaseType].__annotations_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[BaseType]) => { r.asInstanceOf[RawBaseType].annotationsUnset() },
       manifest = manifest[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]]
     )
 
-  override def untypedFields: Seq[com.foursquare.spindle.UntypedFieldDescriptor] = fields
-  override val fields: Seq[com.foursquare.spindle.FieldDescriptor[_, BaseType, BaseTypeMeta]] =
-    Vector[com.foursquare.spindle.FieldDescriptor[_, BaseType, BaseTypeMeta]](
+  override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
+  override val fields: Seq[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, BaseType, BaseTypeMeta]] =
+    Vector[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, BaseType, BaseTypeMeta]](
       simpleBaseType,
       __annotations
     )
@@ -1696,7 +1696,7 @@ class BaseTypeMeta
   }
 }
 
-class BaseTypeCompanionProvider extends com.foursquare.spindle.CompanionProvider[BaseType] {
+class BaseTypeCompanionProvider extends _root_.io.fsq.spindle.runtime.CompanionProvider[BaseType] {
   type CompanionT = BaseTypeMeta
   override def provide: BaseTypeMeta = BaseType
 }
@@ -1832,7 +1832,7 @@ final class RawBaseType extends JavaBaseTypeRaw[com.twitter.thrift.descriptors.A
   // end fields
 
 
-  private var unknownFields: List[com.foursquare.spindle.runtime.UnknownFields] = Nil
+  private var unknownFields: List[_root_.io.fsq.spindle.runtime.UnknownFields] = Nil
 
 
   override def write(oprot: org.apache.thrift.protocol.TProtocol): Unit = {
@@ -1851,7 +1851,7 @@ final class RawBaseType extends JavaBaseTypeRaw[com.twitter.thrift.descriptors.A
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     }
-  if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+  if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
     unknownFields.reverse foreach { _.write(oprot) }
   }
     oprot.writeFieldStop()
@@ -1860,13 +1860,13 @@ final class RawBaseType extends JavaBaseTypeRaw[com.twitter.thrift.descriptors.A
 
   override def read(iprot: org.apache.thrift.protocol.TProtocol) {
     // Unknown fields in this read go here.
-    var currentUnknownFieldsOpt: Option[com.foursquare.spindle.runtime.UnknownFields] = None
-    def currentUnknownFields(): com.foursquare.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
+    var currentUnknownFieldsOpt: Option[_root_.io.fsq.spindle.runtime.UnknownFields] = None
+    def currentUnknownFields(): _root_.io.fsq.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
       case Some(uf) => uf
       case None => {
-        val uf = new com.foursquare.spindle.runtime.UnknownFields(
+        val uf = new _root_.io.fsq.spindle.runtime.UnknownFields(
           this,
-          com.foursquare.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
+          _root_.io.fsq.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
         )
         unknownFields = uf :: unknownFields
         currentUnknownFieldsOpt = Some(uf)
@@ -1918,7 +1918,7 @@ final class RawBaseType extends JavaBaseTypeRaw[com.twitter.thrift.descriptors.A
             }
           }
           case _ => {
-            if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+            if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
               currentUnknownFields().readUnknownField(iprot, field_header, this)  // May call this method recursively.
             } else {
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field_header.`type`)
@@ -1969,7 +1969,7 @@ final class RawBaseType extends JavaBaseTypeRaw[com.twitter.thrift.descriptors.A
 
   override def hashCode(): Int = {
     // We use a fixed seed, for consistency.
-    val hasher = new com.foursquare.spindle.runtime.MurmurHash[AnyRef](0)
+    val hasher = new _root_.io.fsq.spindle.runtime.MurmurHash[AnyRef](0)
     if (simpleBaseTypeIsSet) hasher.append(_simpleBaseType.##)
     if (annotationsIsSet) hasher.append(_annotations.##)
     hasher.hash
@@ -2086,7 +2086,7 @@ object ListType extends ListTypeMeta {
 
 class ListTypeMeta
     extends JavaListTypeMeta[ListType, RawListType, ListTypeMeta]
-    with com.foursquare.spindle.RecordProvider[ListType] {
+    with _root_.io.fsq.spindle.runtime.RecordProvider[ListType] {
   override def recordName: String = "ListType"
 
 
@@ -2123,39 +2123,39 @@ class ListTypeMeta
     1.toShort -> _Fields.elementTypeId
   )
 
-  override def createUntypedRawRecord: com.foursquare.spindle.UntypedRecord = createRawRecord
+  override def createUntypedRawRecord: _root_.io.fsq.spindle.runtime.UntypedRecord = createRawRecord
   override def createRecord: ListType = createRawRecord
   override def createRawRecord: RawListType = new RawListType
 
-  override def untypedIfInstanceFrom(x: AnyRef): Option[com.foursquare.spindle.UntypedRecord] = ifInstanceFrom(x)
+  override def untypedIfInstanceFrom(x: AnyRef): Option[_root_.io.fsq.spindle.runtime.UntypedRecord] = ifInstanceFrom(x)
   override def ifInstanceFrom(x: AnyRef): Option[ListType] = {
     if (x.isInstanceOf[ListType]) Some(x.asInstanceOf[ListType]) else None
   }
 
-  override val annotations: com.foursquare.spindle.Annotations =
+  override val annotations: _root_.io.fsq.spindle.runtime.Annotations =
 
-    com.foursquare.spindle.Annotations.empty
+    _root_.io.fsq.spindle.runtime.Annotations.empty
 
   // Spindle Descriptors.
 
 
   val elementTypeId =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[String, ListType, ListTypeMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[String, ListType, ListTypeMeta](
       name = "elementTypeId",
       longName = "elementTypeId",
       id = 1,
       annotations = Map(),
       owner = this,
       getter = _.elementTypeIdOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[ListType], v: String) => { r.asInstanceOf[RawListType].elementTypeId_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[ListType]) => { r.asInstanceOf[RawListType].elementTypeIdUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[ListType], v: String) => { r.asInstanceOf[RawListType].elementTypeId_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[ListType]) => { r.asInstanceOf[RawListType].elementTypeIdUnset() },
       manifest = manifest[String]
     )
 
-  override def untypedFields: Seq[com.foursquare.spindle.UntypedFieldDescriptor] = fields
-  override val fields: Seq[com.foursquare.spindle.FieldDescriptor[_, ListType, ListTypeMeta]] =
-    Vector[com.foursquare.spindle.FieldDescriptor[_, ListType, ListTypeMeta]](
+  override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
+  override val fields: Seq[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, ListType, ListTypeMeta]] =
+    Vector[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, ListType, ListTypeMeta]](
       elementTypeId
     )
 
@@ -2169,7 +2169,7 @@ class ListTypeMeta
   }
 }
 
-class ListTypeCompanionProvider extends com.foursquare.spindle.CompanionProvider[ListType] {
+class ListTypeCompanionProvider extends _root_.io.fsq.spindle.runtime.CompanionProvider[ListType] {
   type CompanionT = ListTypeMeta
   override def provide: ListTypeMeta = ListType
 }
@@ -2280,7 +2280,7 @@ final class RawListType extends JavaListTypeRaw[
   // end fields
 
 
-  private var unknownFields: List[com.foursquare.spindle.runtime.UnknownFields] = Nil
+  private var unknownFields: List[_root_.io.fsq.spindle.runtime.UnknownFields] = Nil
 
 
   override def write(oprot: org.apache.thrift.protocol.TProtocol): Unit = {
@@ -2290,7 +2290,7 @@ final class RawListType extends JavaListTypeRaw[
       oprot.writeString(_elementTypeId)
       oprot.writeFieldEnd()
     }
-  if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+  if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
     unknownFields.reverse foreach { _.write(oprot) }
   }
     oprot.writeFieldStop()
@@ -2299,13 +2299,13 @@ final class RawListType extends JavaListTypeRaw[
 
   override def read(iprot: org.apache.thrift.protocol.TProtocol) {
     // Unknown fields in this read go here.
-    var currentUnknownFieldsOpt: Option[com.foursquare.spindle.runtime.UnknownFields] = None
-    def currentUnknownFields(): com.foursquare.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
+    var currentUnknownFieldsOpt: Option[_root_.io.fsq.spindle.runtime.UnknownFields] = None
+    def currentUnknownFields(): _root_.io.fsq.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
       case Some(uf) => uf
       case None => {
-        val uf = new com.foursquare.spindle.runtime.UnknownFields(
+        val uf = new _root_.io.fsq.spindle.runtime.UnknownFields(
           this,
-          com.foursquare.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
+          _root_.io.fsq.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
         )
         unknownFields = uf :: unknownFields
         currentUnknownFieldsOpt = Some(uf)
@@ -2334,7 +2334,7 @@ final class RawListType extends JavaListTypeRaw[
             }
           }
           case _ => {
-            if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+            if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
               currentUnknownFields().readUnknownField(iprot, field_header, this)  // May call this method recursively.
             } else {
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field_header.`type`)
@@ -2378,7 +2378,7 @@ final class RawListType extends JavaListTypeRaw[
 
   override def hashCode(): Int = {
     // We use a fixed seed, for consistency.
-    val hasher = new com.foursquare.spindle.runtime.MurmurHash[AnyRef](0)
+    val hasher = new _root_.io.fsq.spindle.runtime.MurmurHash[AnyRef](0)
     if (elementTypeIdIsSet) hasher.append(_elementTypeId.##)
     hasher.hash
   }
@@ -2486,7 +2486,7 @@ object SetType extends SetTypeMeta {
 
 class SetTypeMeta
     extends JavaSetTypeMeta[SetType, RawSetType, SetTypeMeta]
-    with com.foursquare.spindle.RecordProvider[SetType] {
+    with _root_.io.fsq.spindle.runtime.RecordProvider[SetType] {
   override def recordName: String = "SetType"
 
 
@@ -2523,39 +2523,39 @@ class SetTypeMeta
     1.toShort -> _Fields.elementTypeId
   )
 
-  override def createUntypedRawRecord: com.foursquare.spindle.UntypedRecord = createRawRecord
+  override def createUntypedRawRecord: _root_.io.fsq.spindle.runtime.UntypedRecord = createRawRecord
   override def createRecord: SetType = createRawRecord
   override def createRawRecord: RawSetType = new RawSetType
 
-  override def untypedIfInstanceFrom(x: AnyRef): Option[com.foursquare.spindle.UntypedRecord] = ifInstanceFrom(x)
+  override def untypedIfInstanceFrom(x: AnyRef): Option[_root_.io.fsq.spindle.runtime.UntypedRecord] = ifInstanceFrom(x)
   override def ifInstanceFrom(x: AnyRef): Option[SetType] = {
     if (x.isInstanceOf[SetType]) Some(x.asInstanceOf[SetType]) else None
   }
 
-  override val annotations: com.foursquare.spindle.Annotations =
+  override val annotations: _root_.io.fsq.spindle.runtime.Annotations =
 
-    com.foursquare.spindle.Annotations.empty
+    _root_.io.fsq.spindle.runtime.Annotations.empty
 
   // Spindle Descriptors.
 
 
   val elementTypeId =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[String, SetType, SetTypeMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[String, SetType, SetTypeMeta](
       name = "elementTypeId",
       longName = "elementTypeId",
       id = 1,
       annotations = Map(),
       owner = this,
       getter = _.elementTypeIdOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[SetType], v: String) => { r.asInstanceOf[RawSetType].elementTypeId_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[SetType]) => { r.asInstanceOf[RawSetType].elementTypeIdUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[SetType], v: String) => { r.asInstanceOf[RawSetType].elementTypeId_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[SetType]) => { r.asInstanceOf[RawSetType].elementTypeIdUnset() },
       manifest = manifest[String]
     )
 
-  override def untypedFields: Seq[com.foursquare.spindle.UntypedFieldDescriptor] = fields
-  override val fields: Seq[com.foursquare.spindle.FieldDescriptor[_, SetType, SetTypeMeta]] =
-    Vector[com.foursquare.spindle.FieldDescriptor[_, SetType, SetTypeMeta]](
+  override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
+  override val fields: Seq[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, SetType, SetTypeMeta]] =
+    Vector[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, SetType, SetTypeMeta]](
       elementTypeId
     )
 
@@ -2569,7 +2569,7 @@ class SetTypeMeta
   }
 }
 
-class SetTypeCompanionProvider extends com.foursquare.spindle.CompanionProvider[SetType] {
+class SetTypeCompanionProvider extends _root_.io.fsq.spindle.runtime.CompanionProvider[SetType] {
   type CompanionT = SetTypeMeta
   override def provide: SetTypeMeta = SetType
 }
@@ -2680,7 +2680,7 @@ final class RawSetType extends JavaSetTypeRaw[
   // end fields
 
 
-  private var unknownFields: List[com.foursquare.spindle.runtime.UnknownFields] = Nil
+  private var unknownFields: List[_root_.io.fsq.spindle.runtime.UnknownFields] = Nil
 
 
   override def write(oprot: org.apache.thrift.protocol.TProtocol): Unit = {
@@ -2690,7 +2690,7 @@ final class RawSetType extends JavaSetTypeRaw[
       oprot.writeString(_elementTypeId)
       oprot.writeFieldEnd()
     }
-  if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+  if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
     unknownFields.reverse foreach { _.write(oprot) }
   }
     oprot.writeFieldStop()
@@ -2699,13 +2699,13 @@ final class RawSetType extends JavaSetTypeRaw[
 
   override def read(iprot: org.apache.thrift.protocol.TProtocol) {
     // Unknown fields in this read go here.
-    var currentUnknownFieldsOpt: Option[com.foursquare.spindle.runtime.UnknownFields] = None
-    def currentUnknownFields(): com.foursquare.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
+    var currentUnknownFieldsOpt: Option[_root_.io.fsq.spindle.runtime.UnknownFields] = None
+    def currentUnknownFields(): _root_.io.fsq.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
       case Some(uf) => uf
       case None => {
-        val uf = new com.foursquare.spindle.runtime.UnknownFields(
+        val uf = new _root_.io.fsq.spindle.runtime.UnknownFields(
           this,
-          com.foursquare.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
+          _root_.io.fsq.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
         )
         unknownFields = uf :: unknownFields
         currentUnknownFieldsOpt = Some(uf)
@@ -2734,7 +2734,7 @@ final class RawSetType extends JavaSetTypeRaw[
             }
           }
           case _ => {
-            if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+            if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
               currentUnknownFields().readUnknownField(iprot, field_header, this)  // May call this method recursively.
             } else {
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field_header.`type`)
@@ -2778,7 +2778,7 @@ final class RawSetType extends JavaSetTypeRaw[
 
   override def hashCode(): Int = {
     // We use a fixed seed, for consistency.
-    val hasher = new com.foursquare.spindle.runtime.MurmurHash[AnyRef](0)
+    val hasher = new _root_.io.fsq.spindle.runtime.MurmurHash[AnyRef](0)
     if (elementTypeIdIsSet) hasher.append(_elementTypeId.##)
     hasher.hash
   }
@@ -2892,7 +2892,7 @@ object MapType extends MapTypeMeta {
 
 class MapTypeMeta
     extends JavaMapTypeMeta[MapType, RawMapType, MapTypeMeta]
-    with com.foursquare.spindle.RecordProvider[MapType] {
+    with _root_.io.fsq.spindle.runtime.RecordProvider[MapType] {
   override def recordName: String = "MapType"
 
 
@@ -2942,53 +2942,53 @@ class MapTypeMeta
     2.toShort -> _Fields.valueTypeId
   )
 
-  override def createUntypedRawRecord: com.foursquare.spindle.UntypedRecord = createRawRecord
+  override def createUntypedRawRecord: _root_.io.fsq.spindle.runtime.UntypedRecord = createRawRecord
   override def createRecord: MapType = createRawRecord
   override def createRawRecord: RawMapType = new RawMapType
 
-  override def untypedIfInstanceFrom(x: AnyRef): Option[com.foursquare.spindle.UntypedRecord] = ifInstanceFrom(x)
+  override def untypedIfInstanceFrom(x: AnyRef): Option[_root_.io.fsq.spindle.runtime.UntypedRecord] = ifInstanceFrom(x)
   override def ifInstanceFrom(x: AnyRef): Option[MapType] = {
     if (x.isInstanceOf[MapType]) Some(x.asInstanceOf[MapType]) else None
   }
 
-  override val annotations: com.foursquare.spindle.Annotations =
+  override val annotations: _root_.io.fsq.spindle.runtime.Annotations =
 
-    com.foursquare.spindle.Annotations.empty
+    _root_.io.fsq.spindle.runtime.Annotations.empty
 
   // Spindle Descriptors.
 
 
   val keyTypeId =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[String, MapType, MapTypeMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[String, MapType, MapTypeMeta](
       name = "keyTypeId",
       longName = "keyTypeId",
       id = 1,
       annotations = Map(),
       owner = this,
       getter = _.keyTypeIdOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[MapType], v: String) => { r.asInstanceOf[RawMapType].keyTypeId_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[MapType]) => { r.asInstanceOf[RawMapType].keyTypeIdUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[MapType], v: String) => { r.asInstanceOf[RawMapType].keyTypeId_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[MapType]) => { r.asInstanceOf[RawMapType].keyTypeIdUnset() },
       manifest = manifest[String]
     )
 
   val valueTypeId =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[String, MapType, MapTypeMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[String, MapType, MapTypeMeta](
       name = "valueTypeId",
       longName = "valueTypeId",
       id = 2,
       annotations = Map(),
       owner = this,
       getter = _.valueTypeIdOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[MapType], v: String) => { r.asInstanceOf[RawMapType].valueTypeId_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[MapType]) => { r.asInstanceOf[RawMapType].valueTypeIdUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[MapType], v: String) => { r.asInstanceOf[RawMapType].valueTypeId_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[MapType]) => { r.asInstanceOf[RawMapType].valueTypeIdUnset() },
       manifest = manifest[String]
     )
 
-  override def untypedFields: Seq[com.foursquare.spindle.UntypedFieldDescriptor] = fields
-  override val fields: Seq[com.foursquare.spindle.FieldDescriptor[_, MapType, MapTypeMeta]] =
-    Vector[com.foursquare.spindle.FieldDescriptor[_, MapType, MapTypeMeta]](
+  override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
+  override val fields: Seq[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, MapType, MapTypeMeta]] =
+    Vector[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, MapType, MapTypeMeta]](
       keyTypeId,
       valueTypeId
     )
@@ -3005,7 +3005,7 @@ class MapTypeMeta
   }
 }
 
-class MapTypeCompanionProvider extends com.foursquare.spindle.CompanionProvider[MapType] {
+class MapTypeCompanionProvider extends _root_.io.fsq.spindle.runtime.CompanionProvider[MapType] {
   type CompanionT = MapTypeMeta
   override def provide: MapTypeMeta = MapType
 }
@@ -3140,7 +3140,7 @@ final class RawMapType extends JavaMapTypeRaw[
   // end fields
 
 
-  private var unknownFields: List[com.foursquare.spindle.runtime.UnknownFields] = Nil
+  private var unknownFields: List[_root_.io.fsq.spindle.runtime.UnknownFields] = Nil
 
 
   override def write(oprot: org.apache.thrift.protocol.TProtocol): Unit = {
@@ -3155,7 +3155,7 @@ final class RawMapType extends JavaMapTypeRaw[
       oprot.writeString(_valueTypeId)
       oprot.writeFieldEnd()
     }
-  if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+  if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
     unknownFields.reverse foreach { _.write(oprot) }
   }
     oprot.writeFieldStop()
@@ -3164,13 +3164,13 @@ final class RawMapType extends JavaMapTypeRaw[
 
   override def read(iprot: org.apache.thrift.protocol.TProtocol) {
     // Unknown fields in this read go here.
-    var currentUnknownFieldsOpt: Option[com.foursquare.spindle.runtime.UnknownFields] = None
-    def currentUnknownFields(): com.foursquare.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
+    var currentUnknownFieldsOpt: Option[_root_.io.fsq.spindle.runtime.UnknownFields] = None
+    def currentUnknownFields(): _root_.io.fsq.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
       case Some(uf) => uf
       case None => {
-        val uf = new com.foursquare.spindle.runtime.UnknownFields(
+        val uf = new _root_.io.fsq.spindle.runtime.UnknownFields(
           this,
-          com.foursquare.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
+          _root_.io.fsq.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
         )
         unknownFields = uf :: unknownFields
         currentUnknownFieldsOpt = Some(uf)
@@ -3207,7 +3207,7 @@ final class RawMapType extends JavaMapTypeRaw[
             }
           }
           case _ => {
-            if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+            if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
               currentUnknownFields().readUnknownField(iprot, field_header, this)  // May call this method recursively.
             } else {
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field_header.`type`)
@@ -3255,7 +3255,7 @@ final class RawMapType extends JavaMapTypeRaw[
 
   override def hashCode(): Int = {
     // We use a fixed seed, for consistency.
-    val hasher = new com.foursquare.spindle.runtime.MurmurHash[AnyRef](0)
+    val hasher = new _root_.io.fsq.spindle.runtime.MurmurHash[AnyRef](0)
     if (keyTypeIdIsSet) hasher.append(_keyTypeId.##)
     if (valueTypeIdIsSet) hasher.append(_valueTypeId.##)
     hasher.hash
@@ -3385,7 +3385,7 @@ object ContainerType extends ContainerTypeMeta {
 
 class ContainerTypeMeta
     extends JavaContainerTypeMeta[ContainerType, RawContainerType, ContainerTypeMeta]
-    with com.foursquare.spindle.RecordProvider[ContainerType] {
+    with _root_.io.fsq.spindle.runtime.RecordProvider[ContainerType] {
   override def recordName: String = "ContainerType"
 
 
@@ -3435,53 +3435,53 @@ class ContainerTypeMeta
     99.toShort -> _Fields.__annotations
   )
 
-  override def createUntypedRawRecord: com.foursquare.spindle.UntypedRecord = createRawRecord
+  override def createUntypedRawRecord: _root_.io.fsq.spindle.runtime.UntypedRecord = createRawRecord
   override def createRecord: ContainerType = createRawRecord
   override def createRawRecord: RawContainerType = new RawContainerType
 
-  override def untypedIfInstanceFrom(x: AnyRef): Option[com.foursquare.spindle.UntypedRecord] = ifInstanceFrom(x)
+  override def untypedIfInstanceFrom(x: AnyRef): Option[_root_.io.fsq.spindle.runtime.UntypedRecord] = ifInstanceFrom(x)
   override def ifInstanceFrom(x: AnyRef): Option[ContainerType] = {
     if (x.isInstanceOf[ContainerType]) Some(x.asInstanceOf[ContainerType]) else None
   }
 
-  override val annotations: com.foursquare.spindle.Annotations =
+  override val annotations: _root_.io.fsq.spindle.runtime.Annotations =
 
-    com.foursquare.spindle.Annotations.empty
+    _root_.io.fsq.spindle.runtime.Annotations.empty
 
   // Spindle Descriptors.
 
 
   val simpleContainerType =
-    new com.foursquare.spindle.StructFieldDescriptor[ContainerType, ContainerTypeMeta, com.twitter.thrift.descriptors.SimpleContainerType, com.twitter.thrift.descriptors.SimpleContainerTypeMeta](
+    new _root_.io.fsq.spindle.runtime.StructFieldDescriptor[ContainerType, ContainerTypeMeta, com.twitter.thrift.descriptors.SimpleContainerType, com.twitter.thrift.descriptors.SimpleContainerTypeMeta](
       name = "simpleContainerType",
       longName = "simpleContainerType",
       id = 1,
       annotations = Map(),
       owner = this,
       getter = _.simpleContainerTypeOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[ContainerType], v: com.twitter.thrift.descriptors.SimpleContainerType) => { r.asInstanceOf[RawContainerType].simpleContainerType_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[ContainerType]) => { r.asInstanceOf[RawContainerType].simpleContainerTypeUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[ContainerType], v: com.twitter.thrift.descriptors.SimpleContainerType) => { r.asInstanceOf[RawContainerType].simpleContainerType_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[ContainerType]) => { r.asInstanceOf[RawContainerType].simpleContainerTypeUnset() },
       structMeta = com.twitter.thrift.descriptors.SimpleContainerType,
       manifest = manifest[com.twitter.thrift.descriptors.SimpleContainerType]
     )
 
   val __annotations =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation], ContainerType, ContainerTypeMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation], ContainerType, ContainerTypeMeta](
       name = "annotations",
       longName = "annotations",
       id = 99,
       annotations = Map(),
       owner = this,
       getter = _.annotationsOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[ContainerType], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]) => { r.asInstanceOf[RawContainerType].__annotations_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[ContainerType]) => { r.asInstanceOf[RawContainerType].annotationsUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[ContainerType], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]) => { r.asInstanceOf[RawContainerType].__annotations_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[ContainerType]) => { r.asInstanceOf[RawContainerType].annotationsUnset() },
       manifest = manifest[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]]
     )
 
-  override def untypedFields: Seq[com.foursquare.spindle.UntypedFieldDescriptor] = fields
-  override val fields: Seq[com.foursquare.spindle.FieldDescriptor[_, ContainerType, ContainerTypeMeta]] =
-    Vector[com.foursquare.spindle.FieldDescriptor[_, ContainerType, ContainerTypeMeta]](
+  override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
+  override val fields: Seq[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, ContainerType, ContainerTypeMeta]] =
+    Vector[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, ContainerType, ContainerTypeMeta]](
       simpleContainerType,
       __annotations
     )
@@ -3498,7 +3498,7 @@ class ContainerTypeMeta
   }
 }
 
-class ContainerTypeCompanionProvider extends com.foursquare.spindle.CompanionProvider[ContainerType] {
+class ContainerTypeCompanionProvider extends _root_.io.fsq.spindle.runtime.CompanionProvider[ContainerType] {
   type CompanionT = ContainerTypeMeta
   override def provide: ContainerTypeMeta = ContainerType
 }
@@ -3634,7 +3634,7 @@ final class RawContainerType extends JavaContainerTypeRaw[com.twitter.thrift.des
   // end fields
 
 
-  private var unknownFields: List[com.foursquare.spindle.runtime.UnknownFields] = Nil
+  private var unknownFields: List[_root_.io.fsq.spindle.runtime.UnknownFields] = Nil
 
 
   override def write(oprot: org.apache.thrift.protocol.TProtocol): Unit = {
@@ -3653,7 +3653,7 @@ final class RawContainerType extends JavaContainerTypeRaw[com.twitter.thrift.des
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     }
-  if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+  if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
     unknownFields.reverse foreach { _.write(oprot) }
   }
     oprot.writeFieldStop()
@@ -3662,13 +3662,13 @@ final class RawContainerType extends JavaContainerTypeRaw[com.twitter.thrift.des
 
   override def read(iprot: org.apache.thrift.protocol.TProtocol) {
     // Unknown fields in this read go here.
-    var currentUnknownFieldsOpt: Option[com.foursquare.spindle.runtime.UnknownFields] = None
-    def currentUnknownFields(): com.foursquare.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
+    var currentUnknownFieldsOpt: Option[_root_.io.fsq.spindle.runtime.UnknownFields] = None
+    def currentUnknownFields(): _root_.io.fsq.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
       case Some(uf) => uf
       case None => {
-        val uf = new com.foursquare.spindle.runtime.UnknownFields(
+        val uf = new _root_.io.fsq.spindle.runtime.UnknownFields(
           this,
-          com.foursquare.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
+          _root_.io.fsq.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
         )
         unknownFields = uf :: unknownFields
         currentUnknownFieldsOpt = Some(uf)
@@ -3724,7 +3724,7 @@ final class RawContainerType extends JavaContainerTypeRaw[com.twitter.thrift.des
             }
           }
           case _ => {
-            if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+            if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
               currentUnknownFields().readUnknownField(iprot, field_header, this)  // May call this method recursively.
             } else {
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field_header.`type`)
@@ -3775,7 +3775,7 @@ final class RawContainerType extends JavaContainerTypeRaw[com.twitter.thrift.des
 
   override def hashCode(): Int = {
     // We use a fixed seed, for consistency.
-    val hasher = new com.foursquare.spindle.runtime.MurmurHash[AnyRef](0)
+    val hasher = new _root_.io.fsq.spindle.runtime.MurmurHash[AnyRef](0)
     if (simpleContainerTypeIsSet) hasher.append(_simpleContainerType.##)
     if (annotationsIsSet) hasher.append(_annotations.##)
     hasher.hash
@@ -3892,7 +3892,7 @@ object Typeref extends TyperefMeta {
 
 class TyperefMeta
     extends JavaTyperefMeta[Typeref, RawTyperef, TyperefMeta]
-    with com.foursquare.spindle.RecordProvider[Typeref] {
+    with _root_.io.fsq.spindle.runtime.RecordProvider[Typeref] {
   override def recordName: String = "Typeref"
 
 
@@ -3929,39 +3929,39 @@ class TyperefMeta
     1.toShort -> _Fields.typeAlias
   )
 
-  override def createUntypedRawRecord: com.foursquare.spindle.UntypedRecord = createRawRecord
+  override def createUntypedRawRecord: _root_.io.fsq.spindle.runtime.UntypedRecord = createRawRecord
   override def createRecord: Typeref = createRawRecord
   override def createRawRecord: RawTyperef = new RawTyperef
 
-  override def untypedIfInstanceFrom(x: AnyRef): Option[com.foursquare.spindle.UntypedRecord] = ifInstanceFrom(x)
+  override def untypedIfInstanceFrom(x: AnyRef): Option[_root_.io.fsq.spindle.runtime.UntypedRecord] = ifInstanceFrom(x)
   override def ifInstanceFrom(x: AnyRef): Option[Typeref] = {
     if (x.isInstanceOf[Typeref]) Some(x.asInstanceOf[Typeref]) else None
   }
 
-  override val annotations: com.foursquare.spindle.Annotations =
+  override val annotations: _root_.io.fsq.spindle.runtime.Annotations =
 
-    com.foursquare.spindle.Annotations.empty
+    _root_.io.fsq.spindle.runtime.Annotations.empty
 
   // Spindle Descriptors.
 
 
   val typeAlias =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[String, Typeref, TyperefMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[String, Typeref, TyperefMeta](
       name = "typeAlias",
       longName = "typeAlias",
       id = 1,
       annotations = Map(),
       owner = this,
       getter = _.typeAliasOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Typeref], v: String) => { r.asInstanceOf[RawTyperef].typeAlias_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Typeref]) => { r.asInstanceOf[RawTyperef].typeAliasUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Typeref], v: String) => { r.asInstanceOf[RawTyperef].typeAlias_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Typeref]) => { r.asInstanceOf[RawTyperef].typeAliasUnset() },
       manifest = manifest[String]
     )
 
-  override def untypedFields: Seq[com.foursquare.spindle.UntypedFieldDescriptor] = fields
-  override val fields: Seq[com.foursquare.spindle.FieldDescriptor[_, Typeref, TyperefMeta]] =
-    Vector[com.foursquare.spindle.FieldDescriptor[_, Typeref, TyperefMeta]](
+  override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
+  override val fields: Seq[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, Typeref, TyperefMeta]] =
+    Vector[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, Typeref, TyperefMeta]](
       typeAlias
     )
 
@@ -3975,7 +3975,7 @@ class TyperefMeta
   }
 }
 
-class TyperefCompanionProvider extends com.foursquare.spindle.CompanionProvider[Typeref] {
+class TyperefCompanionProvider extends _root_.io.fsq.spindle.runtime.CompanionProvider[Typeref] {
   type CompanionT = TyperefMeta
   override def provide: TyperefMeta = Typeref
 }
@@ -4086,7 +4086,7 @@ final class RawTyperef extends JavaTyperefRaw[
   // end fields
 
 
-  private var unknownFields: List[com.foursquare.spindle.runtime.UnknownFields] = Nil
+  private var unknownFields: List[_root_.io.fsq.spindle.runtime.UnknownFields] = Nil
 
 
   override def write(oprot: org.apache.thrift.protocol.TProtocol): Unit = {
@@ -4096,7 +4096,7 @@ final class RawTyperef extends JavaTyperefRaw[
       oprot.writeString(_typeAlias)
       oprot.writeFieldEnd()
     }
-  if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+  if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
     unknownFields.reverse foreach { _.write(oprot) }
   }
     oprot.writeFieldStop()
@@ -4105,13 +4105,13 @@ final class RawTyperef extends JavaTyperefRaw[
 
   override def read(iprot: org.apache.thrift.protocol.TProtocol) {
     // Unknown fields in this read go here.
-    var currentUnknownFieldsOpt: Option[com.foursquare.spindle.runtime.UnknownFields] = None
-    def currentUnknownFields(): com.foursquare.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
+    var currentUnknownFieldsOpt: Option[_root_.io.fsq.spindle.runtime.UnknownFields] = None
+    def currentUnknownFields(): _root_.io.fsq.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
       case Some(uf) => uf
       case None => {
-        val uf = new com.foursquare.spindle.runtime.UnknownFields(
+        val uf = new _root_.io.fsq.spindle.runtime.UnknownFields(
           this,
-          com.foursquare.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
+          _root_.io.fsq.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
         )
         unknownFields = uf :: unknownFields
         currentUnknownFieldsOpt = Some(uf)
@@ -4140,7 +4140,7 @@ final class RawTyperef extends JavaTyperefRaw[
             }
           }
           case _ => {
-            if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+            if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
               currentUnknownFields().readUnknownField(iprot, field_header, this)  // May call this method recursively.
             } else {
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field_header.`type`)
@@ -4184,7 +4184,7 @@ final class RawTyperef extends JavaTyperefRaw[
 
   override def hashCode(): Int = {
     // We use a fixed seed, for consistency.
-    val hasher = new com.foursquare.spindle.runtime.MurmurHash[AnyRef](0)
+    val hasher = new _root_.io.fsq.spindle.runtime.MurmurHash[AnyRef](0)
     if (typeAliasIsSet) hasher.append(_typeAlias.##)
     hasher.hash
   }
@@ -4298,7 +4298,7 @@ object Type extends TypeMeta {
 
 class TypeMeta
     extends JavaTypeMeta[Type, RawType, TypeMeta]
-    with com.foursquare.spindle.RecordProvider[Type] {
+    with _root_.io.fsq.spindle.runtime.RecordProvider[Type] {
   override def recordName: String = "Type"
 
 
@@ -4348,53 +4348,53 @@ class TypeMeta
     2.toShort -> _Fields.simpleType
   )
 
-  override def createUntypedRawRecord: com.foursquare.spindle.UntypedRecord = createRawRecord
+  override def createUntypedRawRecord: _root_.io.fsq.spindle.runtime.UntypedRecord = createRawRecord
   override def createRecord: Type = createRawRecord
   override def createRawRecord: RawType = new RawType
 
-  override def untypedIfInstanceFrom(x: AnyRef): Option[com.foursquare.spindle.UntypedRecord] = ifInstanceFrom(x)
+  override def untypedIfInstanceFrom(x: AnyRef): Option[_root_.io.fsq.spindle.runtime.UntypedRecord] = ifInstanceFrom(x)
   override def ifInstanceFrom(x: AnyRef): Option[Type] = {
     if (x.isInstanceOf[Type]) Some(x.asInstanceOf[Type]) else None
   }
 
-  override val annotations: com.foursquare.spindle.Annotations =
+  override val annotations: _root_.io.fsq.spindle.runtime.Annotations =
 
-    com.foursquare.spindle.Annotations.empty
+    _root_.io.fsq.spindle.runtime.Annotations.empty
 
   // Spindle Descriptors.
 
 
   val id =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[String, Type, TypeMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[String, Type, TypeMeta](
       name = "id",
       longName = "id",
       id = 1,
       annotations = Map(),
       owner = this,
       getter = _.idOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Type], v: String) => { r.asInstanceOf[RawType].id_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Type]) => { r.asInstanceOf[RawType].idUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Type], v: String) => { r.asInstanceOf[RawType].id_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Type]) => { r.asInstanceOf[RawType].idUnset() },
       manifest = manifest[String]
     )
 
   val simpleType =
-    new com.foursquare.spindle.StructFieldDescriptor[Type, TypeMeta, com.twitter.thrift.descriptors.SimpleType, com.twitter.thrift.descriptors.SimpleTypeMeta](
+    new _root_.io.fsq.spindle.runtime.StructFieldDescriptor[Type, TypeMeta, com.twitter.thrift.descriptors.SimpleType, com.twitter.thrift.descriptors.SimpleTypeMeta](
       name = "simpleType",
       longName = "simpleType",
       id = 2,
       annotations = Map(),
       owner = this,
       getter = _.simpleTypeOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Type], v: com.twitter.thrift.descriptors.SimpleType) => { r.asInstanceOf[RawType].simpleType_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Type]) => { r.asInstanceOf[RawType].simpleTypeUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Type], v: com.twitter.thrift.descriptors.SimpleType) => { r.asInstanceOf[RawType].simpleType_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Type]) => { r.asInstanceOf[RawType].simpleTypeUnset() },
       structMeta = com.twitter.thrift.descriptors.SimpleType,
       manifest = manifest[com.twitter.thrift.descriptors.SimpleType]
     )
 
-  override def untypedFields: Seq[com.foursquare.spindle.UntypedFieldDescriptor] = fields
-  override val fields: Seq[com.foursquare.spindle.FieldDescriptor[_, Type, TypeMeta]] =
-    Vector[com.foursquare.spindle.FieldDescriptor[_, Type, TypeMeta]](
+  override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
+  override val fields: Seq[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, Type, TypeMeta]] =
+    Vector[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, Type, TypeMeta]](
       id,
       simpleType
     )
@@ -4411,7 +4411,7 @@ class TypeMeta
   }
 }
 
-class TypeCompanionProvider extends com.foursquare.spindle.CompanionProvider[Type] {
+class TypeCompanionProvider extends _root_.io.fsq.spindle.runtime.CompanionProvider[Type] {
   type CompanionT = TypeMeta
   override def provide: TypeMeta = Type
 }
@@ -4546,7 +4546,7 @@ final class RawType extends JavaTypeRaw[com.twitter.thrift.descriptors.SimpleTyp
   // end fields
 
 
-  private var unknownFields: List[com.foursquare.spindle.runtime.UnknownFields] = Nil
+  private var unknownFields: List[_root_.io.fsq.spindle.runtime.UnknownFields] = Nil
 
 
   override def write(oprot: org.apache.thrift.protocol.TProtocol): Unit = {
@@ -4561,7 +4561,7 @@ final class RawType extends JavaTypeRaw[com.twitter.thrift.descriptors.SimpleTyp
       _simpleType.write(oprot)
       oprot.writeFieldEnd()
     }
-  if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+  if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
     unknownFields.reverse foreach { _.write(oprot) }
   }
     oprot.writeFieldStop()
@@ -4570,13 +4570,13 @@ final class RawType extends JavaTypeRaw[com.twitter.thrift.descriptors.SimpleTyp
 
   override def read(iprot: org.apache.thrift.protocol.TProtocol) {
     // Unknown fields in this read go here.
-    var currentUnknownFieldsOpt: Option[com.foursquare.spindle.runtime.UnknownFields] = None
-    def currentUnknownFields(): com.foursquare.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
+    var currentUnknownFieldsOpt: Option[_root_.io.fsq.spindle.runtime.UnknownFields] = None
+    def currentUnknownFields(): _root_.io.fsq.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
       case Some(uf) => uf
       case None => {
-        val uf = new com.foursquare.spindle.runtime.UnknownFields(
+        val uf = new _root_.io.fsq.spindle.runtime.UnknownFields(
           this,
-          com.foursquare.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
+          _root_.io.fsq.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
         )
         unknownFields = uf :: unknownFields
         currentUnknownFieldsOpt = Some(uf)
@@ -4617,7 +4617,7 @@ final class RawType extends JavaTypeRaw[com.twitter.thrift.descriptors.SimpleTyp
             }
           }
           case _ => {
-            if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+            if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
               currentUnknownFields().readUnknownField(iprot, field_header, this)  // May call this method recursively.
             } else {
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field_header.`type`)
@@ -4665,7 +4665,7 @@ final class RawType extends JavaTypeRaw[com.twitter.thrift.descriptors.SimpleTyp
 
   override def hashCode(): Int = {
     // We use a fixed seed, for consistency.
-    val hasher = new com.foursquare.spindle.runtime.MurmurHash[AnyRef](0)
+    val hasher = new _root_.io.fsq.spindle.runtime.MurmurHash[AnyRef](0)
     if (idIsSet) hasher.append(_id.##)
     if (simpleTypeIsSet) hasher.append(_simpleType.##)
     hasher.hash
@@ -4801,7 +4801,7 @@ object Typedef extends TypedefMeta {
 
 class TypedefMeta
     extends JavaTypedefMeta[Typedef, RawTypedef, TypedefMeta]
-    with com.foursquare.spindle.RecordProvider[Typedef] {
+    with _root_.io.fsq.spindle.runtime.RecordProvider[Typedef] {
   override def recordName: String = "Typedef"
 
 
@@ -4864,18 +4864,18 @@ class TypedefMeta
     99.toShort -> _Fields.__annotations
   )
 
-  override def createUntypedRawRecord: com.foursquare.spindle.UntypedRecord = createRawRecord
+  override def createUntypedRawRecord: _root_.io.fsq.spindle.runtime.UntypedRecord = createRawRecord
   override def createRecord: Typedef = createRawRecord
   override def createRawRecord: RawTypedef = new RawTypedef
 
-  override def untypedIfInstanceFrom(x: AnyRef): Option[com.foursquare.spindle.UntypedRecord] = ifInstanceFrom(x)
+  override def untypedIfInstanceFrom(x: AnyRef): Option[_root_.io.fsq.spindle.runtime.UntypedRecord] = ifInstanceFrom(x)
   override def ifInstanceFrom(x: AnyRef): Option[Typedef] = {
     if (x.isInstanceOf[Typedef]) Some(x.asInstanceOf[Typedef]) else None
   }
 
-  override val annotations: com.foursquare.spindle.Annotations =
+  override val annotations: _root_.io.fsq.spindle.runtime.Annotations =
 
-    new com.foursquare.spindle.Annotations(scala.collection.immutable.Vector(
+    new _root_.io.fsq.spindle.runtime.Annotations(scala.collection.immutable.Vector(
       ("generate_proxy", "true")
     ))
 
@@ -4884,49 +4884,49 @@ class TypedefMeta
 
   val typeId =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[String, Typedef, TypedefMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[String, Typedef, TypedefMeta](
       name = "typeId",
       longName = "typeId",
       id = 1,
       annotations = Map(),
       owner = this,
       getter = _.typeIdOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Typedef], v: String) => { r.asInstanceOf[RawTypedef].typeId_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Typedef]) => { r.asInstanceOf[RawTypedef].typeIdUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Typedef], v: String) => { r.asInstanceOf[RawTypedef].typeId_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Typedef]) => { r.asInstanceOf[RawTypedef].typeIdUnset() },
       manifest = manifest[String]
     )
 
   val typeAlias =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[String, Typedef, TypedefMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[String, Typedef, TypedefMeta](
       name = "typeAlias",
       longName = "typeAlias",
       id = 2,
       annotations = Map(),
       owner = this,
       getter = _.typeAliasOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Typedef], v: String) => { r.asInstanceOf[RawTypedef].typeAlias_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Typedef]) => { r.asInstanceOf[RawTypedef].typeAliasUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Typedef], v: String) => { r.asInstanceOf[RawTypedef].typeAlias_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Typedef]) => { r.asInstanceOf[RawTypedef].typeAliasUnset() },
       manifest = manifest[String]
     )
 
   val __annotations =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation], Typedef, TypedefMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation], Typedef, TypedefMeta](
       name = "annotations",
       longName = "annotations",
       id = 99,
       annotations = Map(),
       owner = this,
       getter = _.annotationsOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Typedef], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]) => { r.asInstanceOf[RawTypedef].__annotations_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Typedef]) => { r.asInstanceOf[RawTypedef].annotationsUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Typedef], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]) => { r.asInstanceOf[RawTypedef].__annotations_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Typedef]) => { r.asInstanceOf[RawTypedef].annotationsUnset() },
       manifest = manifest[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]]
     )
 
-  override def untypedFields: Seq[com.foursquare.spindle.UntypedFieldDescriptor] = fields
-  override val fields: Seq[com.foursquare.spindle.FieldDescriptor[_, Typedef, TypedefMeta]] =
-    Vector[com.foursquare.spindle.FieldDescriptor[_, Typedef, TypedefMeta]](
+  override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
+  override val fields: Seq[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, Typedef, TypedefMeta]] =
+    Vector[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, Typedef, TypedefMeta]](
       typeId,
       typeAlias,
       __annotations
@@ -4946,7 +4946,7 @@ class TypedefMeta
   }
 }
 
-class TypedefCompanionProvider extends com.foursquare.spindle.CompanionProvider[Typedef] {
+class TypedefCompanionProvider extends _root_.io.fsq.spindle.runtime.CompanionProvider[Typedef] {
   type CompanionT = TypedefMeta
   override def provide: TypedefMeta = Typedef
 }
@@ -5189,7 +5189,7 @@ final class RawTypedef extends JavaTypedefRaw[com.twitter.thrift.descriptors.Ann
   // end fields
 
 
-  private var unknownFields: List[com.foursquare.spindle.runtime.UnknownFields] = Nil
+  private var unknownFields: List[_root_.io.fsq.spindle.runtime.UnknownFields] = Nil
 
 
   override def write(oprot: org.apache.thrift.protocol.TProtocol): Unit = {
@@ -5213,7 +5213,7 @@ final class RawTypedef extends JavaTypedefRaw[com.twitter.thrift.descriptors.Ann
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     }
-  if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+  if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
     unknownFields.reverse foreach { _.write(oprot) }
   }
     oprot.writeFieldStop()
@@ -5222,13 +5222,13 @@ final class RawTypedef extends JavaTypedefRaw[com.twitter.thrift.descriptors.Ann
 
   override def read(iprot: org.apache.thrift.protocol.TProtocol) {
     // Unknown fields in this read go here.
-    var currentUnknownFieldsOpt: Option[com.foursquare.spindle.runtime.UnknownFields] = None
-    def currentUnknownFields(): com.foursquare.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
+    var currentUnknownFieldsOpt: Option[_root_.io.fsq.spindle.runtime.UnknownFields] = None
+    def currentUnknownFields(): _root_.io.fsq.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
       case Some(uf) => uf
       case None => {
-        val uf = new com.foursquare.spindle.runtime.UnknownFields(
+        val uf = new _root_.io.fsq.spindle.runtime.UnknownFields(
           this,
-          com.foursquare.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
+          _root_.io.fsq.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
         )
         unknownFields = uf :: unknownFields
         currentUnknownFieldsOpt = Some(uf)
@@ -5288,7 +5288,7 @@ final class RawTypedef extends JavaTypedefRaw[com.twitter.thrift.descriptors.Ann
             }
           }
           case _ => {
-            if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+            if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
               currentUnknownFields().readUnknownField(iprot, field_header, this)  // May call this method recursively.
             } else {
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field_header.`type`)
@@ -5343,7 +5343,7 @@ final class RawTypedef extends JavaTypedefRaw[com.twitter.thrift.descriptors.Ann
 
   override def hashCode(): Int = {
     // We use a fixed seed, for consistency.
-    val hasher = new com.foursquare.spindle.runtime.MurmurHash[AnyRef](0)
+    val hasher = new _root_.io.fsq.spindle.runtime.MurmurHash[AnyRef](0)
     if (typeIdIsSet) hasher.append(_typeId.##)
     if (typeAliasIsSet) hasher.append(_typeAlias.##)
     if (annotationsIsSet) hasher.append(_annotations.##)
@@ -5475,7 +5475,7 @@ object TypeRegistry extends TypeRegistryMeta {
 
 class TypeRegistryMeta
     extends JavaTypeRegistryMeta[TypeRegistry, RawTypeRegistry, TypeRegistryMeta]
-    with com.foursquare.spindle.RecordProvider[TypeRegistry] {
+    with _root_.io.fsq.spindle.runtime.RecordProvider[TypeRegistry] {
   override def recordName: String = "TypeRegistry"
 
 
@@ -5525,53 +5525,53 @@ class TypeRegistryMeta
     2.toShort -> _Fields.aliasToTypeId
   )
 
-  override def createUntypedRawRecord: com.foursquare.spindle.UntypedRecord = createRawRecord
+  override def createUntypedRawRecord: _root_.io.fsq.spindle.runtime.UntypedRecord = createRawRecord
   override def createRecord: TypeRegistry = createRawRecord
   override def createRawRecord: RawTypeRegistry = new RawTypeRegistry
 
-  override def untypedIfInstanceFrom(x: AnyRef): Option[com.foursquare.spindle.UntypedRecord] = ifInstanceFrom(x)
+  override def untypedIfInstanceFrom(x: AnyRef): Option[_root_.io.fsq.spindle.runtime.UntypedRecord] = ifInstanceFrom(x)
   override def ifInstanceFrom(x: AnyRef): Option[TypeRegistry] = {
     if (x.isInstanceOf[TypeRegistry]) Some(x.asInstanceOf[TypeRegistry]) else None
   }
 
-  override val annotations: com.foursquare.spindle.Annotations =
+  override val annotations: _root_.io.fsq.spindle.runtime.Annotations =
 
-    com.foursquare.spindle.Annotations.empty
+    _root_.io.fsq.spindle.runtime.Annotations.empty
 
   // Spindle Descriptors.
 
 
   val idToType =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[scala.collection.immutable.Map[String, com.twitter.thrift.descriptors.Type], TypeRegistry, TypeRegistryMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[scala.collection.immutable.Map[String, com.twitter.thrift.descriptors.Type], TypeRegistry, TypeRegistryMeta](
       name = "idToType",
       longName = "idToType",
       id = 1,
       annotations = Map(),
       owner = this,
       getter = _.idToTypeOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[TypeRegistry], v: scala.collection.immutable.Map[String, com.twitter.thrift.descriptors.Type]) => { r.asInstanceOf[RawTypeRegistry].idToType_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[TypeRegistry]) => { r.asInstanceOf[RawTypeRegistry].idToTypeUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[TypeRegistry], v: scala.collection.immutable.Map[String, com.twitter.thrift.descriptors.Type]) => { r.asInstanceOf[RawTypeRegistry].idToType_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[TypeRegistry]) => { r.asInstanceOf[RawTypeRegistry].idToTypeUnset() },
       manifest = manifest[scala.collection.immutable.Map[String, com.twitter.thrift.descriptors.Type]]
     )
 
   val aliasToTypeId =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[scala.collection.immutable.Map[String, String], TypeRegistry, TypeRegistryMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[scala.collection.immutable.Map[String, String], TypeRegistry, TypeRegistryMeta](
       name = "aliasToTypeId",
       longName = "aliasToTypeId",
       id = 2,
       annotations = Map(),
       owner = this,
       getter = _.aliasToTypeIdOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[TypeRegistry], v: scala.collection.immutable.Map[String, String]) => { r.asInstanceOf[RawTypeRegistry].aliasToTypeId_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[TypeRegistry]) => { r.asInstanceOf[RawTypeRegistry].aliasToTypeIdUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[TypeRegistry], v: scala.collection.immutable.Map[String, String]) => { r.asInstanceOf[RawTypeRegistry].aliasToTypeId_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[TypeRegistry]) => { r.asInstanceOf[RawTypeRegistry].aliasToTypeIdUnset() },
       manifest = manifest[scala.collection.immutable.Map[String, String]]
     )
 
-  override def untypedFields: Seq[com.foursquare.spindle.UntypedFieldDescriptor] = fields
-  override val fields: Seq[com.foursquare.spindle.FieldDescriptor[_, TypeRegistry, TypeRegistryMeta]] =
-    Vector[com.foursquare.spindle.FieldDescriptor[_, TypeRegistry, TypeRegistryMeta]](
+  override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
+  override val fields: Seq[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, TypeRegistry, TypeRegistryMeta]] =
+    Vector[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, TypeRegistry, TypeRegistryMeta]](
       idToType,
       aliasToTypeId
     )
@@ -5588,7 +5588,7 @@ class TypeRegistryMeta
   }
 }
 
-class TypeRegistryCompanionProvider extends com.foursquare.spindle.CompanionProvider[TypeRegistry] {
+class TypeRegistryCompanionProvider extends _root_.io.fsq.spindle.runtime.CompanionProvider[TypeRegistry] {
   type CompanionT = TypeRegistryMeta
   override def provide: TypeRegistryMeta = TypeRegistry
 }
@@ -5725,7 +5725,7 @@ final class RawTypeRegistry extends JavaTypeRegistryRaw[com.twitter.thrift.descr
   // end fields
 
 
-  private var unknownFields: List[com.foursquare.spindle.runtime.UnknownFields] = Nil
+  private var unknownFields: List[_root_.io.fsq.spindle.runtime.UnknownFields] = Nil
 
 
   override def write(oprot: org.apache.thrift.protocol.TProtocol): Unit = {
@@ -5750,7 +5750,7 @@ final class RawTypeRegistry extends JavaTypeRegistryRaw[com.twitter.thrift.descr
       oprot.writeMapEnd()
       oprot.writeFieldEnd()
     }
-  if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+  if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
     unknownFields.reverse foreach { _.write(oprot) }
   }
     oprot.writeFieldStop()
@@ -5759,13 +5759,13 @@ final class RawTypeRegistry extends JavaTypeRegistryRaw[com.twitter.thrift.descr
 
   override def read(iprot: org.apache.thrift.protocol.TProtocol) {
     // Unknown fields in this read go here.
-    var currentUnknownFieldsOpt: Option[com.foursquare.spindle.runtime.UnknownFields] = None
-    def currentUnknownFields(): com.foursquare.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
+    var currentUnknownFieldsOpt: Option[_root_.io.fsq.spindle.runtime.UnknownFields] = None
+    def currentUnknownFields(): _root_.io.fsq.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
       case Some(uf) => uf
       case None => {
-        val uf = new com.foursquare.spindle.runtime.UnknownFields(
+        val uf = new _root_.io.fsq.spindle.runtime.UnknownFields(
           this,
-          com.foursquare.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
+          _root_.io.fsq.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
         )
         unknownFields = uf :: unknownFields
         currentUnknownFieldsOpt = Some(uf)
@@ -5832,7 +5832,7 @@ final class RawTypeRegistry extends JavaTypeRegistryRaw[com.twitter.thrift.descr
             }
           }
           case _ => {
-            if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+            if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
               currentUnknownFields().readUnknownField(iprot, field_header, this)  // May call this method recursively.
             } else {
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field_header.`type`)
@@ -5886,7 +5886,7 @@ final class RawTypeRegistry extends JavaTypeRegistryRaw[com.twitter.thrift.descr
 
   override def hashCode(): Int = {
     // We use a fixed seed, for consistency.
-    val hasher = new com.foursquare.spindle.runtime.MurmurHash[AnyRef](0)
+    val hasher = new _root_.io.fsq.spindle.runtime.MurmurHash[AnyRef](0)
     if (idToTypeIsSet) hasher.append(_idToType.##)
     if (aliasToTypeIdIsSet) hasher.append(_aliasToTypeId.##)
     hasher.hash
@@ -6015,7 +6015,7 @@ object Const extends ConstMeta {
 
 class ConstMeta
     extends JavaConstMeta[Const, RawConst, ConstMeta]
-    with com.foursquare.spindle.RecordProvider[Const] {
+    with _root_.io.fsq.spindle.runtime.RecordProvider[Const] {
   override def recordName: String = "Const"
 
 
@@ -6078,18 +6078,18 @@ class ConstMeta
     3.toShort -> _Fields.value
   )
 
-  override def createUntypedRawRecord: com.foursquare.spindle.UntypedRecord = createRawRecord
+  override def createUntypedRawRecord: _root_.io.fsq.spindle.runtime.UntypedRecord = createRawRecord
   override def createRecord: Const = createRawRecord
   override def createRawRecord: RawConst = new RawConst
 
-  override def untypedIfInstanceFrom(x: AnyRef): Option[com.foursquare.spindle.UntypedRecord] = ifInstanceFrom(x)
+  override def untypedIfInstanceFrom(x: AnyRef): Option[_root_.io.fsq.spindle.runtime.UntypedRecord] = ifInstanceFrom(x)
   override def ifInstanceFrom(x: AnyRef): Option[Const] = {
     if (x.isInstanceOf[Const]) Some(x.asInstanceOf[Const]) else None
   }
 
-  override val annotations: com.foursquare.spindle.Annotations =
+  override val annotations: _root_.io.fsq.spindle.runtime.Annotations =
 
-    new com.foursquare.spindle.Annotations(scala.collection.immutable.Vector(
+    new _root_.io.fsq.spindle.runtime.Annotations(scala.collection.immutable.Vector(
       ("generate_proxy", "true")
     ))
 
@@ -6098,49 +6098,49 @@ class ConstMeta
 
   val typeId =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[String, Const, ConstMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[String, Const, ConstMeta](
       name = "typeId",
       longName = "typeId",
       id = 1,
       annotations = Map(),
       owner = this,
       getter = _.typeIdOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Const], v: String) => { r.asInstanceOf[RawConst].typeId_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Const]) => { r.asInstanceOf[RawConst].typeIdUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Const], v: String) => { r.asInstanceOf[RawConst].typeId_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Const]) => { r.asInstanceOf[RawConst].typeIdUnset() },
       manifest = manifest[String]
     )
 
   val name =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[String, Const, ConstMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[String, Const, ConstMeta](
       name = "name",
       longName = "name",
       id = 2,
       annotations = Map(),
       owner = this,
       getter = _.nameOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Const], v: String) => { r.asInstanceOf[RawConst].name_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Const]) => { r.asInstanceOf[RawConst].nameUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Const], v: String) => { r.asInstanceOf[RawConst].name_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Const]) => { r.asInstanceOf[RawConst].nameUnset() },
       manifest = manifest[String]
     )
 
   val value =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[String, Const, ConstMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[String, Const, ConstMeta](
       name = "value",
       longName = "value",
       id = 3,
       annotations = Map(),
       owner = this,
       getter = _.valueOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Const], v: String) => { r.asInstanceOf[RawConst].value_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Const]) => { r.asInstanceOf[RawConst].valueUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Const], v: String) => { r.asInstanceOf[RawConst].value_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Const]) => { r.asInstanceOf[RawConst].valueUnset() },
       manifest = manifest[String]
     )
 
-  override def untypedFields: Seq[com.foursquare.spindle.UntypedFieldDescriptor] = fields
-  override val fields: Seq[com.foursquare.spindle.FieldDescriptor[_, Const, ConstMeta]] =
-    Vector[com.foursquare.spindle.FieldDescriptor[_, Const, ConstMeta]](
+  override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
+  override val fields: Seq[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, Const, ConstMeta]] =
+    Vector[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, Const, ConstMeta]](
       typeId,
       name,
       value
@@ -6160,7 +6160,7 @@ class ConstMeta
   }
 }
 
-class ConstCompanionProvider extends com.foursquare.spindle.CompanionProvider[Const] {
+class ConstCompanionProvider extends _root_.io.fsq.spindle.runtime.CompanionProvider[Const] {
   type CompanionT = ConstMeta
   override def provide: ConstMeta = Const
 }
@@ -6402,7 +6402,7 @@ final class RawConst extends JavaConstRaw[
   // end fields
 
 
-  private var unknownFields: List[com.foursquare.spindle.runtime.UnknownFields] = Nil
+  private var unknownFields: List[_root_.io.fsq.spindle.runtime.UnknownFields] = Nil
 
 
   override def write(oprot: org.apache.thrift.protocol.TProtocol): Unit = {
@@ -6422,7 +6422,7 @@ final class RawConst extends JavaConstRaw[
       oprot.writeString(_value)
       oprot.writeFieldEnd()
     }
-  if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+  if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
     unknownFields.reverse foreach { _.write(oprot) }
   }
     oprot.writeFieldStop()
@@ -6431,13 +6431,13 @@ final class RawConst extends JavaConstRaw[
 
   override def read(iprot: org.apache.thrift.protocol.TProtocol) {
     // Unknown fields in this read go here.
-    var currentUnknownFieldsOpt: Option[com.foursquare.spindle.runtime.UnknownFields] = None
-    def currentUnknownFields(): com.foursquare.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
+    var currentUnknownFieldsOpt: Option[_root_.io.fsq.spindle.runtime.UnknownFields] = None
+    def currentUnknownFields(): _root_.io.fsq.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
       case Some(uf) => uf
       case None => {
-        val uf = new com.foursquare.spindle.runtime.UnknownFields(
+        val uf = new _root_.io.fsq.spindle.runtime.UnknownFields(
           this,
-          com.foursquare.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
+          _root_.io.fsq.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
         )
         unknownFields = uf :: unknownFields
         currentUnknownFieldsOpt = Some(uf)
@@ -6482,7 +6482,7 @@ final class RawConst extends JavaConstRaw[
             }
           }
           case _ => {
-            if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+            if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
               currentUnknownFields().readUnknownField(iprot, field_header, this)  // May call this method recursively.
             } else {
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field_header.`type`)
@@ -6534,7 +6534,7 @@ final class RawConst extends JavaConstRaw[
 
   override def hashCode(): Int = {
     // We use a fixed seed, for consistency.
-    val hasher = new com.foursquare.spindle.runtime.MurmurHash[AnyRef](0)
+    val hasher = new _root_.io.fsq.spindle.runtime.MurmurHash[AnyRef](0)
     if (typeIdIsSet) hasher.append(_typeId.##)
     if (nameIsSet) hasher.append(_name.##)
     if (valueIsSet) hasher.append(_value.##)
@@ -6679,7 +6679,7 @@ object EnumElement extends EnumElementMeta {
 
 class EnumElementMeta
     extends JavaEnumElementMeta[EnumElement, RawEnumElement, EnumElementMeta]
-    with com.foursquare.spindle.RecordProvider[EnumElement] {
+    with _root_.io.fsq.spindle.runtime.RecordProvider[EnumElement] {
   override def recordName: String = "EnumElement"
 
 
@@ -6742,18 +6742,18 @@ class EnumElementMeta
     99.toShort -> _Fields.__annotations
   )
 
-  override def createUntypedRawRecord: com.foursquare.spindle.UntypedRecord = createRawRecord
+  override def createUntypedRawRecord: _root_.io.fsq.spindle.runtime.UntypedRecord = createRawRecord
   override def createRecord: EnumElement = createRawRecord
   override def createRawRecord: RawEnumElement = new RawEnumElement
 
-  override def untypedIfInstanceFrom(x: AnyRef): Option[com.foursquare.spindle.UntypedRecord] = ifInstanceFrom(x)
+  override def untypedIfInstanceFrom(x: AnyRef): Option[_root_.io.fsq.spindle.runtime.UntypedRecord] = ifInstanceFrom(x)
   override def ifInstanceFrom(x: AnyRef): Option[EnumElement] = {
     if (x.isInstanceOf[EnumElement]) Some(x.asInstanceOf[EnumElement]) else None
   }
 
-  override val annotations: com.foursquare.spindle.Annotations =
+  override val annotations: _root_.io.fsq.spindle.runtime.Annotations =
 
-    new com.foursquare.spindle.Annotations(scala.collection.immutable.Vector(
+    new _root_.io.fsq.spindle.runtime.Annotations(scala.collection.immutable.Vector(
       ("generate_proxy", "true")
     ))
 
@@ -6762,49 +6762,49 @@ class EnumElementMeta
 
   val name =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[String, EnumElement, EnumElementMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[String, EnumElement, EnumElementMeta](
       name = "name",
       longName = "name",
       id = 1,
       annotations = Map(),
       owner = this,
       getter = _.nameOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[EnumElement], v: String) => { r.asInstanceOf[RawEnumElement].name_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[EnumElement]) => { r.asInstanceOf[RawEnumElement].nameUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[EnumElement], v: String) => { r.asInstanceOf[RawEnumElement].name_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[EnumElement]) => { r.asInstanceOf[RawEnumElement].nameUnset() },
       manifest = manifest[String]
     )
 
   val value =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[Int, EnumElement, EnumElementMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[Int, EnumElement, EnumElementMeta](
       name = "value",
       longName = "value",
       id = 2,
       annotations = Map(),
       owner = this,
       getter = _.valueOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[EnumElement], v: Int) => { r.asInstanceOf[RawEnumElement].value_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[EnumElement]) => { r.asInstanceOf[RawEnumElement].valueUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[EnumElement], v: Int) => { r.asInstanceOf[RawEnumElement].value_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[EnumElement]) => { r.asInstanceOf[RawEnumElement].valueUnset() },
       manifest = manifest[Int]
     )
 
   val __annotations =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation], EnumElement, EnumElementMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation], EnumElement, EnumElementMeta](
       name = "annotations",
       longName = "annotations",
       id = 99,
       annotations = Map(),
       owner = this,
       getter = _.annotationsOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[EnumElement], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]) => { r.asInstanceOf[RawEnumElement].__annotations_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[EnumElement]) => { r.asInstanceOf[RawEnumElement].annotationsUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[EnumElement], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]) => { r.asInstanceOf[RawEnumElement].__annotations_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[EnumElement]) => { r.asInstanceOf[RawEnumElement].annotationsUnset() },
       manifest = manifest[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]]
     )
 
-  override def untypedFields: Seq[com.foursquare.spindle.UntypedFieldDescriptor] = fields
-  override val fields: Seq[com.foursquare.spindle.FieldDescriptor[_, EnumElement, EnumElementMeta]] =
-    Vector[com.foursquare.spindle.FieldDescriptor[_, EnumElement, EnumElementMeta]](
+  override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
+  override val fields: Seq[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, EnumElement, EnumElementMeta]] =
+    Vector[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, EnumElement, EnumElementMeta]](
       name,
       value,
       __annotations
@@ -6824,7 +6824,7 @@ class EnumElementMeta
   }
 }
 
-class EnumElementCompanionProvider extends com.foursquare.spindle.CompanionProvider[EnumElement] {
+class EnumElementCompanionProvider extends _root_.io.fsq.spindle.runtime.CompanionProvider[EnumElement] {
   type CompanionT = EnumElementMeta
   override def provide: EnumElementMeta = EnumElement
 }
@@ -7069,7 +7069,7 @@ final class RawEnumElement extends JavaEnumElementRaw[com.twitter.thrift.descrip
   // end fields
 
 
-  private var unknownFields: List[com.foursquare.spindle.runtime.UnknownFields] = Nil
+  private var unknownFields: List[_root_.io.fsq.spindle.runtime.UnknownFields] = Nil
 
 
   override def write(oprot: org.apache.thrift.protocol.TProtocol): Unit = {
@@ -7093,7 +7093,7 @@ final class RawEnumElement extends JavaEnumElementRaw[com.twitter.thrift.descrip
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     }
-  if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+  if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
     unknownFields.reverse foreach { _.write(oprot) }
   }
     oprot.writeFieldStop()
@@ -7102,13 +7102,13 @@ final class RawEnumElement extends JavaEnumElementRaw[com.twitter.thrift.descrip
 
   override def read(iprot: org.apache.thrift.protocol.TProtocol) {
     // Unknown fields in this read go here.
-    var currentUnknownFieldsOpt: Option[com.foursquare.spindle.runtime.UnknownFields] = None
-    def currentUnknownFields(): com.foursquare.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
+    var currentUnknownFieldsOpt: Option[_root_.io.fsq.spindle.runtime.UnknownFields] = None
+    def currentUnknownFields(): _root_.io.fsq.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
       case Some(uf) => uf
       case None => {
-        val uf = new com.foursquare.spindle.runtime.UnknownFields(
+        val uf = new _root_.io.fsq.spindle.runtime.UnknownFields(
           this,
-          com.foursquare.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
+          _root_.io.fsq.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
         )
         unknownFields = uf :: unknownFields
         currentUnknownFieldsOpt = Some(uf)
@@ -7170,7 +7170,7 @@ final class RawEnumElement extends JavaEnumElementRaw[com.twitter.thrift.descrip
             }
           }
           case _ => {
-            if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+            if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
               currentUnknownFields().readUnknownField(iprot, field_header, this)  // May call this method recursively.
             } else {
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field_header.`type`)
@@ -7225,7 +7225,7 @@ final class RawEnumElement extends JavaEnumElementRaw[com.twitter.thrift.descrip
 
   override def hashCode(): Int = {
     // We use a fixed seed, for consistency.
-    val hasher = new com.foursquare.spindle.runtime.MurmurHash[AnyRef](0)
+    val hasher = new _root_.io.fsq.spindle.runtime.MurmurHash[AnyRef](0)
     if (nameIsSet) hasher.append(_name.##)
     if (valueIsSet) hasher.append(_value.##)
     if (annotationsIsSet) hasher.append(_annotations.##)
@@ -7370,7 +7370,7 @@ object Enum extends EnumMeta {
 
 class EnumMeta
     extends JavaEnumMeta[Enum, RawEnum, EnumMeta]
-    with com.foursquare.spindle.RecordProvider[Enum] {
+    with _root_.io.fsq.spindle.runtime.RecordProvider[Enum] {
   override def recordName: String = "Enum"
 
 
@@ -7433,18 +7433,18 @@ class EnumMeta
     99.toShort -> _Fields.__annotations
   )
 
-  override def createUntypedRawRecord: com.foursquare.spindle.UntypedRecord = createRawRecord
+  override def createUntypedRawRecord: _root_.io.fsq.spindle.runtime.UntypedRecord = createRawRecord
   override def createRecord: Enum = createRawRecord
   override def createRawRecord: RawEnum = new RawEnum
 
-  override def untypedIfInstanceFrom(x: AnyRef): Option[com.foursquare.spindle.UntypedRecord] = ifInstanceFrom(x)
+  override def untypedIfInstanceFrom(x: AnyRef): Option[_root_.io.fsq.spindle.runtime.UntypedRecord] = ifInstanceFrom(x)
   override def ifInstanceFrom(x: AnyRef): Option[Enum] = {
     if (x.isInstanceOf[Enum]) Some(x.asInstanceOf[Enum]) else None
   }
 
-  override val annotations: com.foursquare.spindle.Annotations =
+  override val annotations: _root_.io.fsq.spindle.runtime.Annotations =
 
-    new com.foursquare.spindle.Annotations(scala.collection.immutable.Vector(
+    new _root_.io.fsq.spindle.runtime.Annotations(scala.collection.immutable.Vector(
       ("generate_proxy", "true")
     ))
 
@@ -7453,49 +7453,49 @@ class EnumMeta
 
   val name =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[String, Enum, EnumMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[String, Enum, EnumMeta](
       name = "name",
       longName = "name",
       id = 1,
       annotations = Map(),
       owner = this,
       getter = _.nameOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Enum], v: String) => { r.asInstanceOf[RawEnum].name_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Enum]) => { r.asInstanceOf[RawEnum].nameUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Enum], v: String) => { r.asInstanceOf[RawEnum].name_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Enum]) => { r.asInstanceOf[RawEnum].nameUnset() },
       manifest = manifest[String]
     )
 
   val elements =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.EnumElement], Enum, EnumMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.EnumElement], Enum, EnumMeta](
       name = "elements",
       longName = "elements",
       id = 2,
       annotations = Map(),
       owner = this,
       getter = _.elementsOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Enum], v: scala.collection.Seq[com.twitter.thrift.descriptors.EnumElement]) => { r.asInstanceOf[RawEnum].elements_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Enum]) => { r.asInstanceOf[RawEnum].elementsUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Enum], v: scala.collection.Seq[com.twitter.thrift.descriptors.EnumElement]) => { r.asInstanceOf[RawEnum].elements_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Enum]) => { r.asInstanceOf[RawEnum].elementsUnset() },
       manifest = manifest[scala.collection.Seq[com.twitter.thrift.descriptors.EnumElement]]
     )
 
   val __annotations =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation], Enum, EnumMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation], Enum, EnumMeta](
       name = "annotations",
       longName = "annotations",
       id = 99,
       annotations = Map(),
       owner = this,
       getter = _.annotationsOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Enum], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]) => { r.asInstanceOf[RawEnum].__annotations_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Enum]) => { r.asInstanceOf[RawEnum].annotationsUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Enum], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]) => { r.asInstanceOf[RawEnum].__annotations_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Enum]) => { r.asInstanceOf[RawEnum].annotationsUnset() },
       manifest = manifest[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]]
     )
 
-  override def untypedFields: Seq[com.foursquare.spindle.UntypedFieldDescriptor] = fields
-  override val fields: Seq[com.foursquare.spindle.FieldDescriptor[_, Enum, EnumMeta]] =
-    Vector[com.foursquare.spindle.FieldDescriptor[_, Enum, EnumMeta]](
+  override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
+  override val fields: Seq[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, Enum, EnumMeta]] =
+    Vector[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, Enum, EnumMeta]](
       name,
       elements,
       __annotations
@@ -7515,7 +7515,7 @@ class EnumMeta
   }
 }
 
-class EnumCompanionProvider extends com.foursquare.spindle.CompanionProvider[Enum] {
+class EnumCompanionProvider extends _root_.io.fsq.spindle.runtime.CompanionProvider[Enum] {
   type CompanionT = EnumMeta
   override def provide: EnumMeta = Enum
 }
@@ -7759,7 +7759,7 @@ final class RawEnum extends JavaEnumRaw[com.twitter.thrift.descriptors.Annotatio
   // end fields
 
 
-  private var unknownFields: List[com.foursquare.spindle.runtime.UnknownFields] = Nil
+  private var unknownFields: List[_root_.io.fsq.spindle.runtime.UnknownFields] = Nil
 
 
   override def write(oprot: org.apache.thrift.protocol.TProtocol): Unit = {
@@ -7787,7 +7787,7 @@ final class RawEnum extends JavaEnumRaw[com.twitter.thrift.descriptors.Annotatio
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     }
-  if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+  if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
     unknownFields.reverse foreach { _.write(oprot) }
   }
     oprot.writeFieldStop()
@@ -7796,13 +7796,13 @@ final class RawEnum extends JavaEnumRaw[com.twitter.thrift.descriptors.Annotatio
 
   override def read(iprot: org.apache.thrift.protocol.TProtocol) {
     // Unknown fields in this read go here.
-    var currentUnknownFieldsOpt: Option[com.foursquare.spindle.runtime.UnknownFields] = None
-    def currentUnknownFields(): com.foursquare.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
+    var currentUnknownFieldsOpt: Option[_root_.io.fsq.spindle.runtime.UnknownFields] = None
+    def currentUnknownFields(): _root_.io.fsq.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
       case Some(uf) => uf
       case None => {
-        val uf = new com.foursquare.spindle.runtime.UnknownFields(
+        val uf = new _root_.io.fsq.spindle.runtime.UnknownFields(
           this,
-          com.foursquare.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
+          _root_.io.fsq.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
         )
         unknownFields = uf :: unknownFields
         currentUnknownFieldsOpt = Some(uf)
@@ -7877,7 +7877,7 @@ final class RawEnum extends JavaEnumRaw[com.twitter.thrift.descriptors.Annotatio
             }
           }
           case _ => {
-            if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+            if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
               currentUnknownFields().readUnknownField(iprot, field_header, this)  // May call this method recursively.
             } else {
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field_header.`type`)
@@ -7935,7 +7935,7 @@ final class RawEnum extends JavaEnumRaw[com.twitter.thrift.descriptors.Annotatio
 
   override def hashCode(): Int = {
     // We use a fixed seed, for consistency.
-    val hasher = new com.foursquare.spindle.runtime.MurmurHash[AnyRef](0)
+    val hasher = new _root_.io.fsq.spindle.runtime.MurmurHash[AnyRef](0)
     if (nameIsSet) hasher.append(_name.##)
     if (elementsIsSet) hasher.append(_elements.##)
     if (annotationsIsSet) hasher.append(_annotations.##)
@@ -8112,7 +8112,7 @@ object Field extends FieldMeta {
 
 class FieldMeta
     extends JavaFieldMeta[Field, RawField, FieldMeta]
-    with com.foursquare.spindle.RecordProvider[Field] {
+    with _root_.io.fsq.spindle.runtime.RecordProvider[Field] {
   override def recordName: String = "Field"
 
 
@@ -8214,18 +8214,18 @@ class FieldMeta
     99.toShort -> _Fields.__annotations
   )
 
-  override def createUntypedRawRecord: com.foursquare.spindle.UntypedRecord = createRawRecord
+  override def createUntypedRawRecord: _root_.io.fsq.spindle.runtime.UntypedRecord = createRawRecord
   override def createRecord: Field = createRawRecord
   override def createRawRecord: RawField = new RawField
 
-  override def untypedIfInstanceFrom(x: AnyRef): Option[com.foursquare.spindle.UntypedRecord] = ifInstanceFrom(x)
+  override def untypedIfInstanceFrom(x: AnyRef): Option[_root_.io.fsq.spindle.runtime.UntypedRecord] = ifInstanceFrom(x)
   override def ifInstanceFrom(x: AnyRef): Option[Field] = {
     if (x.isInstanceOf[Field]) Some(x.asInstanceOf[Field]) else None
   }
 
-  override val annotations: com.foursquare.spindle.Annotations =
+  override val annotations: _root_.io.fsq.spindle.runtime.Annotations =
 
-    new com.foursquare.spindle.Annotations(scala.collection.immutable.Vector(
+    new _root_.io.fsq.spindle.runtime.Annotations(scala.collection.immutable.Vector(
       ("generate_proxy", "true")
     ))
 
@@ -8234,91 +8234,91 @@ class FieldMeta
 
   val identifier =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[Short, Field, FieldMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[Short, Field, FieldMeta](
       name = "identifier",
       longName = "identifier",
       id = 1,
       annotations = Map(),
       owner = this,
       getter = _.identifierOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Field], v: Short) => { r.asInstanceOf[RawField].identifier_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Field]) => { r.asInstanceOf[RawField].identifierUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Field], v: Short) => { r.asInstanceOf[RawField].identifier_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Field]) => { r.asInstanceOf[RawField].identifierUnset() },
       manifest = manifest[Short]
     )
 
   val name =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[String, Field, FieldMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[String, Field, FieldMeta](
       name = "name",
       longName = "name",
       id = 2,
       annotations = Map(),
       owner = this,
       getter = _.nameOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Field], v: String) => { r.asInstanceOf[RawField].name_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Field]) => { r.asInstanceOf[RawField].nameUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Field], v: String) => { r.asInstanceOf[RawField].name_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Field]) => { r.asInstanceOf[RawField].nameUnset() },
       manifest = manifest[String]
     )
 
   val typeId =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[String, Field, FieldMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[String, Field, FieldMeta](
       name = "typeId",
       longName = "typeId",
       id = 3,
       annotations = Map(),
       owner = this,
       getter = _.typeIdOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Field], v: String) => { r.asInstanceOf[RawField].typeId_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Field]) => { r.asInstanceOf[RawField].typeIdUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Field], v: String) => { r.asInstanceOf[RawField].typeId_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Field]) => { r.asInstanceOf[RawField].typeIdUnset() },
       manifest = manifest[String]
     )
 
   val requiredness =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[com.twitter.thrift.descriptors.Requiredness, Field, FieldMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[com.twitter.thrift.descriptors.Requiredness, Field, FieldMeta](
       name = "requiredness",
       longName = "requiredness",
       id = 4,
       annotations = Map(),
       owner = this,
       getter = _.requirednessOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Field], v: com.twitter.thrift.descriptors.Requiredness) => { r.asInstanceOf[RawField].requiredness_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Field]) => { r.asInstanceOf[RawField].requirednessUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Field], v: com.twitter.thrift.descriptors.Requiredness) => { r.asInstanceOf[RawField].requiredness_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Field]) => { r.asInstanceOf[RawField].requirednessUnset() },
       manifest = manifest[com.twitter.thrift.descriptors.Requiredness]
     )
 
   val defaultValue =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[String, Field, FieldMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[String, Field, FieldMeta](
       name = "defaultValue",
       longName = "defaultValue",
       id = 5,
       annotations = Map(),
       owner = this,
       getter = _.defaultValueOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Field], v: String) => { r.asInstanceOf[RawField].defaultValue_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Field]) => { r.asInstanceOf[RawField].defaultValueUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Field], v: String) => { r.asInstanceOf[RawField].defaultValue_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Field]) => { r.asInstanceOf[RawField].defaultValueUnset() },
       manifest = manifest[String]
     )
 
   val __annotations =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation], Field, FieldMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation], Field, FieldMeta](
       name = "annotations",
       longName = "annotations",
       id = 99,
       annotations = Map(),
       owner = this,
       getter = _.annotationsOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Field], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]) => { r.asInstanceOf[RawField].__annotations_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Field]) => { r.asInstanceOf[RawField].annotationsUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Field], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]) => { r.asInstanceOf[RawField].__annotations_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Field]) => { r.asInstanceOf[RawField].annotationsUnset() },
       manifest = manifest[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]]
     )
 
-  override def untypedFields: Seq[com.foursquare.spindle.UntypedFieldDescriptor] = fields
-  override val fields: Seq[com.foursquare.spindle.FieldDescriptor[_, Field, FieldMeta]] =
-    Vector[com.foursquare.spindle.FieldDescriptor[_, Field, FieldMeta]](
+  override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
+  override val fields: Seq[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, Field, FieldMeta]] =
+    Vector[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, Field, FieldMeta]](
       identifier,
       name,
       typeId,
@@ -8347,7 +8347,7 @@ class FieldMeta
   }
 }
 
-class FieldCompanionProvider extends com.foursquare.spindle.CompanionProvider[Field] {
+class FieldCompanionProvider extends _root_.io.fsq.spindle.runtime.CompanionProvider[Field] {
   type CompanionT = FieldMeta
   override def provide: FieldMeta = Field
 }
@@ -8697,7 +8697,7 @@ final class RawField extends JavaFieldRaw[com.twitter.thrift.descriptors.Annotat
   // end fields
 
 
-  private var unknownFields: List[com.foursquare.spindle.runtime.UnknownFields] = Nil
+  private var unknownFields: List[_root_.io.fsq.spindle.runtime.UnknownFields] = Nil
 
 
   override def write(oprot: org.apache.thrift.protocol.TProtocol): Unit = {
@@ -8736,7 +8736,7 @@ final class RawField extends JavaFieldRaw[com.twitter.thrift.descriptors.Annotat
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     }
-  if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+  if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
     unknownFields.reverse foreach { _.write(oprot) }
   }
     oprot.writeFieldStop()
@@ -8745,13 +8745,13 @@ final class RawField extends JavaFieldRaw[com.twitter.thrift.descriptors.Annotat
 
   override def read(iprot: org.apache.thrift.protocol.TProtocol) {
     // Unknown fields in this read go here.
-    var currentUnknownFieldsOpt: Option[com.foursquare.spindle.runtime.UnknownFields] = None
-    def currentUnknownFields(): com.foursquare.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
+    var currentUnknownFieldsOpt: Option[_root_.io.fsq.spindle.runtime.UnknownFields] = None
+    def currentUnknownFields(): _root_.io.fsq.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
       case Some(uf) => uf
       case None => {
-        val uf = new com.foursquare.spindle.runtime.UnknownFields(
+        val uf = new _root_.io.fsq.spindle.runtime.UnknownFields(
           this,
-          com.foursquare.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
+          _root_.io.fsq.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
         )
         unknownFields = uf :: unknownFields
         currentUnknownFieldsOpt = Some(uf)
@@ -8837,7 +8837,7 @@ final class RawField extends JavaFieldRaw[com.twitter.thrift.descriptors.Annotat
             }
           }
           case _ => {
-            if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+            if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
               currentUnknownFields().readUnknownField(iprot, field_header, this)  // May call this method recursively.
             } else {
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field_header.`type`)
@@ -8904,7 +8904,7 @@ final class RawField extends JavaFieldRaw[com.twitter.thrift.descriptors.Annotat
 
   override def hashCode(): Int = {
     // We use a fixed seed, for consistency.
-    val hasher = new com.foursquare.spindle.runtime.MurmurHash[AnyRef](0)
+    val hasher = new _root_.io.fsq.spindle.runtime.MurmurHash[AnyRef](0)
     if (identifierIsSet) hasher.append(_identifier.##)
     if (nameIsSet) hasher.append(_name.##)
     if (typeIdIsSet) hasher.append(_typeId.##)
@@ -9076,7 +9076,7 @@ object Struct extends StructMeta {
 
 class StructMeta
     extends JavaStructMeta[Struct, RawStruct, StructMeta]
-    with com.foursquare.spindle.RecordProvider[Struct] {
+    with _root_.io.fsq.spindle.runtime.RecordProvider[Struct] {
   override def recordName: String = "Struct"
 
 
@@ -9139,18 +9139,18 @@ class StructMeta
     99.toShort -> _Fields.__annotations
   )
 
-  override def createUntypedRawRecord: com.foursquare.spindle.UntypedRecord = createRawRecord
+  override def createUntypedRawRecord: _root_.io.fsq.spindle.runtime.UntypedRecord = createRawRecord
   override def createRecord: Struct = createRawRecord
   override def createRawRecord: RawStruct = new RawStruct
 
-  override def untypedIfInstanceFrom(x: AnyRef): Option[com.foursquare.spindle.UntypedRecord] = ifInstanceFrom(x)
+  override def untypedIfInstanceFrom(x: AnyRef): Option[_root_.io.fsq.spindle.runtime.UntypedRecord] = ifInstanceFrom(x)
   override def ifInstanceFrom(x: AnyRef): Option[Struct] = {
     if (x.isInstanceOf[Struct]) Some(x.asInstanceOf[Struct]) else None
   }
 
-  override val annotations: com.foursquare.spindle.Annotations =
+  override val annotations: _root_.io.fsq.spindle.runtime.Annotations =
 
-    new com.foursquare.spindle.Annotations(scala.collection.immutable.Vector(
+    new _root_.io.fsq.spindle.runtime.Annotations(scala.collection.immutable.Vector(
       ("generate_proxy", "true")
     ))
 
@@ -9159,49 +9159,49 @@ class StructMeta
 
   val name =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[String, Struct, StructMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[String, Struct, StructMeta](
       name = "name",
       longName = "name",
       id = 1,
       annotations = Map(),
       owner = this,
       getter = _.nameOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Struct], v: String) => { r.asInstanceOf[RawStruct].name_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Struct]) => { r.asInstanceOf[RawStruct].nameUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Struct], v: String) => { r.asInstanceOf[RawStruct].name_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Struct]) => { r.asInstanceOf[RawStruct].nameUnset() },
       manifest = manifest[String]
     )
 
   val __fields =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Field], Struct, StructMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Field], Struct, StructMeta](
       name = "fields",
       longName = "fields",
       id = 2,
       annotations = Map(),
       owner = this,
       getter = _.fieldsOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Struct], v: scala.collection.Seq[com.twitter.thrift.descriptors.Field]) => { r.asInstanceOf[RawStruct].__fields_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Struct]) => { r.asInstanceOf[RawStruct].fieldsUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Struct], v: scala.collection.Seq[com.twitter.thrift.descriptors.Field]) => { r.asInstanceOf[RawStruct].__fields_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Struct]) => { r.asInstanceOf[RawStruct].fieldsUnset() },
       manifest = manifest[scala.collection.Seq[com.twitter.thrift.descriptors.Field]]
     )
 
   val __annotations =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation], Struct, StructMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation], Struct, StructMeta](
       name = "annotations",
       longName = "annotations",
       id = 99,
       annotations = Map(),
       owner = this,
       getter = _.annotationsOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Struct], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]) => { r.asInstanceOf[RawStruct].__annotations_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Struct]) => { r.asInstanceOf[RawStruct].annotationsUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Struct], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]) => { r.asInstanceOf[RawStruct].__annotations_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Struct]) => { r.asInstanceOf[RawStruct].annotationsUnset() },
       manifest = manifest[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]]
     )
 
-  override def untypedFields: Seq[com.foursquare.spindle.UntypedFieldDescriptor] = fields
-  override val fields: Seq[com.foursquare.spindle.FieldDescriptor[_, Struct, StructMeta]] =
-    Vector[com.foursquare.spindle.FieldDescriptor[_, Struct, StructMeta]](
+  override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
+  override val fields: Seq[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, Struct, StructMeta]] =
+    Vector[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, Struct, StructMeta]](
       name,
       __fields,
       __annotations
@@ -9221,7 +9221,7 @@ class StructMeta
   }
 }
 
-class StructCompanionProvider extends com.foursquare.spindle.CompanionProvider[Struct] {
+class StructCompanionProvider extends _root_.io.fsq.spindle.runtime.CompanionProvider[Struct] {
   type CompanionT = StructMeta
   override def provide: StructMeta = Struct
 }
@@ -9465,7 +9465,7 @@ final class RawStruct extends JavaStructRaw[com.twitter.thrift.descriptors.Annot
   // end fields
 
 
-  private var unknownFields: List[com.foursquare.spindle.runtime.UnknownFields] = Nil
+  private var unknownFields: List[_root_.io.fsq.spindle.runtime.UnknownFields] = Nil
 
 
   override def write(oprot: org.apache.thrift.protocol.TProtocol): Unit = {
@@ -9493,7 +9493,7 @@ final class RawStruct extends JavaStructRaw[com.twitter.thrift.descriptors.Annot
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     }
-  if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+  if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
     unknownFields.reverse foreach { _.write(oprot) }
   }
     oprot.writeFieldStop()
@@ -9502,13 +9502,13 @@ final class RawStruct extends JavaStructRaw[com.twitter.thrift.descriptors.Annot
 
   override def read(iprot: org.apache.thrift.protocol.TProtocol) {
     // Unknown fields in this read go here.
-    var currentUnknownFieldsOpt: Option[com.foursquare.spindle.runtime.UnknownFields] = None
-    def currentUnknownFields(): com.foursquare.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
+    var currentUnknownFieldsOpt: Option[_root_.io.fsq.spindle.runtime.UnknownFields] = None
+    def currentUnknownFields(): _root_.io.fsq.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
       case Some(uf) => uf
       case None => {
-        val uf = new com.foursquare.spindle.runtime.UnknownFields(
+        val uf = new _root_.io.fsq.spindle.runtime.UnknownFields(
           this,
-          com.foursquare.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
+          _root_.io.fsq.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
         )
         unknownFields = uf :: unknownFields
         currentUnknownFieldsOpt = Some(uf)
@@ -9583,7 +9583,7 @@ final class RawStruct extends JavaStructRaw[com.twitter.thrift.descriptors.Annot
             }
           }
           case _ => {
-            if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+            if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
               currentUnknownFields().readUnknownField(iprot, field_header, this)  // May call this method recursively.
             } else {
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field_header.`type`)
@@ -9641,7 +9641,7 @@ final class RawStruct extends JavaStructRaw[com.twitter.thrift.descriptors.Annot
 
   override def hashCode(): Int = {
     // We use a fixed seed, for consistency.
-    val hasher = new com.foursquare.spindle.runtime.MurmurHash[AnyRef](0)
+    val hasher = new _root_.io.fsq.spindle.runtime.MurmurHash[AnyRef](0)
     if (nameIsSet) hasher.append(_name.##)
     if (fieldsIsSet) hasher.append(_fields.##)
     if (annotationsIsSet) hasher.append(_annotations.##)
@@ -9786,7 +9786,7 @@ object Union extends UnionMeta {
 
 class UnionMeta
     extends JavaUnionMeta[Union, RawUnion, UnionMeta]
-    with com.foursquare.spindle.RecordProvider[Union] {
+    with _root_.io.fsq.spindle.runtime.RecordProvider[Union] {
   override def recordName: String = "Union"
 
 
@@ -9849,18 +9849,18 @@ class UnionMeta
     99.toShort -> _Fields.__annotations
   )
 
-  override def createUntypedRawRecord: com.foursquare.spindle.UntypedRecord = createRawRecord
+  override def createUntypedRawRecord: _root_.io.fsq.spindle.runtime.UntypedRecord = createRawRecord
   override def createRecord: Union = createRawRecord
   override def createRawRecord: RawUnion = new RawUnion
 
-  override def untypedIfInstanceFrom(x: AnyRef): Option[com.foursquare.spindle.UntypedRecord] = ifInstanceFrom(x)
+  override def untypedIfInstanceFrom(x: AnyRef): Option[_root_.io.fsq.spindle.runtime.UntypedRecord] = ifInstanceFrom(x)
   override def ifInstanceFrom(x: AnyRef): Option[Union] = {
     if (x.isInstanceOf[Union]) Some(x.asInstanceOf[Union]) else None
   }
 
-  override val annotations: com.foursquare.spindle.Annotations =
+  override val annotations: _root_.io.fsq.spindle.runtime.Annotations =
 
-    new com.foursquare.spindle.Annotations(scala.collection.immutable.Vector(
+    new _root_.io.fsq.spindle.runtime.Annotations(scala.collection.immutable.Vector(
       ("generate_proxy", "true")
     ))
 
@@ -9869,49 +9869,49 @@ class UnionMeta
 
   val name =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[String, Union, UnionMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[String, Union, UnionMeta](
       name = "name",
       longName = "name",
       id = 1,
       annotations = Map(),
       owner = this,
       getter = _.nameOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Union], v: String) => { r.asInstanceOf[RawUnion].name_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Union]) => { r.asInstanceOf[RawUnion].nameUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Union], v: String) => { r.asInstanceOf[RawUnion].name_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Union]) => { r.asInstanceOf[RawUnion].nameUnset() },
       manifest = manifest[String]
     )
 
   val __fields =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Field], Union, UnionMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Field], Union, UnionMeta](
       name = "fields",
       longName = "fields",
       id = 2,
       annotations = Map(),
       owner = this,
       getter = _.fieldsOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Union], v: scala.collection.Seq[com.twitter.thrift.descriptors.Field]) => { r.asInstanceOf[RawUnion].__fields_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Union]) => { r.asInstanceOf[RawUnion].fieldsUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Union], v: scala.collection.Seq[com.twitter.thrift.descriptors.Field]) => { r.asInstanceOf[RawUnion].__fields_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Union]) => { r.asInstanceOf[RawUnion].fieldsUnset() },
       manifest = manifest[scala.collection.Seq[com.twitter.thrift.descriptors.Field]]
     )
 
   val __annotations =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation], Union, UnionMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation], Union, UnionMeta](
       name = "annotations",
       longName = "annotations",
       id = 99,
       annotations = Map(),
       owner = this,
       getter = _.annotationsOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Union], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]) => { r.asInstanceOf[RawUnion].__annotations_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Union]) => { r.asInstanceOf[RawUnion].annotationsUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Union], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]) => { r.asInstanceOf[RawUnion].__annotations_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Union]) => { r.asInstanceOf[RawUnion].annotationsUnset() },
       manifest = manifest[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]]
     )
 
-  override def untypedFields: Seq[com.foursquare.spindle.UntypedFieldDescriptor] = fields
-  override val fields: Seq[com.foursquare.spindle.FieldDescriptor[_, Union, UnionMeta]] =
-    Vector[com.foursquare.spindle.FieldDescriptor[_, Union, UnionMeta]](
+  override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
+  override val fields: Seq[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, Union, UnionMeta]] =
+    Vector[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, Union, UnionMeta]](
       name,
       __fields,
       __annotations
@@ -9931,7 +9931,7 @@ class UnionMeta
   }
 }
 
-class UnionCompanionProvider extends com.foursquare.spindle.CompanionProvider[Union] {
+class UnionCompanionProvider extends _root_.io.fsq.spindle.runtime.CompanionProvider[Union] {
   type CompanionT = UnionMeta
   override def provide: UnionMeta = Union
 }
@@ -10175,7 +10175,7 @@ final class RawUnion extends JavaUnionRaw[com.twitter.thrift.descriptors.Annotat
   // end fields
 
 
-  private var unknownFields: List[com.foursquare.spindle.runtime.UnknownFields] = Nil
+  private var unknownFields: List[_root_.io.fsq.spindle.runtime.UnknownFields] = Nil
 
 
   override def write(oprot: org.apache.thrift.protocol.TProtocol): Unit = {
@@ -10203,7 +10203,7 @@ final class RawUnion extends JavaUnionRaw[com.twitter.thrift.descriptors.Annotat
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     }
-  if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+  if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
     unknownFields.reverse foreach { _.write(oprot) }
   }
     oprot.writeFieldStop()
@@ -10212,13 +10212,13 @@ final class RawUnion extends JavaUnionRaw[com.twitter.thrift.descriptors.Annotat
 
   override def read(iprot: org.apache.thrift.protocol.TProtocol) {
     // Unknown fields in this read go here.
-    var currentUnknownFieldsOpt: Option[com.foursquare.spindle.runtime.UnknownFields] = None
-    def currentUnknownFields(): com.foursquare.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
+    var currentUnknownFieldsOpt: Option[_root_.io.fsq.spindle.runtime.UnknownFields] = None
+    def currentUnknownFields(): _root_.io.fsq.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
       case Some(uf) => uf
       case None => {
-        val uf = new com.foursquare.spindle.runtime.UnknownFields(
+        val uf = new _root_.io.fsq.spindle.runtime.UnknownFields(
           this,
-          com.foursquare.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
+          _root_.io.fsq.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
         )
         unknownFields = uf :: unknownFields
         currentUnknownFieldsOpt = Some(uf)
@@ -10293,7 +10293,7 @@ final class RawUnion extends JavaUnionRaw[com.twitter.thrift.descriptors.Annotat
             }
           }
           case _ => {
-            if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+            if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
               currentUnknownFields().readUnknownField(iprot, field_header, this)  // May call this method recursively.
             } else {
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field_header.`type`)
@@ -10351,7 +10351,7 @@ final class RawUnion extends JavaUnionRaw[com.twitter.thrift.descriptors.Annotat
 
   override def hashCode(): Int = {
     // We use a fixed seed, for consistency.
-    val hasher = new com.foursquare.spindle.runtime.MurmurHash[AnyRef](0)
+    val hasher = new _root_.io.fsq.spindle.runtime.MurmurHash[AnyRef](0)
     if (nameIsSet) hasher.append(_name.##)
     if (fieldsIsSet) hasher.append(_fields.##)
     if (annotationsIsSet) hasher.append(_annotations.##)
@@ -10496,7 +10496,7 @@ object Exception extends ExceptionMeta {
 
 class ExceptionMeta
     extends JavaExceptionMeta[Exception, RawException, ExceptionMeta]
-    with com.foursquare.spindle.RecordProvider[Exception] {
+    with _root_.io.fsq.spindle.runtime.RecordProvider[Exception] {
   override def recordName: String = "Exception"
 
 
@@ -10559,18 +10559,18 @@ class ExceptionMeta
     99.toShort -> _Fields.__annotations
   )
 
-  override def createUntypedRawRecord: com.foursquare.spindle.UntypedRecord = createRawRecord
+  override def createUntypedRawRecord: _root_.io.fsq.spindle.runtime.UntypedRecord = createRawRecord
   override def createRecord: Exception = createRawRecord
   override def createRawRecord: RawException = new RawException
 
-  override def untypedIfInstanceFrom(x: AnyRef): Option[com.foursquare.spindle.UntypedRecord] = ifInstanceFrom(x)
+  override def untypedIfInstanceFrom(x: AnyRef): Option[_root_.io.fsq.spindle.runtime.UntypedRecord] = ifInstanceFrom(x)
   override def ifInstanceFrom(x: AnyRef): Option[Exception] = {
     if (x.isInstanceOf[Exception]) Some(x.asInstanceOf[Exception]) else None
   }
 
-  override val annotations: com.foursquare.spindle.Annotations =
+  override val annotations: _root_.io.fsq.spindle.runtime.Annotations =
 
-    new com.foursquare.spindle.Annotations(scala.collection.immutable.Vector(
+    new _root_.io.fsq.spindle.runtime.Annotations(scala.collection.immutable.Vector(
       ("generate_proxy", "true")
     ))
 
@@ -10579,49 +10579,49 @@ class ExceptionMeta
 
   val name =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[String, Exception, ExceptionMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[String, Exception, ExceptionMeta](
       name = "name",
       longName = "name",
       id = 1,
       annotations = Map(),
       owner = this,
       getter = _.nameOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Exception], v: String) => { r.asInstanceOf[RawException].name_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Exception]) => { r.asInstanceOf[RawException].nameUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Exception], v: String) => { r.asInstanceOf[RawException].name_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Exception]) => { r.asInstanceOf[RawException].nameUnset() },
       manifest = manifest[String]
     )
 
   val __fields =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Field], Exception, ExceptionMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Field], Exception, ExceptionMeta](
       name = "fields",
       longName = "fields",
       id = 2,
       annotations = Map(),
       owner = this,
       getter = _.fieldsOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Exception], v: scala.collection.Seq[com.twitter.thrift.descriptors.Field]) => { r.asInstanceOf[RawException].__fields_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Exception]) => { r.asInstanceOf[RawException].fieldsUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Exception], v: scala.collection.Seq[com.twitter.thrift.descriptors.Field]) => { r.asInstanceOf[RawException].__fields_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Exception]) => { r.asInstanceOf[RawException].fieldsUnset() },
       manifest = manifest[scala.collection.Seq[com.twitter.thrift.descriptors.Field]]
     )
 
   val __annotations =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation], Exception, ExceptionMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation], Exception, ExceptionMeta](
       name = "annotations",
       longName = "annotations",
       id = 99,
       annotations = Map(),
       owner = this,
       getter = _.annotationsOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Exception], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]) => { r.asInstanceOf[RawException].__annotations_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Exception]) => { r.asInstanceOf[RawException].annotationsUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Exception], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]) => { r.asInstanceOf[RawException].__annotations_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Exception]) => { r.asInstanceOf[RawException].annotationsUnset() },
       manifest = manifest[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]]
     )
 
-  override def untypedFields: Seq[com.foursquare.spindle.UntypedFieldDescriptor] = fields
-  override val fields: Seq[com.foursquare.spindle.FieldDescriptor[_, Exception, ExceptionMeta]] =
-    Vector[com.foursquare.spindle.FieldDescriptor[_, Exception, ExceptionMeta]](
+  override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
+  override val fields: Seq[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, Exception, ExceptionMeta]] =
+    Vector[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, Exception, ExceptionMeta]](
       name,
       __fields,
       __annotations
@@ -10641,7 +10641,7 @@ class ExceptionMeta
   }
 }
 
-class ExceptionCompanionProvider extends com.foursquare.spindle.CompanionProvider[Exception] {
+class ExceptionCompanionProvider extends _root_.io.fsq.spindle.runtime.CompanionProvider[Exception] {
   type CompanionT = ExceptionMeta
   override def provide: ExceptionMeta = Exception
 }
@@ -10885,7 +10885,7 @@ final class RawException extends JavaExceptionRaw[com.twitter.thrift.descriptors
   // end fields
 
 
-  private var unknownFields: List[com.foursquare.spindle.runtime.UnknownFields] = Nil
+  private var unknownFields: List[_root_.io.fsq.spindle.runtime.UnknownFields] = Nil
 
 
   override def write(oprot: org.apache.thrift.protocol.TProtocol): Unit = {
@@ -10913,7 +10913,7 @@ final class RawException extends JavaExceptionRaw[com.twitter.thrift.descriptors
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     }
-  if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+  if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
     unknownFields.reverse foreach { _.write(oprot) }
   }
     oprot.writeFieldStop()
@@ -10922,13 +10922,13 @@ final class RawException extends JavaExceptionRaw[com.twitter.thrift.descriptors
 
   override def read(iprot: org.apache.thrift.protocol.TProtocol) {
     // Unknown fields in this read go here.
-    var currentUnknownFieldsOpt: Option[com.foursquare.spindle.runtime.UnknownFields] = None
-    def currentUnknownFields(): com.foursquare.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
+    var currentUnknownFieldsOpt: Option[_root_.io.fsq.spindle.runtime.UnknownFields] = None
+    def currentUnknownFields(): _root_.io.fsq.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
       case Some(uf) => uf
       case None => {
-        val uf = new com.foursquare.spindle.runtime.UnknownFields(
+        val uf = new _root_.io.fsq.spindle.runtime.UnknownFields(
           this,
-          com.foursquare.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
+          _root_.io.fsq.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
         )
         unknownFields = uf :: unknownFields
         currentUnknownFieldsOpt = Some(uf)
@@ -11003,7 +11003,7 @@ final class RawException extends JavaExceptionRaw[com.twitter.thrift.descriptors
             }
           }
           case _ => {
-            if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+            if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
               currentUnknownFields().readUnknownField(iprot, field_header, this)  // May call this method recursively.
             } else {
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field_header.`type`)
@@ -11061,7 +11061,7 @@ final class RawException extends JavaExceptionRaw[com.twitter.thrift.descriptors
 
   override def hashCode(): Int = {
     // We use a fixed seed, for consistency.
-    val hasher = new com.foursquare.spindle.runtime.MurmurHash[AnyRef](0)
+    val hasher = new _root_.io.fsq.spindle.runtime.MurmurHash[AnyRef](0)
     if (nameIsSet) hasher.append(_name.##)
     if (fieldsIsSet) hasher.append(_fields.##)
     if (annotationsIsSet) hasher.append(_annotations.##)
@@ -11238,7 +11238,7 @@ object Function extends FunctionMeta {
 
 class FunctionMeta
     extends JavaFunctionMeta[Function, RawFunction, FunctionMeta]
-    with com.foursquare.spindle.RecordProvider[Function] {
+    with _root_.io.fsq.spindle.runtime.RecordProvider[Function] {
   override def recordName: String = "Function"
 
 
@@ -11340,18 +11340,18 @@ class FunctionMeta
     99.toShort -> _Fields.__annotations
   )
 
-  override def createUntypedRawRecord: com.foursquare.spindle.UntypedRecord = createRawRecord
+  override def createUntypedRawRecord: _root_.io.fsq.spindle.runtime.UntypedRecord = createRawRecord
   override def createRecord: Function = createRawRecord
   override def createRawRecord: RawFunction = new RawFunction
 
-  override def untypedIfInstanceFrom(x: AnyRef): Option[com.foursquare.spindle.UntypedRecord] = ifInstanceFrom(x)
+  override def untypedIfInstanceFrom(x: AnyRef): Option[_root_.io.fsq.spindle.runtime.UntypedRecord] = ifInstanceFrom(x)
   override def ifInstanceFrom(x: AnyRef): Option[Function] = {
     if (x.isInstanceOf[Function]) Some(x.asInstanceOf[Function]) else None
   }
 
-  override val annotations: com.foursquare.spindle.Annotations =
+  override val annotations: _root_.io.fsq.spindle.runtime.Annotations =
 
-    new com.foursquare.spindle.Annotations(scala.collection.immutable.Vector(
+    new _root_.io.fsq.spindle.runtime.Annotations(scala.collection.immutable.Vector(
       ("generate_proxy", "true")
     ))
 
@@ -11360,91 +11360,91 @@ class FunctionMeta
 
   val name =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[String, Function, FunctionMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[String, Function, FunctionMeta](
       name = "name",
       longName = "name",
       id = 1,
       annotations = Map(),
       owner = this,
       getter = _.nameOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Function], v: String) => { r.asInstanceOf[RawFunction].name_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Function]) => { r.asInstanceOf[RawFunction].nameUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Function], v: String) => { r.asInstanceOf[RawFunction].name_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Function]) => { r.asInstanceOf[RawFunction].nameUnset() },
       manifest = manifest[String]
     )
 
   val returnTypeId =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[String, Function, FunctionMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[String, Function, FunctionMeta](
       name = "returnTypeId",
       longName = "returnTypeId",
       id = 2,
       annotations = Map(),
       owner = this,
       getter = _.returnTypeIdOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Function], v: String) => { r.asInstanceOf[RawFunction].returnTypeId_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Function]) => { r.asInstanceOf[RawFunction].returnTypeIdUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Function], v: String) => { r.asInstanceOf[RawFunction].returnTypeId_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Function]) => { r.asInstanceOf[RawFunction].returnTypeIdUnset() },
       manifest = manifest[String]
     )
 
   val oneWay =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[Boolean, Function, FunctionMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[Boolean, Function, FunctionMeta](
       name = "oneWay",
       longName = "oneWay",
       id = 3,
       annotations = Map(),
       owner = this,
       getter = _.oneWayOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Function], v: Boolean) => { r.asInstanceOf[RawFunction].oneWay_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Function]) => { r.asInstanceOf[RawFunction].oneWayUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Function], v: Boolean) => { r.asInstanceOf[RawFunction].oneWay_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Function]) => { r.asInstanceOf[RawFunction].oneWayUnset() },
       manifest = manifest[Boolean]
     )
 
   val argz =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Field], Function, FunctionMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Field], Function, FunctionMeta](
       name = "argz",
       longName = "argz",
       id = 4,
       annotations = Map(),
       owner = this,
       getter = _.argzOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Function], v: scala.collection.Seq[com.twitter.thrift.descriptors.Field]) => { r.asInstanceOf[RawFunction].argz_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Function]) => { r.asInstanceOf[RawFunction].argzUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Function], v: scala.collection.Seq[com.twitter.thrift.descriptors.Field]) => { r.asInstanceOf[RawFunction].argz_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Function]) => { r.asInstanceOf[RawFunction].argzUnset() },
       manifest = manifest[scala.collection.Seq[com.twitter.thrift.descriptors.Field]]
     )
 
   val throwz =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Field], Function, FunctionMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Field], Function, FunctionMeta](
       name = "throwz",
       longName = "throwz",
       id = 5,
       annotations = Map(),
       owner = this,
       getter = _.throwzOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Function], v: scala.collection.Seq[com.twitter.thrift.descriptors.Field]) => { r.asInstanceOf[RawFunction].throwz_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Function]) => { r.asInstanceOf[RawFunction].throwzUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Function], v: scala.collection.Seq[com.twitter.thrift.descriptors.Field]) => { r.asInstanceOf[RawFunction].throwz_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Function]) => { r.asInstanceOf[RawFunction].throwzUnset() },
       manifest = manifest[scala.collection.Seq[com.twitter.thrift.descriptors.Field]]
     )
 
   val __annotations =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation], Function, FunctionMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation], Function, FunctionMeta](
       name = "annotations",
       longName = "annotations",
       id = 99,
       annotations = Map(),
       owner = this,
       getter = _.annotationsOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Function], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]) => { r.asInstanceOf[RawFunction].__annotations_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Function]) => { r.asInstanceOf[RawFunction].annotationsUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Function], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]) => { r.asInstanceOf[RawFunction].__annotations_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Function]) => { r.asInstanceOf[RawFunction].annotationsUnset() },
       manifest = manifest[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]]
     )
 
-  override def untypedFields: Seq[com.foursquare.spindle.UntypedFieldDescriptor] = fields
-  override val fields: Seq[com.foursquare.spindle.FieldDescriptor[_, Function, FunctionMeta]] =
-    Vector[com.foursquare.spindle.FieldDescriptor[_, Function, FunctionMeta]](
+  override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
+  override val fields: Seq[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, Function, FunctionMeta]] =
+    Vector[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, Function, FunctionMeta]](
       name,
       returnTypeId,
       oneWay,
@@ -11473,7 +11473,7 @@ class FunctionMeta
   }
 }
 
-class FunctionCompanionProvider extends com.foursquare.spindle.CompanionProvider[Function] {
+class FunctionCompanionProvider extends _root_.io.fsq.spindle.runtime.CompanionProvider[Function] {
   type CompanionT = FunctionMeta
   override def provide: FunctionMeta = Function
 }
@@ -11828,7 +11828,7 @@ final class RawFunction extends JavaFunctionRaw[com.twitter.thrift.descriptors.A
   // end fields
 
 
-  private var unknownFields: List[com.foursquare.spindle.runtime.UnknownFields] = Nil
+  private var unknownFields: List[_root_.io.fsq.spindle.runtime.UnknownFields] = Nil
 
 
   override def write(oprot: org.apache.thrift.protocol.TProtocol): Unit = {
@@ -11875,7 +11875,7 @@ final class RawFunction extends JavaFunctionRaw[com.twitter.thrift.descriptors.A
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     }
-  if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+  if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
     unknownFields.reverse foreach { _.write(oprot) }
   }
     oprot.writeFieldStop()
@@ -11884,13 +11884,13 @@ final class RawFunction extends JavaFunctionRaw[com.twitter.thrift.descriptors.A
 
   override def read(iprot: org.apache.thrift.protocol.TProtocol) {
     // Unknown fields in this read go here.
-    var currentUnknownFieldsOpt: Option[com.foursquare.spindle.runtime.UnknownFields] = None
-    def currentUnknownFields(): com.foursquare.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
+    var currentUnknownFieldsOpt: Option[_root_.io.fsq.spindle.runtime.UnknownFields] = None
+    def currentUnknownFields(): _root_.io.fsq.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
       case Some(uf) => uf
       case None => {
-        val uf = new com.foursquare.spindle.runtime.UnknownFields(
+        val uf = new _root_.io.fsq.spindle.runtime.UnknownFields(
           this,
-          com.foursquare.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
+          _root_.io.fsq.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
         )
         unknownFields = uf :: unknownFields
         currentUnknownFieldsOpt = Some(uf)
@@ -12006,7 +12006,7 @@ final class RawFunction extends JavaFunctionRaw[com.twitter.thrift.descriptors.A
             }
           }
           case _ => {
-            if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+            if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
               currentUnknownFields().readUnknownField(iprot, field_header, this)  // May call this method recursively.
             } else {
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field_header.`type`)
@@ -12079,7 +12079,7 @@ final class RawFunction extends JavaFunctionRaw[com.twitter.thrift.descriptors.A
 
   override def hashCode(): Int = {
     // We use a fixed seed, for consistency.
-    val hasher = new com.foursquare.spindle.runtime.MurmurHash[AnyRef](0)
+    val hasher = new _root_.io.fsq.spindle.runtime.MurmurHash[AnyRef](0)
     if (nameIsSet) hasher.append(_name.##)
     if (returnTypeIdIsSet) hasher.append(_returnTypeId.##)
     if (oneWayIsSet) hasher.append(_oneWay.##)
@@ -12264,7 +12264,7 @@ object Service extends ServiceMeta {
 
 class ServiceMeta
     extends JavaServiceMeta[Service, RawService, ServiceMeta]
-    with com.foursquare.spindle.RecordProvider[Service] {
+    with _root_.io.fsq.spindle.runtime.RecordProvider[Service] {
   override def recordName: String = "Service"
 
 
@@ -12340,18 +12340,18 @@ class ServiceMeta
     99.toShort -> _Fields.__annotations
   )
 
-  override def createUntypedRawRecord: com.foursquare.spindle.UntypedRecord = createRawRecord
+  override def createUntypedRawRecord: _root_.io.fsq.spindle.runtime.UntypedRecord = createRawRecord
   override def createRecord: Service = createRawRecord
   override def createRawRecord: RawService = new RawService
 
-  override def untypedIfInstanceFrom(x: AnyRef): Option[com.foursquare.spindle.UntypedRecord] = ifInstanceFrom(x)
+  override def untypedIfInstanceFrom(x: AnyRef): Option[_root_.io.fsq.spindle.runtime.UntypedRecord] = ifInstanceFrom(x)
   override def ifInstanceFrom(x: AnyRef): Option[Service] = {
     if (x.isInstanceOf[Service]) Some(x.asInstanceOf[Service]) else None
   }
 
-  override val annotations: com.foursquare.spindle.Annotations =
+  override val annotations: _root_.io.fsq.spindle.runtime.Annotations =
 
-    new com.foursquare.spindle.Annotations(scala.collection.immutable.Vector(
+    new _root_.io.fsq.spindle.runtime.Annotations(scala.collection.immutable.Vector(
       ("generate_proxy", "true")
     ))
 
@@ -12360,63 +12360,63 @@ class ServiceMeta
 
   val name =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[String, Service, ServiceMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[String, Service, ServiceMeta](
       name = "name",
       longName = "name",
       id = 1,
       annotations = Map(),
       owner = this,
       getter = _.nameOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Service], v: String) => { r.asInstanceOf[RawService].name_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Service]) => { r.asInstanceOf[RawService].nameUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Service], v: String) => { r.asInstanceOf[RawService].name_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Service]) => { r.asInstanceOf[RawService].nameUnset() },
       manifest = manifest[String]
     )
 
   val extendz =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[String, Service, ServiceMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[String, Service, ServiceMeta](
       name = "extendz",
       longName = "extendz",
       id = 2,
       annotations = Map(),
       owner = this,
       getter = _.extendzOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Service], v: String) => { r.asInstanceOf[RawService].extendz_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Service]) => { r.asInstanceOf[RawService].extendzUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Service], v: String) => { r.asInstanceOf[RawService].extendz_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Service]) => { r.asInstanceOf[RawService].extendzUnset() },
       manifest = manifest[String]
     )
 
   val functions =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Function], Service, ServiceMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Function], Service, ServiceMeta](
       name = "functions",
       longName = "functions",
       id = 3,
       annotations = Map(),
       owner = this,
       getter = _.functionsOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Service], v: scala.collection.Seq[com.twitter.thrift.descriptors.Function]) => { r.asInstanceOf[RawService].functions_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Service]) => { r.asInstanceOf[RawService].functionsUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Service], v: scala.collection.Seq[com.twitter.thrift.descriptors.Function]) => { r.asInstanceOf[RawService].functions_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Service]) => { r.asInstanceOf[RawService].functionsUnset() },
       manifest = manifest[scala.collection.Seq[com.twitter.thrift.descriptors.Function]]
     )
 
   val __annotations =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation], Service, ServiceMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation], Service, ServiceMeta](
       name = "annotations",
       longName = "annotations",
       id = 99,
       annotations = Map(),
       owner = this,
       getter = _.annotationsOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Service], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]) => { r.asInstanceOf[RawService].__annotations_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Service]) => { r.asInstanceOf[RawService].annotationsUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Service], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]) => { r.asInstanceOf[RawService].__annotations_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Service]) => { r.asInstanceOf[RawService].annotationsUnset() },
       manifest = manifest[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]]
     )
 
-  override def untypedFields: Seq[com.foursquare.spindle.UntypedFieldDescriptor] = fields
-  override val fields: Seq[com.foursquare.spindle.FieldDescriptor[_, Service, ServiceMeta]] =
-    Vector[com.foursquare.spindle.FieldDescriptor[_, Service, ServiceMeta]](
+  override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
+  override val fields: Seq[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, Service, ServiceMeta]] =
+    Vector[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, Service, ServiceMeta]](
       name,
       extendz,
       functions,
@@ -12439,7 +12439,7 @@ class ServiceMeta
   }
 }
 
-class ServiceCompanionProvider extends com.foursquare.spindle.CompanionProvider[Service] {
+class ServiceCompanionProvider extends _root_.io.fsq.spindle.runtime.CompanionProvider[Service] {
   type CompanionT = ServiceMeta
   override def provide: ServiceMeta = Service
 }
@@ -12717,7 +12717,7 @@ final class RawService extends JavaServiceRaw[com.twitter.thrift.descriptors.Ann
   // end fields
 
 
-  private var unknownFields: List[com.foursquare.spindle.runtime.UnknownFields] = Nil
+  private var unknownFields: List[_root_.io.fsq.spindle.runtime.UnknownFields] = Nil
 
 
   override def write(oprot: org.apache.thrift.protocol.TProtocol): Unit = {
@@ -12750,7 +12750,7 @@ final class RawService extends JavaServiceRaw[com.twitter.thrift.descriptors.Ann
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     }
-  if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+  if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
     unknownFields.reverse foreach { _.write(oprot) }
   }
     oprot.writeFieldStop()
@@ -12759,13 +12759,13 @@ final class RawService extends JavaServiceRaw[com.twitter.thrift.descriptors.Ann
 
   override def read(iprot: org.apache.thrift.protocol.TProtocol) {
     // Unknown fields in this read go here.
-    var currentUnknownFieldsOpt: Option[com.foursquare.spindle.runtime.UnknownFields] = None
-    def currentUnknownFields(): com.foursquare.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
+    var currentUnknownFieldsOpt: Option[_root_.io.fsq.spindle.runtime.UnknownFields] = None
+    def currentUnknownFields(): _root_.io.fsq.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
       case Some(uf) => uf
       case None => {
-        val uf = new com.foursquare.spindle.runtime.UnknownFields(
+        val uf = new _root_.io.fsq.spindle.runtime.UnknownFields(
           this,
-          com.foursquare.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
+          _root_.io.fsq.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
         )
         unknownFields = uf :: unknownFields
         currentUnknownFieldsOpt = Some(uf)
@@ -12848,7 +12848,7 @@ final class RawService extends JavaServiceRaw[com.twitter.thrift.descriptors.Ann
             }
           }
           case _ => {
-            if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+            if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
               currentUnknownFields().readUnknownField(iprot, field_header, this)  // May call this method recursively.
             } else {
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field_header.`type`)
@@ -12910,7 +12910,7 @@ final class RawService extends JavaServiceRaw[com.twitter.thrift.descriptors.Ann
 
   override def hashCode(): Int = {
     // We use a fixed seed, for consistency.
-    val hasher = new com.foursquare.spindle.runtime.MurmurHash[AnyRef](0)
+    val hasher = new _root_.io.fsq.spindle.runtime.MurmurHash[AnyRef](0)
     if (nameIsSet) hasher.append(_name.##)
     if (extendzIsSet) hasher.append(_extendz.##)
     if (functionsIsSet) hasher.append(_functions.##)
@@ -13162,7 +13162,7 @@ object Program extends ProgramMeta {
 
 class ProgramMeta
     extends JavaProgramMeta[Program, RawProgram, ProgramMeta]
-    with com.foursquare.spindle.RecordProvider[Program] {
+    with _root_.io.fsq.spindle.runtime.RecordProvider[Program] {
   override def recordName: String = "Program"
 
 
@@ -13316,18 +13316,18 @@ class ProgramMeta
     98.toShort -> _Fields.typeRegistry
   )
 
-  override def createUntypedRawRecord: com.foursquare.spindle.UntypedRecord = createRawRecord
+  override def createUntypedRawRecord: _root_.io.fsq.spindle.runtime.UntypedRecord = createRawRecord
   override def createRecord: Program = createRawRecord
   override def createRawRecord: RawProgram = new RawProgram
 
-  override def untypedIfInstanceFrom(x: AnyRef): Option[com.foursquare.spindle.UntypedRecord] = ifInstanceFrom(x)
+  override def untypedIfInstanceFrom(x: AnyRef): Option[_root_.io.fsq.spindle.runtime.UntypedRecord] = ifInstanceFrom(x)
   override def ifInstanceFrom(x: AnyRef): Option[Program] = {
     if (x.isInstanceOf[Program]) Some(x.asInstanceOf[Program]) else None
   }
 
-  override val annotations: com.foursquare.spindle.Annotations =
+  override val annotations: _root_.io.fsq.spindle.runtime.Annotations =
 
-    new com.foursquare.spindle.Annotations(scala.collection.immutable.Vector(
+    new _root_.io.fsq.spindle.runtime.Annotations(scala.collection.immutable.Vector(
       ("generate_proxy", "true")
     ))
 
@@ -13336,147 +13336,147 @@ class ProgramMeta
 
   val namespaces =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Namespace], Program, ProgramMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Namespace], Program, ProgramMeta](
       name = "namespaces",
       longName = "namespaces",
       id = 1,
       annotations = Map(),
       owner = this,
       getter = _.namespacesOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Program], v: scala.collection.Seq[com.twitter.thrift.descriptors.Namespace]) => { r.asInstanceOf[RawProgram].namespaces_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Program]) => { r.asInstanceOf[RawProgram].namespacesUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Program], v: scala.collection.Seq[com.twitter.thrift.descriptors.Namespace]) => { r.asInstanceOf[RawProgram].namespaces_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Program]) => { r.asInstanceOf[RawProgram].namespacesUnset() },
       manifest = manifest[scala.collection.Seq[com.twitter.thrift.descriptors.Namespace]]
     )
 
   val includes =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Include], Program, ProgramMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Include], Program, ProgramMeta](
       name = "includes",
       longName = "includes",
       id = 2,
       annotations = Map(),
       owner = this,
       getter = _.includesOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Program], v: scala.collection.Seq[com.twitter.thrift.descriptors.Include]) => { r.asInstanceOf[RawProgram].includes_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Program]) => { r.asInstanceOf[RawProgram].includesUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Program], v: scala.collection.Seq[com.twitter.thrift.descriptors.Include]) => { r.asInstanceOf[RawProgram].includes_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Program]) => { r.asInstanceOf[RawProgram].includesUnset() },
       manifest = manifest[scala.collection.Seq[com.twitter.thrift.descriptors.Include]]
     )
 
   val constants =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Const], Program, ProgramMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Const], Program, ProgramMeta](
       name = "constants",
       longName = "constants",
       id = 3,
       annotations = Map(),
       owner = this,
       getter = _.constantsOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Program], v: scala.collection.Seq[com.twitter.thrift.descriptors.Const]) => { r.asInstanceOf[RawProgram].constants_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Program]) => { r.asInstanceOf[RawProgram].constantsUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Program], v: scala.collection.Seq[com.twitter.thrift.descriptors.Const]) => { r.asInstanceOf[RawProgram].constants_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Program]) => { r.asInstanceOf[RawProgram].constantsUnset() },
       manifest = manifest[scala.collection.Seq[com.twitter.thrift.descriptors.Const]]
     )
 
   val enums =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Enum], Program, ProgramMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Enum], Program, ProgramMeta](
       name = "enums",
       longName = "enums",
       id = 4,
       annotations = Map(),
       owner = this,
       getter = _.enumsOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Program], v: scala.collection.Seq[com.twitter.thrift.descriptors.Enum]) => { r.asInstanceOf[RawProgram].enums_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Program]) => { r.asInstanceOf[RawProgram].enumsUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Program], v: scala.collection.Seq[com.twitter.thrift.descriptors.Enum]) => { r.asInstanceOf[RawProgram].enums_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Program]) => { r.asInstanceOf[RawProgram].enumsUnset() },
       manifest = manifest[scala.collection.Seq[com.twitter.thrift.descriptors.Enum]]
     )
 
   val typedefs =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Typedef], Program, ProgramMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Typedef], Program, ProgramMeta](
       name = "typedefs",
       longName = "typedefs",
       id = 5,
       annotations = Map(),
       owner = this,
       getter = _.typedefsOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Program], v: scala.collection.Seq[com.twitter.thrift.descriptors.Typedef]) => { r.asInstanceOf[RawProgram].typedefs_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Program]) => { r.asInstanceOf[RawProgram].typedefsUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Program], v: scala.collection.Seq[com.twitter.thrift.descriptors.Typedef]) => { r.asInstanceOf[RawProgram].typedefs_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Program]) => { r.asInstanceOf[RawProgram].typedefsUnset() },
       manifest = manifest[scala.collection.Seq[com.twitter.thrift.descriptors.Typedef]]
     )
 
   val structs =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Struct], Program, ProgramMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Struct], Program, ProgramMeta](
       name = "structs",
       longName = "structs",
       id = 6,
       annotations = Map(),
       owner = this,
       getter = _.structsOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Program], v: scala.collection.Seq[com.twitter.thrift.descriptors.Struct]) => { r.asInstanceOf[RawProgram].structs_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Program]) => { r.asInstanceOf[RawProgram].structsUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Program], v: scala.collection.Seq[com.twitter.thrift.descriptors.Struct]) => { r.asInstanceOf[RawProgram].structs_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Program]) => { r.asInstanceOf[RawProgram].structsUnset() },
       manifest = manifest[scala.collection.Seq[com.twitter.thrift.descriptors.Struct]]
     )
 
   val unions =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Union], Program, ProgramMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Union], Program, ProgramMeta](
       name = "unions",
       longName = "unions",
       id = 7,
       annotations = Map(),
       owner = this,
       getter = _.unionsOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Program], v: scala.collection.Seq[com.twitter.thrift.descriptors.Union]) => { r.asInstanceOf[RawProgram].unions_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Program]) => { r.asInstanceOf[RawProgram].unionsUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Program], v: scala.collection.Seq[com.twitter.thrift.descriptors.Union]) => { r.asInstanceOf[RawProgram].unions_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Program]) => { r.asInstanceOf[RawProgram].unionsUnset() },
       manifest = manifest[scala.collection.Seq[com.twitter.thrift.descriptors.Union]]
     )
 
   val exceptions =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Exception], Program, ProgramMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Exception], Program, ProgramMeta](
       name = "exceptions",
       longName = "exceptions",
       id = 8,
       annotations = Map(),
       owner = this,
       getter = _.exceptionsOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Program], v: scala.collection.Seq[com.twitter.thrift.descriptors.Exception]) => { r.asInstanceOf[RawProgram].exceptions_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Program]) => { r.asInstanceOf[RawProgram].exceptionsUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Program], v: scala.collection.Seq[com.twitter.thrift.descriptors.Exception]) => { r.asInstanceOf[RawProgram].exceptions_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Program]) => { r.asInstanceOf[RawProgram].exceptionsUnset() },
       manifest = manifest[scala.collection.Seq[com.twitter.thrift.descriptors.Exception]]
     )
 
   val services =
 
-    new com.foursquare.spindle.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Service], Program, ProgramMeta](
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[scala.collection.Seq[com.twitter.thrift.descriptors.Service], Program, ProgramMeta](
       name = "services",
       longName = "services",
       id = 9,
       annotations = Map(),
       owner = this,
       getter = _.servicesOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Program], v: scala.collection.Seq[com.twitter.thrift.descriptors.Service]) => { r.asInstanceOf[RawProgram].services_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Program]) => { r.asInstanceOf[RawProgram].servicesUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Program], v: scala.collection.Seq[com.twitter.thrift.descriptors.Service]) => { r.asInstanceOf[RawProgram].services_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Program]) => { r.asInstanceOf[RawProgram].servicesUnset() },
       manifest = manifest[scala.collection.Seq[com.twitter.thrift.descriptors.Service]]
     )
 
   val typeRegistry =
-    new com.foursquare.spindle.StructFieldDescriptor[Program, ProgramMeta, com.twitter.thrift.descriptors.TypeRegistry, com.twitter.thrift.descriptors.TypeRegistryMeta](
+    new _root_.io.fsq.spindle.runtime.StructFieldDescriptor[Program, ProgramMeta, com.twitter.thrift.descriptors.TypeRegistry, com.twitter.thrift.descriptors.TypeRegistryMeta](
       name = "typeRegistry",
       longName = "typeRegistry",
       id = 98,
       annotations = Map(),
       owner = this,
       getter = _.typeRegistryOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[Program], v: com.twitter.thrift.descriptors.TypeRegistry) => { r.asInstanceOf[RawProgram].typeRegistry_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[Program]) => { r.asInstanceOf[RawProgram].typeRegistryUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Program], v: com.twitter.thrift.descriptors.TypeRegistry) => { r.asInstanceOf[RawProgram].typeRegistry_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[Program]) => { r.asInstanceOf[RawProgram].typeRegistryUnset() },
       structMeta = com.twitter.thrift.descriptors.TypeRegistry,
       manifest = manifest[com.twitter.thrift.descriptors.TypeRegistry]
     )
 
-  override def untypedFields: Seq[com.foursquare.spindle.UntypedFieldDescriptor] = fields
-  override val fields: Seq[com.foursquare.spindle.FieldDescriptor[_, Program, ProgramMeta]] =
-    Vector[com.foursquare.spindle.FieldDescriptor[_, Program, ProgramMeta]](
+  override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
+  override val fields: Seq[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, Program, ProgramMeta]] =
+    Vector[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, Program, ProgramMeta]](
       namespaces,
       includes,
       constants,
@@ -13517,7 +13517,7 @@ class ProgramMeta
   }
 }
 
-class ProgramCompanionProvider extends com.foursquare.spindle.CompanionProvider[Program] {
+class ProgramCompanionProvider extends _root_.io.fsq.spindle.runtime.CompanionProvider[Program] {
   type CompanionT = ProgramMeta
   override def provide: ProgramMeta = Program
 }
@@ -14027,7 +14027,7 @@ final class RawProgram extends JavaProgramRaw[com.twitter.thrift.descriptors.Con
   // end fields
 
 
-  private var unknownFields: List[com.foursquare.spindle.runtime.UnknownFields] = Nil
+  private var unknownFields: List[_root_.io.fsq.spindle.runtime.UnknownFields] = Nil
 
 
   override def write(oprot: org.apache.thrift.protocol.TProtocol): Unit = {
@@ -14118,7 +14118,7 @@ final class RawProgram extends JavaProgramRaw[com.twitter.thrift.descriptors.Con
       _typeRegistry.write(oprot)
       oprot.writeFieldEnd()
     }
-  if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+  if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
     unknownFields.reverse foreach { _.write(oprot) }
   }
     oprot.writeFieldStop()
@@ -14127,13 +14127,13 @@ final class RawProgram extends JavaProgramRaw[com.twitter.thrift.descriptors.Con
 
   override def read(iprot: org.apache.thrift.protocol.TProtocol) {
     // Unknown fields in this read go here.
-    var currentUnknownFieldsOpt: Option[com.foursquare.spindle.runtime.UnknownFields] = None
-    def currentUnknownFields(): com.foursquare.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
+    var currentUnknownFieldsOpt: Option[_root_.io.fsq.spindle.runtime.UnknownFields] = None
+    def currentUnknownFields(): _root_.io.fsq.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
       case Some(uf) => uf
       case None => {
-        val uf = new com.foursquare.spindle.runtime.UnknownFields(
+        val uf = new _root_.io.fsq.spindle.runtime.UnknownFields(
           this,
-          com.foursquare.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
+          _root_.io.fsq.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
         )
         unknownFields = uf :: unknownFields
         currentUnknownFieldsOpt = Some(uf)
@@ -14373,7 +14373,7 @@ final class RawProgram extends JavaProgramRaw[com.twitter.thrift.descriptors.Con
             }
           }
           case _ => {
-            if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+            if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
               currentUnknownFields().readUnknownField(iprot, field_header, this)  // May call this method recursively.
             } else {
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field_header.`type`)
@@ -14480,7 +14480,7 @@ final class RawProgram extends JavaProgramRaw[com.twitter.thrift.descriptors.Con
 
   override def hashCode(): Int = {
     // We use a fixed seed, for consistency.
-    val hasher = new com.foursquare.spindle.runtime.MurmurHash[AnyRef](0)
+    val hasher = new _root_.io.fsq.spindle.runtime.MurmurHash[AnyRef](0)
     if (namespacesIsSet) hasher.append(_namespaces.##)
     if (includesIsSet) hasher.append(_includes.##)
     if (constantsIsSet) hasher.append(_constants.##)
@@ -14700,7 +14700,7 @@ object SimpleContainerType extends SimpleContainerTypeMeta {
 
 class SimpleContainerTypeMeta
     extends JavaSimpleContainerTypeMeta[SimpleContainerType, RawSimpleContainerType, SimpleContainerTypeMeta]
-    with com.foursquare.spindle.RecordProvider[SimpleContainerType] {
+    with _root_.io.fsq.spindle.runtime.RecordProvider[SimpleContainerType] {
   override def recordName: String = "SimpleContainerType"
 
 
@@ -14763,67 +14763,67 @@ class SimpleContainerTypeMeta
     3.toShort -> _Fields.mapType
   )
 
-  override def createUntypedRawRecord: com.foursquare.spindle.UntypedRecord = createRawRecord
+  override def createUntypedRawRecord: _root_.io.fsq.spindle.runtime.UntypedRecord = createRawRecord
   override def createRecord: SimpleContainerType = createRawRecord
   override def createRawRecord: RawSimpleContainerType = new RawSimpleContainerType
 
-  override def untypedIfInstanceFrom(x: AnyRef): Option[com.foursquare.spindle.UntypedRecord] = ifInstanceFrom(x)
+  override def untypedIfInstanceFrom(x: AnyRef): Option[_root_.io.fsq.spindle.runtime.UntypedRecord] = ifInstanceFrom(x)
   override def ifInstanceFrom(x: AnyRef): Option[SimpleContainerType] = {
     if (x.isInstanceOf[SimpleContainerType]) Some(x.asInstanceOf[SimpleContainerType]) else None
   }
 
-  override val annotations: com.foursquare.spindle.Annotations =
+  override val annotations: _root_.io.fsq.spindle.runtime.Annotations =
 
-    com.foursquare.spindle.Annotations.empty
+    _root_.io.fsq.spindle.runtime.Annotations.empty
 
   // Spindle Descriptors.
 
 
   val listType =
-    new com.foursquare.spindle.StructFieldDescriptor[SimpleContainerType, SimpleContainerTypeMeta, com.twitter.thrift.descriptors.ListType, com.twitter.thrift.descriptors.ListTypeMeta](
+    new _root_.io.fsq.spindle.runtime.StructFieldDescriptor[SimpleContainerType, SimpleContainerTypeMeta, com.twitter.thrift.descriptors.ListType, com.twitter.thrift.descriptors.ListTypeMeta](
       name = "listType",
       longName = "listType",
       id = 1,
       annotations = Map(),
       owner = this,
       getter = _.listTypeOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[SimpleContainerType], v: com.twitter.thrift.descriptors.ListType) => { r.asInstanceOf[RawSimpleContainerType].listType_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[SimpleContainerType]) => { r.asInstanceOf[RawSimpleContainerType].listTypeUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[SimpleContainerType], v: com.twitter.thrift.descriptors.ListType) => { r.asInstanceOf[RawSimpleContainerType].listType_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[SimpleContainerType]) => { r.asInstanceOf[RawSimpleContainerType].listTypeUnset() },
       structMeta = com.twitter.thrift.descriptors.ListType,
       manifest = manifest[com.twitter.thrift.descriptors.ListType]
     )
 
   val setType =
-    new com.foursquare.spindle.StructFieldDescriptor[SimpleContainerType, SimpleContainerTypeMeta, com.twitter.thrift.descriptors.SetType, com.twitter.thrift.descriptors.SetTypeMeta](
+    new _root_.io.fsq.spindle.runtime.StructFieldDescriptor[SimpleContainerType, SimpleContainerTypeMeta, com.twitter.thrift.descriptors.SetType, com.twitter.thrift.descriptors.SetTypeMeta](
       name = "setType",
       longName = "setType",
       id = 2,
       annotations = Map(),
       owner = this,
       getter = _.setTypeOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[SimpleContainerType], v: com.twitter.thrift.descriptors.SetType) => { r.asInstanceOf[RawSimpleContainerType].setType_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[SimpleContainerType]) => { r.asInstanceOf[RawSimpleContainerType].setTypeUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[SimpleContainerType], v: com.twitter.thrift.descriptors.SetType) => { r.asInstanceOf[RawSimpleContainerType].setType_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[SimpleContainerType]) => { r.asInstanceOf[RawSimpleContainerType].setTypeUnset() },
       structMeta = com.twitter.thrift.descriptors.SetType,
       manifest = manifest[com.twitter.thrift.descriptors.SetType]
     )
 
   val mapType =
-    new com.foursquare.spindle.StructFieldDescriptor[SimpleContainerType, SimpleContainerTypeMeta, com.twitter.thrift.descriptors.MapType, com.twitter.thrift.descriptors.MapTypeMeta](
+    new _root_.io.fsq.spindle.runtime.StructFieldDescriptor[SimpleContainerType, SimpleContainerTypeMeta, com.twitter.thrift.descriptors.MapType, com.twitter.thrift.descriptors.MapTypeMeta](
       name = "mapType",
       longName = "mapType",
       id = 3,
       annotations = Map(),
       owner = this,
       getter = _.mapTypeOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[SimpleContainerType], v: com.twitter.thrift.descriptors.MapType) => { r.asInstanceOf[RawSimpleContainerType].mapType_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[SimpleContainerType]) => { r.asInstanceOf[RawSimpleContainerType].mapTypeUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[SimpleContainerType], v: com.twitter.thrift.descriptors.MapType) => { r.asInstanceOf[RawSimpleContainerType].mapType_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[SimpleContainerType]) => { r.asInstanceOf[RawSimpleContainerType].mapTypeUnset() },
       structMeta = com.twitter.thrift.descriptors.MapType,
       manifest = manifest[com.twitter.thrift.descriptors.MapType]
     )
 
-  override def untypedFields: Seq[com.foursquare.spindle.UntypedFieldDescriptor] = fields
-  override val fields: Seq[com.foursquare.spindle.FieldDescriptor[_, SimpleContainerType, SimpleContainerTypeMeta]] =
-    Vector[com.foursquare.spindle.FieldDescriptor[_, SimpleContainerType, SimpleContainerTypeMeta]](
+  override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
+  override val fields: Seq[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, SimpleContainerType, SimpleContainerTypeMeta]] =
+    Vector[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, SimpleContainerType, SimpleContainerTypeMeta]](
       listType,
       setType,
       mapType
@@ -14843,7 +14843,7 @@ class SimpleContainerTypeMeta
   }
 }
 
-class SimpleContainerTypeCompanionProvider extends com.foursquare.spindle.CompanionProvider[SimpleContainerType] {
+class SimpleContainerTypeCompanionProvider extends _root_.io.fsq.spindle.runtime.CompanionProvider[SimpleContainerType] {
   type CompanionT = SimpleContainerTypeMeta
   override def provide: SimpleContainerTypeMeta = SimpleContainerType
 }
@@ -14999,7 +14999,7 @@ final class RawSimpleContainerType extends JavaSimpleContainerTypeRaw[com.twitte
   // end fields
 
 
-  private var unknownFields: List[com.foursquare.spindle.runtime.UnknownFields] = Nil
+  private var unknownFields: List[_root_.io.fsq.spindle.runtime.UnknownFields] = Nil
 
 
   override def write(oprot: org.apache.thrift.protocol.TProtocol): Unit = {
@@ -15019,7 +15019,7 @@ final class RawSimpleContainerType extends JavaSimpleContainerTypeRaw[com.twitte
       _mapType.write(oprot)
       oprot.writeFieldEnd()
     }
-  if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+  if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
     unknownFields.reverse foreach { _.write(oprot) }
   }
     oprot.writeFieldStop()
@@ -15028,13 +15028,13 @@ final class RawSimpleContainerType extends JavaSimpleContainerTypeRaw[com.twitte
 
   override def read(iprot: org.apache.thrift.protocol.TProtocol) {
     // Unknown fields in this read go here.
-    var currentUnknownFieldsOpt: Option[com.foursquare.spindle.runtime.UnknownFields] = None
-    def currentUnknownFields(): com.foursquare.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
+    var currentUnknownFieldsOpt: Option[_root_.io.fsq.spindle.runtime.UnknownFields] = None
+    def currentUnknownFields(): _root_.io.fsq.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
       case Some(uf) => uf
       case None => {
-        val uf = new com.foursquare.spindle.runtime.UnknownFields(
+        val uf = new _root_.io.fsq.spindle.runtime.UnknownFields(
           this,
-          com.foursquare.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
+          _root_.io.fsq.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
         )
         unknownFields = uf :: unknownFields
         currentUnknownFieldsOpt = Some(uf)
@@ -15091,7 +15091,7 @@ final class RawSimpleContainerType extends JavaSimpleContainerTypeRaw[com.twitte
             }
           }
           case _ => {
-            if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+            if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
               currentUnknownFields().readUnknownField(iprot, field_header, this)  // May call this method recursively.
             } else {
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field_header.`type`)
@@ -15143,7 +15143,7 @@ final class RawSimpleContainerType extends JavaSimpleContainerTypeRaw[com.twitte
 
   override def hashCode(): Int = {
     // We use a fixed seed, for consistency.
-    val hasher = new com.foursquare.spindle.runtime.MurmurHash[AnyRef](0)
+    val hasher = new _root_.io.fsq.spindle.runtime.MurmurHash[AnyRef](0)
     if (listTypeIsSet) hasher.append(_listType.##)
     if (setTypeIsSet) hasher.append(_setType.##)
     if (mapTypeIsSet) hasher.append(_mapType.##)
@@ -15299,7 +15299,7 @@ object SimpleType extends SimpleTypeMeta {
 
 class SimpleTypeMeta
     extends JavaSimpleTypeMeta[SimpleType, RawSimpleType, SimpleTypeMeta]
-    with com.foursquare.spindle.RecordProvider[SimpleType] {
+    with _root_.io.fsq.spindle.runtime.RecordProvider[SimpleType] {
   override def recordName: String = "SimpleType"
 
 
@@ -15362,67 +15362,67 @@ class SimpleTypeMeta
     3.toShort -> _Fields.typeref
   )
 
-  override def createUntypedRawRecord: com.foursquare.spindle.UntypedRecord = createRawRecord
+  override def createUntypedRawRecord: _root_.io.fsq.spindle.runtime.UntypedRecord = createRawRecord
   override def createRecord: SimpleType = createRawRecord
   override def createRawRecord: RawSimpleType = new RawSimpleType
 
-  override def untypedIfInstanceFrom(x: AnyRef): Option[com.foursquare.spindle.UntypedRecord] = ifInstanceFrom(x)
+  override def untypedIfInstanceFrom(x: AnyRef): Option[_root_.io.fsq.spindle.runtime.UntypedRecord] = ifInstanceFrom(x)
   override def ifInstanceFrom(x: AnyRef): Option[SimpleType] = {
     if (x.isInstanceOf[SimpleType]) Some(x.asInstanceOf[SimpleType]) else None
   }
 
-  override val annotations: com.foursquare.spindle.Annotations =
+  override val annotations: _root_.io.fsq.spindle.runtime.Annotations =
 
-    com.foursquare.spindle.Annotations.empty
+    _root_.io.fsq.spindle.runtime.Annotations.empty
 
   // Spindle Descriptors.
 
 
   val baseType =
-    new com.foursquare.spindle.StructFieldDescriptor[SimpleType, SimpleTypeMeta, com.twitter.thrift.descriptors.BaseType, com.twitter.thrift.descriptors.BaseTypeMeta](
+    new _root_.io.fsq.spindle.runtime.StructFieldDescriptor[SimpleType, SimpleTypeMeta, com.twitter.thrift.descriptors.BaseType, com.twitter.thrift.descriptors.BaseTypeMeta](
       name = "baseType",
       longName = "baseType",
       id = 1,
       annotations = Map(),
       owner = this,
       getter = _.baseTypeOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[SimpleType], v: com.twitter.thrift.descriptors.BaseType) => { r.asInstanceOf[RawSimpleType].baseType_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[SimpleType]) => { r.asInstanceOf[RawSimpleType].baseTypeUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[SimpleType], v: com.twitter.thrift.descriptors.BaseType) => { r.asInstanceOf[RawSimpleType].baseType_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[SimpleType]) => { r.asInstanceOf[RawSimpleType].baseTypeUnset() },
       structMeta = com.twitter.thrift.descriptors.BaseType,
       manifest = manifest[com.twitter.thrift.descriptors.BaseType]
     )
 
   val containerType =
-    new com.foursquare.spindle.StructFieldDescriptor[SimpleType, SimpleTypeMeta, com.twitter.thrift.descriptors.ContainerType, com.twitter.thrift.descriptors.ContainerTypeMeta](
+    new _root_.io.fsq.spindle.runtime.StructFieldDescriptor[SimpleType, SimpleTypeMeta, com.twitter.thrift.descriptors.ContainerType, com.twitter.thrift.descriptors.ContainerTypeMeta](
       name = "containerType",
       longName = "containerType",
       id = 2,
       annotations = Map(),
       owner = this,
       getter = _.containerTypeOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[SimpleType], v: com.twitter.thrift.descriptors.ContainerType) => { r.asInstanceOf[RawSimpleType].containerType_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[SimpleType]) => { r.asInstanceOf[RawSimpleType].containerTypeUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[SimpleType], v: com.twitter.thrift.descriptors.ContainerType) => { r.asInstanceOf[RawSimpleType].containerType_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[SimpleType]) => { r.asInstanceOf[RawSimpleType].containerTypeUnset() },
       structMeta = com.twitter.thrift.descriptors.ContainerType,
       manifest = manifest[com.twitter.thrift.descriptors.ContainerType]
     )
 
   val typeref =
-    new com.foursquare.spindle.StructFieldDescriptor[SimpleType, SimpleTypeMeta, com.twitter.thrift.descriptors.Typeref, com.twitter.thrift.descriptors.TyperefMeta](
+    new _root_.io.fsq.spindle.runtime.StructFieldDescriptor[SimpleType, SimpleTypeMeta, com.twitter.thrift.descriptors.Typeref, com.twitter.thrift.descriptors.TyperefMeta](
       name = "typeref",
       longName = "typeref",
       id = 3,
       annotations = Map(),
       owner = this,
       getter = _.typerefOption,
-      setterRaw = (r: com.foursquare.spindle.MutableRecord[SimpleType], v: com.twitter.thrift.descriptors.Typeref) => { r.asInstanceOf[RawSimpleType].typeref_=(v) },
-      unsetterRaw = (r: com.foursquare.spindle.MutableRecord[SimpleType]) => { r.asInstanceOf[RawSimpleType].typerefUnset() },
+      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[SimpleType], v: com.twitter.thrift.descriptors.Typeref) => { r.asInstanceOf[RawSimpleType].typeref_=(v) },
+      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[SimpleType]) => { r.asInstanceOf[RawSimpleType].typerefUnset() },
       structMeta = com.twitter.thrift.descriptors.Typeref,
       manifest = manifest[com.twitter.thrift.descriptors.Typeref]
     )
 
-  override def untypedFields: Seq[com.foursquare.spindle.UntypedFieldDescriptor] = fields
-  override val fields: Seq[com.foursquare.spindle.FieldDescriptor[_, SimpleType, SimpleTypeMeta]] =
-    Vector[com.foursquare.spindle.FieldDescriptor[_, SimpleType, SimpleTypeMeta]](
+  override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
+  override val fields: Seq[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, SimpleType, SimpleTypeMeta]] =
+    Vector[_root_.io.fsq.spindle.runtime.FieldDescriptor[_, SimpleType, SimpleTypeMeta]](
       baseType,
       containerType,
       typeref
@@ -15442,7 +15442,7 @@ class SimpleTypeMeta
   }
 }
 
-class SimpleTypeCompanionProvider extends com.foursquare.spindle.CompanionProvider[SimpleType] {
+class SimpleTypeCompanionProvider extends _root_.io.fsq.spindle.runtime.CompanionProvider[SimpleType] {
   type CompanionT = SimpleTypeMeta
   override def provide: SimpleTypeMeta = SimpleType
 }
@@ -15598,7 +15598,7 @@ final class RawSimpleType extends JavaSimpleTypeRaw[com.twitter.thrift.descripto
   // end fields
 
 
-  private var unknownFields: List[com.foursquare.spindle.runtime.UnknownFields] = Nil
+  private var unknownFields: List[_root_.io.fsq.spindle.runtime.UnknownFields] = Nil
 
 
   override def write(oprot: org.apache.thrift.protocol.TProtocol): Unit = {
@@ -15618,7 +15618,7 @@ final class RawSimpleType extends JavaSimpleTypeRaw[com.twitter.thrift.descripto
       _typeref.write(oprot)
       oprot.writeFieldEnd()
     }
-  if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+  if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
     unknownFields.reverse foreach { _.write(oprot) }
   }
     oprot.writeFieldStop()
@@ -15627,13 +15627,13 @@ final class RawSimpleType extends JavaSimpleTypeRaw[com.twitter.thrift.descripto
 
   override def read(iprot: org.apache.thrift.protocol.TProtocol) {
     // Unknown fields in this read go here.
-    var currentUnknownFieldsOpt: Option[com.foursquare.spindle.runtime.UnknownFields] = None
-    def currentUnknownFields(): com.foursquare.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
+    var currentUnknownFieldsOpt: Option[_root_.io.fsq.spindle.runtime.UnknownFields] = None
+    def currentUnknownFields(): _root_.io.fsq.spindle.runtime.UnknownFields = currentUnknownFieldsOpt match {
       case Some(uf) => uf
       case None => {
-        val uf = new com.foursquare.spindle.runtime.UnknownFields(
+        val uf = new _root_.io.fsq.spindle.runtime.UnknownFields(
           this,
-          com.foursquare.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
+          _root_.io.fsq.spindle.runtime.TProtocolInfo.getProtocolName(iprot)
         )
         unknownFields = uf :: unknownFields
         currentUnknownFieldsOpt = Some(uf)
@@ -15690,7 +15690,7 @@ final class RawSimpleType extends JavaSimpleTypeRaw[com.twitter.thrift.descripto
             }
           }
           case _ => {
-            if (com.foursquare.spindle.RuntimeHelpers.preserveUnknownFields(this)) {
+            if (io.fsq.spindle.runtime.RuntimeHelpers.preserveUnknownFields(this)) {
               currentUnknownFields().readUnknownField(iprot, field_header, this)  // May call this method recursively.
             } else {
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field_header.`type`)
@@ -15742,7 +15742,7 @@ final class RawSimpleType extends JavaSimpleTypeRaw[com.twitter.thrift.descripto
 
   override def hashCode(): Int = {
     // We use a fixed seed, for consistency.
-    val hasher = new com.foursquare.spindle.runtime.MurmurHash[AnyRef](0)
+    val hasher = new _root_.io.fsq.spindle.runtime.MurmurHash[AnyRef](0)
     if (baseTypeIsSet) hasher.append(_baseType.##)
     if (containerTypeIsSet) hasher.append(_containerType.##)
     if (typerefIsSet) hasher.append(_typeref.##)

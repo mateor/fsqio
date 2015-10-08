@@ -3,8 +3,8 @@
 package io.fsq.spindle.runtime.test
 
 import com.foursquare.common.thrift.json.TReadableJSONProtocol
-import com.foursquare.spindle.{MetaRecord, Record}
 import io.fsq.spindle.codegen.test.gen.{BinaryStruct, TestStruct, TestStructNoUnknownFieldsTracking}
+import io.fsq.spindle.runtime.{MetaRecord, Record}
 import java.nio.ByteBuffer
 import org.apache.thrift.{TBase, TDeserializer}
 import org.apache.thrift.transport.{TMemoryBuffer, TMemoryInputTransport}
