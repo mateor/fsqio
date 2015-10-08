@@ -1,7 +1,7 @@
 <%
   // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-  import io.fsq.spindle.codegen.runtime.{BitfieldStructRenderType, ScalaField, StructLike}
+  import _root_.io.fsq.spindle.codegen.runtime.{BitfieldStructRenderType, ScalaField, StructLike}
 %>
 <%@ val field: ScalaField %>
 <%@ val cls: StructLike %>

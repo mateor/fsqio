@@ -3,10 +3,10 @@
 package io.fsq.rogue.spindle
 
 import com.foursquare.common.thrift.bson.TBSONObjectProtocol
-import com.foursquare.spindle.{UntypedMetaRecord, UntypedRecord}
 import com.mongodb.{DBObject, DefaultDBDecoder, WriteConcern}
 import io.fsq.rogue.{MongoJavaDriverAdapter, QueryExecutor, QueryOptimizer}
 import io.fsq.rogue.MongoHelpers.MongoSelect
+import io.fsq.spindle.runtime.{UntypedMetaRecord, UntypedRecord}
 import java.io.InputStream
 
 
