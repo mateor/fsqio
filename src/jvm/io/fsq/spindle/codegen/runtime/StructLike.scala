@@ -13,4 +13,5 @@ trait StructLike extends HasAnnotations {
   def primaryKeyField: Option[ScalaField] = None
   def isException: Boolean = false
   def generateProxy: Boolean = false
+  def generateLiftAdapter: Boolean = false
 }
