@@ -71,6 +71,7 @@ class QueryLogHttpHandler(
 
     response.headers.set("Content-Type", "text/plain")
     response.setContent(ChannelBuffers.copiedBuffer(content, CharsetUtil.UTF_8))
+    response.headers.add("Content-Length", response.getContent.readableBytes.toString)
     Future.value(response)
   }
 }
@@ -277,6 +278,7 @@ class HandleExceptions extends SimpleFilter[HttpRequest, HttpResponse] with Logg
           baos.toByteArray
         }
         errorResponse.setContent(ChannelBuffers.copiedBuffer(jsonBytes))
+        errorResponse.headers.add("Content-Length", errorResponse.getContent.readableBytes.toString)
         errorResponse
     }
   }
@@ -352,6 +354,7 @@ class GeocoderHttpService(geocoder: Geocoder.ServiceIface) extends Service[HttpR
 
       response.headers.set("Content-Type", "application/json; charset=utf-8")
       response.setContent(ChannelBuffers.copiedBuffer(json, CharsetUtil.UTF_8))
+      response.headers.add("Content-Length", response.getContent.readableBytes.toString)
       response
     })
   }
@@ -458,6 +461,7 @@ class GeocoderHttpService(geocoder: Geocoder.ServiceIface) extends Service[HttpR
           response.headers.set("Content-Type", "image/png")
         }
         response.setContent(ChannelBuffers.copiedBuffer(data))
+        response.headers.add("Content-Length", response.getContent.readableBytes.toString)
         response
       })
     } else if (path.startsWith("/search/geocode")) {
@@ -492,6 +496,7 @@ class GeocoderHttpService(geocoder: Geocoder.ServiceIface) extends Service[HttpR
       val response = new DefaultHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.NOT_FOUND)
       val msg = new BufferedSource(getClass.getResourceAsStream("/static/index.html")).getLines.mkString("\n")
       response.setContent(ChannelBuffers.copiedBuffer(msg, CharsetUtil.UTF_8))
+      response.headers.add("Content-Length", response.getContent.readableBytes.toString)
       Future.value(response)
     }
   }
