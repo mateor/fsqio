@@ -52,3 +52,6 @@ trait ${cls.name}
 <% render("class_traits_mutable_proxyt.ssp", Map("cls" -> cls)) %>
 #end
 
+#if (cls.generateLiftAdapter)
+<% render("class_traits_lift_adaptert.ssp", Map("cls" -> cls)) %>
+#end
