@@ -9,8 +9,8 @@
 
 package com.twitter.thrift.descriptors
 
-import scalaj.collection.Imports._
 import com.twitter.thrift.descriptors.java_thrift_descriptors._
+import scalaj.collection.Imports._
 
 
 
