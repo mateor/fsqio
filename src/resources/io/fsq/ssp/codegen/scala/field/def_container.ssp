@@ -4,3 +4,6 @@
   import _root_.io.fsq.spindle.codegen.runtime.ScalaField
 %>
 <%@ val field: ScalaField %>
+#if (field.isForeignKey)
+<% render("def_fks.ssp", Map("field" -> field)) %>
+#end
