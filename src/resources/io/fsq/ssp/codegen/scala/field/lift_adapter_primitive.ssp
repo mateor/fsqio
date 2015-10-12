@@ -5,7 +5,7 @@
 %>
 <%@ val cls: StructLike %>
 <%@ val field: ScalaField %>
-  override final def ${field.escapedName}: ${field.renderType.text} = throw new NotImplementedError("TODO(dan)")
+  override final def ${field.escapedName}: ${field.renderType.text} = this.${field.name}OrDefault
   override final def ${field.name}Option: Option[${field.renderType.text}] = underlyingLift.valueFromWireName("${field.wireName}").asInstanceOf[Option[${field.renderType.text}]]
   override final def ${field.name}OrDefault: ${field.renderType.text} = this.${field.name}Option.getOrElse(${field.renderType.defaultText})
   override final def ${field.name}OrNull: ${field.renderType.boxedText} = this.${field.name}Option.map(x => x: ${field.renderType.boxedText}).getOrElse(null)
