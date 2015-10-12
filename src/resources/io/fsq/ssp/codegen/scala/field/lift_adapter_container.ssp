@@ -6,7 +6,7 @@
 <%@ val cls: StructLike %>
 <%@ val field: ScalaField %>
 <% val container: String = field.renderType.underlying.asInstanceOf[ContainerRenderType].container %>
-  override final def ${field.escapedName}: ${field.renderType.text} = throw new NotImplementedError("TODO(dan)")
+  override final def ${field.escapedName}: ${field.renderType.text} = this.${field.name}OrDefault
   override final def ${field.name}Option: Option[${field.renderType.text}] = underlyingLift.valueFromWireName("${field.wireName}").asInstanceOf[Option[${field.renderType.text}]]
   override final def ${field.name}OrDefault: ${field.renderType.text} = this.${field.name}Option.getOrElse(${container}.empty)
   override final def ${field.name}OrNull: ${field.renderType.text} = this.${field.name}Option.getOrElse(null)

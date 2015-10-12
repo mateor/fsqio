@@ -5,8 +5,10 @@
 %>
 <%@ val cls: StructLike %>
 <%@ val field: ScalaField %>
-#if (field.defaultValueIsSet || field.builderRequired)
-  override final def ${field.escapedName}: ${field.renderType.text} = throw new NotImplementedError("TODO(dan)")
+#if (field.defaultValueIsSet)
+  override final def ${field.escapedName}: ${field.renderType.text} = this.${field.name}OrDefault
+#elseif (field.builderRequired)
+  override final def ${field.escapedName}: ${field.renderType.text} = this.${field.name}OrThrow
 #end
   override final def ${field.name}Option: Option[${field.renderType.text}] = underlyingLift.valueFromWireName("${field.wireName}").asInstanceOf[Option[${field.renderType.text}]]
 #for (defaultValue <- field.defaultValueOption)
