@@ -31,7 +31,7 @@ class ThriftParserTest {
 
   @Test
   def testParseHeader(): Unit = {
-    val program = ThriftParser.parseProgram(base + "/parse_header.thrift")
+    val program = ThriftParser.parseProgram(base + "/parse_header.thrift.testdata")
 
     assertEquals(program.includes.size, 2)
     assertTrue(program.includes.forall(_.path == "com/foursquare/spindle/parser/parse_program.thrift"))
