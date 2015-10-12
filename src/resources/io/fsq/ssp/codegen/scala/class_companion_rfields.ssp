@@ -12,7 +12,10 @@
 #for (field <- cls.fields)
 
   val ${field.escapedName} =
-#if (field.isForeignKey)
+#if (field.isForeignKey && field.renderType.isInstanceOf[_root_.io.fsq.spindle.codegen.runtime.Container1RenderType])
+<% val elem = field.renderType.asInstanceOf[_root_.io.fsq.spindle.codegen.runtime.Container1RenderType].elem %>
+    new _root_.io.fsq.spindle.runtime.ForeignKeySeqFieldDescriptor[${elem.text}, ${cls.name}, ${cls.name}Meta](
+#elseif (field.isForeignKey && !field.renderType.isInstanceOf[_root_.io.fsq.spindle.codegen.runtime.ContainerRenderType])
     new _root_.io.fsq.spindle.runtime.ForeignKeyFieldDescriptor[${field.renderType.text}, ${cls.name}, ${cls.name}Meta](
 #elseif (field.renderType.isInstanceOf[_root_.io.fsq.spindle.codegen.runtime.BitfieldStructRenderType])
 <% val structName = field.renderType.asInstanceOf[_root_.io.fsq.spindle.codegen.runtime.BitfieldStructRenderType].className %>
@@ -32,7 +35,14 @@
       getter = _.${field.name}Option,
       setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[${cls.name}], v: ${field.renderType.text}) => { r.asInstanceOf[Raw${cls.name}].${field.escapedName}_=(v) },
       unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[${cls.name}]) => { r.asInstanceOf[Raw${cls.name}].${field.name}Unset() },
-#if (field.isForeignKey)
+#if (field.isForeignKey && field.renderType.isInstanceOf[_root_.io.fsq.spindle.codegen.runtime.Container1RenderType])
+<% val elem = field.renderType.asInstanceOf[_root_.io.fsq.spindle.codegen.runtime.Container1RenderType].elem %>
+      objSetter = (r: ${cls.name}, obj: Seq[_root_.io.fsq.spindle.runtime.SemitypedHasPrimaryKey[${elem.text}]]) => { r.${field.name}SetObj(obj) },
+      objGetter = (r: ${cls.name}, m: _root_.io.fsq.spindle.runtime.UntypedMetaRecord) => { r.${field.name}UntypedFks(m) },
+      unsafeObjGetter = (r: Any) => { r.asInstanceOf[${cls.name}].${field.name}GetObj },
+      alternateObjSetter = (r: ${cls.name}, obj: Seq[AnyRef]) => { r.${field.name}SetAlternateObj(obj) },
+      alternateObjGetter = (r: ${cls.name}) => { r.${field.name}AlternateFks },
+#elseif (field.isForeignKey && !field.renderType.isInstanceOf[_root_.io.fsq.spindle.codegen.runtime.ContainerRenderType])
       objSetter = (r: ${cls.name}, obj: _root_.io.fsq.spindle.runtime.SemitypedHasPrimaryKey[${field.renderType.text}]) => { r.${field.name}SetObj(obj) },
       objGetter = (r: ${cls.name}, m: _root_.io.fsq.spindle.runtime.UntypedMetaRecord) => { r.${field.name}UntypedFk(m) },
       unsafeObjGetter = (r: Any) => { r.asInstanceOf[${cls.name}].${field.name}GetObj },

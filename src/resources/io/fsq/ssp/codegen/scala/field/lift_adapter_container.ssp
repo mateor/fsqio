@@ -12,3 +12,6 @@
   override final def ${field.name}OrNull: ${field.renderType.text} = this.${field.name}Option.getOrElse(null)
   override final def ${field.name}OrThrow: ${field.renderType.text} = this.${field.name}Option.getOrElse(throw new java.lang.NullPointerException("field ${field.escapedName} of ${cls.name} missing"))
   override final def ${field.isSetName}: Boolean = this.${field.name}Option.isDefined
+#if (field.isForeignKey)
+<% render("lift_adapter_fks.ssp", Map("field" -> field)) %>
+#end

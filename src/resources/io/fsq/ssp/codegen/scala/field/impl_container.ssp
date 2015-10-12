@@ -16,3 +16,6 @@
   override def ${field.name}OrThrow: ${field.renderType.text} = if (${field.isSetName}) ${field.varName} else throw new java.lang.NullPointerException("field ${field.escapedName} of ${cls.name} missing")
   override def ${field.isSetName}: Boolean = ${field.varName} != null
   override def ${field.name}Unset(): Unit = { ${field.varName} = null }
+#if (field.isForeignKey)
+<% render("impl_fks.ssp", Map("field" -> field)) %>
+#end
