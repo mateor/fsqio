@@ -5,6 +5,8 @@ scala_library(
   sources = globs('*.scala'),
   tags = ['fscommon'],
   dependencies = [
+    '3rdparty:fscommon-thrift-bson',
+    '3rdparty:fscommon-thrift-json',
     '3rdparty:joda-time',
     '3rdparty:rogue-field',
     '3rdparty:thrift',
