@@ -4,6 +4,7 @@ junit_tests(
   name = 'test',
   sources = globs('*.scala'),
   dependencies = [
+    '3rdparty:fscommon-thrift-base',
     '3rdparty:fscommon-thrift-bson',
     '3rdparty:fscommon-thrift-json',
     '3rdparty:jackson',

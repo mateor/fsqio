@@ -1,7 +1,7 @@
 package io.fsq.spindle.runtime
 
-import io.fsq.spindle.common.thrift.bson.TBSONProtocol
-import io.fsq.spindle.common.thrift.json.TReadableJSONProtocol
+import com.foursquare.common.thrift.bson.TBSONProtocol
+import com.foursquare.common.thrift.json.TReadableJSONProtocol
 import org.apache.thrift.protocol.{TBinaryProtocol, TCompactProtocol, TJSONProtocol, TProtocol, TProtocolFactory}
 
 
