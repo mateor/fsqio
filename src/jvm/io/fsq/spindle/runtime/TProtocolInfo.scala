@@ -17,7 +17,7 @@ object KnownTProtocolNames {
 
 // Utilities related to known TProtocol implementations.
 object TProtocolInfo {
-  class ProtocolNotFoundException(message: String) extends Exception
+  class ProtocolNotFoundException(message: String) extends Exception(message: String)
 
   // Returns the name of the given protocol.
   def getProtocolName(prot: TProtocol): String = prot.getClass.getCanonicalName match {
@@ -43,7 +43,7 @@ object TProtocolInfo {
          KnownTProtocolNames.TReadableJSONProtocol |
          KnownTProtocolNames.TBSONProtocolLegacy |
          KnownTProtocolNames.TReadableJSONProtocolLegacy => false
-    case _ => throw new ProtocolNotFoundException("Unrecognized protocol: %s".format(protocolName))
+    case _ => false
   }
 
   def isTextBased(protocolName: String): Boolean = protocolName match {
@@ -54,7 +54,7 @@ object TProtocolInfo {
          KnownTProtocolNames.TCompactProtocol |
          KnownTProtocolNames.TBSONProtocol |
          KnownTProtocolNames.TBSONProtocolLegacy => false
-    case _ => throw new ProtocolNotFoundException("Unrecognized protocol: %s".format(protocolName))
+    case _ => false
   }
 
   def getReaderFactory(protocolName: String): TProtocolFactory = protocolName match {

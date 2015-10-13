@@ -274,28 +274,16 @@ class WireCompatibilityTest {
     }
   }
 
-  // Test that unknown protocols raise an exception when passed to the pattern matching functions.
-  def testUnregisteredProtocolInPatternMatchingFunctions(unknownProtocol: String, protocolFunction: String => Boolean) {
-    try {
-      // If it were a case in the pattern match it would return as true or false.
-      protocolFunction(unknownProtocol)
-      Assert.fail()
-    }
-    catch {
-      case e: TProtocolInfo.ProtocolNotFoundException => // Expected
-    }
-  }
-
   @Test
   def testIsRobustUnknownProtocol() {
     val unknownProtocol = "com.notfoursquare.unknown.UnknownProtocol"
-    testUnregisteredProtocolInPatternMatchingFunctions(unknownProtocol, TProtocolInfo.isRobust)
+    Assert.assertEquals(TProtocolInfo.isRobust(unknownProtocol), false)
   }
 
   @Test
   def testIsTextBasedUnknownProtocol() {
     val unknownProtocol = "com.notfoursquare.unknown.UnknownProtocol"
-    testUnregisteredProtocolInPatternMatchingFunctions(unknownProtocol, TProtocolInfo.isTextBased)
+    Assert.assertEquals(TProtocolInfo.isTextBased(unknownProtocol), false)
   }
 
   private def doWrite(protocolName: String, thriftObj: TBase[_, _]): TMemoryBuffer = {
