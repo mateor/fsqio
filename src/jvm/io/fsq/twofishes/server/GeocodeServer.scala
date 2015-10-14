@@ -551,7 +551,7 @@ object GeocodeFinagleServer extends Logging {
       .name("geocoder")
       .build(service)
 
-    val runtime = RuntimeEnvironment(this, Nil.toArray)
+    val runtime = new RuntimeEnvironment(this)
     val adminConfig = AdminServiceFactory(httpPort = config.thriftServerPort + 2)
       .addStatsFactory(StatsFactory(reporters = List(TimeSeriesCollectorFactory())))
       .apply(runtime)

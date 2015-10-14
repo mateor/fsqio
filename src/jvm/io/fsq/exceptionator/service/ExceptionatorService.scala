@@ -165,7 +165,7 @@ object ExceptionatorServer extends Logger {
     val backgroundActions = new ConcreteBackgroundActions(services)
 
     // Start ostrich
-    val runtime = RuntimeEnvironment(this, Array[String]())
+    val runtime = new RuntimeEnvironment(this)
 
     AdminServiceFactory(
       httpPort = (Config.opt(_.getInt("stats.port")).getOrElse(defaultStatsPort)))
