@@ -37,7 +37,7 @@ object GeonamesParser extends DurationUtils {
   var countryNameMap = new HashMap[String, String]()
   var adminIdMap = new HashMap[String, String]()
 
-  val runtime = RuntimeEnvironment(this, Array.empty)
+  val runtime = new RuntimeEnvironment(this)
   val admin = AdminServiceFactory(httpPort = 7655)
     .apply(runtime)
   
