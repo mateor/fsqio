@@ -3,7 +3,7 @@
 package io.fsq.rogue
 
 import com.foursquare.field.Field
-import com.mongodb.{DBObject, ReadPreference, WriteConcern}
+import com.mongodb.{DBObject, MongoException, ReadPreference, WriteConcern}
 import io.fsq.rogue.MongoHelpers.{MongoModify, MongoSelect}
 import scala.collection.mutable.{Builder, ListBuffer}
 
@@ -251,8 +251,18 @@ trait QueryExecutor[MB, RB] extends Rogue {
     if (optimizer.isEmptyQuery(query)) {
       None
     } else {
-      val s = readSerializer[M, R](query.query.meta, query.query.select)
-      adapter.findAndModify(query, returnNew, upsert=true, remove=false)(s.fromDBObject _)
+      try {
+        val s = readSerializer[M, R](query.query.meta, query.query.select)
+        adapter.findAndModify(query, returnNew, upsert = true, remove = false)(s.fromDBObject _)
+      } catch {
+        case r: RogueException if r.getCause() != null && r.getCause().isInstanceOf[MongoException.DuplicateKey] => {
+          /* NOTE(jackson): have to retry upserts that fail with duplicate key,
+           * see https://jira.mongodb.org/browse/SERVER-14322
+           */
+          val s = readSerializer[M, R](query.query.meta, query.query.select)
+          adapter.findAndModify(query, returnNew, upsert = true, remove = false)(s.fromDBObject _)
+        }
+      }
     }
   }
 
