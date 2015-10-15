@@ -340,7 +340,15 @@ case class DateTimeRenderType(ref: RenderType) extends RefRenderType with Enhanc
   override def underlying: RenderType = ref.underlying
   override def ttype: TType = TType.I64
   override def hasOrdering: Boolean = false
+}
 
+// TODO(dan): Ideally this takes and hands out an S2CellId instead of a Long, but
+// the ship has probably sailed on that.
+class S2CellIdRenderType extends PrimitiveRenderType("Long", "long", "java.lang.Long", "0L", "0", TType.I64) with EnhancedRenderType {
+  override def fieldDefTemplate: String = "field/def_s2cellid.ssp"
+  override def fieldImplTemplate: String = "field/impl_s2cellid.ssp"
+  override def fieldProxyTemplate: String = "field/proxy_s2cellid.ssp"
+  override def fieldLiftAdapterTemplate: String = "field/lift_adapter_s2cellid.ssp"
 }
 
 case class JavaDateRenderType(ref: RenderType) extends RefRenderType with EnhancedRenderType {
@@ -462,6 +470,7 @@ object RenderType {
       case EnhancedTypeRef("fs:DollarAmount", ref @ I64Ref) => DollarAmountRenderType(RenderType(ref, annotations))
       case EnhancedTypeRef(JsonEnhancedType(suffix), ref @ StringRef) => ThriftJsonRenderType(RenderType(ref, annotations))
       case EnhancedTypeRef("fs:MessageSet", ref: StructRef) => MessageSetRenderType(RenderType(ref, annotations))
+      case EnhancedTypeRef("fs:S2CellId", _) => new S2CellIdRenderType
       case EnhancedTypeRef(name, _) => throw new CodegenException("Unknown enhanced type: " + name)
       case BitfieldRef(name, bitType, hasSetBits) => BitfieldStructRenderType(name, RenderType(bitType, annotations), hasSetBits)
     }
