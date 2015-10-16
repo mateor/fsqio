@@ -92,8 +92,8 @@ object IncomingFilter {
     // Purposely making use of set.flatten to collapse entries
     // Find will eagerly return first defined result.  If no result is defined, None is returned
     FilterResult(filterConfig, results.map(_.map(_.allowed).flatten.toList).find(_ match {
-      case List(true) => true  // Eagerly return positive result (allow)
-      case List(false) => true // Eagerly return negatice result (deny)
+      case true +: Nil => true  // Eagerly return positive result (allow)
+      case false +: Nil => true // Eagerly return negatice result (deny)
       case Nil => false        // Keep going
       case _ => throw new IllegalArgumentException(
           "Incoming " + i + " and filter " + filterConfig + " conflicted on apply")
