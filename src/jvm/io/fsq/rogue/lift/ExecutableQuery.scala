@@ -71,8 +71,8 @@ case class ExecutableQuery[MB, M <: MB, RB, R, State](
    * @param f the function to invoke on the records that match the query.
    * @return a list containing the results of invoking the function on each record.
    */
-  def fetchBatch[T](batchSize: Int)(f: List[R] => List[T]): List[T] =
-    db.fetchBatchList(query, batchSize)(f).toList
+  def fetchBatch[T](batchSize: Int)(f: Seq[R] => Seq[T]): Seq[T] =
+    db.fetchBatch(query, batchSize)(f)
 
 
   /**
