@@ -30,7 +30,7 @@ class ConcreteNoticeActions extends NoticeActions with IndexActions with Logger 
   def ensureIndexes {
     Vector(NoticeRecord).foreach(metaRecord => {
       metaRecord.mongoIndexList.foreach(i =>
-        metaRecord.ensureIndex(JObject(i.asListMap.map(fld => JField(fld._1, JInt(fld._2.toString.toInt))).toList)))
+        metaRecord.createIndex(JObject(i.asListMap.map(fld => JField(fld._1, JInt(fld._2.toString.toInt))).toList)))
     })
   }
 
@@ -39,7 +39,7 @@ class ConcreteNoticeActions extends NoticeActions with IndexActions with Logger 
       .keywords(keywords.toList)
       .tags(tags.toList)
       .buckets(buckets.toList.map(_.toString))
-      .save
+      .save(true)
   }
 
   def addBucket(id: ObjectId, bucketId: BucketId) {

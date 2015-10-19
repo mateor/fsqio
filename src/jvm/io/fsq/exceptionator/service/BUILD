@@ -11,6 +11,7 @@ scala_library(
     '3rdparty:jerkson',
     '3rdparty:joda-time',
     '3rdparty:lift-mongo',
+    '3rdparty:lift-util',
     '3rdparty:mongodb',
     '3rdparty:netty',
     '3rdparty:ostrich',

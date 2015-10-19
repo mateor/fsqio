@@ -21,7 +21,8 @@ import io.fsq.exceptionator.util.{Config, Logger}
 import java.io.{IOException, InputStream}
 import java.net.InetSocketAddress
 import java.util.concurrent.Executors
-import net.liftweb.mongodb.{DefaultMongoIdentifier, MongoDB}
+import net.liftweb.mongodb.MongoDB
+import net.liftweb.util.DefaultConnectionIdentifier
 import org.jboss.netty.buffer.ChannelBuffers
 import org.jboss.netty.handler.codec.http._
 import scala.collection.JavaConverters._
@@ -117,7 +118,7 @@ object ExceptionatorServer extends Logger {
     try {
       val mongo = new MongoClient(dbServers.asJava, mongoOptions)
       val dbname = Config.opt(_.getString("db.name")).getOrElse(defaultDbName)
-      MongoDB.defineDb(DefaultMongoIdentifier, mongo, dbname)
+      MongoDB.defineDb(DefaultConnectionIdentifier, mongo, dbname)
       indexesToEnsure.foreach(_.ensureIndexes)
     } catch {
       case e: MongoException =>

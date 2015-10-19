@@ -36,7 +36,7 @@ class ConcreteHistoryActions(services: HasBucketActions) extends HistoryActions 
   def ensureIndexes {
     Vector(HistoryRecord).foreach(metaRecord => {
       metaRecord.mongoIndexList.foreach(i =>
-        metaRecord.ensureIndex(JObject(i.asListMap.map(fld => JField(fld._1, JInt(fld._2.toString.toInt))).toList)))
+        metaRecord.createIndex(JObject(i.asListMap.map(fld => JField(fld._1, JInt(fld._2.toString.toInt))).toList)))
     })
   }
 
@@ -61,7 +61,7 @@ class ConcreteHistoryActions(services: HasBucketActions) extends HistoryActions 
               .notices(sorted.toList)
               .buckets(buckets.toList)
               .totalSampled(state.sampled)
-              .save
+              .save(true)
           }
         }).getOrElse {
           logger.debug(s"Writing new history for ${historyId}")
@@ -75,7 +75,7 @@ class ConcreteHistoryActions(services: HasBucketActions) extends HistoryActions 
               .buckets(buckets.toList)
               .sampleRate(sampleRate)
               .totalSampled(state.sampled)
-              .save
+              .save(true)
           }
         }
     }

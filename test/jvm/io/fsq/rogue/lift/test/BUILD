@@ -8,6 +8,7 @@ junit_tests(
     '3rdparty:junit',
     '3rdparty:lift-mongo',
     '3rdparty:lift-record',
+    '3rdparty:lift-util',
     '3rdparty:mongodb',
     '3rdparty:specs2',
     'src/jvm/io/fsq/rogue',
