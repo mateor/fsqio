@@ -25,7 +25,7 @@ class ConcreteBucketActions extends BucketActions with IndexActions with Logger 
   def ensureIndexes {
     Vector(BucketRecord, BucketRecordHistogram).foreach(metaRecord => {
         metaRecord.mongoIndexList.foreach(i =>
-          metaRecord.ensureIndex(JObject(i.asListMap.map(fld => JField(fld._1, JInt(fld._2.toString.toInt))).toList)))
+          metaRecord.createIndex(JObject(i.asListMap.map(fld => JField(fld._1, JInt(fld._2.toString.toInt))).toList)))
     })
   }
 

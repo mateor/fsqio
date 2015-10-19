@@ -15,12 +15,12 @@ import org.bson.types.BasicBSONList
 
 object LiftDBCollectionFactory extends DBCollectionFactory[MongoRecord[_] with MongoMetaRecord[_], MongoRecord[_]] {
   override def getDBCollection[M <: MongoRecord[_] with MongoMetaRecord[_]](query: Query[M, _, _]): DBCollection = {
-    MongoDB.useSession(query.meta.mongoIdentifier){ db =>
+    MongoDB.useSession(query.meta.connectionIdentifier){ db =>
       db.getCollection(query.collectionName)
     }
   }
   protected def getPrimaryDBCollection(meta: MongoMetaRecord[_], collectionName: String): DBCollection = {
-    MongoDB.useSession(meta/* TODO: .master*/.mongoIdentifier){ db =>
+    MongoDB.useSession(meta/* TODO: .master*/.connectionIdentifier){ db =>
       db.getCollection(collectionName)
     }    
   }
@@ -31,7 +31,7 @@ object LiftDBCollectionFactory extends DBCollectionFactory[MongoRecord[_] with M
     getPrimaryDBCollection(record.meta, record.meta.collectionName)
   }
   override def getInstanceName[M <: MongoRecord[_] with MongoMetaRecord[_]](query: Query[M, _, _]): String = {
-    query.meta.mongoIdentifier.toString
+    query.meta.connectionIdentifier.toString
   }
 
   /**

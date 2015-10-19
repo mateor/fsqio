@@ -109,7 +109,7 @@ trait LiftRogue {
       val field = owner.fieldByName(fieldName).openOr(sys.error("Error getting field "+fieldName+" for "+owner))
       val typedField = field.asInstanceOf[BsonRecordListField[M, B]]
        // a gross hack to get at the embedded record
-      val rec: B = typedField.setFromJValue(JArray(JInt(0) :: Nil)).get.head
+      val rec: B = typedField.setFromJValue(JArray(JInt(0) :: Nil)).openOrThrowException("a gross hack to get at the embedded record").head
       new BsonRecordQueryField[M, B](f, _.asDBObject, rec)
     } else {
       val fieldName = f.name
@@ -124,7 +124,7 @@ trait LiftRogue {
       M <: BsonRecord[M],
       B <: BsonRecord[B]
   ](f: BsonRecordListField[M, B]): BsonRecordListQueryField[M, B] = {
-    val rec = f.setFromJValue(JArray(JInt(0) :: Nil)).get.head // a gross hack to get at the embedded record
+    val rec = f.setFromJValue(JArray(JInt(0) :: Nil)).openOrThrowException("a gross hack to get at the embedded record").head
     new BsonRecordListQueryField[M, B](f, rec, _.asDBObject)
   }
 
@@ -200,7 +200,7 @@ trait LiftRogue {
   )(
       implicit mf: Manifest[B]
   ): BsonRecordListModifyField[M, B] = {
-    val rec = f.setFromJValue(JArray(JInt(0) :: Nil)).get.head // a gross hack to get at the embedded record
+    val rec = f.setFromJValue(JArray(JInt(0) :: Nil)).openOrThrowException("a gross hack to get at the embedded record").head
     new BsonRecordListModifyField[M, B](f, rec, _.asDBObject)(mf)
   }
 
