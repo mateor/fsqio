@@ -10,7 +10,6 @@
 package com.twitter.thrift.descriptors
 
 import com.twitter.thrift.descriptors.java_thrift_descriptors._
-import scalaj.collection.Imports._
 
 
 
@@ -1726,7 +1725,7 @@ trait BaseType
       cmp = this.annotationsIsSet.compareTo(that.annotationsIsSet)
       cmp != 0 }) cmp
     else if (this.annotationsIsSet && {
-      cmp = org.apache.thrift.TBaseHelper.compareTo(scalaj.collection.Implicits.RichSSeq(this.__annotations).asJava, scalaj.collection.Implicits.RichSSeq(that.__annotations).asJava)
+      cmp = org.apache.thrift.TBaseHelper.compareTo(scala.collection.JavaConverters.seqAsJavaListConverter(this.__annotations).asJava, scala.collection.JavaConverters.seqAsJavaListConverter(that.__annotations).asJava)
 
       cmp != 0 }) cmp
     else 0
@@ -3528,7 +3527,7 @@ trait ContainerType
       cmp = this.annotationsIsSet.compareTo(that.annotationsIsSet)
       cmp != 0 }) cmp
     else if (this.annotationsIsSet && {
-      cmp = org.apache.thrift.TBaseHelper.compareTo(scalaj.collection.Implicits.RichSSeq(this.__annotations).asJava, scalaj.collection.Implicits.RichSSeq(that.__annotations).asJava)
+      cmp = org.apache.thrift.TBaseHelper.compareTo(scala.collection.JavaConverters.seqAsJavaListConverter(this.__annotations).asJava, scala.collection.JavaConverters.seqAsJavaListConverter(that.__annotations).asJava)
 
       cmp != 0 }) cmp
     else 0
@@ -4983,7 +4982,7 @@ trait Typedef
       cmp = this.annotationsIsSet.compareTo(that.annotationsIsSet)
       cmp != 0 }) cmp
     else if (this.annotationsIsSet && {
-      cmp = org.apache.thrift.TBaseHelper.compareTo(scalaj.collection.Implicits.RichSSeq(this.__annotations).asJava, scalaj.collection.Implicits.RichSSeq(that.__annotations).asJava)
+      cmp = org.apache.thrift.TBaseHelper.compareTo(scala.collection.JavaConverters.seqAsJavaListConverter(this.__annotations).asJava, scala.collection.JavaConverters.seqAsJavaListConverter(that.__annotations).asJava)
 
       cmp != 0 }) cmp
     else 0
@@ -5611,14 +5610,14 @@ trait TypeRegistry
       cmp = this.idToTypeIsSet.compareTo(that.idToTypeIsSet)
       cmp != 0 }) cmp
     else if (this.idToTypeIsSet && {
-      cmp = org.apache.thrift.TBaseHelper.compareTo(scalaj.collection.Implicits.RichSMap(this.idToType).asJava, scalaj.collection.Implicits.RichSMap(that.idToType).asJava)
+      cmp = org.apache.thrift.TBaseHelper.compareTo(scala.collection.JavaConverters.mapAsJavaMapConverter(this.idToType).asJava, scala.collection.JavaConverters.mapAsJavaMapConverter(that.idToType).asJava)
 
       cmp != 0 }) cmp
     else if ({
       cmp = this.aliasToTypeIdIsSet.compareTo(that.aliasToTypeIdIsSet)
       cmp != 0 }) cmp
     else if (this.aliasToTypeIdIsSet && {
-      cmp = org.apache.thrift.TBaseHelper.compareTo(scalaj.collection.Implicits.RichSMap(this.aliasToTypeId).asJava, scalaj.collection.Implicits.RichSMap(that.aliasToTypeId).asJava)
+      cmp = org.apache.thrift.TBaseHelper.compareTo(scala.collection.JavaConverters.mapAsJavaMapConverter(this.aliasToTypeId).asJava, scala.collection.JavaConverters.mapAsJavaMapConverter(that.aliasToTypeId).asJava)
 
       cmp != 0 }) cmp
     else 0
@@ -6861,7 +6860,7 @@ trait EnumElement
       cmp = this.annotationsIsSet.compareTo(that.annotationsIsSet)
       cmp != 0 }) cmp
     else if (this.annotationsIsSet && {
-      cmp = org.apache.thrift.TBaseHelper.compareTo(scalaj.collection.Implicits.RichSSeq(this.__annotations).asJava, scalaj.collection.Implicits.RichSSeq(that.__annotations).asJava)
+      cmp = org.apache.thrift.TBaseHelper.compareTo(scala.collection.JavaConverters.seqAsJavaListConverter(this.__annotations).asJava, scala.collection.JavaConverters.seqAsJavaListConverter(that.__annotations).asJava)
 
       cmp != 0 }) cmp
     else 0
@@ -7545,14 +7544,14 @@ trait Enum
       cmp = this.elementsIsSet.compareTo(that.elementsIsSet)
       cmp != 0 }) cmp
     else if (this.elementsIsSet && {
-      cmp = org.apache.thrift.TBaseHelper.compareTo(scalaj.collection.Implicits.RichSSeq(this.elements).asJava, scalaj.collection.Implicits.RichSSeq(that.elements).asJava)
+      cmp = org.apache.thrift.TBaseHelper.compareTo(scala.collection.JavaConverters.seqAsJavaListConverter(this.elements).asJava, scala.collection.JavaConverters.seqAsJavaListConverter(that.elements).asJava)
 
       cmp != 0 }) cmp
     else if ({
       cmp = this.annotationsIsSet.compareTo(that.annotationsIsSet)
       cmp != 0 }) cmp
     else if (this.annotationsIsSet && {
-      cmp = org.apache.thrift.TBaseHelper.compareTo(scalaj.collection.Implicits.RichSSeq(this.__annotations).asJava, scalaj.collection.Implicits.RichSSeq(that.__annotations).asJava)
+      cmp = org.apache.thrift.TBaseHelper.compareTo(scala.collection.JavaConverters.seqAsJavaListConverter(this.__annotations).asJava, scala.collection.JavaConverters.seqAsJavaListConverter(that.__annotations).asJava)
 
       cmp != 0 }) cmp
     else 0
@@ -8405,7 +8404,7 @@ trait Field
       cmp = this.annotationsIsSet.compareTo(that.annotationsIsSet)
       cmp != 0 }) cmp
     else if (this.annotationsIsSet && {
-      cmp = org.apache.thrift.TBaseHelper.compareTo(scalaj.collection.Implicits.RichSSeq(this.__annotations).asJava, scalaj.collection.Implicits.RichSSeq(that.__annotations).asJava)
+      cmp = org.apache.thrift.TBaseHelper.compareTo(scala.collection.JavaConverters.seqAsJavaListConverter(this.__annotations).asJava, scala.collection.JavaConverters.seqAsJavaListConverter(that.__annotations).asJava)
 
       cmp != 0 }) cmp
     else 0
@@ -9251,14 +9250,14 @@ trait Struct
       cmp = this.fieldsIsSet.compareTo(that.fieldsIsSet)
       cmp != 0 }) cmp
     else if (this.fieldsIsSet && {
-      cmp = org.apache.thrift.TBaseHelper.compareTo(scalaj.collection.Implicits.RichSSeq(this.__fields).asJava, scalaj.collection.Implicits.RichSSeq(that.__fields).asJava)
+      cmp = org.apache.thrift.TBaseHelper.compareTo(scala.collection.JavaConverters.seqAsJavaListConverter(this.__fields).asJava, scala.collection.JavaConverters.seqAsJavaListConverter(that.__fields).asJava)
 
       cmp != 0 }) cmp
     else if ({
       cmp = this.annotationsIsSet.compareTo(that.annotationsIsSet)
       cmp != 0 }) cmp
     else if (this.annotationsIsSet && {
-      cmp = org.apache.thrift.TBaseHelper.compareTo(scalaj.collection.Implicits.RichSSeq(this.__annotations).asJava, scalaj.collection.Implicits.RichSSeq(that.__annotations).asJava)
+      cmp = org.apache.thrift.TBaseHelper.compareTo(scala.collection.JavaConverters.seqAsJavaListConverter(this.__annotations).asJava, scala.collection.JavaConverters.seqAsJavaListConverter(that.__annotations).asJava)
 
       cmp != 0 }) cmp
     else 0
@@ -9961,14 +9960,14 @@ trait Union
       cmp = this.fieldsIsSet.compareTo(that.fieldsIsSet)
       cmp != 0 }) cmp
     else if (this.fieldsIsSet && {
-      cmp = org.apache.thrift.TBaseHelper.compareTo(scalaj.collection.Implicits.RichSSeq(this.__fields).asJava, scalaj.collection.Implicits.RichSSeq(that.__fields).asJava)
+      cmp = org.apache.thrift.TBaseHelper.compareTo(scala.collection.JavaConverters.seqAsJavaListConverter(this.__fields).asJava, scala.collection.JavaConverters.seqAsJavaListConverter(that.__fields).asJava)
 
       cmp != 0 }) cmp
     else if ({
       cmp = this.annotationsIsSet.compareTo(that.annotationsIsSet)
       cmp != 0 }) cmp
     else if (this.annotationsIsSet && {
-      cmp = org.apache.thrift.TBaseHelper.compareTo(scalaj.collection.Implicits.RichSSeq(this.__annotations).asJava, scalaj.collection.Implicits.RichSSeq(that.__annotations).asJava)
+      cmp = org.apache.thrift.TBaseHelper.compareTo(scala.collection.JavaConverters.seqAsJavaListConverter(this.__annotations).asJava, scala.collection.JavaConverters.seqAsJavaListConverter(that.__annotations).asJava)
 
       cmp != 0 }) cmp
     else 0
@@ -10671,14 +10670,14 @@ trait Exception
       cmp = this.fieldsIsSet.compareTo(that.fieldsIsSet)
       cmp != 0 }) cmp
     else if (this.fieldsIsSet && {
-      cmp = org.apache.thrift.TBaseHelper.compareTo(scalaj.collection.Implicits.RichSSeq(this.__fields).asJava, scalaj.collection.Implicits.RichSSeq(that.__fields).asJava)
+      cmp = org.apache.thrift.TBaseHelper.compareTo(scala.collection.JavaConverters.seqAsJavaListConverter(this.__fields).asJava, scala.collection.JavaConverters.seqAsJavaListConverter(that.__fields).asJava)
 
       cmp != 0 }) cmp
     else if ({
       cmp = this.annotationsIsSet.compareTo(that.annotationsIsSet)
       cmp != 0 }) cmp
     else if (this.annotationsIsSet && {
-      cmp = org.apache.thrift.TBaseHelper.compareTo(scalaj.collection.Implicits.RichSSeq(this.__annotations).asJava, scalaj.collection.Implicits.RichSSeq(that.__annotations).asJava)
+      cmp = org.apache.thrift.TBaseHelper.compareTo(scala.collection.JavaConverters.seqAsJavaListConverter(this.__annotations).asJava, scala.collection.JavaConverters.seqAsJavaListConverter(that.__annotations).asJava)
 
       cmp != 0 }) cmp
     else 0
@@ -11517,21 +11516,21 @@ trait Function
       cmp = this.argzIsSet.compareTo(that.argzIsSet)
       cmp != 0 }) cmp
     else if (this.argzIsSet && {
-      cmp = org.apache.thrift.TBaseHelper.compareTo(scalaj.collection.Implicits.RichSSeq(this.argz).asJava, scalaj.collection.Implicits.RichSSeq(that.argz).asJava)
+      cmp = org.apache.thrift.TBaseHelper.compareTo(scala.collection.JavaConverters.seqAsJavaListConverter(this.argz).asJava, scala.collection.JavaConverters.seqAsJavaListConverter(that.argz).asJava)
 
       cmp != 0 }) cmp
     else if ({
       cmp = this.throwzIsSet.compareTo(that.throwzIsSet)
       cmp != 0 }) cmp
     else if (this.throwzIsSet && {
-      cmp = org.apache.thrift.TBaseHelper.compareTo(scalaj.collection.Implicits.RichSSeq(this.throwz).asJava, scalaj.collection.Implicits.RichSSeq(that.throwz).asJava)
+      cmp = org.apache.thrift.TBaseHelper.compareTo(scala.collection.JavaConverters.seqAsJavaListConverter(this.throwz).asJava, scala.collection.JavaConverters.seqAsJavaListConverter(that.throwz).asJava)
 
       cmp != 0 }) cmp
     else if ({
       cmp = this.annotationsIsSet.compareTo(that.annotationsIsSet)
       cmp != 0 }) cmp
     else if (this.annotationsIsSet && {
-      cmp = org.apache.thrift.TBaseHelper.compareTo(scalaj.collection.Implicits.RichSSeq(this.__annotations).asJava, scalaj.collection.Implicits.RichSSeq(that.__annotations).asJava)
+      cmp = org.apache.thrift.TBaseHelper.compareTo(scala.collection.JavaConverters.seqAsJavaListConverter(this.__annotations).asJava, scala.collection.JavaConverters.seqAsJavaListConverter(that.__annotations).asJava)
 
       cmp != 0 }) cmp
     else 0
@@ -12476,14 +12475,14 @@ trait Service
       cmp = this.functionsIsSet.compareTo(that.functionsIsSet)
       cmp != 0 }) cmp
     else if (this.functionsIsSet && {
-      cmp = org.apache.thrift.TBaseHelper.compareTo(scalaj.collection.Implicits.RichSSeq(this.functions).asJava, scalaj.collection.Implicits.RichSSeq(that.functions).asJava)
+      cmp = org.apache.thrift.TBaseHelper.compareTo(scala.collection.JavaConverters.seqAsJavaListConverter(this.functions).asJava, scala.collection.JavaConverters.seqAsJavaListConverter(that.functions).asJava)
 
       cmp != 0 }) cmp
     else if ({
       cmp = this.annotationsIsSet.compareTo(that.annotationsIsSet)
       cmp != 0 }) cmp
     else if (this.annotationsIsSet && {
-      cmp = org.apache.thrift.TBaseHelper.compareTo(scalaj.collection.Implicits.RichSSeq(this.__annotations).asJava, scalaj.collection.Implicits.RichSSeq(that.__annotations).asJava)
+      cmp = org.apache.thrift.TBaseHelper.compareTo(scala.collection.JavaConverters.seqAsJavaListConverter(this.__annotations).asJava, scala.collection.JavaConverters.seqAsJavaListConverter(that.__annotations).asJava)
 
       cmp != 0 }) cmp
     else 0
@@ -13540,63 +13539,63 @@ trait Program
       cmp = this.namespacesIsSet.compareTo(that.namespacesIsSet)
       cmp != 0 }) cmp
     else if (this.namespacesIsSet && {
-      cmp = org.apache.thrift.TBaseHelper.compareTo(scalaj.collection.Implicits.RichSSeq(this.namespaces).asJava, scalaj.collection.Implicits.RichSSeq(that.namespaces).asJava)
+      cmp = org.apache.thrift.TBaseHelper.compareTo(scala.collection.JavaConverters.seqAsJavaListConverter(this.namespaces).asJava, scala.collection.JavaConverters.seqAsJavaListConverter(that.namespaces).asJava)
 
       cmp != 0 }) cmp
     else if ({
       cmp = this.includesIsSet.compareTo(that.includesIsSet)
       cmp != 0 }) cmp
     else if (this.includesIsSet && {
-      cmp = org.apache.thrift.TBaseHelper.compareTo(scalaj.collection.Implicits.RichSSeq(this.includes).asJava, scalaj.collection.Implicits.RichSSeq(that.includes).asJava)
+      cmp = org.apache.thrift.TBaseHelper.compareTo(scala.collection.JavaConverters.seqAsJavaListConverter(this.includes).asJava, scala.collection.JavaConverters.seqAsJavaListConverter(that.includes).asJava)
 
       cmp != 0 }) cmp
     else if ({
       cmp = this.constantsIsSet.compareTo(that.constantsIsSet)
       cmp != 0 }) cmp
     else if (this.constantsIsSet && {
-      cmp = org.apache.thrift.TBaseHelper.compareTo(scalaj.collection.Implicits.RichSSeq(this.constants).asJava, scalaj.collection.Implicits.RichSSeq(that.constants).asJava)
+      cmp = org.apache.thrift.TBaseHelper.compareTo(scala.collection.JavaConverters.seqAsJavaListConverter(this.constants).asJava, scala.collection.JavaConverters.seqAsJavaListConverter(that.constants).asJava)
 
       cmp != 0 }) cmp
     else if ({
       cmp = this.enumsIsSet.compareTo(that.enumsIsSet)
       cmp != 0 }) cmp
     else if (this.enumsIsSet && {
-      cmp = org.apache.thrift.TBaseHelper.compareTo(scalaj.collection.Implicits.RichSSeq(this.enums).asJava, scalaj.collection.Implicits.RichSSeq(that.enums).asJava)
+      cmp = org.apache.thrift.TBaseHelper.compareTo(scala.collection.JavaConverters.seqAsJavaListConverter(this.enums).asJava, scala.collection.JavaConverters.seqAsJavaListConverter(that.enums).asJava)
 
       cmp != 0 }) cmp
     else if ({
       cmp = this.typedefsIsSet.compareTo(that.typedefsIsSet)
       cmp != 0 }) cmp
     else if (this.typedefsIsSet && {
-      cmp = org.apache.thrift.TBaseHelper.compareTo(scalaj.collection.Implicits.RichSSeq(this.typedefs).asJava, scalaj.collection.Implicits.RichSSeq(that.typedefs).asJava)
+      cmp = org.apache.thrift.TBaseHelper.compareTo(scala.collection.JavaConverters.seqAsJavaListConverter(this.typedefs).asJava, scala.collection.JavaConverters.seqAsJavaListConverter(that.typedefs).asJava)
 
       cmp != 0 }) cmp
     else if ({
       cmp = this.structsIsSet.compareTo(that.structsIsSet)
       cmp != 0 }) cmp
     else if (this.structsIsSet && {
-      cmp = org.apache.thrift.TBaseHelper.compareTo(scalaj.collection.Implicits.RichSSeq(this.structs).asJava, scalaj.collection.Implicits.RichSSeq(that.structs).asJava)
+      cmp = org.apache.thrift.TBaseHelper.compareTo(scala.collection.JavaConverters.seqAsJavaListConverter(this.structs).asJava, scala.collection.JavaConverters.seqAsJavaListConverter(that.structs).asJava)
 
       cmp != 0 }) cmp
     else if ({
       cmp = this.unionsIsSet.compareTo(that.unionsIsSet)
       cmp != 0 }) cmp
     else if (this.unionsIsSet && {
-      cmp = org.apache.thrift.TBaseHelper.compareTo(scalaj.collection.Implicits.RichSSeq(this.unions).asJava, scalaj.collection.Implicits.RichSSeq(that.unions).asJava)
+      cmp = org.apache.thrift.TBaseHelper.compareTo(scala.collection.JavaConverters.seqAsJavaListConverter(this.unions).asJava, scala.collection.JavaConverters.seqAsJavaListConverter(that.unions).asJava)
 
       cmp != 0 }) cmp
     else if ({
       cmp = this.exceptionsIsSet.compareTo(that.exceptionsIsSet)
       cmp != 0 }) cmp
     else if (this.exceptionsIsSet && {
-      cmp = org.apache.thrift.TBaseHelper.compareTo(scalaj.collection.Implicits.RichSSeq(this.exceptions).asJava, scalaj.collection.Implicits.RichSSeq(that.exceptions).asJava)
+      cmp = org.apache.thrift.TBaseHelper.compareTo(scala.collection.JavaConverters.seqAsJavaListConverter(this.exceptions).asJava, scala.collection.JavaConverters.seqAsJavaListConverter(that.exceptions).asJava)
 
       cmp != 0 }) cmp
     else if ({
       cmp = this.servicesIsSet.compareTo(that.servicesIsSet)
       cmp != 0 }) cmp
     else if (this.servicesIsSet && {
-      cmp = org.apache.thrift.TBaseHelper.compareTo(scalaj.collection.Implicits.RichSSeq(this.services).asJava, scalaj.collection.Implicits.RichSSeq(that.services).asJava)
+      cmp = org.apache.thrift.TBaseHelper.compareTo(scala.collection.JavaConverters.seqAsJavaListConverter(this.services).asJava, scala.collection.JavaConverters.seqAsJavaListConverter(that.services).asJava)
 
       cmp != 0 }) cmp
     else if ({

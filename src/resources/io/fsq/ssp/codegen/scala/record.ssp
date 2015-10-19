@@ -40,7 +40,6 @@ package ${program.pkg}
 #end
 
 import ${program.pkg}.java_${source.baseName}._
-import scalaj.collection.Imports._
 
 #if (program.constants.nonEmpty)
 <% render("constants.ssp", Map("constants" -> program.constants, "baseName" -> source.capitalizedBaseName)) %>
