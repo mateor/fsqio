@@ -6,7 +6,7 @@ scala_library(
   dependencies = [
     '3rdparty:joda-time',
     '3rdparty:mongodb',
-    '3rdparty:rogue-field',
+    'src/jvm/io/fsq/field',
     'src/jvm/io/fsq/rogue/index',
   ],
 )

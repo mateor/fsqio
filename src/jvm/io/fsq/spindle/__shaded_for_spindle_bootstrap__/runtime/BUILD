@@ -5,8 +5,8 @@ scala_library(
   sources = globs('*.scala'),
   dependencies = [
     '3rdparty:joda-time',
-    '3rdparty:rogue-field',
     '3rdparty:thrift',
+    'src/jvm/io/fsq/field',
     'src/jvm/io/fsq/spindle/common/thrift/bson',
     'src/jvm/io/fsq/spindle/common/thrift/json',
   ],

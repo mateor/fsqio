@@ -2,7 +2,7 @@
 
 package io.fsq.rogue.spindle
 
-import com.foursquare.field.Field
+import io.fsq.field.Field
 import io.fsq.rogue.{BSONType, Rogue}
 import io.fsq.spindle.runtime.{Enum, MetaRecord, Record}
 

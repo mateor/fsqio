@@ -4,6 +4,6 @@ scala_library(
   name = 'index',
   sources = globs('*.scala'),
   dependencies = [
-    '3rdparty:rogue-field',
+    'src/jvm/io/fsq/field',
   ],
 )

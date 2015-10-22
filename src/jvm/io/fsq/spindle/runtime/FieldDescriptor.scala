@@ -2,7 +2,7 @@
 
 package io.fsq.spindle.runtime
 
-import com.foursquare.field.{Field, OptionalField}
+import io.fsq.field.{Field, OptionalField}
 
 sealed trait UntypedFieldDescriptor {
   def id: Int
