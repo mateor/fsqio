@@ -6,8 +6,8 @@ junit_tests(
   dependencies = [
     '3rdparty:junit',
     '3rdparty:mongodb',
-    '3rdparty:rogue-field',
     '3rdparty:specs2',
+    'src/jvm/io/fsq/field',
     'src/jvm/io/fsq/rogue',
     'src/jvm/io/fsq/rogue/index',
   ],

@@ -2,8 +2,8 @@
 
 package io.fsq.rogue.spindle.test
 
-import com.foursquare.field.Field
 import com.mongodb.ReadPreference
+import io.fsq.field.Field
 import io.fsq.rogue.{BSONType, MongoType, Query, QueryField, QueryOptimizer}
 import io.fsq.rogue.spindle.SpindleQuery
 import io.fsq.rogue.spindle.SpindleRogue._

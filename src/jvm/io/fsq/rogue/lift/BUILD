@@ -9,7 +9,7 @@ scala_library(
     '3rdparty:lift-mongo',
     '3rdparty:lift-record',
     '3rdparty:mongodb',
-    '3rdparty:rogue-field',
+    'src/jvm/io/fsq/field',
     'src/jvm/io/fsq/rogue',
     'src/jvm/io/fsq/rogue/index',
   ],

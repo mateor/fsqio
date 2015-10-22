@@ -2,7 +2,7 @@
 
 package io.fsq.rogue.index
 
-import com.foursquare.field.Field
+import io.fsq.field.Field
 import scala.collection.immutable.ListMap
 
 trait UntypedMongoIndex {

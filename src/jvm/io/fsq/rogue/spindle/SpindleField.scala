@@ -3,7 +3,7 @@
 package io.fsq.rogue.spindle
 
 import com.foursquare.common.thrift.bson.TBSONObjectProtocol
-import com.foursquare.field.Field
+import io.fsq.field.Field
 import io.fsq.rogue.{AbstractListModifyField, AbstractListQueryField, AbstractModifyField, AbstractQueryField,
     SelectableDummyField}
 import io.fsq.spindle.runtime.{CompanionProvider, Enum, MetaRecord, Record}

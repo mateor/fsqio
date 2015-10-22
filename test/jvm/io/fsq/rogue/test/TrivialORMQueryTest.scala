@@ -2,8 +2,8 @@
 
 package io.fsq.rogue.test
 
-import com.foursquare.field.OptionalField
 import com.mongodb.{BasicDBObjectBuilder, DB, DBCollection, DBObject, MongoClient, ServerAddress, WriteConcern}
+import io.fsq.field.OptionalField
 import io.fsq.rogue.{DBCollectionFactory, InitialState, MongoJavaDriverAdapter, Query, QueryExecutor, QueryOptimizer,
     Rogue, RogueReadSerializer, RogueWriteSerializer}
 import io.fsq.rogue.MongoHelpers.{AndCondition, MongoSelect}

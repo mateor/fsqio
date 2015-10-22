@@ -2,8 +2,8 @@
 
 package io.fsq.rogue
 
-import com.foursquare.field.{Field => RField, OptionalField => ROptionalField, RequiredField => RRequiredField}
 import com.mongodb.DBObject
+import io.fsq.field.{Field => RField, OptionalField => ROptionalField, RequiredField => RRequiredField}
 import java.util.Date
 import org.bson.types.ObjectId
 import org.joda.time.DateTime

@@ -2,8 +2,8 @@
 
 package io.fsq.rogue.lift
 
-import com.foursquare.field.Field
 import com.mongodb.WriteConcern
+import io.fsq.field.Field
 import io.fsq.rogue.{AddLimit, FindAndModifyQuery, Iter, ModifyQuery, Query, QueryExecutor, RequireShardKey, Required,
     ShardingOk, Unlimited, Unselected, Unskipped}
 import io.fsq.rogue.MongoHelpers.MongoSelect

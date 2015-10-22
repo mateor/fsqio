@@ -2,8 +2,8 @@
 
 package io.fsq.rogue
 
-import com.foursquare.field.Field
 import com.mongodb.{DBObject, MongoException, ReadPreference, WriteConcern}
+import io.fsq.field.Field
 import io.fsq.rogue.MongoHelpers.{MongoModify, MongoSelect}
 import scala.collection.mutable.{Builder, ListBuffer}
 

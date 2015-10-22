@@ -2,7 +2,7 @@
 
 package io.fsq.rogue.lift
 
-import com.foursquare.field.{Field => RField, OptionalField => ROptionalField}
+import io.fsq.field.{Field => RField, OptionalField => ROptionalField}
 import io.fsq.rogue.{BSONType, BsonRecordListModifyField, BsonRecordListQueryField, BsonRecordModifyField,
     BsonRecordQueryField, DateModifyField, DateQueryField, EnumIdQueryField, EnumNameQueryField,
     EnumerationListModifyField, EnumerationListQueryField, EnumerationModifyField, FindAndModifyQuery,
@@ -253,13 +253,13 @@ trait LiftRogue {
 
   implicit def mandatoryLiftField2RequiredRecordv2Field[M <: BsonRecord[M], V](
       f: Field[V, M] with MandatoryTypedField[V]
-  ): com.foursquare.field.RequiredField[V, M] = new com.foursquare.field.RequiredField[V, M] {
+  ): io.fsq.field.RequiredField[V, M] = new io.fsq.field.RequiredField[V, M] {
     override def name = f.name
     override def owner = f.owner
     override def defaultValue = f.defaultValue
   }
 
-  implicit def liftField2Recordv2Field[M <: Record[M], V](f: Field[V, M]): com.foursquare.field.Field[V, M] = new com.foursquare.field.Field[V, M] {
+  implicit def liftField2Recordv2Field[M <: Record[M], V](f: Field[V, M]): io.fsq.field.Field[V, M] = new io.fsq.field.Field[V, M] {
     override def name = f.name
     override def owner = f.owner
   }
