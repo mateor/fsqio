@@ -2,7 +2,6 @@
 
 package io.fsq.exceptionator.service
 
-import com.codahale.jerkson.Json.{parse, stream}
 import com.mongodb.{MongoClient, MongoClientOptions, MongoException, ServerAddress}
 import com.twitter.finagle.Service
 import com.twitter.finagle.builder.{Server, ServerBuilder}
