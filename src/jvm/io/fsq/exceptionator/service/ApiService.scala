@@ -2,7 +2,7 @@
 
 package io.fsq.exceptionator.service
 
-import com.codahale.jerkson.Json.{generate, parse}
+import com.codahale.jerkson.Json
 import com.twitter.finagle.Service
 import com.twitter.finagle.http.{Request, Response}
 import com.twitter.util.{Future, FuturePool}
@@ -28,7 +28,7 @@ object InternalResponse {
 
   def notAuthorized(msgOpt: Option[String] = None): Future[InternalResponse] = {
     Future.value(InternalResponse(msgOpt.map(msg =>
-      generate(Map("error" -> msg))).getOrElse(""), HttpResponseStatus.UNAUTHORIZED))
+      Json.generate(Map("error" -> msg))).getOrElse(""), HttpResponseStatus.UNAUTHORIZED))
   }
 
   def apply(content: String): Future[InternalResponse] = {
@@ -160,7 +160,7 @@ class ApiHttpService(
   def config(request: ExceptionatorRequest): Future[InternalResponse] = {
     val values = Map(
       "friendlyNames" -> bucketFriendlyNames,
-      "homepage" -> Config.renderJson("web.homepage").map(parse[List[_]](_)).getOrElse(
+      "homepage" -> Config.renderJson("web.homepage").map(Json.parse[List[_]](_)).getOrElse(
         List(
           Map("list" -> Map("bucketName" -> "all"), "view" -> Map("showList" -> false)),
           Map("list" -> Map("bucketName" -> "s")
@@ -168,7 +168,7 @@ class ApiHttpService(
       request.userId.map("userId" -> _).toMap ++
       Config.opt(_.getInt("http.port")).map("apiPort" -> _).toMap ++
       Config.opt(_.getString("http.hostname")).map("apiHost" -> _).toMap
-    InternalResponse(generate(values))
+    InternalResponse(Json.generate(values))
   }
 
   def bucketHistory(

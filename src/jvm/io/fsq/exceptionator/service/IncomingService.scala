@@ -2,7 +2,7 @@
 
 package io.fsq.exceptionator.service
 
-import com.codahale.jerkson.Json.{generate, parse, stream}
+import com.codahale.jerkson.Json
 import com.twitter.finagle.Service
 import com.twitter.finagle.http.Response
 import com.twitter.ostrich.stats.Stats
@@ -26,14 +26,14 @@ class IncomingHttpService(incomingActions: IncomingActions, backgroundActions: B
       case HttpMethod.POST =>
         request.path match {
           case "/api/notice" =>
-            val incoming = parse[Incoming](new ChannelBufferInputStream(request.getContent))
+            val incoming = Json.parse[Incoming](new ChannelBufferInputStream(request.getContent))
             process(incoming).map(res => {
               val response = Response(HttpVersion.HTTP_1_1, HttpResponseStatus.OK)
               response.contentString = res
               response
             })
           case "/api/multi-notice" =>
-            val incomingSeq = stream[Incoming](new ChannelBufferInputStream(request.getContent)).toSeq
+            val incomingSeq = Json.stream[Incoming](new ChannelBufferInputStream(request.getContent)).toSeq
             Future.collect(incomingSeq.map(incoming => process(incoming))).map(res => {
               val response = Response(HttpVersion.HTTP_1_1, HttpResponseStatus.OK)
               response.contentString = res.mkString(",")
@@ -50,7 +50,7 @@ class IncomingHttpService(incomingActions: IncomingActions, backgroundActions: B
 
   def process(incoming: Incoming) = {
     incomingLog.foreach(log => {
-      log.write(generate(incoming))
+      log.write(Json.generate(incoming))
       log.write("\n")
     })
 
