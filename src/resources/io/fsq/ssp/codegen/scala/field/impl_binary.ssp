@@ -7,3 +7,4 @@
 <% render("impl_ref.ssp", Map("field" -> field)) %>
   override def ${field.name}ByteArray: Array[Byte] = { ${field.varName} = org.apache.thrift.TBaseHelper.rightSize(${field.varName}); ${field.varName}.array }
   override def ${field.name}ByteArray_=(x: Array[Byte]): Unit = { ${field.varName} = java.nio.ByteBuffer.wrap(x) }
+  override def ${field.name}ByteArrayOption: Option[Array[Byte]] = { if (${field.isSetName}) { ${field.varName} = org.apache.thrift.TBaseHelper.rightSize(${field.varName}); Some(${field.varName}.array) } else None }
