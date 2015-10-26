@@ -14,10 +14,10 @@ COUNTRY=$1
 
 set -x
 
-mkdir -p data/downloaded/
-mkdir -p data/downloaded/zip/
+mkdir -p src/jvm/io/fsq/twofishes/indexer/data/downloaded/
+mkdir -p src/jvm/io/fsq/twofishes/indexer/data/downloaded/zip/
 
-FILE=data/downloaded/$COUNTRY.txt
+FILE=src/jvm/io/fsq/twofishes/indexer/data/downloaded/$COUNTRY.txt
 if [ -f $FILE ];
 then
    echo "File $FILE exists."
@@ -30,7 +30,7 @@ else
 fi
 
 
-FILE=data/downloaded/zip/$COUNTRY.txt
+FILE=src/jvm/io/fsq/twofishes/indexer/data/downloaded/zip/$COUNTRY.txt
 if [ -f $FILE ];
 then
    echo "File $FILE exists."
@@ -42,6 +42,6 @@ else
    rm $FILE.zip
 fi
 
-source scripts/download-common.sh
-./scripts/extract-wiki-buildings.py $COUNTRY
-./scripts/extract-adm.py $COUNTRY
+source src/jvm/io/fsq/twofishes/scripts/download-common.sh
+./src/jvm/io/fsq/twofishes/scripts/extract-wiki-buildings.py $COUNTRY
+./src/jvm/io/fsq/twofishes/scripts/extract-adm.py $COUNTRY

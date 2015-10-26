@@ -5,10 +5,10 @@ set -x
 unzip -v >/dev/null 2>&1 || { echo >&2 "I require 'unzip' but it's not installed.  Aborting."; exit 1; }
 curl -h >/dev/null 2>&1 || { echo >&2 "I require 'curl' but it's not installed.  Aborting."; exit 1; }
 
-mkdir -p data/downloaded/
-mkdir -p data/downloaded/zip/
+mkdir -p src/jvm/io/fsq/twofishes/indexer/data/downloaded/
+mkdir -p src/jvm/io/fsq/twofishes/indexer/data/downloaded/zip/
 
-FILE=data/downloaded/allCountries.txt
+FILE=src/jvm/io/fsq/twofishes/indexer/data/downloaded/allCountries.txt
 if [ -f $FILE ];
 then
    echo "File $FILE exists."
@@ -19,7 +19,7 @@ else
    rm $FILE.zip
 fi
 
-FILE=data/downloaded/zip/allCountries.txt
+FILE=src/jvm/io/fsq/twofishes/indexer/data/downloaded/zip/allCountries.txt
 if [ -f $FILE ];
 then
    echo "File $FILE exists."
@@ -30,6 +30,6 @@ else
    rm $FILE.zip
 fi
 
-source scripts/download-common.sh
-./scripts/extract-wiki-buildings.py
-./scripts/extract-adm.py
+source src/jvm/io/fsq/twofishes/scripts/download-common.sh
+./src/jvm/io/fsq/twofishes/scripts/extract-wiki-buildings.py
+./src/jvm/io/fsq/twofishes/scripts/extract-adm.py

@@ -17,8 +17,6 @@ parser.add_option("--preload", dest="preload",  default=False, action='store_tru
   help="preload index to prevent coldstart, increases startup time")
 parser.add_option("--nopreload", dest="preload",  default=False, action='store_false',
   help="don't preload index to prevent coldstart, decrease startup time, increases intial latency")
-parser.add_option("-r", "--rebel", dest="rebel",  default=False, action='store_true',
-  help="rebel")
 parser.add_option("-c", "--console", dest="console",  default=False, action='store_true',
   help="console, not server")
 parser.add_option("--hotfix_basepath", dest="hotfix", default="", type='string',
@@ -42,23 +40,29 @@ if (locale.getdefaultlocale()[1] != 'UTF-8' and
 
 basepath = os.path.abspath(args[0])
 
-sbt = './sbt'
-if options.rebel:
-  sbt = './sbt-rebel'
+goal = 'run'
+if options.console:
+  goal = 'repl'
 
-args = ' --preload %s --warmup %s --enable_private_endpoints %s ' % (options.preload, options.warmup, options.enablePrivate)
+command_args = [
+  '--preload', options.preload,
+  '--warmup', options.warmup,
+  '--enable_private_endpoints', options.enablePrivate,
+  '--host', options.host,
+  '--port', options.port,
+  '--hfile_basepath', basepath
+]
+
 if (len(options.hotfix) > 0):
-  args += '--hotfix_basepath %s ' % options.hotfix
+  args += ['--hotfix_basepath', options.hotfix]
 
 if options.vm_map_count:
-  args += '--vm_map_count ' + str(options.vm_map_count)
+  args += ['--vm_map_count', options.vm_map_count]
 
-if options.console:
-  target = 'console'
-else:
-  target = 'run-main'
-
-cmd = '%s "server/%s com.foursquare.twofishes.GeocodeFinagleServer %s --host %s --port %d --hfile_basepath %s"' % (sbt, target, args, options.host, options.port, basepath)
+cmd = './pants %s src/jvm/io/fsq/twofishes/server:server-bin %s' % (
+  goal,
+  ' '.join(['--jvm-run-jvm-program-args=%s' % (a) for a in command_args])
+)
 
 print(cmd)
 os.system(cmd)
