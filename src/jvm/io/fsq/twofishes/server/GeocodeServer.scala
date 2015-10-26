@@ -154,7 +154,7 @@ class GeocodeServerImpl(
     } {
       val batchSize = 50 // FIXME: magic
 
-      var lines = new BufferedSource(getClass.getResourceAsStream("/warmup/geocodes.txt")).getLines.take(10000).grouped(batchSize).toVector
+      var lines = new BufferedSource(getClass.getResourceAsStream("/io/fsq/twofishes/server/resources/warmup/geocodes.txt")).getLines.take(10000).grouped(batchSize).toVector
 
       logger.info("Warming up by geocoding %d queries".format(lines.size * batchSize))
       lines.zipWithIndex.foreach { case (batch, index) =>
@@ -173,7 +173,7 @@ class GeocodeServerImpl(
       }
       logger.info("done")
 
-      val revgeoLines = new BufferedSource(getClass.getResourceAsStream("/warmup/revgeo.txt")).getLines.take(10000).grouped(batchSize).toVector
+      val revgeoLines = new BufferedSource(getClass.getResourceAsStream("/io/fsq/twofishes/server/resources/warmup/revgeo.txt")).getLines.take(10000).grouped(batchSize).toVector
 
       logger.info("Warming up by reverse geocoding %d queries".format(revgeoLines.size * batchSize))
       revgeoLines.zipWithIndex.foreach { case (batch, index) =>
@@ -452,7 +452,7 @@ class GeocoderHttpService(geocoder: Geocoder.ServiceIface) extends Service[HttpR
 
     if (path.startsWith("/static/")) {
       val dataRead = {
-        inputStreamToByteArray(getClass.getResourceAsStream(path))
+        inputStreamToByteArray(getClass.getResourceAsStream("/io/fsq/twofishes/server/resources" + path))
       }
 
       diskIoFuturePool(dataRead).map(data => {
@@ -494,7 +494,7 @@ class GeocoderHttpService(geocoder: Geocoder.ServiceIface) extends Service[HttpR
       }
     } else {
       val response = new DefaultHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.NOT_FOUND)
-      val msg = new BufferedSource(getClass.getResourceAsStream("/static/index.html")).getLines.mkString("\n")
+      val msg = new BufferedSource(getClass.getResourceAsStream("/io/fsq/twofishes/server/resources/static/index.html")).getLines.mkString("\n")
       response.setContent(ChannelBuffers.copiedBuffer(msg, CharsetUtil.UTF_8))
       response.headers.add("Content-Length", response.getContent.readableBytes.toString)
       Future.value(response)
