@@ -33,7 +33,7 @@ parser.add_option("-g", "--geonamesonly", dest="geonamesonly", action="store_tru
 
 (options, args) = parser.parse_args()
 
-mongo_version_str = subprocess.Popen('mongod --version', stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True).stdout.readline().split(' v')[-1]
+mongo_version_str = subprocess.Popen('dependencies/mongodb/bin/mongo --version', stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True).stdout.readline().split(' v')[-1]
 mongo_version = mongo_version_str.split('.')
 if mongo_version[0] < 2 or mongo_version[1] < 4:
   print 'need at least mongo 2.4, you have: %s' % mongo_version_str
@@ -49,27 +49,27 @@ if len(args) != 0:
 
 now_str = str(datetime.datetime.now()).replace(' ', '-').replace(':', '-')
 if not basepath:
-  basepath = os.path.join('indexes', basepath, now_str)
+  basepath = os.path.join('dist/twofishes/indexes', basepath, now_str)
 
-if not os.path.exists('indexes'):
-  os.mkdir('indexes')
+if not os.path.exists('dist/twofishes/indexes'):
+  os.makedirs('dist/twofishes/indexes')
 print "outputting index to %s" % basepath
 if not os.path.exists(basepath):
   os.mkdir(basepath)
 
-cmd_opts = ''
+cmd_opts = []
 
 def passBoolOpt(opt, value):
   global cmd_opts
   if not opt.startswith('-'):
     opt = '--' + opt
 
-  cmd_opts += ' %s %s' % (opt, str(value).lower())
+  cmd_opts += [opt, str(value).lower()]
 
 if options.country:
-  cmd_opts += ' --parse_country %s' % options.country
+  cmd_opts += ['--parse_country', options.country]
 else:
-  cmd_opts += ' --parse_world true'
+  cmd_opts += ['--parse_world', 'true']
 
 passBoolOpt('output_revgeo_index', options.output_revgeo_index)
 passBoolOpt('output_s2_covering_index', options.output_s2_covering_index)
@@ -88,7 +88,11 @@ if options.reload_data and not options.yes_i_am_sure:
     print "re-run with --noreload if you want to keep your mongo data around instead of rebuilding it"
     sys.exit(1)
 
-cmd = './sbt %s "indexer/run-main com.foursquare.twofishes.importers.geonames.GeonamesParser %s --hfile_basepath %s %s"' % (' '.join(jvm_args), cmd_opts, basepath, ' '.join(args))
+command_args = cmd_opts + ['--hfile_basepath', basepath] + args
+cmd = './pants run src/jvm/io/fsq/twofishes/indexer/importers/geonames:geonames-parser %s %s' % (
+  ' '.join(['--jvm-run-jvm-options=%s' % (a) for a in jvm_args]),
+  ' '.join(['--jvm-run-jvm-program-args=%s' % (a) for a in command_args]),
+)
 print(cmd)
 
 version_file = open(os.path.join(basepath, 'index-gen-info-%s' % now_str), 'w')
@@ -101,8 +105,8 @@ version_file.close()
 if not options.dry_run:
   os.system(cmd)
   if not user_specified_basepath:
-    if os.path.exists("latest"):
-      os.unlink("latest")
-    os.symlink(basepath, "latest")
+    if os.path.exists("dist/twofishes/latest"):
+      os.unlink("dist/twofishes/latest")
+    os.symlink(os.path.abspath(basepath), "dist/twofishes/latest")
 
 

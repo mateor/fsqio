@@ -4,24 +4,24 @@ import os
 import sys
 
 try:
-  os.mkdir("data/computed/")
+  os.mkdir("src/jvm/io/fsq/twofishes/indexer/data/computed/")
 except:
   pass
 
-alternateNames = open("data/downloaded/alternateNames.txt")
+alternateNames = open("src/jvm/io/fsq/twofishes/indexer/data/downloaded/alternateNames.txt")
 if len(sys.argv) == 2:
   print "building buildings for %s" % sys.argv[1]
-  input = open("data/downloaded/%s.txt" % sys.argv[1])
+  input = open("src/jvm/io/fsq/twofishes/indexer/data/downloaded/%s.txt" % sys.argv[1])
 else:
   print "building buildings for the whole world"
-  input = open("data/downloaded/allCountries.txt")
+  input = open("src/jvm/io/fsq/twofishes/indexer/data/downloaded/allCountries.txt")
 
-if not os.path.exists('data/computed'):
-  os.mkdir("data/computed")
-if not os.path.exists('data/computed/features'):
-  os.mkdir("data/computed/features")
+if not os.path.exists('src/jvm/io/fsq/twofishes/indexer/data/computed'):
+  os.mkdir("src/jvm/io/fsq/twofishes/indexer/data/computed")
+if not os.path.exists('src/jvm/io/fsq/twofishes/indexer/data/computed/features'):
+  os.mkdir("src/jvm/io/fsq/twofishes/indexer/data/computed/features")
 
-output = open("data/computed/features/buildings.txt", "w")
+output = open("src/jvm/io/fsq/twofishes/indexer/data/computed/features/buildings.txt", "w")
 
 gidList = set()
 

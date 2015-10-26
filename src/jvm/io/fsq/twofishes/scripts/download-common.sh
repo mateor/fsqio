@@ -1,4 +1,4 @@
-FILE=data/downloaded/alternateNames.txt
+FILE=src/jvm/io/fsq/twofishes/indexer/data/downloaded/alternateNames.txt
 if [ -f $FILE ];
 then
    echo "File $FILE exists."
@@ -9,7 +9,7 @@ else
    rm $FILE.zip
 fi
 
-FILE=data/downloaded/hierarchy.txt
+FILE=src/jvm/io/fsq/twofishes/indexer/data/downloaded/hierarchy.txt
 if [ -f $FILE ];
 then
    echo "File $FILE exists."
@@ -20,7 +20,7 @@ else
    rm $FILE.zip
 fi
 
-FILE=data/downloaded/admin1CodesASCII.txt
+FILE=src/jvm/io/fsq/twofishes/indexer/data/downloaded/admin1CodesASCII.txt
 if [ -f $FILE ];
 then
    echo "File $FILE exists."
@@ -28,7 +28,7 @@ else
    curl -o $FILE http://download.geonames.org/export/dump/admin1CodesASCII.txt
 fi
 
-FILE=data/downloaded/admin2Codes.txt
+FILE=src/jvm/io/fsq/twofishes/indexer/data/downloaded/admin2Codes.txt
 if [ -f $FILE ];
 then
    echo "File $FILE exists."
@@ -36,7 +36,7 @@ else
    curl -o $FILE http://download.geonames.org/export/dump/admin2Codes.txt
 fi
 
-file=data/downloaded/countryInfo.txt
+file=src/jvm/io/fsq/twofishes/indexer/data/downloaded/countryInfo.txt
 if [ -f $file ];
 then
    echo "file $file exists."
@@ -45,13 +45,13 @@ else
 fi
 cp $file countryinfo/src/main/resources/
 
-file=data/downloaded/ne_10m_populated_places_simple.dbf
+file=src/jvm/io/fsq/twofishes/indexer/data/downloaded/ne_10m_populated_places_simple.dbf
 if [ -f $file ];
 then
    echo "file $file exists."
 else
-   curl -L -o data/downloaded/ne_10m_populated_places_simple.zip http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip
-   unzip -d data/downloaded/ data/downloaded/ne_10m_populated_places_simple.zip
-   rm data/downloaded/ne_10m_populated_places_simple.zip
+   curl -L -o src/jvm/io/fsq/twofishes/indexer/data/downloaded/ne_10m_populated_places_simple.zip http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip
+   unzip -d src/jvm/io/fsq/twofishes/indexer/data/downloaded/ src/jvm/io/fsq/twofishes/indexer/data/downloaded/ne_10m_populated_places_simple.zip
+   rm src/jvm/io/fsq/twofishes/indexer/data/downloaded/ne_10m_populated_places_simple.zip
 fi
 
