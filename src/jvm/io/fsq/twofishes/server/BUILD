@@ -30,3 +30,11 @@ scala_library(
     'src/thrift/io/fsq/twofishes',
   ],
 )
+
+jvm_binary(
+  name = 'server-bin',
+  main = 'io.fsq.twofishes.server.GeocodeFinagleServer',
+  dependencies = [
+    ':server',
+  ]
+)

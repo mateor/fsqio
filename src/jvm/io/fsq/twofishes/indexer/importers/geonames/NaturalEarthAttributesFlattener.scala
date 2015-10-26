@@ -17,10 +17,10 @@ import java.io.FileWriter
 object NaturalEarthAttributesFlattener extends Logging {
 
   def main(args: Array[String]): Unit = {
-    val fileWriter = new FileWriter("data/downloaded/flattenedAttributes.txt", false)
+    val fileWriter = new FileWriter("src/jvm/io/fsq/twofishes/indexer/data/downloaded/flattenedAttributes.txt", false)
 
     var features = 0
-    val iterator = new ShapefileIterator("data/downloaded/ne_10m_populated_places_simple.shp")
+    val iterator = new ShapefileIterator("src/jvm/io/fsq/twofishes/indexer/data/downloaded/ne_10m_populated_places_simple.shp")
 
     for {
       f <- iterator
