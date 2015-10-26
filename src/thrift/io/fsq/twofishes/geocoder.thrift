@@ -215,7 +215,7 @@ struct GeocodeFeature {
 
   19: optional YahooWoeType role
 
-  20: optional list<i64> relevantMajorIds
+  20: optional list<i64> relatedLongIds
 }
 
 struct GeocodeFeatures {
