@@ -31,8 +31,8 @@ class SlugIndexer {
   def readSlugs() {
     // step 1 -- load existing slugs into ... memory?
     val files = List(
-      new File("data/computed/slugs.txt"),
-      new File("data/private/slugs.txt")
+      new File("src/jvm/io/fsq/twofishes/indexer/data/computed/slugs.txt"),
+      new File("src/jvm/io/fsq/twofishes/indexer/data/private/slugs.txt")
     )
     files.foreach(file =>
       if (file.exists) {
@@ -163,7 +163,7 @@ class SlugIndexer {
 
     // step 3 -- write new slug file
     println("writing new slug map for %d features".format(slugEntryMap.size))
-    val p = new java.io.PrintWriter(new File("data/computed/slugs.txt"))
+    val p = new java.io.PrintWriter(new File("src/jvm/io/fsq/twofishes/indexer/data/computed/slugs.txt"))
     slugEntryMap.keys.toList.sorted.foreach(slug =>
      p.println("%s\t%s".format(slug, slugEntryMap(slug)))
     )

@@ -42,7 +42,7 @@ object GeonamesParser extends DurationUtils {
     .apply(runtime)
   
   lazy val naturalEarthPopulatedPlacesMap: Map[StoredFeatureId, SimpleFeature] = {
-    new ShapefileIterator("data/downloaded/ne_10m_populated_places_simple.shp").flatMap(f => {
+    new ShapefileIterator("src/jvm/io/fsq/twofishes/indexer/data/downloaded/ne_10m_populated_places_simple.shp").flatMap(f => {
       f.propMap.get("geonameid").map(id => {
         (GeonamesId(id.toDouble.toLong) -> f)
       })
@@ -50,7 +50,7 @@ object GeonamesParser extends DurationUtils {
   }
 
   def parseCountryInfo() {
-    val fileSource = scala.io.Source.fromFile(new File("data/downloaded/countryInfo.txt"))
+    val fileSource = scala.io.Source.fromFile(new File("src/jvm/io/fsq/twofishes/indexer/data/downloaded/countryInfo.txt"))
     val lines = fileSource.getLines.filterNot(_.startsWith("#"))
     lines.foreach(l => {
       val parts = l.split("\t")
@@ -155,21 +155,21 @@ class GeonamesParser(
 ) extends Logging {
   lazy val polygonLoader = new PolygonLoader(this, store, config)
   lazy val hierarchyTable = HierarchyParser.parseHierarchy(List(
-    "data/downloaded/hierarchy.txt",
-    "data/private/hierarchy.txt",
-    "data/custom/hierarchy.txt"
+    "src/jvm/io/fsq/twofishes/indexer/data/downloaded/hierarchy.txt",
+    "src/jvm/io/fsq/twofishes/indexer/data/private/hierarchy.txt",
+    "src/jvm/io/fsq/twofishes/indexer/data/custom/hierarchy.txt"
   ))
 
   // token -> alt tokens
   lazy val rewriteTable = new TsvHelperFileParser(
-    "data/custom/rewrites.txt",
-    "data/private/rewrites.txt"
+    "src/jvm/io/fsq/twofishes/indexer/data/custom/rewrites.txt",
+    "src/jvm/io/fsq/twofishes/indexer/data/private/rewrites.txt"
   ).gidMap.map({case(from, toList) => {
     (from.r, toList)
   }})
 
   lazy val shortensList: Map[String, List[ShortenInfo]] = {
-    scala.io.Source.fromFile(new File("data/custom/shortens.txt"))
+    scala.io.Source.fromFile(new File("src/jvm/io/fsq/twofishes/indexer/data/custom/shortens.txt"))
       .getLines.toList.filterNot(_.startsWith("#")).flatMap(l => {
         val parts = l.split("[\\|\t]").toList
         val countries = parts(0).split(",").toList
@@ -182,31 +182,31 @@ class GeonamesParser(
     }
   // geonameid -> boost value
   lazy val boostTable = new GeoIdTsvHelperFileParser(GeonamesNamespace,
-    "data/custom/boosts.txt",
-    "data/private/boosts.txt")
+    "src/jvm/io/fsq/twofishes/indexer/data/custom/boosts.txt",
+    "src/jvm/io/fsq/twofishes/indexer/data/private/boosts.txt")
 
-  lazy val deletesList: List[String] = scala.io.Source.fromFile(new File("data/custom/deletes.txt"))
+  lazy val deletesList: List[String] = scala.io.Source.fromFile(new File("src/jvm/io/fsq/twofishes/indexer/data/custom/deletes.txt"))
     .getLines.toList.filterNot(_.startsWith("#"))
 
   // geonameid --> new center
-  lazy val moveTable = new GeoIdTsvHelperFileParser(GeonamesNamespace, "data/custom/moves.txt")
+  lazy val moveTable = new GeoIdTsvHelperFileParser(GeonamesNamespace, "src/jvm/io/fsq/twofishes/indexer/data/custom/moves.txt")
 
   // geonameid -> name to be deleted
-  lazy val nameDeleteTable = new GeoIdTsvHelperFileParser(GeonamesNamespace, "data/custom/name-deletes.txt")
+  lazy val nameDeleteTable = new GeoIdTsvHelperFileParser(GeonamesNamespace, "src/jvm/io/fsq/twofishes/indexer/data/custom/name-deletes.txt")
   // list of geoids (geonameid:XXX) to skip indexing
-  lazy val ignoreList: List[StoredFeatureId] = scala.io.Source.fromFile(new File("data/custom/ignores.txt"))
+  lazy val ignoreList: List[StoredFeatureId] = scala.io.Source.fromFile(new File("src/jvm/io/fsq/twofishes/indexer/data/custom/ignores.txt"))
     .getLines.toList.filterNot(_.startsWith("#")).map(l => GeonamesId(l.toLong))
 
   // extra parents
-  lazy val extraRelationsList = new GeoIdTsvHelperFileParser(GeonamesNamespace,"data/custom/extra-relations.txt")
+  lazy val extraRelationsList = new GeoIdTsvHelperFileParser(GeonamesNamespace,"src/jvm/io/fsq/twofishes/indexer/data/custom/extra-relations.txt")
 
   lazy val concordanceMap = new GeoIdTsvHelperFileParser(GeonamesNamespace,
-    "data/computed/concordances.txt",
-    "data/private/concordances.txt")
+    "src/jvm/io/fsq/twofishes/indexer/data/computed/concordances.txt",
+    "src/jvm/io/fsq/twofishes/indexer/data/private/concordances.txt")
 
   val bboxDirs = List(
-    new File("data/computed/bboxes/"),
-    new File("data/private/bboxes/")
+    new File("src/jvm/io/fsq/twofishes/indexer/data/computed/bboxes/"),
+    new File("src/jvm/io/fsq/twofishes/indexer/data/private/bboxes/")
   )
   val bboxFiles = bboxDirs.flatMap(bboxDir => {
     if (bboxDir.exists) { bboxDir.listFiles.toList } else { Nil }
@@ -214,8 +214,8 @@ class GeonamesParser(
   lazy val bboxTable = BoundingBoxTsvImporter.parse(bboxFiles)
 
   val displayBboxDirs = List(
-    new File("data/computed/display_bboxes/"),
-    new File("data/private/display_bboxes/")
+    new File("src/jvm/io/fsq/twofishes/indexer/data/computed/display_bboxes/"),
+    new File("src/jvm/io/fsq/twofishes/indexer/data/private/display_bboxes/")
   )
   val displayBboxFiles = displayBboxDirs.flatMap(bboxDir => {
     if (bboxDir.exists) { bboxDir.listFiles.toList } else { Nil }
@@ -255,29 +255,29 @@ class GeonamesParser(
       val countries = config.parseCountry.split(",")
       countries.foreach(f => {
         logger.info("Parsing %s".format(f))
-        parseAdminInfoFile("data/downloaded/adminCodes-%s.txt".format(f))
+        parseAdminInfoFile("src/jvm/io/fsq/twofishes/indexer/data/downloaded/adminCodes-%s.txt".format(f))
         parseAdminFile(
-          "data/downloaded/%s.txt".format(f))
+          "src/jvm/io/fsq/twofishes/indexer/data/downloaded/%s.txt".format(f))
 
         if (config.importPostalCodes) {
-          parsePostalCodeFile("data/downloaded/zip/%s.txt".format(f))
+          parsePostalCodeFile("src/jvm/io/fsq/twofishes/indexer/data/downloaded/zip/%s.txt".format(f))
         }
       })
     } else {
-      parseAdminInfoFile("data/downloaded/adminCodes.txt")
+      parseAdminInfoFile("src/jvm/io/fsq/twofishes/indexer/data/downloaded/adminCodes.txt")
       logPhase("parse global features") {
-        parseAdminFile("data/downloaded/allCountries.txt")
+        parseAdminFile("src/jvm/io/fsq/twofishes/indexer/data/downloaded/allCountries.txt")
       }
       if (config.importPostalCodes) {
         logPhase("parse global postal codes") {
-          parsePostalCodeFile("data/downloaded/zip/allCountries.txt")
+          parsePostalCodeFile("src/jvm/io/fsq/twofishes/indexer/data/downloaded/zip/allCountries.txt")
         }
       }
     }
 
     val supplementalDirs = List(
-      new File("data/computed/features"),
-      new File("data/private/features")
+      new File("src/jvm/io/fsq/twofishes/indexer/data/computed/features"),
+      new File("src/jvm/io/fsq/twofishes/indexer/data/private/features")
     )
     supplementalDirs.foreach(supplementalDir =>
       if (supplementalDir.exists) {
@@ -704,10 +704,10 @@ class GeonamesParser(
   var alternateNamesMap = new HashMap[StoredFeatureId, List[AlternateNameEntry]]
   def loadAlternateNames() {
     val altDirs = List(
-      new File("data/computed/alternateNames/"),
-      new File("data/private/alternateNames/")
+      new File("src/jvm/io/fsq/twofishes/indexer/data/computed/alternateNames/"),
+      new File("src/jvm/io/fsq/twofishes/indexer/data/private/alternateNames/")
     )
-    val files: List[String] = List("data/downloaded/alternateNames.txt") ++ altDirs.flatMap(altDir => {
+    val files: List[String] = List("src/jvm/io/fsq/twofishes/indexer/data/downloaded/alternateNames.txt") ++ altDirs.flatMap(altDir => {
         if (altDir.exists) { altDir.listFiles.toList.map(_.toString) } else { Nil }
     }).sorted
 
@@ -822,8 +822,8 @@ class GeonamesParser(
   def parseNameTransforms(): Unit = {
     // geonameid -> lang|prefName|[optional flags]
       val nameTransformsDirs = List(
-        new File("data/custom/name-transforms"),
-        new File("data/private/name-transforms")
+        new File("src/jvm/io/fsq/twofishes/indexer/data/custom/name-transforms"),
+        new File("src/jvm/io/fsq/twofishes/indexer/data/private/name-transforms")
       )
       val files = nameTransformsDirs.flatMap(dir => {
         if (dir.exists) { dir.listFiles } else { Nil }

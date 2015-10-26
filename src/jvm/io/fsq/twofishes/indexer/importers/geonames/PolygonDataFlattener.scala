@@ -182,11 +182,11 @@ object PolygonDataFlattener extends Logging {
   def main(args: Array[String]): Unit = {
     val defaultNameSpace = GeonamesNamespace
     val polygonDirs = List(
-      new File("data/computed/polygons"),
-      new File("data/private/polygons"))
+      new File("src/jvm/io/fsq/twofishes/indexer/data/computed/polygons"),
+      new File("src/jvm/io/fsq/twofishes/indexer/data/private/polygons"))
     val polygonFiles = polygonDirs.flatMap(recursiveListFiles).sorted
 
-    val fileWriter = new FileWriter("data/private/flattenedPolygons.txt", false)
+    val fileWriter = new FileWriter("src/jvm/io/fsq/twofishes/indexer/data/private/flattenedPolygons.txt", false)
 
     polygonFiles.foreach(f => load(defaultNameSpace, f, fileWriter))
 

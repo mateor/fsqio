@@ -8,7 +8,6 @@ scala_library(
     '3rdparty:casbah',
     '3rdparty:commons-net',
     '3rdparty:country-revgeo',
-    '3rdparty:gt-geojson',
     '3rdparty:gt-shapefile',
     '3rdparty:icu4j',
     '3rdparty:json4s',
@@ -28,5 +27,13 @@ scala_library(
     'src/jvm/io/fsq/twofishes/indexer/util',
     'src/jvm/io/fsq/twofishes/util',
     'src/thrift/io/fsq/twofishes',
+  ],
+)
+
+jvm_binary(
+  name = 'geonames-parser',
+  main = 'io.fsq.twofishes.indexer.importers.geonames.GeonamesParser',
+  dependencies = [
+    ':geonames',
   ],
 )

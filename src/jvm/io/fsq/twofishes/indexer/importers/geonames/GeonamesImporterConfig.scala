@@ -5,12 +5,12 @@ case class GeonamesImporterConfig(
   // Buildings are places like the eiffel tower, but also schools and federal offices.
   shouldParseBuildings: Boolean = false,
 
-  // If set to true, the code expects data/downloaded/allCountries.txt and data/downloaded/zip/allCountries.txt
-  // If set to false, the code expects data/downloaded/<parseCountry>.txt and data/downloaded/zip/<parseCountry>.txt
+  // If set to true, the code expects src/jvm/io/fsq/twofishes/indexer/data/downloaded/allCountries.txt and src/jvm/io/fsq/twofishes/indexer/data/downloaded/zip/allCountries.txt
+  // If set to false, the code expects src/jvm/io/fsq/twofishes/indexer/data/downloaded/<parseCountry>.txt and src/jvm/io/fsq/twofishes/indexer/data/downloaded/zip/<parseCountry>.txt
   parseWorld: Boolean = false,
   parseCountry: String = "US",
 
-  // Expects data/downloaded/alternateNames.txt
+  // Expects src/jvm/io/fsq/twofishes/indexer/data/downloaded/alternateNames.txt
   // This is an important file because it contains translated names, abbreviated names, and preferred names
   // for each feature. Without it, we can't generate pretty strings for display
   importAlternateNames: Boolean = true,
@@ -19,7 +19,7 @@ case class GeonamesImporterConfig(
   // Geonames doesn't have bounding boxes, only points. This is a precomputed mapping of geonameids to yahoo
   // woeids to flickr bounding boxes. Precomputed because I could't get the geojson java libraries to work.
   importBoundingBoxes: Boolean = true,
-  boundingBoxDirectory: String = "./data/computed/bboxes/",
+  boundingBoxDirectory: String = "./src/jvm/io/fsq/twofishes/indexer/data/computed/bboxes/",
 
   buildMissingSlugs: Boolean = false,
   hfileBasePath: String = null,

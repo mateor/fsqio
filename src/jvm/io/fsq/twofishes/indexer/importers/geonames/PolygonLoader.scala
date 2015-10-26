@@ -26,7 +26,6 @@ import io.fsq.twofishes.util.Lists.Implicits._
 import java.io.{File, FileWriter, Writer}
 import java.nio.charset.Charset
 import org.bson.types.ObjectId
-import org.geotools.geojson.geom.GeometryJSON
 import org.json4s._
 import org.json4s.jackson.JsonMethods._
 import scala.collection.JavaConverters._
@@ -194,8 +193,8 @@ class PolygonLoader(
 
   def load(defaultNamespace: FeatureNamespace): Unit = {
     val polygonDirs = List(
-      new File("data/computed/polygons"),
-      new File("data/private/polygons")
+      new File("src/jvm/io/fsq/twofishes/indexer/data/computed/polygons"),
+      new File("src/jvm/io/fsq/twofishes/indexer/data/private/polygons")
     )
     val polygonFiles = polygonDirs.flatMap(recursiveListFiles).sorted
 
