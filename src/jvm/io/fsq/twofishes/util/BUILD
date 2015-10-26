@@ -5,7 +5,7 @@ scala_library(
   sources = globs('*.scala'),
   dependencies = [
     '3rdparty:caliper',
-    '3rdparty:geocoder-server',  # TODO(dan): This is here for runtime resources. Fix me.
+    '3rdparty:geocoder-server',  # TODO(dan): Removing this breaks www. I have no idea why.
     '3rdparty:gt-shapefile',
     '3rdparty:jts',
     '3rdparty:mongodb',
@@ -14,5 +14,6 @@ scala_library(
     '3rdparty:slf4s',
     '3rdparty:twitter-util',
     'src/thrift/io/fsq/twofishes',
+    'src/jvm/io/fsq/twofishes/util/data',  # Runtime dep.
   ],
 )
