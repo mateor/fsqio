@@ -1,4 +1,5 @@
 #!/bin/bash
+# Copyright 2015 Foursquare Labs Inc. All Rights Reserved.
 
 set -e
 
@@ -6,12 +7,18 @@ if [[ -z "$SKIP_UPKEEP" ]]; then
   ./upkeep
 fi
 
+# Copied to root by upkeep.
+source environ.sh
+
+# This is being left in as a backstop but needs to be removed prior to open sourcing.
 if [ "$(uname)" == "Darwin" ]; then
   export JDK_HOME=$(/usr/libexec/java_home -v 1.8.0_40)
 else
   export JDK_HOME="/data/loko/infrastructure-jdk8/current"
 fi
 
+# Points to the pants.ini to use for pants config.
+export PANTS_CONFIG_OVERRRIDE="$PANTS_CONFIG_OVERRIDE"
 
 if [ -z "$PANTSBINARY" ]; then
   exec .pantsenv/bin/pants --print-exception-stacktrace "$@"
