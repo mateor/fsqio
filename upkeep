@@ -14,7 +14,7 @@ else
 fi
 
 # Symlink the proper environmental variables script to the buildroot.
-ln -sf scripts/upkeep/$TASKS/env.sh environ.sh
+ln -sf scripts/upkeep/"$TASKS"/env.sh environ.sh
 
 if [ "$1" == "--help" ]; then
   echo ""
