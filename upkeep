@@ -1,20 +1,4 @@
 #!/bin/bash
-# Copyright 2015 Foursquare Labs Inc. All Rights Reserved.
-
-# Pass variables to children
-set -a
-
-# Use the presence of the 'scripts/upkeep/tasks' folder to determine if we are in foursquare-commons
-if [[ -e scripts/upkeep/tasks ]]; then
-  echo 'Upkeep for foursquare.web...'
-  TASKS='tasks'
-else
-  echo 'Upkeep for fsq-commons...'
-  TASKS='commons-tasks'
-fi
-
-# Symlink the proper environmental variables script to the buildroot.
-ln -sf scripts/upkeep/"$TASKS"/env.sh environ.sh
 
 if [ "$1" == "--help" ]; then
   echo ""
