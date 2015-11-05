@@ -22,6 +22,7 @@ scala_library(
     '3rdparty:slf4s',
     'src/jvm/io/fsq/twofishes/core',
     'src/jvm/io/fsq/twofishes/country',
+    'src/jvm/io/fsq/twofishes/indexer/data:langdetect',  # Runtime dep.
     'src/jvm/io/fsq/twofishes/indexer/mongo',
     'src/jvm/io/fsq/twofishes/indexer/output',
     'src/jvm/io/fsq/twofishes/indexer/util',

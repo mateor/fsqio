@@ -31,7 +31,7 @@ import org.json4s.jackson.JsonMethods._
 import scala.collection.JavaConverters._
 
 object LanguageDetector {
-  DetectorFactory.loadProfile("./indexer/src/main/resources/profiles.sm/")
+  DetectorFactory.loadProfile("./src/jvm/io/fsq/twofishes/indexer/data/langdetect/")
 
   val asciiEncoder = Charset.forName("US-ASCII").newEncoder()
 
