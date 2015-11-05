@@ -14,7 +14,11 @@ source environ.sh
 if [ "$(uname)" == "Darwin" ]; then
   export JDK_HOME=$(/usr/libexec/java_home -v 1.8.0_40)
 else
-  export JDK_HOME="/data/loko/infrastructure-jdk8/current"
+  if [ ! -f /data/loko/infrastructure-jdk8/current/bin/java ]; then
+    echo "Pants must have the infrastructure-jdk8 loko package installed in order"
+    echo " to run on linux."
+    exit 1
+  fi
 fi
 
 # Points to the pants.ini to use for pants config.
