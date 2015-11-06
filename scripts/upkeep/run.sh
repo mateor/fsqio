@@ -1,21 +1,17 @@
 #!/bin/bash
-# Copyright 2015 Foursquare Labs Inc. All Rights Reserved.
-
-# Pass variables to children
-set -a
-
-
-# Please do NOT run this script directly, interact with the upkeep script instead.
 
 DIR=$(dirname ${BASH_SOURCE[${#BASH_SOURCE[@]} - 1]})
-
-mkdir -p "$DIR"/current
-
-source "$DIR"/"$TASKS"/env.sh
+mkdir -p $DIR/current
 
 function run_task() {
-  task_script="$DIR"/"$TASKS"/$(basename $1).sh
-  "$task_script" "$2" && if [ -f "$DIR"/required/$1 ]; then cp "$DIR"/required/$1 "$DIR"/current/$1; fi
+  export BUILD_ROOT=$(dirname $(dirname $DIR))
+  export BOOTSTRAP_DIR=${BUILD_ROOT}/.pants.bootstrap
+  export FS_DEV_BUCKET=http://bodega.prod.foursquare.com/4sq-dev
+  export URL_BASE=$FS_DEV_BUCKET/data/bin
+  export CURL_PROXY="proxyout-aux:80"
+  export PYTHONPATH=""
+
+  $DIR/tasks/$(basename $1).sh "$2" && if [ -f $DIR/required/$1 ]; then cp $DIR/required/$1 $DIR/current/$1; fi
 }
 
 for task in "$@"; do
