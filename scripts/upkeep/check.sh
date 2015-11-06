@@ -14,7 +14,7 @@ function check() {
   required=$(cat $1)
 
   current=""
-  if [ -f "$DIR"/current/"$task" ]; then
+  if [ -f $DIR/current/$task ]; then
     current=$(cat $DIR/current/$task)
   fi
 
