@@ -35,6 +35,7 @@ jvm_binary(
   name = 'geonames-parser',
   main = 'io.fsq.twofishes.indexer.importers.geonames.GeonamesParser',
   dependencies = [
+    '3rdparty:logback',  # Runtime dep.
     ':geonames',
   ],
 )
