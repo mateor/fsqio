@@ -77,7 +77,7 @@ passBoolOpt('output_s2_interior_index', options.output_s2_interior_index)
 passBoolOpt('output_prefix_index', options.output_prefix_index)
 passBoolOpt('reload_data', options.reload_data)
 
-jvm_args = []
+jvm_args = ['-Dlogback.configurationFile=src/jvm/io/fsq/twofishes/indexer/data/logback.xml']
 if options.geonamesonly:
   jvm_args.append("-DgeonameidNamespace=0")
 
