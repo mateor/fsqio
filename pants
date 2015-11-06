@@ -14,8 +14,8 @@ else
     echo " to run on linux."
     exit 1
   fi
+  export JAVA_HOME="/data/loko/infrastructure-jdk8/current"
 fi
-
 
 if [ -z "$PANTSBINARY" ]; then
   exec .pantsenv/bin/pants --print-exception-stacktrace "$@"
