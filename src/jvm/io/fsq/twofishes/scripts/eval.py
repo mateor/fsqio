@@ -40,11 +40,13 @@ if len(args) == 0:
 
 inputFile = args[0]
 
-outputFilename = ('eval-%s.html' % datetime.datetime.now()).replace(' ', '_')
+outputFilename = ('dist/twofishes/eval/eval-%s.html' % datetime.datetime.now()).replace(' ', '_')
 
-if os.path.exists("eval-latest.html"):
-  os.unlink("eval-latest.html")
-os.symlink(outputFilename, "eval-latest.html")
+if not os.path.exists('dist/twofishes/eval'):
+  os.makedirs('dist/twofishes/eval')
+if os.path.exists("dist/twofishes/eval/eval-latest.html"):
+  os.unlink("dist/twofishes/eval/eval-latest.html")
+os.symlink(os.path.abspath(outputFilename), "dist/twofishes/eval/eval-latest.html")
 
 outputFile = open(outputFilename, 'w')
 outputFile.write('<meta charset="utf-8">')
