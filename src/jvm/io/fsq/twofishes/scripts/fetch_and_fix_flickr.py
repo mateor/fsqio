@@ -6,7 +6,7 @@ import re
 import StringIO
 import os
 
-basedir = 'data/downloaded'
+basedir = 'src/jvm/io/fsq/twofishes/indexer/data/downloaded'
 
 flickr_shapes_file_name = os.path.join(basedir, 'flickr_shapes_public_dataset_2.0.tar.gz')
 
