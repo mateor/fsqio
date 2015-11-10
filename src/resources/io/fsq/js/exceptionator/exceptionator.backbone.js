@@ -543,7 +543,15 @@ Exceptionator.AppView = Backbone.View.extend({
   },
 
   fetchError: function(collection, xhr, options) {
-    window.location.reload();
+    // Log 5XXs, refresh the page on anything else
+    if (xhr.status / 100 === 5) {
+      console.log(
+        'Server error while fetching data for collection: ' + collection.id +
+        '. This probably means exceptionator and/or its mongod are under high load right now.'
+      );
+    } else {
+      window.location.reload();
+    }
   },
 
   fetch: function() {
