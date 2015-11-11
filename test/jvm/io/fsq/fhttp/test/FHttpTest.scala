@@ -16,9 +16,7 @@ import org.junit.{After, Before, Ignore, Test}
 import org.junit.Assert._
 import scala.collection.JavaConverters._
 
-// import org.junit.matchers.JUnitMatchers._
-
-object FHttpRequestValidators {//extends SpecsMatchers  {
+object FHttpRequestValidators {
   def matchesHeader(key: String, value: String): FHttpRequest.HttpOption = r => {
     assertNotNull(r.headers.getAll(key))
     assertEquals(r.headers.getAll(key).asScala.mkString("|"), value)
@@ -35,16 +33,15 @@ object FHttpRequestValidators {//extends SpecsMatchers  {
     // crash (!)
     // assertThat(actual, containsString(content))
   }
-
 }
 
-class FHttpTestHelper (serverPort: Int) {//extends SpecsMatchers {
+class FHttpTestHelper(serverPort: Int) {
   var serverWaitMillis: Int = 0
   var responseTransforms: List[FHttpRequest.HttpOption] = Nil
   var requestValidators: List[FHttpRequest.HttpOption] = Nil
   var responseStatus = OK
 
-  def reset() = {
+  def reset(): Unit = {
     requestValidators = Nil
     responseTransforms = Nil
     responseStatus = OK
@@ -89,8 +86,6 @@ class FHttpTestHelper (serverPort: Int) {//extends SpecsMatchers {
     .name("HttpServer")
     .maxConcurrentRequests(20)
     .build(service)
-
-
 }
 
 object PortHelper {
@@ -123,20 +118,20 @@ class FHttpClientTest {
   }
 
   @Before
-  def setupHelper {
+  def setupHelper(): Unit = {
     helper = new FHttpTestHelper(PortHelper.port)
     client = new FHttpClient("test-client","localhost:" + PortHelper.port)
     PortHelper.port += 1
   }
 
   @After
-  def teardownHelper {
+  def teardownHelper(): Unit = {
     client.service.close()
     helper.server.close()
   }
 
   @Test
-  def testRequestAddParams {
+  def testRequestAddParams(): Unit = {
     val expected1 = "/test"
     val expected2 = expected1 + "?this=is%20silly&no=you%2Bare"
     val expected3 = expected2 + "&no=this_is"
@@ -154,7 +149,7 @@ class FHttpClientTest {
   }
 
   @Test
-  def testRequestAddHeaders {
+  def testRequestAddHeaders(): Unit = {
     helper.requestValidators = FHttpRequestValidators.matchesHeader("name", "johng") ::
       FHttpRequestValidators.matchesHeader("Host", client.hostPort) :: Nil
     val req = FHttpRequest(client, "/test").headers("name"->"johng")
@@ -183,7 +178,7 @@ class FHttpClientTest {
   }
 
   @Test
-  def testSetContent {
+  def testSetContent(): Unit = {
     helper.requestValidators = FHttpRequestValidators.matchesContent("hi", 2) :: Nil
     val req = FHttpRequest(client, "/test").timeout(5000).post_!("hi")
     assertEquals(req, "")
@@ -196,7 +191,7 @@ class FHttpClientTest {
   }
 
   @Test
-  def testSetMultipart {
+  def testSetMultipart(): Unit = {
     val xml = """
       <?xml version="1.0"?>
       <soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
@@ -229,7 +224,7 @@ class FHttpClientTest {
   }
 
   @Test
-  def testExceptionOnNonOKCode {
+  def testExceptionOnNonOKCode(): Unit = {
     helper.responseStatus = NOT_FOUND
     try {
       val reqNotFound = FHttpRequest(client, "/notfound").timeout(5000).get_!()
@@ -241,7 +236,7 @@ class FHttpClientTest {
   }
 
   @Test
-  def testExceptionOnTimeout {
+  def testExceptionOnTimeout(): Unit = {
     helper.serverWaitMillis = 10
     try {
       val reqTimedOut = FHttpRequest(client, "/timeout").timeout(1).get_!()
@@ -251,7 +246,7 @@ class FHttpClientTest {
   }
 
   @Test
-  def testFutureTimeout {
+  def testFutureTimeout(): Unit = {
     helper.serverWaitMillis = 100
     var gotResult = false
     val f = FHttpRequest(client, "/future0").timeout(1).getFuture() onSuccess {
@@ -272,7 +267,7 @@ class FHttpClientTest {
 
 
   @Test
-  def testFutureResult {
+  def testFutureResult(): Unit = {
     var r1 = "not set"
     var r2 = -1
     FHttpRequest(client, "/future1").timeout(5000).getFuture() onSuccess {
@@ -297,7 +292,7 @@ class FHttpClientTest {
   }
 
   @Test
-  def testLBHostHeaderUsesFirstHost {
+  def testLBHostHeaderUsesFirstHost(): Unit = {
     val port = client.firstHostPort.split(":",2)(1)
     val client2 = new FHttpClient("test-client-2", "localhost:" + port + ",127.0.0.1:" + port)
     helper.requestValidators = List(FHttpRequestValidators.matchesHeader("Host", "localhost:" + port))
@@ -313,7 +308,7 @@ class FHttpClientTest {
 
   @Ignore("TODO(dan): Figure out how we want to handle the external requests that these make")
   @Test
-  def testOauthFlowGetPost {
+  def testOauthFlowGetPost(): Unit = {
     def testFlow(usePost: Boolean) {
       import io.fsq.fhttp.FHttpRequest.asOAuth1Token
       val clientOA =
@@ -353,7 +348,7 @@ class FHttpClientTest {
 
   @Ignore("TODO(dan): Figure out how we want to handle the external requests that these make")
   @Test
-  def testOAuthSigning {
+  def testOAuthSigning(): Unit = {
     val consumer = Token("key", "secret")
     val oauthFilter = buildOAuth1Filter(client, consumer, None, None)
     val expected = """OAuth oauth_signature="lAkLnsPI449AfTp7yuKJTD7olW8%3D",oauth_timestamp="0",oauth_nonce="ceci%20n%27est%20pas%20une%20nonce",oauth_version="1.0",oauth_consumer_key="key",oauth_signature_method="HMAC-SHA1""""
@@ -366,7 +361,7 @@ class FHttpClientTest {
   }
 
   @Test
-  def testEncodedURLQuery {
+  def testEncodedURLQuery(): Unit = {
     val expected1 = "/ラーメン"
     val req1 = client("/ラーメン")
     val res1 = req1.get_!()
@@ -377,5 +372,4 @@ class FHttpClientTest {
     val res2 = req2.get_!()
     assertEquals(res2, "")
   }
-
 }
