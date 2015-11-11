@@ -46,7 +46,7 @@ class FHttpTestHelper {
   }
 
   def serverResponse: HttpResponse = {
-    var res = new DefaultHttpResponse(HttpVersion.HTTP_1_1, responseStatus)
+    val res = new DefaultHttpResponse(HttpVersion.HTTP_1_1, responseStatus)
     responseTransforms.reverse.foreach(_(res))
     res
   }
