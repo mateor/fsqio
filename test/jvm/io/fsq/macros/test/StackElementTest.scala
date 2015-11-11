@@ -1,14 +1,14 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.macros.test
+package io.fsq.macros.test
 
-import com.foursquare.macros.StackElement._
+import io.fsq.macros.StackElement._
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
 object StackElementTest {
   val ThisFile = "StackElementTest.scala"
-  val ThisClass = "com.foursquare.macros.test.StackElementTest"
+  val ThisClass = "io.fsq.macros.test.StackElementTest"
 }
 
 class StackElementTest {

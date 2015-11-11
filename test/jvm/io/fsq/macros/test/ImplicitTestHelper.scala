@@ -1,9 +1,8 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.macros.test
+package io.fsq.macros.test
 
-import com.foursquare.macros.CodeRef
-import com.foursquare.macros.StackElement
+import io.fsq.macros.{CodeRef, StackElement}
 
 object ImplicitTestHelper {
   def testImplicit()(implicit caller: CodeRef): CodeRef = {
