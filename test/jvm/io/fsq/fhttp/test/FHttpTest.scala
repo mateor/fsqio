@@ -97,7 +97,6 @@ object PortHelper {
   var port = 8101
 }
 
-@Ignore("TODO(dan): Figure out how we want to handle the external requests that these make")
 class FHttpClientTest {
   var helper: FHttpTestHelper = null
   var client: FHttpClient = null
@@ -312,6 +311,7 @@ class FHttpClientTest {
   }
 
 
+  @Ignore("TODO(dan): Figure out how we want to handle the external requests that these make")
   @Test
   def testOauthFlowGetPost {
     def testFlow(usePost: Boolean) {
@@ -351,6 +351,7 @@ class FHttpClientTest {
     testFlow(true)
   }
 
+  @Ignore("TODO(dan): Figure out how we want to handle the external requests that these make")
   @Test
   def testOAuthSigning {
     val consumer = Token("key", "secret")
