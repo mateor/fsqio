@@ -1,13 +1,13 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.macros.test
+package io.fsq.macros.test
 
-import com.foursquare.macros.CodeRef._
+import io.fsq.macros.CodeRef._
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
 object CodeRefTest {
-  val ThisFile = "src/test/scala/com/foursquare/macros/test/CodeRefTest.scala"
+  val ThisFile = "test/jvm/io/fsq/macros/test/CodeRefTest.scala"
 }
 
 class CodeRefTest {

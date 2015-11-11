@@ -1,11 +1,10 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
 
-package com.foursquare.macros
+package io.fsq.macros
 
 import java.io.File
-import language.experimental.macros
+import scala.language.experimental.macros  // Scala made me do it.
 import scala.reflect.macros.Context
-
 
 /**
  * Holder for file relative to the compiler
@@ -54,24 +53,18 @@ object CodeRef {
   implicit def materializeCodeRef: CodeRef = macro codeRefImpl
 
   def codeRefImpl(c: Context): c.Expr[CodeRef] = {
-    import c.universe.reify
-
     val file = fileImpl(c)
     val line = lineImpl(c)
-    reify { com.foursquare.macros.CodeRef(file.splice, line.splice) }
+    c.universe.reify { io.fsq.macros.CodeRef(file.splice, line.splice) }
   }
 
   def lineImpl(c: Context): c.Expr[Int] = {
-    import c.universe.{Constant, Expr, Literal}
-
-    val line = Literal(Constant(c.enclosingPosition.line))
+    val line = c.universe.Literal(c.universe.Constant(c.enclosingPosition.line))
 
     c.Expr[Int](line)
   }
 
   def fileImpl(c: Context): c.Expr[String] = {
-    import c.universe.{Constant, Expr, Literal}
-
     val path = if (c.enclosingPosition.source.file.file != null) {
       val base = new File(".").toURI
       val absolute = c.enclosingPosition.source.file.file.toURI
@@ -80,6 +73,6 @@ object CodeRef {
       ""
     }
 
-    c.Expr[String](Literal(Constant(path)))
+    c.Expr[String](c.universe.Literal(c.universe.Constant(path)))
   }
 }

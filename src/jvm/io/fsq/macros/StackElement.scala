@@ -1,6 +1,8 @@
-package com.foursquare.macros
+// Copyright 2015 Foursquare Labs Inc. All Rights Reserved.
 
-import scala.language.experimental.macros
+package io.fsq.macros
+
+import scala.language.experimental.macros  // Scala made me do it.
 import scala.language.implicitConversions
 import scala.reflect.macros.Context
 
@@ -32,10 +34,8 @@ object StackElement {
   implicit def materializeStackElement: StackElement = macro stackElementImpl
 
   def stackElementImpl(c: Context): c.Expr[StackElement] = {
-    import c.universe.{Constant, Expr, Literal, reify}
-
-    def constExpr[T](value: T): Expr[T] = {
-      c.Expr[T](Literal(Constant(value)))
+    def constExpr[T](value: T): c.universe.Expr[T] = {
+      c.Expr[T](c.universe.Literal(c.universe.Constant(value)))
     }
 
     val clazz = c.enclosingClass.symbol.fullName
@@ -47,7 +47,7 @@ object StackElement {
     }
     val file = c.enclosingUnit.source.file.name
     val line = c.enclosingPosition.line
-    reify { new StackElement(new StackTraceElement(
+    c.universe.reify { new StackElement(new StackTraceElement(
       constExpr(clazz).splice,
       constExpr(method).splice,
       constExpr(file).splice,
