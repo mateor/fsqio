@@ -9,8 +9,8 @@ import scala.reflect.macros.Context
 /**
  * Holder for file relative to the compiler
  * working directory as a string, and line number
- * of file. Created explicitly with [[com.foursquare.macros.CodeRef.CODEREF]]
- * or implicitly with [[com.foursquare.macros.CodeRef.materializeCodeRef]]
+ * of file. Created explicitly with [[io.fsq.macros.CodeRef.CODEREF]]
+ * or implicitly with [[io.fsq.macros.CodeRef.materializeCodeRef]]
  */
 case class CodeRef(val file: String, val line: Int)
 
