@@ -8,7 +8,7 @@ import com.twitter.finagle.builder.{ClientBuilder, ServerBuilder}
 import com.twitter.finagle.http.Http
 import com.twitter.util.{Await, Future}
 import io.fsq.fhttp.{FHttpClient, FHttpRequest, HttpStatusException, MultiPart, OAuth1Filter, Token}
-import java.net.{InetSocketAddress, SocketAddress}
+import java.net.InetSocketAddress
 import org.jboss.netty.channel.DefaultChannelConfig
 import org.jboss.netty.handler.codec.http.HttpResponseStatus._
 import org.jboss.netty.handler.codec.http._
@@ -33,7 +33,7 @@ object FHttpRequestValidators {
   }
 }
 
-class FHttpTestHelper(serverPort: Int) {
+class FHttpTestHelper {
   var serverWaitMillis: Int = 0
   var responseTransforms: List[FHttpRequest.HttpOption] = Nil
   var requestValidators: List[FHttpRequest.HttpOption] = Nil
@@ -76,18 +76,14 @@ class FHttpTestHelper(serverPort: Int) {
     }
   }
 
-  val address: SocketAddress = new InetSocketAddress("localhost", serverPort)
-
   val server = ServerBuilder()
     .codec(Http())
-    .bindTo(address)
+    .bindTo(new InetSocketAddress("127.0.0.1", 0))  // 0 allocates an ephemeral port
     .name("HttpServer")
     .maxConcurrentRequests(20)
     .build(service)
-}
 
-object PortHelper {
-  var port = 8101
+  def boundPort: Int = server.boundAddress.asInstanceOf[InetSocketAddress].getPort
 }
 
 class FHttpClientTest {
@@ -117,9 +113,8 @@ class FHttpClientTest {
 
   @Before
   def setupHelper(): Unit = {
-    helper = new FHttpTestHelper(PortHelper.port)
-    client = new FHttpClient("test-client","localhost:" + PortHelper.port)
-    PortHelper.port += 1
+    helper = new FHttpTestHelper
+    client = new FHttpClient("test-client","localhost:" + helper.boundPort)
   }
 
   @After
