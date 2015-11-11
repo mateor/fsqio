@@ -38,3 +38,11 @@ jvm_binary(
     ':server',
   ]
 )
+
+jvm_binary(
+  name = 'build-hotfix-file',
+  main = 'io.fsq.twofishes.server.JsonHotfixFileBuilder',
+  dependencies = [
+    ':server',
+  ]
+)

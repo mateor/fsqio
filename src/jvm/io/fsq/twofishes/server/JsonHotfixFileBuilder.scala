@@ -10,6 +10,25 @@ import org.apache.thrift.TSerializer
 object JsonHotfixFileBuilder {
   // build individual objects here and run build-hotfix-file.py to produce json file
   // DO NOT push commits with changes to this list back to twofishes
+/* example:
+    GeocodeServingFeatureEdit.newBuilder
+      .editType(EditType.Modify)
+      .longId(7661L)
+      .namesEdits(List(FeatureNameListEdit.newBuilder
+        .editType(EditType.Add)
+        .name("UES")
+        .lang("en")
+        .flagsEdits(List(FeatureNameFlagsListEdit.newBuilder
+          .editType(EditType.Add)
+          .value(FeatureNameFlags.LOCAL_LANG)
+          .result()
+        ))
+        .result()
+      ))
+      .result()
+*/
+
+
   val edits: List[GeocodeServingFeatureEdit] = List(
   )
 
@@ -21,6 +40,9 @@ object JsonHotfixFileBuilder {
       val serializer = new TSerializer(new TReadableJSONProtocol.Factory(true))
       output.write(serializer.serialize(editsWrapper))
       output.close()
+    } else {
+      println(s"Supply an output file name: ${getClass.getName} [filename]")
+      System.exit(1)
     }
   }
 }
