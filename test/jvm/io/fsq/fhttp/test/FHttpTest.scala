@@ -29,9 +29,7 @@ object FHttpRequestValidators {
 
   def containsContent(content: String): FHttpRequest.HttpOption = r => {
     val actual = r.getContent.toString(FHttpRequest.UTF_8)
-    // TODO(dan): Uncommenting the `extends SpecsMatchers` above causes zinc to
-    // crash (!)
-    // assertThat(actual, containsString(content))
+    assertTrue(actual.contains(content))
   }
 }
 
