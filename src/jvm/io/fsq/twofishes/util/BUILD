@@ -5,7 +5,6 @@ scala_library(
   sources = globs('*.scala'),
   dependencies = [
     '3rdparty:caliper',
-    '3rdparty:geocoder-server',  # TODO(dan): Removing this breaks www. I have no idea why.
     '3rdparty:gt-shapefile',
     '3rdparty:jts',
     '3rdparty:mongodb',
