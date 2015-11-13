@@ -12,6 +12,7 @@ import io.fsq.rogue.spindle.test.gen.{ThriftClaimStatus, ThriftComment, ThriftCo
     ThriftVenueClaimBson, ThriftVenueMeta}
 import io.fsq.rogue.spindle.test.gen.IdsTypedefs.VenueId
 import io.fsq.spindle.runtime.{MetaRecord, Record}
+import io.fsq.util.compiler.test.CompilerForNegativeTests
 import java.util.regex.Pattern
 import org.bson.types.ObjectId
 import org.joda.time.{DateTime, DateTimeZone}
@@ -655,14 +656,14 @@ class QueryTest extends JUnitMustMatchers {
   @Ignore @Test
   def thingsThatShouldntCompile {
     val compiler = new CompilerForNegativeTests(List(
-      """import io.fsq.rogue._""",
-      """import io.fsq.roguev2._""",
-      """import io.fsq.roguev2.{Query => Q}""",
+      """io.fsq.rogue._""",
+      """io.fsq.roguev2._""",
+      """io.fsq.roguev2.{Query => Q}""",
       /* TODO(rogue-whenMigrated)
       """import io.fsq.rogue.LiftRogue._""",
       */
-      """import org.bson.types.ObjectId""",
-      """import org.joda.time.DateTime"""))
+      """org.bson.types.ObjectId""",
+      """org.joda.time.DateTime"""))
 
     def check(code: String, expectedErrorREOpt: Option[String] = Some("")): Unit =
       compiler.check(code, expectedErrorREOpt)

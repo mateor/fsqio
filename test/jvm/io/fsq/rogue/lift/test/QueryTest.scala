@@ -5,6 +5,7 @@ package io.fsq.rogue.lift.test
 import com.mongodb.ReadPreference
 import io.fsq.rogue.{BSONType, Degrees, LatLong, MongoType, Query, QueryOptimizer, Radians}
 import io.fsq.rogue.lift.LiftRogue._
+import io.fsq.util.compiler.test.CompilerForNegativeTests
 import java.util.regex.Pattern
 import net.liftweb.mongodb.record._
 import net.liftweb.mongodb.record.field._
@@ -629,7 +630,15 @@ class QueryTest extends JUnitMustMatchers {
 
   @Test
   def thingsThatShouldntCompile {
-    val compiler = new Compiler
+    val compiler = new CompilerForNegativeTests(List(
+      "io.fsq.rogue._",
+      "io.fsq.rogue.lift._",
+      "io.fsq.rogue.lift.test._",
+      "io.fsq.rogue.lift.LiftRogue._",
+      "org.bson.types.ObjectId",
+      "org.joda.time.DateTime"
+    ))
+
     def check(code: String, expectedErrorREOpt: Option[String] = Some("")): Unit = {
       (expectedErrorREOpt, compiler.typeCheck(code)) aka "'%s' compiles!".format(code) must beLike {
         case (Some(expectedErrorRE), Some(actualError)) => expectedErrorRE.r.findFirstIn(actualError.replaceAll("\n", "")) must beSome
@@ -771,50 +780,5 @@ class QueryTest extends JUnitMustMatchers {
     // // Version of the above with an iscan of later fields.
     // check("""Venue.useIndex(Venue.mayorIdClosedIdx).where(_.mayor)(_ eqs 10).rangeScan(_._id).iscan(_.closed)(_ eqs true)""",
     //       None)
-  }
-
-  class Compiler {
-    import java.io.{PrintWriter, Writer}
-    import scala.tools.nsc.{Settings, interpreter => IR}
-
-    class NullWriter extends Writer {
-      override def close() = ()
-      override def flush() = ()
-      override def write(arr: Array[Char], x: Int, y: Int): Unit = ()
-    }
-
-    private val settings = new Settings
-    settings.usejavacp.value = true
-    settings.deprecation.value = true // enable detailed deprecation warnings
-    settings.unchecked.value = true // enable detailed unchecked warnings
-
-    // This is deprecated in 2.9.x, but we need to use it for compatibility with 2.8.x
-    val stringWriter = new java.io.StringWriter()
-    private val interpreter =
-      new IR.IMain(
-        settings,
-        /**
-         * It's a good idea to comment out this second parameter when adding or modifying
-         * tests that shouldn't compile, to make sure that the tests don't compile for the
-         * right reason.
-         **/
-        new PrintWriter(stringWriter))
-
-    interpreter.interpret("""import io.fsq.rogue._""")
-    interpreter.interpret("""import io.fsq.rogue.lift._""")
-    interpreter.interpret("""import io.fsq.rogue.lift.test._""")
-    interpreter.interpret("""import io.fsq.rogue.lift.LiftRogue._""")
-    interpreter.interpret("""import org.bson.types.ObjectId""")
-    interpreter.interpret("""import org.joda.time.DateTime""")
-
-    def typeCheck(code: String): Option[String] = {
-      stringWriter.getBuffer.delete(0, stringWriter.getBuffer.length)
-      val thunked = "() => { %s }".format(code)
-      interpreter.interpret(thunked) match {
-        case IR.Results.Success => None
-        case IR.Results.Error => Some(stringWriter.toString)
-        case IR.Results.Incomplete => throw new Exception("Incomplete code snippet")
-      }
-    }
   }
 }
