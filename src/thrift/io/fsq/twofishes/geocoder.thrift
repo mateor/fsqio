@@ -258,7 +258,6 @@ struct GeocodeInterpretation {
   6: optional InterpretationScoringFeatures scores
   7: optional InterpretationDebugInfo debugInfo
   8: optional list<i64> parentLongIds
-  9: optional list<i64> majorLongIds
 }
 
 struct GeocodeResponse {
