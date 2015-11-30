@@ -23,5 +23,6 @@ scala_library(
     'src/jvm/io/fsq/exceptionator/loader/service',
     'src/jvm/io/fsq/exceptionator/model/io',
     'src/jvm/io/fsq/exceptionator/util',
+    'src/jvm/io/fsq/rogue',
   ],
 )

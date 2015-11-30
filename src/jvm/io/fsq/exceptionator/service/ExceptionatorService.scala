@@ -17,6 +17,7 @@ import io.fsq.exceptionator.actions.concrete.{ConcreteBackgroundActions, Concret
 import io.fsq.exceptionator.loader.concrete.ConcretePluginLoaderService
 import io.fsq.exceptionator.loader.service.HasPluginLoaderService
 import io.fsq.exceptionator.util.{Config, Logger}
+import io.fsq.rogue.QueryHelpers
 import java.io.{IOException, InputStream}
 import java.net.InetSocketAddress
 import java.util.concurrent.Executors
@@ -103,6 +104,7 @@ object ExceptionatorServer extends Logger {
   val defaultStatsPort = defaultPort + 1
   val defaultDbHost = "localhost:27017"
   val defaultDbName = "test"
+  val defaultDbSocketTimeout = 10 * 1000
 
   def bootMongo(indexesToEnsure: List[IndexActions] = Nil) {
     // Mongo
@@ -112,7 +114,7 @@ object ExceptionatorServer extends Logger {
       case _ => throw new Exception("didn't understand host " + a)
     })
     val mongoOptions = MongoClientOptions.builder
-      .socketTimeout(10 * 1000)
+      .socketTimeout(defaultDbSocketTimeout)
       .build
     try {
       val mongo = new MongoClient(dbServers.asJava, mongoOptions)
@@ -124,6 +126,12 @@ object ExceptionatorServer extends Logger {
         logger.error(e, "Failed ensure indexes on %s because: %s.  Is mongo running?"
           .format(dbServerConfig, e.getMessage))
         throw e
+    }
+
+    // Configure maxTimeMS in Rogue to kill queries in mongo after a socket timeout
+    QueryHelpers.config = new QueryHelpers.DefaultQueryConfig {
+      private val maxTimeMS = Some(defaultDbSocketTimeout.toLong)
+      override def maxTimeMSOpt(configName: String): Option[Long] = maxTimeMS
     }
   }
 
