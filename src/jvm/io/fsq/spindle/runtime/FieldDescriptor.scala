@@ -11,6 +11,7 @@ sealed trait UntypedFieldDescriptor {
   def annotations: Map[String, String]
   def unsafeGetterOption: Any => Option[Any]
   def unsafeSetterRaw: (Any, Any) => Unit
+  def unsafeUnsetterRaw(record: Any): Unit
   def unsafeManifest: Manifest[_]
 }
 
@@ -19,10 +20,11 @@ trait FieldDescriptor[F, R <: Record[R], M <: MetaRecord[R, M]] extends Field[F,
   def getterOption: R => Option[F] = getter
   def manifest: Manifest[F]
   def setterRaw: (MutableRecord[R], F) => Unit
-  def unsetterRaw: MutableRecord[R] => Unit
+  def unsetterRaw(record: MutableRecord[R]): Unit
 
   override def unsafeGetterOption: Any => Option[Any] = getterOption.asInstanceOf[Any => Option[Any]]
   override def unsafeSetterRaw: (Any, Any) => Unit = setterRaw.asInstanceOf[(Any, Any) => Unit]
+  override def unsafeUnsetterRaw(record: Any): Unit = unsetterRaw(record.asInstanceOf[MutableRecord[R]])
   override def unsafeManifest: Manifest[_] = manifest
 }
 
@@ -66,7 +68,7 @@ trait StructField[ER <: Record[ER], EM <: MetaRecord[ER, EM]] extends UntypedStr
   override def unsafeStructMeta: MetaRecord[_, _] = structMeta
 }
 
-case class OptionalFieldDescriptor[F, R <: Record[R], M <: MetaRecord[R, M]](
+abstract class OptionalFieldDescriptor[F, R <: Record[R], M <: MetaRecord[R, M]](
     override val name: String,
     override val longName: String,
     override val id: Int,
@@ -74,11 +76,10 @@ case class OptionalFieldDescriptor[F, R <: Record[R], M <: MetaRecord[R, M]](
     override val owner: M,
     override val getter: R => Option[F],
     override val setterRaw: (MutableRecord[R], F) => Unit,
-    override val unsetterRaw: MutableRecord[R] => Unit,
     override val manifest: Manifest[F]
 ) extends OptionalField[F, M] with FieldDescriptor[F, R, M]
 
-case class ForeignKeyFieldDescriptor[F, R <: Record[R], M <: MetaRecord[R, M]](
+abstract class ForeignKeyFieldDescriptor[F, R <: Record[R], M <: MetaRecord[R, M]](
     override val name: String,
     override val longName: String,
     override val id: Int,
@@ -86,7 +87,6 @@ case class ForeignKeyFieldDescriptor[F, R <: Record[R], M <: MetaRecord[R, M]](
     override val owner: M,
     override val getter: R => Option[F],
     override val setterRaw: (MutableRecord[R], F) => Unit,
-    override val unsetterRaw: MutableRecord[R] => Unit,
     override val objSetter: (R, SemitypedHasPrimaryKey[F]) => Unit,
     override val objGetter: (R, UntypedMetaRecord) => Option[UntypedRecord with SemitypedHasPrimaryKey[F]],
     override val unsafeObjGetter: Any => Option[Any],
@@ -95,7 +95,7 @@ case class ForeignKeyFieldDescriptor[F, R <: Record[R], M <: MetaRecord[R, M]](
     override val manifest: Manifest[F]
 ) extends OptionalField[F, M] with FieldDescriptor[F, R, M] with ForeignKeyField[F, R]
 
-case class ForeignKeySeqFieldDescriptor[F, R <: Record[R], M <: MetaRecord[R, M]](
+abstract class ForeignKeySeqFieldDescriptor[F, R <: Record[R], M <: MetaRecord[R, M]](
     override val name: String,
     override val longName: String,
     override val id: Int,
@@ -103,7 +103,6 @@ case class ForeignKeySeqFieldDescriptor[F, R <: Record[R], M <: MetaRecord[R, M]
     override val owner: M,
     override val getter: R => Option[Seq[F]],
     override val setterRaw: (MutableRecord[R], Seq[F]) => Unit,
-    override val unsetterRaw: MutableRecord[R] => Unit,
     override val objSetter: (R, Seq[SemitypedHasPrimaryKey[F]]) => Unit,
     override val objGetter: (R, UntypedMetaRecord) => Seq[UntypedRecord with SemitypedHasPrimaryKey[F]],
     override val unsafeObjGetter: Any => Seq[Any],
@@ -112,7 +111,7 @@ case class ForeignKeySeqFieldDescriptor[F, R <: Record[R], M <: MetaRecord[R, M]
     override val manifest: Manifest[Seq[F]]
 ) extends OptionalField[Seq[F], M] with FieldDescriptor[Seq[F], R, M] with ForeignKeySeqField[F, R]
 
-case class BitfieldFieldDescriptor[F, R <: Record[R], M <: MetaRecord[R, M], FR <: Record[FR], FM <: MetaRecord[FR, FM]](
+abstract class BitfieldFieldDescriptor[F, R <: Record[R], M <: MetaRecord[R, M], FR <: Record[FR], FM <: MetaRecord[FR, FM]](
     override val name: String,
     override val longName: String,
     override val id: Int,
@@ -120,12 +119,11 @@ case class BitfieldFieldDescriptor[F, R <: Record[R], M <: MetaRecord[R, M], FR 
     override val owner: M,
     override val getter: R => Option[F],
     override val setterRaw: (MutableRecord[R], F) => Unit,
-    override val unsetterRaw: MutableRecord[R] => Unit,
     override val structMeta: FM,
     override val manifest: Manifest[F]
 ) extends OptionalField[F, M] with FieldDescriptor[F, R, M] with BitfieldField[FR, FM]
 
-case class StructFieldDescriptor[R <: Record[R], M <: MetaRecord[R, M], ER <: Record[ER], EM <: MetaRecord[ER, EM]](
+abstract class StructFieldDescriptor[R <: Record[R], M <: MetaRecord[R, M], ER <: Record[ER], EM <: MetaRecord[ER, EM]](
     override val name: String,
     override val longName: String,
     override val id: Int,
@@ -133,12 +131,11 @@ case class StructFieldDescriptor[R <: Record[R], M <: MetaRecord[R, M], ER <: Re
     override val owner: M,
     override val getter: R => Option[ER],
     override val setterRaw: (MutableRecord[R], ER) => Unit,
-    override val unsetterRaw: MutableRecord[R] => Unit,
     override val structMeta: EM,
     override val manifest: Manifest[ER]
 ) extends OptionalField[ER, M] with FieldDescriptor[ER, R, M] with StructField[ER, EM]
 
-case class ExceptionFieldDescriptor[R <: Record[R], M <: MetaRecord[R, M], ER <: Record[ER], EM <: MetaRecord[ER, EM], E <: RuntimeException with ER](
+abstract class ExceptionFieldDescriptor[R <: Record[R], M <: MetaRecord[R, M], ER <: Record[ER], EM <: MetaRecord[ER, EM], E <: RuntimeException with ER](
     override val name: String,
     override val longName: String,
     override val id: Int,
@@ -146,7 +143,6 @@ case class ExceptionFieldDescriptor[R <: Record[R], M <: MetaRecord[R, M], ER <:
     override val owner: M,
     override val getter: R => Option[E],
     override val setterRaw: (MutableRecord[R], E) => Unit,
-    override val unsetterRaw: MutableRecord[R] => Unit,
     override val structMeta: EM,
     override val manifest: Manifest[E]
 ) extends OptionalField[E, M] with FieldDescriptor[E, R, M] with StructField[ER, EM]
