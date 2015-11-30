@@ -34,7 +34,6 @@
       owner = this,
       getter = _.${field.name}Option,
       setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[${cls.name}], v: ${field.renderType.text}) => { r.asInstanceOf[Raw${cls.name}].${field.escapedName}_=(v) },
-      unsetterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[${cls.name}]) => { r.asInstanceOf[Raw${cls.name}].${field.name}Unset() },
 #if (field.isForeignKey && field.renderType.isInstanceOf[_root_.io.fsq.spindle.codegen.runtime.Container1RenderType])
 <% val elem = field.renderType.asInstanceOf[_root_.io.fsq.spindle.codegen.runtime.Container1RenderType].elem %>
       objSetter = (r: ${cls.name}, obj: Seq[_root_.io.fsq.spindle.runtime.SemitypedHasPrimaryKey[${elem.text}]]) => { r.${field.name}SetObj(obj) },
@@ -57,7 +56,9 @@
       structMeta = ${field.renderType.text},
 #end
       manifest = manifest[${field.renderType.text}]
-    )
+    ) {
+      override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[${cls.name}]): Unit = { r.asInstanceOf[Raw${cls.name}].${field.name}Unset() }
+    }
 #end
 
   override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
