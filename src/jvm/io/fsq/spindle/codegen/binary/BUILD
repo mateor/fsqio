@@ -6,9 +6,9 @@ scala_library(
   dependencies = [
     '3rdparty:argot',
     '3rdparty:scalate',
+    'src/jvm/io/fsq/spindle/__shaded_for_spindle_bootstrap__/runtime',
     'src/jvm/io/fsq/spindle/codegen/parser',
     'src/jvm/io/fsq/spindle/codegen/runtime',
-    'src/jvm/io/fsq/spindle/runtime',
   ],
 )
 

@@ -7,6 +7,6 @@ scala_library(
     '3rdparty:commons-io',
     '3rdparty:thrift',
     'src/jvm/io/fsq/spindle/__shaded_for_spindle_bootstrap__/descriptors',
-    'src/jvm/io/fsq/spindle/runtime',
+    'src/jvm/io/fsq/spindle/__shaded_for_spindle_bootstrap__/runtime',
   ],
 )

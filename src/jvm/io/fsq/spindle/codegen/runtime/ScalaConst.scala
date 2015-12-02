@@ -3,7 +3,7 @@
 package io.fsq.spindle.codegen.runtime
 
 import io.fsq.spindle.__shaded_for_spindle_bootstrap__.descriptors.{Const, ConstProxy}
-import io.fsq.spindle.runtime.Annotations
+import io.fsq.spindle.__shaded_for_spindle_bootstrap__.runtime.Annotations
 
 
 

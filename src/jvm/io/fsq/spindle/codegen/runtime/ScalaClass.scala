@@ -3,7 +3,7 @@
 package io.fsq.spindle.codegen.runtime
 
 import io.fsq.spindle.__shaded_for_spindle_bootstrap__.descriptors.{Struct, StructProxy}
-import io.fsq.spindle.runtime.{IndexParser, InvalidField, InvalidIndex}
+import io.fsq.spindle.__shaded_for_spindle_bootstrap__.runtime.{IndexParser, InvalidField, InvalidIndex}
 
 class ScalaClass(
     override val underlying: Struct,
