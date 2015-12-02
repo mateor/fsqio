@@ -2,8 +2,8 @@
 
 package io.fsq.spindle.codegen.runtime
 
-import io.fsq.spindle.__shaded_for_spindle_bootstrap__.descriptors.{Annotation, TypeRegistry, Typedef}
-import io.fsq.spindle.runtime.Annotations
+import io.fsq.spindle.__shaded_for_spindle_bootstrap__.descriptors.{Annotation, Typedef}
+import io.fsq.spindle.__shaded_for_spindle_bootstrap__.runtime.Annotations
 import scala.annotation.tailrec
 
 /**

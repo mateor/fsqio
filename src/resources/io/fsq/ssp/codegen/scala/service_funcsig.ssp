@@ -1,6 +1,6 @@
 <%
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
-import _root_.io.fsq.spindle.runtime.Annotations
+import _root_.io.fsq.spindle.__shaded_for_spindle_bootstrap__.runtime.Annotations
 import _root_.io.fsq.spindle.codegen.runtime.{RenderType, ScalaFunction, TypeReferenceResolver}
 %>
 <%@ val function: ScalaFunction %>

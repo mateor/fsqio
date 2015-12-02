@@ -2,10 +2,10 @@
 
 package io.fsq.spindle.codegen.binary
 
+import io.fsq.spindle.__shaded_for_spindle_bootstrap__.runtime.Annotations
 import io.fsq.spindle.codegen.parser.{ParserException, ThriftParser}
 import io.fsq.spindle.codegen.runtime.{BitfieldRef, CodegenException, EnhancedTypeRef, EnhancedTypes, ProgramSource,
     ScalaProgram, Scope, TypeDeclaration, TypeDeclarationResolver, TypeReference}
-import io.fsq.spindle.runtime.Annotations
 import java.io.{File, PrintWriter}
 import org.clapper.argot.ArgotConverters._
 import org.clapper.argot.ArgotParser
