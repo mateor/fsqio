@@ -3,7 +3,7 @@
 scala_library(
   name = 'runtime',
   sources = globs('*.scala'),
-  tags = ['fscommon'],
+  tags = ['fscommon', 'spindle_runtime'],
   dependencies = [
     '3rdparty:joda-time',
     '3rdparty:thrift',

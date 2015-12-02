@@ -10,6 +10,7 @@ scala_library(
     'src/jvm/io/fsq/spindle/codegen/parser',
     'src/jvm/io/fsq/spindle/codegen/runtime',
   ],
+  tags = ['dependencies_cannot_have:spindle_runtime'],
 )
 
 
