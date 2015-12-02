@@ -2,9 +2,7 @@
 
 package io.fsq.spindle.runtime
 
-// TODO(dan): Type this with a typesafe id, so we can't accidentally mix it into
-// the wrong thing.
-trait LiftAdapter {
+trait LiftAdapter[Id] {
   def valueFromWireName(name: String): Option[Any]
   def primedObjFromWireName(name: String): Option[AnyRef]
   def primedObjSeqFromWireName(name: String): Seq[AnyRef]

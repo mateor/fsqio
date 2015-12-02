@@ -5,7 +5,7 @@
 %>
 <%@ val cls: StructLike %>
 class ${cls.name}LiftAdapter(
-  val underlyingLift: io.fsq.spindle.runtime.LiftAdapter
+  val underlyingLift: io.fsq.spindle.runtime.LiftAdapter[${cls.primaryKeyField.get.renderType.text}]
 ) extends ${cls.name} {
   override final def meta: ${cls.name}Meta = ${cls.name}
 
