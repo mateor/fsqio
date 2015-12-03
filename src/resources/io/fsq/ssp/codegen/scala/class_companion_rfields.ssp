@@ -34,20 +34,7 @@
       id = ${field.identifier},
       annotations = Map(${field.annotations.toSeq.map(at => "\"%s\" -> \"%s\"".format(at._1, at._2)).mkString(", ")}),
       owner = this,
-#if (field.isForeignKey && field.renderType.isInstanceOf[_root_.io.fsq.spindle.codegen.runtime.Container1RenderType])
-<% val elem = field.renderType.asInstanceOf[_root_.io.fsq.spindle.codegen.runtime.Container1RenderType].elem %>
-      objSetter = (r: ${cls.name}, obj: Seq[_root_.io.fsq.spindle.runtime.SemitypedHasPrimaryKey[${elem.text}]]) => { r.${field.name}SetObj(obj) },
-      objGetter = (r: ${cls.name}, m: _root_.io.fsq.spindle.runtime.UntypedMetaRecord) => { r.${field.name}UntypedFks(m) },
-      unsafeObjGetter = (r: Any) => { r.asInstanceOf[${cls.name}].${field.name}GetObj },
-      alternateObjSetter = (r: ${cls.name}, obj: Seq[AnyRef]) => { r.${field.name}SetAlternateObj(obj) },
-      alternateObjGetter = (r: ${cls.name}) => { r.${field.name}AlternateFks },
-#elseif (field.isForeignKey && !field.renderType.isInstanceOf[_root_.io.fsq.spindle.codegen.runtime.ContainerRenderType])
-      objSetter = (r: ${cls.name}, obj: _root_.io.fsq.spindle.runtime.SemitypedHasPrimaryKey[${field.renderType.text}]) => { r.${field.name}SetObj(obj) },
-      objGetter = (r: ${cls.name}, m: _root_.io.fsq.spindle.runtime.UntypedMetaRecord) => { r.${field.name}UntypedFk(m) },
-      unsafeObjGetter = (r: Any) => { r.asInstanceOf[${cls.name}].${field.name}GetObj },
-      alternateObjSetter = (r: ${cls.name}, obj: AnyRef) => { r.${field.name}SetAlternateObj(obj) },
-      alternateObjGetter = (r: ${cls.name}) => { r.${field.name}AlternateFk },
-#elseif (field.renderType.isInstanceOf[_root_.io.fsq.spindle.codegen.runtime.BitfieldStructRenderType])
+#if (field.renderType.isInstanceOf[_root_.io.fsq.spindle.codegen.runtime.BitfieldStructRenderType])
 <% val structName = field.renderType.asInstanceOf[_root_.io.fsq.spindle.codegen.runtime.BitfieldStructRenderType].className %>
       structMeta = ${structName},
 #elseif (field.renderType.isInstanceOf[_root_.io.fsq.spindle.codegen.runtime.ExceptionRenderType])
@@ -64,6 +51,21 @@
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[${cls.name}]): Unit = { r.asInstanceOf[Raw${cls.name}].${field.name}Unset() }
       override def getter(r: ${cls.name}): Option[${field.renderType.text}] = r.${field.name}Option()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[${cls.name}], v: ${field.renderType.text}): Unit = { r.asInstanceOf[Raw${cls.name}].${field.escapedName}_=(v) }
+#if (field.isForeignKey && field.renderType.isInstanceOf[_root_.io.fsq.spindle.codegen.runtime.Container1RenderType])
+<% val elem = field.renderType.asInstanceOf[_root_.io.fsq.spindle.codegen.runtime.Container1RenderType].elem %>
+      override def objSetter(r: ${cls.name}, obj: Seq[_root_.io.fsq.spindle.runtime.SemitypedHasPrimaryKey[${elem.text}]]): Unit = { r.${field.name}SetObj(obj) }
+      override def objGetter(r: ${cls.name}, m: _root_.io.fsq.spindle.runtime.UntypedMetaRecord): Seq[_root_.io.fsq.spindle.runtime.UntypedRecord with _root_.io.fsq.spindle.runtime.SemitypedHasPrimaryKey[${elem.text}]] =  { r.${field.name}UntypedFks(m) }
+      override def unsafeObjGetter(r: Any): Seq[Any] = { r.asInstanceOf[${cls.name}].${field.name}GetObj }
+      override def alternateObjSetter(r: ${cls.name}, obj: Seq[AnyRef]): Unit = { r.${field.name}SetAlternateObj(obj) }
+      override def alternateObjGetter(r: ${cls.name}): Seq[AnyRef] = { r.${field.name}AlternateFks }
+#elseif (field.isForeignKey && !field.renderType.isInstanceOf[_root_.io.fsq.spindle.codegen.runtime.ContainerRenderType])
+      override def objSetter(r: ${cls.name}, obj: _root_.io.fsq.spindle.runtime.SemitypedHasPrimaryKey[${field.renderType.text}]): Unit = { r.${field.name}SetObj(obj) }
+      override def objGetter(r: ${cls.name}, m: _root_.io.fsq.spindle.runtime.UntypedMetaRecord): Option[_root_.io.fsq.spindle.runtime.UntypedRecord with _root_.io.fsq.spindle.runtime.SemitypedHasPrimaryKey[${field.renderType.text}]] = { r.${field.name}UntypedFk(m) }
+      override def unsafeObjGetter(r: Any): Option[Any] = { r.asInstanceOf[${cls.name}].${field.name}GetObj }
+      override def alternateObjSetter(r: ${cls.name}, obj: AnyRef): Unit = { r.${field.name}SetAlternateObj(obj) }
+      override def alternateObjGetter(r: ${cls.name}): Option[AnyRef] = { r.${field.name}AlternateFk }
+#end
+
 #if (field.renderType.isInstanceOf[_root_.io.fsq.spindle.codegen.runtime.EnumRenderType])
       override def enumMeta: _root_.io.fsq.spindle.runtime.EnumMeta[_] = ${field.renderType.text}
 #end

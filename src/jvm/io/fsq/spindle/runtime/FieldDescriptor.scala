@@ -31,25 +31,25 @@ trait FieldDescriptor[F, R <: Record[R], M <: MetaRecord[R, M]] extends Field[F,
 }
 
 trait UntypedForeignKeyField {
-  def unsafeObjGetter: Any => Option[Any]
+  def unsafeObjGetter(record: Any): Option[Any]
 }
 
 trait ForeignKeyField[F, R <: Record[R]] extends UntypedForeignKeyField {
-  def objSetter: (R, SemitypedHasPrimaryKey[F]) => Unit
-  def objGetter: (R, UntypedMetaRecord) => Option[UntypedRecord with SemitypedHasPrimaryKey[F]]
-  def alternateObjSetter: (R, AnyRef) => Unit
-  def alternateObjGetter: R => Option[AnyRef]
+  def objSetter(record: R, value: SemitypedHasPrimaryKey[F]): Unit
+  def objGetter(record: R, meta: UntypedMetaRecord): Option[UntypedRecord with SemitypedHasPrimaryKey[F]]
+  def alternateObjSetter(record: R, value: AnyRef): Unit
+  def alternateObjGetter(record: R): Option[AnyRef]
 }
 
 trait UntypedForeignKeySeqField {
-  def unsafeObjGetter: Any => Seq[Any]
+  def unsafeObjGetter(record: Any): Seq[Any]
 }
 
 trait ForeignKeySeqField[F, R <: Record[R]] extends UntypedForeignKeySeqField {
-  def objSetter: (R, Seq[SemitypedHasPrimaryKey[F]]) => Unit
-  def objGetter: (R, UntypedMetaRecord) => Seq[UntypedRecord with SemitypedHasPrimaryKey[F]]
-  def alternateObjSetter: (R, Seq[AnyRef]) => Unit
-  def alternateObjGetter: R => Seq[AnyRef]
+  def objSetter(record: R, value: Seq[SemitypedHasPrimaryKey[F]]): Unit
+  def objGetter(record: R, meta: UntypedMetaRecord): Seq[UntypedRecord with SemitypedHasPrimaryKey[F]]
+  def alternateObjSetter(record: R, value: Seq[AnyRef]): Unit
+  def alternateObjGetter(record: R): Seq[AnyRef]
 }
 
 trait UntypedBitfieldField {
@@ -89,11 +89,6 @@ abstract class ForeignKeyFieldDescriptor[F, R <: Record[R], M <: MetaRecord[R, M
     override val id: Int,
     override val annotations: Map[String, String],
     override val owner: M,
-    override val objSetter: (R, SemitypedHasPrimaryKey[F]) => Unit,
-    override val objGetter: (R, UntypedMetaRecord) => Option[UntypedRecord with SemitypedHasPrimaryKey[F]],
-    override val unsafeObjGetter: Any => Option[Any],
-    override val alternateObjSetter: (R, AnyRef) => Unit,
-    override val alternateObjGetter: R => Option[AnyRef],
     override val manifest: Manifest[F]
 ) extends OptionalField[F, M] with FieldDescriptor[F, R, M] with ForeignKeyField[F, R]
 
@@ -103,11 +98,6 @@ abstract class ForeignKeySeqFieldDescriptor[F, R <: Record[R], M <: MetaRecord[R
     override val id: Int,
     override val annotations: Map[String, String],
     override val owner: M,
-    override val objSetter: (R, Seq[SemitypedHasPrimaryKey[F]]) => Unit,
-    override val objGetter: (R, UntypedMetaRecord) => Seq[UntypedRecord with SemitypedHasPrimaryKey[F]],
-    override val unsafeObjGetter: Any => Seq[Any],
-    override val alternateObjSetter: (R, Seq[AnyRef]) => Unit,
-    override val alternateObjGetter: R => Seq[AnyRef],
     override val manifest: Manifest[Seq[F]]
 ) extends OptionalField[Seq[F], M] with FieldDescriptor[Seq[F], R, M] with ForeignKeySeqField[F, R]
 

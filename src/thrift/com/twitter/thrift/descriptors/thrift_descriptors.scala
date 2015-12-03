@@ -264,6 +264,7 @@ class IncludeMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Include]): Unit = { r.asInstanceOf[RawInclude].pathUnset() }
       override def getter(r: Include): Option[String] = r.pathOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Include], v: String): Unit = { r.asInstanceOf[RawInclude].path_=(v) }
+
     }
 
   override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
@@ -685,6 +686,7 @@ class NamespaceMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Namespace]): Unit = { r.asInstanceOf[RawNamespace].languageUnset() }
       override def getter(r: Namespace): Option[String] = r.languageOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Namespace], v: String): Unit = { r.asInstanceOf[RawNamespace].language_=(v) }
+
     }
 
   val name =
@@ -701,6 +703,7 @@ class NamespaceMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Namespace]): Unit = { r.asInstanceOf[RawNamespace].nameUnset() }
       override def getter(r: Namespace): Option[String] = r.nameOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Namespace], v: String): Unit = { r.asInstanceOf[RawNamespace].name_=(v) }
+
     }
 
   override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
@@ -1175,6 +1178,7 @@ class AnnotationMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Annotation]): Unit = { r.asInstanceOf[RawAnnotation].keyUnset() }
       override def getter(r: Annotation): Option[String] = r.keyOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Annotation], v: String): Unit = { r.asInstanceOf[RawAnnotation].key_=(v) }
+
     }
 
   val value =
@@ -1191,6 +1195,7 @@ class AnnotationMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Annotation]): Unit = { r.asInstanceOf[RawAnnotation].valueUnset() }
       override def getter(r: Annotation): Option[String] = r.valueOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Annotation], v: String): Unit = { r.asInstanceOf[RawAnnotation].value_=(v) }
+
     }
 
   override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
@@ -1674,6 +1679,7 @@ class BaseTypeMeta
       override def getter(r: BaseType): Option[com.twitter.thrift.descriptors.SimpleBaseType] = r.simpleBaseTypeOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[BaseType], v: com.twitter.thrift.descriptors.SimpleBaseType): Unit = { r.asInstanceOf[RawBaseType].simpleBaseType_=(v) }
 
+
       override def enumMeta: _root_.io.fsq.spindle.runtime.EnumMeta[_] = com.twitter.thrift.descriptors.SimpleBaseType
     }
 
@@ -1691,6 +1697,7 @@ class BaseTypeMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[BaseType]): Unit = { r.asInstanceOf[RawBaseType].annotationsUnset() }
       override def getter(r: BaseType): Option[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]] = r.annotationsOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[BaseType], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]): Unit = { r.asInstanceOf[RawBaseType].__annotations_=(v) }
+
     }
 
   override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
@@ -2169,6 +2176,7 @@ class ListTypeMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[ListType]): Unit = { r.asInstanceOf[RawListType].elementTypeIdUnset() }
       override def getter(r: ListType): Option[String] = r.elementTypeIdOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[ListType], v: String): Unit = { r.asInstanceOf[RawListType].elementTypeId_=(v) }
+
     }
 
   override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
@@ -2571,6 +2579,7 @@ class SetTypeMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[SetType]): Unit = { r.asInstanceOf[RawSetType].elementTypeIdUnset() }
       override def getter(r: SetType): Option[String] = r.elementTypeIdOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[SetType], v: String): Unit = { r.asInstanceOf[RawSetType].elementTypeId_=(v) }
+
     }
 
   override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
@@ -2992,6 +3001,7 @@ class MapTypeMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[MapType]): Unit = { r.asInstanceOf[RawMapType].keyTypeIdUnset() }
       override def getter(r: MapType): Option[String] = r.keyTypeIdOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[MapType], v: String): Unit = { r.asInstanceOf[RawMapType].keyTypeId_=(v) }
+
     }
 
   val valueTypeId =
@@ -3008,6 +3018,7 @@ class MapTypeMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[MapType]): Unit = { r.asInstanceOf[RawMapType].valueTypeIdUnset() }
       override def getter(r: MapType): Option[String] = r.valueTypeIdOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[MapType], v: String): Unit = { r.asInstanceOf[RawMapType].valueTypeId_=(v) }
+
     }
 
   override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
@@ -3489,6 +3500,7 @@ class ContainerTypeMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[ContainerType]): Unit = { r.asInstanceOf[RawContainerType].simpleContainerTypeUnset() }
       override def getter(r: ContainerType): Option[com.twitter.thrift.descriptors.SimpleContainerType] = r.simpleContainerTypeOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[ContainerType], v: com.twitter.thrift.descriptors.SimpleContainerType): Unit = { r.asInstanceOf[RawContainerType].simpleContainerType_=(v) }
+
     }
 
   val __annotations =
@@ -3505,6 +3517,7 @@ class ContainerTypeMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[ContainerType]): Unit = { r.asInstanceOf[RawContainerType].annotationsUnset() }
       override def getter(r: ContainerType): Option[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]] = r.annotationsOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[ContainerType], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]): Unit = { r.asInstanceOf[RawContainerType].__annotations_=(v) }
+
     }
 
   override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
@@ -3987,6 +4000,7 @@ class TyperefMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Typeref]): Unit = { r.asInstanceOf[RawTyperef].typeAliasUnset() }
       override def getter(r: Typeref): Option[String] = r.typeAliasOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Typeref], v: String): Unit = { r.asInstanceOf[RawTyperef].typeAlias_=(v) }
+
     }
 
   override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
@@ -4408,6 +4422,7 @@ class TypeMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Type]): Unit = { r.asInstanceOf[RawType].idUnset() }
       override def getter(r: Type): Option[String] = r.idOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Type], v: String): Unit = { r.asInstanceOf[RawType].id_=(v) }
+
     }
 
   val simpleType =
@@ -4424,6 +4439,7 @@ class TypeMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Type]): Unit = { r.asInstanceOf[RawType].simpleTypeUnset() }
       override def getter(r: Type): Option[com.twitter.thrift.descriptors.SimpleType] = r.simpleTypeOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Type], v: com.twitter.thrift.descriptors.SimpleType): Unit = { r.asInstanceOf[RawType].simpleType_=(v) }
+
     }
 
   override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
@@ -4930,6 +4946,7 @@ class TypedefMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Typedef]): Unit = { r.asInstanceOf[RawTypedef].typeIdUnset() }
       override def getter(r: Typedef): Option[String] = r.typeIdOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Typedef], v: String): Unit = { r.asInstanceOf[RawTypedef].typeId_=(v) }
+
     }
 
   val typeAlias =
@@ -4946,6 +4963,7 @@ class TypedefMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Typedef]): Unit = { r.asInstanceOf[RawTypedef].typeAliasUnset() }
       override def getter(r: Typedef): Option[String] = r.typeAliasOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Typedef], v: String): Unit = { r.asInstanceOf[RawTypedef].typeAlias_=(v) }
+
     }
 
   val __annotations =
@@ -4962,6 +4980,7 @@ class TypedefMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Typedef]): Unit = { r.asInstanceOf[RawTypedef].annotationsUnset() }
       override def getter(r: Typedef): Option[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]] = r.annotationsOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Typedef], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]): Unit = { r.asInstanceOf[RawTypedef].__annotations_=(v) }
+
     }
 
   override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
@@ -5595,6 +5614,7 @@ class TypeRegistryMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[TypeRegistry]): Unit = { r.asInstanceOf[RawTypeRegistry].idToTypeUnset() }
       override def getter(r: TypeRegistry): Option[scala.collection.immutable.Map[String, com.twitter.thrift.descriptors.Type]] = r.idToTypeOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[TypeRegistry], v: scala.collection.immutable.Map[String, com.twitter.thrift.descriptors.Type]): Unit = { r.asInstanceOf[RawTypeRegistry].idToType_=(v) }
+
     }
 
   val aliasToTypeId =
@@ -5611,6 +5631,7 @@ class TypeRegistryMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[TypeRegistry]): Unit = { r.asInstanceOf[RawTypeRegistry].aliasToTypeIdUnset() }
       override def getter(r: TypeRegistry): Option[scala.collection.immutable.Map[String, String]] = r.aliasToTypeIdOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[TypeRegistry], v: scala.collection.immutable.Map[String, String]): Unit = { r.asInstanceOf[RawTypeRegistry].aliasToTypeId_=(v) }
+
     }
 
   override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
@@ -6154,6 +6175,7 @@ class ConstMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Const]): Unit = { r.asInstanceOf[RawConst].typeIdUnset() }
       override def getter(r: Const): Option[String] = r.typeIdOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Const], v: String): Unit = { r.asInstanceOf[RawConst].typeId_=(v) }
+
     }
 
   val name =
@@ -6170,6 +6192,7 @@ class ConstMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Const]): Unit = { r.asInstanceOf[RawConst].nameUnset() }
       override def getter(r: Const): Option[String] = r.nameOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Const], v: String): Unit = { r.asInstanceOf[RawConst].name_=(v) }
+
     }
 
   val value =
@@ -6186,6 +6209,7 @@ class ConstMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Const]): Unit = { r.asInstanceOf[RawConst].valueUnset() }
       override def getter(r: Const): Option[String] = r.valueOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Const], v: String): Unit = { r.asInstanceOf[RawConst].value_=(v) }
+
     }
 
   override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
@@ -6824,6 +6848,7 @@ class EnumElementMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[EnumElement]): Unit = { r.asInstanceOf[RawEnumElement].nameUnset() }
       override def getter(r: EnumElement): Option[String] = r.nameOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[EnumElement], v: String): Unit = { r.asInstanceOf[RawEnumElement].name_=(v) }
+
     }
 
   val value =
@@ -6840,6 +6865,7 @@ class EnumElementMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[EnumElement]): Unit = { r.asInstanceOf[RawEnumElement].valueUnset() }
       override def getter(r: EnumElement): Option[Int] = r.valueOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[EnumElement], v: Int): Unit = { r.asInstanceOf[RawEnumElement].value_=(v) }
+
     }
 
   val __annotations =
@@ -6856,6 +6882,7 @@ class EnumElementMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[EnumElement]): Unit = { r.asInstanceOf[RawEnumElement].annotationsUnset() }
       override def getter(r: EnumElement): Option[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]] = r.annotationsOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[EnumElement], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]): Unit = { r.asInstanceOf[RawEnumElement].__annotations_=(v) }
+
     }
 
   override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
@@ -7521,6 +7548,7 @@ class EnumMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Enum]): Unit = { r.asInstanceOf[RawEnum].nameUnset() }
       override def getter(r: Enum): Option[String] = r.nameOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Enum], v: String): Unit = { r.asInstanceOf[RawEnum].name_=(v) }
+
     }
 
   val elements =
@@ -7537,6 +7565,7 @@ class EnumMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Enum]): Unit = { r.asInstanceOf[RawEnum].elementsUnset() }
       override def getter(r: Enum): Option[scala.collection.Seq[com.twitter.thrift.descriptors.EnumElement]] = r.elementsOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Enum], v: scala.collection.Seq[com.twitter.thrift.descriptors.EnumElement]): Unit = { r.asInstanceOf[RawEnum].elements_=(v) }
+
     }
 
   val __annotations =
@@ -7553,6 +7582,7 @@ class EnumMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Enum]): Unit = { r.asInstanceOf[RawEnum].annotationsUnset() }
       override def getter(r: Enum): Option[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]] = r.annotationsOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Enum], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]): Unit = { r.asInstanceOf[RawEnum].__annotations_=(v) }
+
     }
 
   override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
@@ -8308,6 +8338,7 @@ class FieldMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Field]): Unit = { r.asInstanceOf[RawField].identifierUnset() }
       override def getter(r: Field): Option[Short] = r.identifierOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Field], v: Short): Unit = { r.asInstanceOf[RawField].identifier_=(v) }
+
     }
 
   val name =
@@ -8324,6 +8355,7 @@ class FieldMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Field]): Unit = { r.asInstanceOf[RawField].nameUnset() }
       override def getter(r: Field): Option[String] = r.nameOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Field], v: String): Unit = { r.asInstanceOf[RawField].name_=(v) }
+
     }
 
   val typeId =
@@ -8340,6 +8372,7 @@ class FieldMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Field]): Unit = { r.asInstanceOf[RawField].typeIdUnset() }
       override def getter(r: Field): Option[String] = r.typeIdOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Field], v: String): Unit = { r.asInstanceOf[RawField].typeId_=(v) }
+
     }
 
   val requiredness =
@@ -8358,6 +8391,7 @@ class FieldMeta
       override def getter(r: Field): Option[com.twitter.thrift.descriptors.Requiredness] = r.requirednessOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Field], v: com.twitter.thrift.descriptors.Requiredness): Unit = { r.asInstanceOf[RawField].requiredness_=(v) }
 
+
       override def enumMeta: _root_.io.fsq.spindle.runtime.EnumMeta[_] = com.twitter.thrift.descriptors.Requiredness
     }
 
@@ -8375,6 +8409,7 @@ class FieldMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Field]): Unit = { r.asInstanceOf[RawField].defaultValueUnset() }
       override def getter(r: Field): Option[String] = r.defaultValueOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Field], v: String): Unit = { r.asInstanceOf[RawField].defaultValue_=(v) }
+
     }
 
   val __annotations =
@@ -8391,6 +8426,7 @@ class FieldMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Field]): Unit = { r.asInstanceOf[RawField].annotationsUnset() }
       override def getter(r: Field): Option[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]] = r.annotationsOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Field], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]): Unit = { r.asInstanceOf[RawField].__annotations_=(v) }
+
     }
 
   override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
@@ -9248,6 +9284,7 @@ class StructMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Struct]): Unit = { r.asInstanceOf[RawStruct].nameUnset() }
       override def getter(r: Struct): Option[String] = r.nameOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Struct], v: String): Unit = { r.asInstanceOf[RawStruct].name_=(v) }
+
     }
 
   val __fields =
@@ -9264,6 +9301,7 @@ class StructMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Struct]): Unit = { r.asInstanceOf[RawStruct].fieldsUnset() }
       override def getter(r: Struct): Option[scala.collection.Seq[com.twitter.thrift.descriptors.Field]] = r.fieldsOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Struct], v: scala.collection.Seq[com.twitter.thrift.descriptors.Field]): Unit = { r.asInstanceOf[RawStruct].__fields_=(v) }
+
     }
 
   val __annotations =
@@ -9280,6 +9318,7 @@ class StructMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Struct]): Unit = { r.asInstanceOf[RawStruct].annotationsUnset() }
       override def getter(r: Struct): Option[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]] = r.annotationsOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Struct], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]): Unit = { r.asInstanceOf[RawStruct].__annotations_=(v) }
+
     }
 
   override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
@@ -9964,6 +10003,7 @@ class UnionMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Union]): Unit = { r.asInstanceOf[RawUnion].nameUnset() }
       override def getter(r: Union): Option[String] = r.nameOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Union], v: String): Unit = { r.asInstanceOf[RawUnion].name_=(v) }
+
     }
 
   val __fields =
@@ -9980,6 +10020,7 @@ class UnionMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Union]): Unit = { r.asInstanceOf[RawUnion].fieldsUnset() }
       override def getter(r: Union): Option[scala.collection.Seq[com.twitter.thrift.descriptors.Field]] = r.fieldsOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Union], v: scala.collection.Seq[com.twitter.thrift.descriptors.Field]): Unit = { r.asInstanceOf[RawUnion].__fields_=(v) }
+
     }
 
   val __annotations =
@@ -9996,6 +10037,7 @@ class UnionMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Union]): Unit = { r.asInstanceOf[RawUnion].annotationsUnset() }
       override def getter(r: Union): Option[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]] = r.annotationsOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Union], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]): Unit = { r.asInstanceOf[RawUnion].__annotations_=(v) }
+
     }
 
   override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
@@ -10680,6 +10722,7 @@ class ExceptionMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Exception]): Unit = { r.asInstanceOf[RawException].nameUnset() }
       override def getter(r: Exception): Option[String] = r.nameOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Exception], v: String): Unit = { r.asInstanceOf[RawException].name_=(v) }
+
     }
 
   val __fields =
@@ -10696,6 +10739,7 @@ class ExceptionMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Exception]): Unit = { r.asInstanceOf[RawException].fieldsUnset() }
       override def getter(r: Exception): Option[scala.collection.Seq[com.twitter.thrift.descriptors.Field]] = r.fieldsOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Exception], v: scala.collection.Seq[com.twitter.thrift.descriptors.Field]): Unit = { r.asInstanceOf[RawException].__fields_=(v) }
+
     }
 
   val __annotations =
@@ -10712,6 +10756,7 @@ class ExceptionMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Exception]): Unit = { r.asInstanceOf[RawException].annotationsUnset() }
       override def getter(r: Exception): Option[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]] = r.annotationsOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Exception], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]): Unit = { r.asInstanceOf[RawException].__annotations_=(v) }
+
     }
 
   override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
@@ -11467,6 +11512,7 @@ class FunctionMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Function]): Unit = { r.asInstanceOf[RawFunction].nameUnset() }
       override def getter(r: Function): Option[String] = r.nameOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Function], v: String): Unit = { r.asInstanceOf[RawFunction].name_=(v) }
+
     }
 
   val returnTypeId =
@@ -11483,6 +11529,7 @@ class FunctionMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Function]): Unit = { r.asInstanceOf[RawFunction].returnTypeIdUnset() }
       override def getter(r: Function): Option[String] = r.returnTypeIdOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Function], v: String): Unit = { r.asInstanceOf[RawFunction].returnTypeId_=(v) }
+
     }
 
   val oneWay =
@@ -11499,6 +11546,7 @@ class FunctionMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Function]): Unit = { r.asInstanceOf[RawFunction].oneWayUnset() }
       override def getter(r: Function): Option[Boolean] = r.oneWayOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Function], v: Boolean): Unit = { r.asInstanceOf[RawFunction].oneWay_=(v) }
+
     }
 
   val argz =
@@ -11515,6 +11563,7 @@ class FunctionMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Function]): Unit = { r.asInstanceOf[RawFunction].argzUnset() }
       override def getter(r: Function): Option[scala.collection.Seq[com.twitter.thrift.descriptors.Field]] = r.argzOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Function], v: scala.collection.Seq[com.twitter.thrift.descriptors.Field]): Unit = { r.asInstanceOf[RawFunction].argz_=(v) }
+
     }
 
   val throwz =
@@ -11531,6 +11580,7 @@ class FunctionMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Function]): Unit = { r.asInstanceOf[RawFunction].throwzUnset() }
       override def getter(r: Function): Option[scala.collection.Seq[com.twitter.thrift.descriptors.Field]] = r.throwzOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Function], v: scala.collection.Seq[com.twitter.thrift.descriptors.Field]): Unit = { r.asInstanceOf[RawFunction].throwz_=(v) }
+
     }
 
   val __annotations =
@@ -11547,6 +11597,7 @@ class FunctionMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Function]): Unit = { r.asInstanceOf[RawFunction].annotationsUnset() }
       override def getter(r: Function): Option[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]] = r.annotationsOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Function], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]): Unit = { r.asInstanceOf[RawFunction].__annotations_=(v) }
+
     }
 
   override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
@@ -12479,6 +12530,7 @@ class ServiceMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Service]): Unit = { r.asInstanceOf[RawService].nameUnset() }
       override def getter(r: Service): Option[String] = r.nameOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Service], v: String): Unit = { r.asInstanceOf[RawService].name_=(v) }
+
     }
 
   val extendz =
@@ -12495,6 +12547,7 @@ class ServiceMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Service]): Unit = { r.asInstanceOf[RawService].extendzUnset() }
       override def getter(r: Service): Option[String] = r.extendzOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Service], v: String): Unit = { r.asInstanceOf[RawService].extendz_=(v) }
+
     }
 
   val functions =
@@ -12511,6 +12564,7 @@ class ServiceMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Service]): Unit = { r.asInstanceOf[RawService].functionsUnset() }
       override def getter(r: Service): Option[scala.collection.Seq[com.twitter.thrift.descriptors.Function]] = r.functionsOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Service], v: scala.collection.Seq[com.twitter.thrift.descriptors.Function]): Unit = { r.asInstanceOf[RawService].functions_=(v) }
+
     }
 
   val __annotations =
@@ -12527,6 +12581,7 @@ class ServiceMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Service]): Unit = { r.asInstanceOf[RawService].annotationsUnset() }
       override def getter(r: Service): Option[scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]] = r.annotationsOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Service], v: scala.collection.Seq[com.twitter.thrift.descriptors.Annotation]): Unit = { r.asInstanceOf[RawService].__annotations_=(v) }
+
     }
 
   override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
@@ -13463,6 +13518,7 @@ class ProgramMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Program]): Unit = { r.asInstanceOf[RawProgram].namespacesUnset() }
       override def getter(r: Program): Option[scala.collection.Seq[com.twitter.thrift.descriptors.Namespace]] = r.namespacesOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Program], v: scala.collection.Seq[com.twitter.thrift.descriptors.Namespace]): Unit = { r.asInstanceOf[RawProgram].namespaces_=(v) }
+
     }
 
   val includes =
@@ -13479,6 +13535,7 @@ class ProgramMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Program]): Unit = { r.asInstanceOf[RawProgram].includesUnset() }
       override def getter(r: Program): Option[scala.collection.Seq[com.twitter.thrift.descriptors.Include]] = r.includesOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Program], v: scala.collection.Seq[com.twitter.thrift.descriptors.Include]): Unit = { r.asInstanceOf[RawProgram].includes_=(v) }
+
     }
 
   val constants =
@@ -13495,6 +13552,7 @@ class ProgramMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Program]): Unit = { r.asInstanceOf[RawProgram].constantsUnset() }
       override def getter(r: Program): Option[scala.collection.Seq[com.twitter.thrift.descriptors.Const]] = r.constantsOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Program], v: scala.collection.Seq[com.twitter.thrift.descriptors.Const]): Unit = { r.asInstanceOf[RawProgram].constants_=(v) }
+
     }
 
   val enums =
@@ -13511,6 +13569,7 @@ class ProgramMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Program]): Unit = { r.asInstanceOf[RawProgram].enumsUnset() }
       override def getter(r: Program): Option[scala.collection.Seq[com.twitter.thrift.descriptors.Enum]] = r.enumsOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Program], v: scala.collection.Seq[com.twitter.thrift.descriptors.Enum]): Unit = { r.asInstanceOf[RawProgram].enums_=(v) }
+
     }
 
   val typedefs =
@@ -13527,6 +13586,7 @@ class ProgramMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Program]): Unit = { r.asInstanceOf[RawProgram].typedefsUnset() }
       override def getter(r: Program): Option[scala.collection.Seq[com.twitter.thrift.descriptors.Typedef]] = r.typedefsOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Program], v: scala.collection.Seq[com.twitter.thrift.descriptors.Typedef]): Unit = { r.asInstanceOf[RawProgram].typedefs_=(v) }
+
     }
 
   val structs =
@@ -13543,6 +13603,7 @@ class ProgramMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Program]): Unit = { r.asInstanceOf[RawProgram].structsUnset() }
       override def getter(r: Program): Option[scala.collection.Seq[com.twitter.thrift.descriptors.Struct]] = r.structsOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Program], v: scala.collection.Seq[com.twitter.thrift.descriptors.Struct]): Unit = { r.asInstanceOf[RawProgram].structs_=(v) }
+
     }
 
   val unions =
@@ -13559,6 +13620,7 @@ class ProgramMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Program]): Unit = { r.asInstanceOf[RawProgram].unionsUnset() }
       override def getter(r: Program): Option[scala.collection.Seq[com.twitter.thrift.descriptors.Union]] = r.unionsOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Program], v: scala.collection.Seq[com.twitter.thrift.descriptors.Union]): Unit = { r.asInstanceOf[RawProgram].unions_=(v) }
+
     }
 
   val exceptions =
@@ -13575,6 +13637,7 @@ class ProgramMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Program]): Unit = { r.asInstanceOf[RawProgram].exceptionsUnset() }
       override def getter(r: Program): Option[scala.collection.Seq[com.twitter.thrift.descriptors.Exception]] = r.exceptionsOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Program], v: scala.collection.Seq[com.twitter.thrift.descriptors.Exception]): Unit = { r.asInstanceOf[RawProgram].exceptions_=(v) }
+
     }
 
   val services =
@@ -13591,6 +13654,7 @@ class ProgramMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Program]): Unit = { r.asInstanceOf[RawProgram].servicesUnset() }
       override def getter(r: Program): Option[scala.collection.Seq[com.twitter.thrift.descriptors.Service]] = r.servicesOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Program], v: scala.collection.Seq[com.twitter.thrift.descriptors.Service]): Unit = { r.asInstanceOf[RawProgram].services_=(v) }
+
     }
 
   val typeRegistry =
@@ -13607,6 +13671,7 @@ class ProgramMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Program]): Unit = { r.asInstanceOf[RawProgram].typeRegistryUnset() }
       override def getter(r: Program): Option[com.twitter.thrift.descriptors.TypeRegistry] = r.typeRegistryOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[Program], v: com.twitter.thrift.descriptors.TypeRegistry): Unit = { r.asInstanceOf[RawProgram].typeRegistry_=(v) }
+
     }
 
   override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
@@ -14928,6 +14993,7 @@ class SimpleContainerTypeMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[SimpleContainerType]): Unit = { r.asInstanceOf[RawSimpleContainerType].listTypeUnset() }
       override def getter(r: SimpleContainerType): Option[com.twitter.thrift.descriptors.ListType] = r.listTypeOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[SimpleContainerType], v: com.twitter.thrift.descriptors.ListType): Unit = { r.asInstanceOf[RawSimpleContainerType].listType_=(v) }
+
     }
 
   val setType =
@@ -14944,6 +15010,7 @@ class SimpleContainerTypeMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[SimpleContainerType]): Unit = { r.asInstanceOf[RawSimpleContainerType].setTypeUnset() }
       override def getter(r: SimpleContainerType): Option[com.twitter.thrift.descriptors.SetType] = r.setTypeOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[SimpleContainerType], v: com.twitter.thrift.descriptors.SetType): Unit = { r.asInstanceOf[RawSimpleContainerType].setType_=(v) }
+
     }
 
   val mapType =
@@ -14960,6 +15027,7 @@ class SimpleContainerTypeMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[SimpleContainerType]): Unit = { r.asInstanceOf[RawSimpleContainerType].mapTypeUnset() }
       override def getter(r: SimpleContainerType): Option[com.twitter.thrift.descriptors.MapType] = r.mapTypeOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[SimpleContainerType], v: com.twitter.thrift.descriptors.MapType): Unit = { r.asInstanceOf[RawSimpleContainerType].mapType_=(v) }
+
     }
 
   override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
@@ -15533,6 +15601,7 @@ class SimpleTypeMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[SimpleType]): Unit = { r.asInstanceOf[RawSimpleType].baseTypeUnset() }
       override def getter(r: SimpleType): Option[com.twitter.thrift.descriptors.BaseType] = r.baseTypeOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[SimpleType], v: com.twitter.thrift.descriptors.BaseType): Unit = { r.asInstanceOf[RawSimpleType].baseType_=(v) }
+
     }
 
   val containerType =
@@ -15549,6 +15618,7 @@ class SimpleTypeMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[SimpleType]): Unit = { r.asInstanceOf[RawSimpleType].containerTypeUnset() }
       override def getter(r: SimpleType): Option[com.twitter.thrift.descriptors.ContainerType] = r.containerTypeOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[SimpleType], v: com.twitter.thrift.descriptors.ContainerType): Unit = { r.asInstanceOf[RawSimpleType].containerType_=(v) }
+
     }
 
   val typeref =
@@ -15565,6 +15635,7 @@ class SimpleTypeMeta
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[SimpleType]): Unit = { r.asInstanceOf[RawSimpleType].typerefUnset() }
       override def getter(r: SimpleType): Option[com.twitter.thrift.descriptors.Typeref] = r.typerefOption()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[SimpleType], v: com.twitter.thrift.descriptors.Typeref): Unit = { r.asInstanceOf[RawSimpleType].typeref_=(v) }
+
     }
 
   override def untypedFields: Seq[_root_.io.fsq.spindle.runtime.UntypedFieldDescriptor] = fields
