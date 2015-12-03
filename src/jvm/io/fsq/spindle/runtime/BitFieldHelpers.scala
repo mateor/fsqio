@@ -25,9 +25,8 @@ object BitFieldHelpers {
     val result = meta.createRawRecord
 
     meta.fields.foreach((field: FieldDescriptor[_, _, _]) => {
-      val setter = field.setterRaw.asInstanceOf[(MutableRecord[R], Boolean) => Unit]
       if (getIsSet(bitfield, field.id - 1)) {
-        setter(result, getValue(bitfield, field.id - 1))
+        field.unsafeSetterRaw(result, getValue(bitfield, field.id - 1))
       }
     })
 
@@ -38,11 +37,10 @@ object BitFieldHelpers {
     val meta = struct.meta
     verifyMeta(meta, 16)
     meta.fields.map((field: FieldDescriptor[_, _, _]) => {
-      val getter = field.getter.asInstanceOf[struct.type => Option[Boolean]]
       val bitIndex = (field.id - 1)
-      val valueOpt = getter(struct)
+      val valueOpt = field.unsafeGetterOption(struct)
       val (v, isSet) = valueOpt match {
-        case Some(v) => (if (v) 1 else 0, 1)
+        case Some(v: Boolean) => (if (v) 1 else 0, 1)
         case _ => (0, 0)
       }
       val isSetMask: Int = (isSet << (bitIndex + 16))
@@ -73,9 +71,8 @@ object BitFieldHelpers {
     val result = meta.createRawRecord
 
     meta.fields.foreach((field: FieldDescriptor[_, _, _]) => {
-      val setter = field.setterRaw.asInstanceOf[(MutableRecord[R], Boolean) => Unit]
       if (getLongIsSet(bitfield, field.id - 1)) {
-        setter(result, getLongValue(bitfield, field.id - 1))
+        field.unsafeSetterRaw(result, getLongValue(bitfield, field.id - 1))
       }
     })
 
@@ -86,11 +83,10 @@ object BitFieldHelpers {
     val meta = struct.meta
     verifyMeta(meta, 31)
     meta.fields.map((field: FieldDescriptor[_, _, _]) => {
-      val getter = field.getter.asInstanceOf[struct.type => Option[Boolean]]
       val bitIndex = (field.id - 1)
-      val valueOpt = getter(struct)
+      val valueOpt = field.unsafeGetterOption(struct)
       val (v, isSet) = valueOpt match {
-        case Some(v) => (if (v) 1L else 0L, 1L)
+        case Some(v: Boolean) => (if (v) 1L else 0L, 1L)
         case _ => (0L, 0L)
       }
       val isSetMask = (isSet << (bitIndex + 32))
@@ -110,8 +106,7 @@ object BitFieldHelpers {
     val result = meta.createRawRecord
 
     meta.fields.foreach((field: FieldDescriptor[_, _, _]) => {
-      val setter = field.setterRaw.asInstanceOf[(MutableRecord[R], Boolean) => Unit]
-      setter(result, getValueNoSetBits(bitfield, field.id - 1))
+      field.unsafeSetterRaw(result, getValueNoSetBits(bitfield, field.id - 1))
     })
 
     result.asInstanceOf[R]
@@ -121,9 +116,8 @@ object BitFieldHelpers {
     val meta = struct.meta
     verifyMeta(meta, 32)
     meta.fields.map((field: FieldDescriptor[_, _, _]) => {
-      val getter = field.getter.asInstanceOf[struct.type => Option[Boolean]]
       val bitIndex = (field.id - 1)
-      val value = getter(struct) match {
+      val value = field.unsafeGetterOption(struct) match {
         case Some(true) => 1
         case _ => 0
       }
@@ -143,8 +137,7 @@ object BitFieldHelpers {
     val result = meta.createRawRecord
 
     meta.fields.foreach((field: FieldDescriptor[_, _, _]) => {
-      val setter = field.setterRaw.asInstanceOf[(MutableRecord[R], Boolean) => Unit]
-      setter(result, getLongValueNoSetBits(bitfield, field.id - 1))
+      field.unsafeSetterRaw(result, getLongValueNoSetBits(bitfield, field.id - 1))
     })
 
     result.asInstanceOf[R]
@@ -154,9 +147,8 @@ object BitFieldHelpers {
     val meta = struct.meta
     verifyMeta(meta, 64)
     meta.fields.map((field: FieldDescriptor[_, _, _]) => {
-      val getter = field.getter.asInstanceOf[struct.type => Option[Boolean]]
       val bitIndex = (field.id - 1)
-      val value = getter(struct) match {
+      val value = field.unsafeGetterOption(struct) match {
         case Some(true) => 1L
         case _ => 0L
       }

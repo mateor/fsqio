@@ -32,8 +32,6 @@
       id = ${field.identifier},
       annotations = Map(${field.annotations.toSeq.map(at => "\"%s\" -> \"%s\"".format(at._1, at._2)).mkString(", ")}),
       owner = this,
-      getter = _.${field.name}Option,
-      setterRaw = (r: _root_.io.fsq.spindle.runtime.MutableRecord[${cls.name}], v: ${field.renderType.text}) => { r.asInstanceOf[Raw${cls.name}].${field.escapedName}_=(v) },
 #if (field.isForeignKey && field.renderType.isInstanceOf[_root_.io.fsq.spindle.codegen.runtime.Container1RenderType])
 <% val elem = field.renderType.asInstanceOf[_root_.io.fsq.spindle.codegen.runtime.Container1RenderType].elem %>
       objSetter = (r: ${cls.name}, obj: Seq[_root_.io.fsq.spindle.runtime.SemitypedHasPrimaryKey[${elem.text}]]) => { r.${field.name}SetObj(obj) },
@@ -58,6 +56,8 @@
       manifest = manifest[${field.renderType.text}]
     ) {
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[${cls.name}]): Unit = { r.asInstanceOf[Raw${cls.name}].${field.name}Unset() }
+      override def getter(r: ${cls.name}): Option[${field.renderType.text}] = r.${field.name}Option()
+      override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[${cls.name}], v: ${field.renderType.text}): Unit = { r.asInstanceOf[Raw${cls.name}].${field.escapedName}_=(v) }
     }
 #end
 
