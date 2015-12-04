@@ -341,6 +341,7 @@ class GeocoderHttpService(geocoder: Geocoder.ServiceIface) extends Service[HttpR
         fixedJson = fixLongArray("longIds", fixedJson)
         fixedJson = fixLongArray("s2Covering", fixedJson)
         fixedJson = fixLongArray("s2Interior", fixedJson)
+        fixedJson = fixLongArray("relatedLongIds", fixedJson)
 
         callback.map(cb => {
           val sb = new StringBuilder(fixedJson.size + cb.size + 10)
