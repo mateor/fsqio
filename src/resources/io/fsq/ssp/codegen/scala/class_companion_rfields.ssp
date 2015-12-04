@@ -24,6 +24,8 @@
     new _root_.io.fsq.spindle.runtime.ExceptionFieldDescriptor[${cls.name}, ${cls.name}Meta, ${field.renderType.text}.Struct, ${field.renderType.text}.StructMeta, ${field.renderType.text}](
 #elseif (field.renderType.isInstanceOf[_root_.io.fsq.spindle.codegen.runtime.StructRenderType])
     new _root_.io.fsq.spindle.runtime.StructFieldDescriptor[${cls.name}, ${cls.name}Meta, ${field.renderType.text}, ${field.renderType.text}Meta](
+#elseif (field.renderType.isInstanceOf[_root_.io.fsq.spindle.codegen.runtime.EnumRenderType])
+    new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[${field.renderType.text}, ${cls.name}, ${cls.name}Meta](
 #else
     new _root_.io.fsq.spindle.runtime.OptionalFieldDescriptor[${field.renderType.text}, ${cls.name}, ${cls.name}Meta](
 #end
@@ -54,10 +56,17 @@
       structMeta = ${field.renderType.text},
 #end
       manifest = manifest[${field.renderType.text}]
-    ) {
+    )
+#if (field.renderType.isInstanceOf[_root_.io.fsq.spindle.codegen.runtime.EnumRenderType])
+    with _root_.io.fsq.spindle.runtime.EnumField
+#end
+    {
       override def unsetterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[${cls.name}]): Unit = { r.asInstanceOf[Raw${cls.name}].${field.name}Unset() }
       override def getter(r: ${cls.name}): Option[${field.renderType.text}] = r.${field.name}Option()
       override def setterRaw(r: _root_.io.fsq.spindle.runtime.MutableRecord[${cls.name}], v: ${field.renderType.text}): Unit = { r.asInstanceOf[Raw${cls.name}].${field.escapedName}_=(v) }
+#if (field.renderType.isInstanceOf[_root_.io.fsq.spindle.codegen.runtime.EnumRenderType])
+      override def enumMeta: _root_.io.fsq.spindle.runtime.EnumMeta[_] = ${field.renderType.text}
+#end
     }
 #end
 
