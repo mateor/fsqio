@@ -52,6 +52,9 @@ class TBSONBinaryProtocol() extends TProtocol(null) {
   def errorCode = _errorCode
 
   def setSource(is: InputStream): TBSONBinaryProtocol = {
+    _errorMessage = null
+    _errorCode = 0
+    readStack.clear()
     inputStream = is
     this
   }
