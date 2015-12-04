@@ -202,7 +202,11 @@ class StructReadState(inputStream: InputStream, buffer: ByteStringBuilder) exten
   }
 
   def readI64(): Long = {
-    enforceLastFieldType(BSON.NUMBER_LONG)
+    if (BSON.NUMBER_LONG != lastFieldType && BSON.DATE != lastFieldType) {
+      throw new TException(
+        s"Unexpected field type for i64. Must be a BSON.NUMBER_LONG or BSON.DATE, but was a $lastFieldType"
+      )
+    }
     bytesRead += 8
     StreamHelper.readLong(inputStream)
   }

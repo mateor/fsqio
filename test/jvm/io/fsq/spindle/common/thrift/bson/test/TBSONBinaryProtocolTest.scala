@@ -8,25 +8,33 @@ import io.fsq.spindle.common.thrift.bson.{TBSONBinaryProtocol, TBSONObjectProtoc
 import io.fsq.spindle.runtime.UntypedRecord
 import java.io.ByteArrayInputStream
 import java.nio.ByteBuffer
+import org.apache.thrift.TException
 import org.bson.BasicBSONEncoder
 import org.junit._
 
 class TBSONBinaryProtocolTest {
 
-  def assertRoundTrip(record: UntypedRecord) {
+  def writeStructToDboBytes(record: UntypedRecord): Array[Byte] = {
     val protocolFactory = new TBSONObjectProtocol.WriterFactoryForDBObject
     val writeProtocol = protocolFactory.getProtocol
     record.write(writeProtocol)
     val dbo = writeProtocol.getOutput.asInstanceOf[DBObject]
-
     val encoder = new BasicBSONEncoder()
-    val bytes: Array[Byte] = encoder.encode(dbo)
+    encoder.encode(dbo)
+  }
+
+  def encodeDboToBytes(dbo: DBObject): Array[Byte] = {
+    val encoder = new BasicBSONEncoder()
+    encoder.encode(dbo)
+  }
+
+  def assertRoundTrip(record: UntypedRecord): Unit = {
+    val bytes: Array[Byte] = writeStructToDboBytes(record)
     val newRecord = record.meta.createUntypedRawRecord
     val protocol = new TBSONBinaryProtocol()
     protocol.setSource(new ByteArrayInputStream(bytes))
     newRecord.read(protocol)
     Assert.assertEquals(record, newRecord)
-
   }
 
   @Test
@@ -77,14 +85,52 @@ class TBSONBinaryProtocolTest {
   def testMongoError {
     val message = "Things have gone very poorly"
     val dbo: DBObject = BasicDBObjectBuilder.start().add("$err", message).add("code", 123).get
-    val encoder = new BasicBSONEncoder()
-    val bytes: Array[Byte] = encoder.encode(dbo)
     val newRecord = new RawTestStruct()
     val protocol = new TBSONBinaryProtocol()
-    protocol.setSource(new ByteArrayInputStream(bytes))
+    protocol.setSource(new ByteArrayInputStream(encodeDboToBytes(dbo)))
     newRecord.read(protocol)
     Assert.assertEquals(message, protocol.errorMessage)
     Assert.assertEquals(123, protocol.errorCode)
+  }
+
+  @Test(expected=classOf[TException])
+  def testMistypedMongoField {
+    val dbo: DBObject = BasicDBObjectBuilder.start().add("aBool", 1).get
+    val newRecord = new RawTestStruct()
+    val protocol = new TBSONBinaryProtocol()
+    protocol.setSource(new ByteArrayInputStream(encodeDboToBytes(dbo)))
+    newRecord.read(protocol)
+  }
+
+  @Test
+  def testDecodeDateAsI64 {
+    val date = new java.util.Date()
+    val dbo: DBObject = BasicDBObjectBuilder.start().add("anI64", date).get
+    val newRecord = new RawTestStruct()
+    val protocol = new TBSONBinaryProtocol()
+    protocol.setSource(new ByteArrayInputStream(encodeDboToBytes(dbo)))
+    newRecord.read(protocol)
+    Assert.assertEquals(date.getTime, newRecord.anI64)
+  }
+
+  @Test
+  def testShouldReadBsonFully {
+    val struct = TestStruct.newBuilder
+      .aByte(12.toByte)
+      .anI16(1234.toShort)
+      .aBool(true)
+      .result()
+
+    val newRecord = new RawTestStructNoBoolNoUnknownFieldsTracking()
+    val protocol = new TBSONBinaryProtocol()
+    val is = new ByteArrayInputStream(writeStructToDboBytes(struct))
+    protocol.setSource(is)
+    newRecord.read(protocol)
+    Assert.assertEquals(
+      TestStructNoBoolNoUnknownFieldsTracking.newBuilder.aByte(12.toByte).anI16(1234.toShort).result(),
+      newRecord
+    )
+    Assert.assertEquals("Shouldn't have any bytes left even if a field is missing", 0, is.available)
   }
 
 }
