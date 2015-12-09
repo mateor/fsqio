@@ -9,12 +9,14 @@ import io.fsq.rogue.LatLong
 class LatLngHacc(val value: Long) {
   val ll: LatLong = LatLngHacc.toLatLong(value)
   val haccOpt: Option[Int] = LatLngHacc.toHacc(value)
-  val cellId: S2CellId = new S2CellId(value)
+  val cellId: S2CellId = LatLngHacc.toCellId(value)
 }
 
 object LatLngHacc {
   val HaccMask: Long = 0x0000000000000FFF
   val Level = 24
+
+  def toCellId(v: Long): S2CellId = new S2CellId(v & ~HaccMask)
 
   def toLatLong(v: Long): LatLong = {
     val center = new S2LatLng(new S2Cell(new S2CellId(v).parent(Level)).getCenter)
