@@ -6,9 +6,12 @@
 <%@ val cls: StructLike %>
 <%@ val field: ScalaField %>
 <% render("lift_adapter_primitive.ssp", Map("field" -> field)) %>
-  override final def ${field.name}CellId: com.google.common.geometry.S2CellId = new com.google.common.geometry.S2CellId(${field.escapedName})
-  override final def ${field.name}CellIdOption: Option[com.google.common.geometry.S2CellId] = ${field.name}Option.map(new com.google.common.geometry.S2CellId(_))
 #if (field.annotations.contains("latlnghacc"))
-  override final def ${field.name}LatLngHacc: io.fsq.spindle.enhanced.LatLngHacc = new io.fsq.spindle.enhanced.LatLngHacc(${field.escapedName})
-  override final def ${field.name}LatLngHaccOption: Option[io.fsq.spindle.enhanced.LatLngHacc] = ${field.name}Option.map(new io.fsq.spindle.enhanced.LatLngHacc(_))
+  override def ${field.name}CellId: com.google.common.geometry.S2CellId = io.fsq.spindle.enhanced.LatLngHacc.toCellId(${field.escapedName})
+  override def ${field.name}CellIdOption: Option[com.google.common.geometry.S2CellId] = ${field.name}Option.map(io.fsq.spindle.enhanced.LatLngHacc.toCellId(_))
+  override def ${field.name}LatLngHacc: io.fsq.spindle.enhanced.LatLngHacc = new io.fsq.spindle.enhanced.LatLngHacc(${field.escapedName})
+  override def ${field.name}LatLngHaccOption: Option[io.fsq.spindle.enhanced.LatLngHacc] = ${field.name}Option.map(new io.fsq.spindle.enhanced.LatLngHacc(_))
+#else
+  override def ${field.name}CellId: com.google.common.geometry.S2CellId = new com.google.common.geometry.S2CellId(${field.escapedName})
+  override def ${field.name}CellIdOption: Option[com.google.common.geometry.S2CellId] = ${field.name}Option.map(new com.google.common.geometry.S2CellId(_))
 #end
