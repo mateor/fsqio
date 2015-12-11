@@ -4,11 +4,11 @@
 # Pass variables to children
 set -a
 
-# Use the presence of the 'scripts/upkeep/tasks' folder to determine if we are in foursquare-commons
+# Use the presence of the 'scripts/upkeep/tasks' folder to determine if we are in in the Opensource repo.
 if [[ -e scripts/upkeep/tasks ]]; then
   TASKS='tasks'
 else
-  TASKS='commons-tasks'
+  TASKS='opensource-tasks'
 fi
 
 # Symlink the proper environmental variables script to the buildroot.
