@@ -133,4 +133,24 @@ class TBSONBinaryProtocolTest {
     Assert.assertEquals("Shouldn't have any bytes left even if a field is missing", 0, is.available)
   }
 
+  @Test
+  def testNullValues {
+    val dbo: DBObject = BasicDBObjectBuilder.start()
+      .add("aString", null)
+      .add("anI32", null)
+      .add("aStruct", null)
+      .add("aList", null)
+      .add("anI16", 1234)
+      .get
+    val newRecord = new RawTestStruct()
+    val protocol = new TBSONBinaryProtocol()
+    protocol.setSource(new ByteArrayInputStream(encodeDboToBytes(dbo)))
+    newRecord.read(protocol)
+    Assert.assertEquals(None, newRecord.aStringOption)
+    Assert.assertEquals(None, newRecord.anI32Option)
+    Assert.assertEquals(None, newRecord.aStructOption)
+    Assert.assertEquals(None, newRecord.aListOption)
+    Assert.assertEquals(1234.toShort, newRecord.anI16)
+  }
+
 }
