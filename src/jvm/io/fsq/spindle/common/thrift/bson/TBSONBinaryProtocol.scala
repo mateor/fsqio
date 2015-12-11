@@ -130,12 +130,19 @@ class TBSONBinaryProtocol() extends TProtocol(null) {
 
   def readFieldBegin(): TField = {
     val readState = checkReadState(readStack.peek(), classOf[StructReadState])
-    if (readState.hasAnotherField) {
-      readState.readFieldType()
-      new TField(readState.lastFieldName, getTType(readState.lastFieldType), -1)
-    } else {
-      TBSONBinaryProtocol.NO_MORE_FIELDS
+    def findNonNullField: TField = {
+      if (readState.hasAnotherField) {
+        readState.readFieldType()
+        if (readState.lastFieldType == BSON.NULL) {
+          findNonNullField
+        } else {
+          new TField(readState.lastFieldName, getTType(readState.lastFieldType), -1)
+        }
+      } else {
+        TBSONBinaryProtocol.NO_MORE_FIELDS
+      }
     }
+    findNonNullField
   }
 
   def readFieldEnd(): Unit = {
