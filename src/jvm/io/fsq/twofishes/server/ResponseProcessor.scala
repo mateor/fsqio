@@ -435,17 +435,26 @@ class ResponseProcessor(
     val interpretations = sortedParses.map(p => {
       val parseLength = p.tokenLength
 
+      val isWhereBeforeWhatParse = parseLength < tokens.size && p.headOption.exists(f => f.tokenStart =? 0)
       val what = if (hadConnector) {
         originalTokens.take(connectorStart).mkString(" ")
       } else {
-        val whatTokens = originalTokens.take(originalTokens.size - parseLength)
-      	(if (whatTokens.lastOption.exists(_ == "in")) {
+        val whatTokens = if (isWhereBeforeWhatParse) {
+          originalTokens.drop(parseLength)
+        } else {
+          originalTokens.take(originalTokens.size - parseLength)
+        }
+        (if (whatTokens.lastOption.has("in")) {
           whatTokens.dropRight(1)
         } else {
           whatTokens
         }).mkString(" ")
       }
-      val where = tokens.drop(tokens.size - parseLength).mkString(" ")
+      val where = if (isWhereBeforeWhatParse) {
+        tokens.take(parseLength).mkString(" ")
+      } else {
+        tokens.drop(tokens.size - parseLength).mkString(" ")
+      }
       logger.ifDebug("%d sorted parses", sortedParses.size)
       logger.ifDebug("sortedParses: %s", sortedParses)
 

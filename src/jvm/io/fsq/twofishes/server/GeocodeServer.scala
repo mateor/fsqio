@@ -429,6 +429,7 @@ class GeocoderHttpService(geocoder: Geocoder.ServiceIface) extends Service[HttpR
       .woeHint(woeHint)
       .woeRestrict(woeRestrict)
       .responseIncludes(responseIncludes)
+      .allowWhereBeforeWhatParses(getOpt("allowWhereBeforeWhatParses").map(_.toBoolean))
       .result
   }
 

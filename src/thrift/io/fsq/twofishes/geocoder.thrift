@@ -358,6 +358,9 @@ struct GeocodeRequest {
 
   // in autocomplete mode, specifies how strongly locally relevant results are preferred
   20: optional AutocompleteBias autocompleteBias = AutocompleteBias.BALANCED
+
+  // in forward geocode mode, specifies if where-before-what parsing (slow) should be enabled
+  21: optional bool allowWhereBeforeWhatParses = 0
 }
 
 // I'd like to replace most of the params in geocoderequest with one instance of this
