@@ -64,7 +64,7 @@ class GeocoderImpl(
   // then ny us (try "ny us" and ny -> "us"
   // then park ny us ()
 
-   def generateParses(tokens: List[String]): ParseCache = {
+  def generateParses(tokens: List[String]): ParseCache = {
     val cache = new ParseCache
     cache.put(0, List(NullParse))
 
@@ -76,6 +76,25 @@ class GeocoderImpl(
         logger.ifDebug("setting %d to %s", cacheKey, validParses)
       }
       cache.put(cacheKey, validParses)
+    })
+    cache
+  }
+
+  // drop one token at a time from the right and call generateParses
+  // on the left substring
+  def generateWhereBeforeWhatParses(tokens: List[String]): ParseCache = {
+    val cache = new ParseCache
+
+    // stop short of dropping all tokens
+    (tokens.size - 1).to(1, -1).foreach(offset => {
+      val subTokens = tokens.take(offset)
+      val cacheKey = subTokens.size
+      if (req.debug > 1) {
+        logger.ifDebug("attempting where-before-what parse of length %s", cacheKey)
+      }
+      val innerCache = generateParses(subTokens)
+      // save only the full length parse
+      cache.put(cacheKey, innerCache.get(cacheKey))
     })
     cache
   }
@@ -96,7 +115,7 @@ class GeocoderImpl(
         store.getByName(searchStr)
           .filter(servingFeature => isAcceptableFeature(req, servingFeature))
           .map((f: GeocodeServingFeature) =>
-            FeatureMatch(offset, offset + i, searchStr, f, f.feature.names.filter(n => NameNormalizer.normalize(n.name) == searchStr))
+            FeatureMatch(offset, offset + i, searchStr, f, f.feature.names.filter(n => NameNormalizer.normalize(n.name) =? searchStr))
           )
       }
       logger.ifDebug("got %d features for %s", featureMatches.size, searchStr)
@@ -105,7 +124,7 @@ class GeocoderImpl(
         logger.ifLevelDebug(2, fm.toString)
       })
 
-      if ((tokens.size - i) == 0) {
+      if ((tokens.size - i) =? 0) {
         featureMatches.flatMap(f => buildParse(f, NullParse))
       } else {
         val subParses = cache.get(tokens.size - i)
@@ -170,7 +189,7 @@ class GeocoderImpl(
         first <- sorted_parse.fmatches.lift(0)
         second <- sorted_parse.fmatches.lift(1)
       } yield {
-        first.fmatch.feature.woeType == YahooWoeType.POSTAL_CODE &&
+        first.fmatch.feature.woeType =? YahooWoeType.POSTAL_CODE &&
         isValidParseHelper(Parse[Sorted](sorted_parse.fmatches.drop(1))) &&
         GeoTools.getDistance(
           second.fmatch.feature.geometryOrThrow.center.lat,
@@ -227,7 +246,7 @@ class GeocoderImpl(
     // do not drop common word if it is *part of* an already matched parse phrase
     // however, do drop it if it is the *entire* parse phrase as this must be a match to a bad name
     // e.g. do not drop "city" from (kansas city) but drop it from (city)
-    tokens.filterNot(t => commonWords.contains(t) && !parsedPhrases.exists(p => p.contains(t) && p != t))
+    tokens.filterNot(t => commonWords.contains(t) && !parsedPhrases.exists(p => p.contains(t) && p !=? t))
   }
 
   def getMaxInterpretations = {
@@ -246,7 +265,7 @@ class GeocoderImpl(
     val parsedPhrases = parses.flatMap(p => p.map(_.phrase)).toSet
     val modifiedTokens = deleteCommonWords(parseParams.originalTokens, parsedPhrases)
     logger.ifDebug("common words deleted: %s", modifiedTokens)
-    if (modifiedTokens.size != parseParams.originalTokens.size && !inRetry) {
+    if (modifiedTokens.size !=? parseParams.originalTokens.size && !inRetry) {
       inRetry = true
       logger.ifDebug("RESTARTING common words query: %s", modifiedTokens)
       doGeocodeForQuery(new QueryParser(logger).parseQueryTokens(modifiedTokens))
@@ -266,21 +285,27 @@ class GeocoderImpl(
     val query = req.queryOption.getOrElse("")
     val parseParams = new QueryParser(logger).parseQuery(query)
 
-    doGeocodeForQuery(parseParams)
+    doGeocodeForQuery(parseParams, req.allowWhereBeforeWhatParses)
   }
 
-  def doGeocodeForQuery(parseParams: ParseParams) = {
+  def doGeocodeForQuery(parseParams: ParseParams, includeWhereBeforeWhatParses: Boolean = false) = {
     val tokens = parseParams.tokens
     val hadConnector = parseParams.hadConnector
 
     val cache = generateParses(tokens)
+    val whereBeforeWhatCache = if (includeWhereBeforeWhatParses) {
+      generateWhereBeforeWhatParses(tokens)
+    } else {
+      new ParseCache
+    }
 
     val validParseCaches: Iterable[(Int, SortedParseSeq)] =
-      cache.asScala.filter(_._2.nonEmpty)
+      cache.asScala.filter(_._2.nonEmpty) ++
+      whereBeforeWhatCache.asScala.filter(_._2.nonEmpty)
 
     if (validParseCaches.size > 0) {
       val longest = validParseCaches.map(_._1).max
-      if (hadConnector && longest != tokens.size) {
+      if (hadConnector && longest !=? tokens.size) {
         responseProcessor.generateResponse(Nil, requestGeom)
       } else {
         val parsesToConsider = new ListBuffer[Parse[Sorted]]
@@ -297,14 +322,14 @@ class GeocoderImpl(
         for {
           length <- longest.to(1, -1).toVector
           if (parsesToConsider.size < maxInterpretationsToConsider)
-          (size, parses) <- validParseCaches.find(_._1 == length)
+          (size, parses) <- validParseCaches.filter(_._1 =? length)
         } {
           parsesToConsider.appendAll(
             parses.sorted(new GeocodeParseOrdering(commonParams, logger, GeocodeParseOrdering.scorersForGeocode, "default"))
           )
         }
 
-        if (longest != tokens.size) {
+        if (longest !=? tokens.size) {
           maybeRetryParsing(parsesToConsider, parseParams)
         } else {
           responseProcessor.buildFinalParses(
