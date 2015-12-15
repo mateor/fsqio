@@ -4,6 +4,7 @@ package io.fsq.spindle.common.thrift.bson
 
 import java.io.InputStream
 import java.nio.ByteBuffer
+import java.nio.charset.StandardCharsets
 import org.apache.thrift.TException
 
 /**
@@ -362,7 +363,7 @@ class MapReadState(
   override def readBinary(): ByteBuffer = {
     // alternate between reading key names and values
     if (readCounter % 2 == 0) {
-      ByteBuffer.wrap(getCurrentPair()._1.getBytes(ByteStringBuilder.UTF8_CHARSET))
+      ByteBuffer.wrap(getCurrentPair()._1.getBytes(StandardCharsets.UTF_8))
     } else {
       getCurrentValue().asInstanceOf[ByteBuffer]
     }

@@ -4,11 +4,9 @@ package io.fsq.spindle.common.thrift.bson
 
 import java.io.InputStream
 import java.lang.reflect.Constructor
-import java.nio.charset.Charset
+import java.nio.charset.StandardCharsets
 
 private[bson] object ByteStringBuilder {
-  val UTF8_CHARSET = Charset.forName("UTF-8")
-  val ASCII_CHARSET = Charset.forName("US-ASCII")
   val MaxSize = 16 * 1024 * 1024
   val StringConstructor: Constructor[String] = {
     try {
@@ -94,7 +92,7 @@ class ByteStringBuilder(initialSize: Int) {
         new String(chars)
       }
     } else {
-      new String(bytes, 0, length, ByteStringBuilder.UTF8_CHARSET)
+      new String(bytes, 0, length, StandardCharsets.UTF_8)
     }
   }
 
