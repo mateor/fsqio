@@ -6,6 +6,7 @@ import io.fsq.spindle.common.thrift.base.TTransportInputStream
 import java.io.InputStream
 import java.lang.UnsupportedOperationException
 import java.nio.ByteBuffer
+import java.nio.charset.StandardCharsets
 import java.util.Stack
 import org.apache.thrift.{TBaseHelper, TException}
 import org.apache.thrift.protocol.{TField, TList, TMap, TMessage, TProtocol, TProtocolFactory, TSet, TStruct, TType}
@@ -218,7 +219,7 @@ class TBSONBinaryProtocol() extends TProtocol(null) {
     val readState = currentState()
     // A string field unknown to an older version of a struct will be serialized as binary.
     if (readState.lastFieldType == BSON.BINARY) {
-      new String(TBaseHelper.byteBufferToByteArray(readState.readBinary()), ByteStringBuilder.UTF8_CHARSET)
+      new String(TBaseHelper.byteBufferToByteArray(readState.readBinary()), StandardCharsets.UTF_8)
     } else {
       readState.readString()
     }
@@ -233,7 +234,7 @@ class TBSONBinaryProtocol() extends TProtocol(null) {
       if (readState.lastFieldName == TBSONBinaryProtocol.ERROR_KEY) {
         _errorMessage = strValue
       }
-      ByteBuffer.wrap(strValue.getBytes(ByteStringBuilder.UTF8_CHARSET))
+      ByteBuffer.wrap(strValue.getBytes(StandardCharsets.UTF_8))
     } else {
       readState.readBinary()
     }
