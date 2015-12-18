@@ -588,7 +588,7 @@ class GeonamesParser(
       val id = new ObjectId()
     }
 
-    // I hate this code, let's please deprecate this codepath
+    // Let's please deprecate this codepath
     val polygonOpt = feature.extraColumns.get("geometry").map(polygon => {
       wktReader.read(polygon)
     })
@@ -740,7 +740,7 @@ class GeonamesParser(
     cc: String,
     woeType: YahooWoeType
   ): List[String] = {
-    // HACK: TODO(blackmad): move these to data files
+    // TODO: move these to data files
     if (woeType == YahooWoeType.ADMIN1 && cc == "JP" && (lang == "en" || lang == "")) {
       List(name + " Prefecture")
     } else if (woeType == YahooWoeType.TOWN && cc == "TW" && (lang == "en" || lang == "")) {
