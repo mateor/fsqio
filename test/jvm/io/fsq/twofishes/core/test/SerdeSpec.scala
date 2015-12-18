@@ -6,7 +6,7 @@ import io.fsq.twofishes.util.{GeonamesId, GeonamesZip, MaponicsId}
 import org.bson.types.ObjectId
 import org.specs2.mutable.SpecificationWithJUnit
 
-// TODO(dan): See if there's a way to clean up the extra noise this sends to stderr.
+// TODO: See if there's a way to clean up the extra noise this sends to stderr.
 class SerdeSpec extends SpecificationWithJUnit {
   def test[T](serde: Serde[T], v: T) = {
     serde.fromBytes(serde.toBytes(v)) must_== v

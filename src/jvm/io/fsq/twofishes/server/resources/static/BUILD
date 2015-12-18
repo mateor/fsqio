@@ -2,6 +2,6 @@
 
 resources(
   name = 'static',
-  # TODO(dan): Don't rglobs.
+  # TODO: Don't rglobs.
   sources = rglobs('*'),
 )

@@ -467,7 +467,7 @@ class ResponseProcessor(
 
       val sortedParents = if (shouldFetchParents) {
         // we've seen dupe parents, not sure why, the toSet.toSeq fixes
-        // TODO(blackmad): why dupe US parents on new york state?
+        // TODO: why dupe US parents on new york state?
         p(0).fmatch.scoringFeatures.parentIds.toSet.toSeq
           .flatMap(StoredFeatureId.fromLong _)
           .flatMap(fid => parentMap.get(fid)).sorted(GeocodeServingFeatureOrdering)

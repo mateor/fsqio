@@ -3,7 +3,7 @@ package io.fsq.twofishes.country.test
 import io.fsq.twofishes.country.{CountryInfo, CountryUtils}
 import org.specs2.mutable.SpecificationWithJUnit
 
-// TODO(dan): See if there's a way to clean up the extra noise this sends to stderr.
+// TODO: See if there's a way to clean up the extra noise this sends to stderr.
 class CountryUtilsSpec extends SpecificationWithJUnit {
   "US should exist" in {
     CountryUtils.getNameByCode("US") mustEqual Some("United States")

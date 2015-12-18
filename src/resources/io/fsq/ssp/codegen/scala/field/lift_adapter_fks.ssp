@@ -27,8 +27,8 @@
       _root_.io.fsq.spindle.runtime.RuntimeHelpers.fkHooks.missingKeySeq(this, this.meta.${field.escapedName}, meta)
     }
   }
-  override final def ${field.name}UntypedFks(meta: _root_.io.fsq.spindle.runtime.UntypedMetaRecord): Seq[_root_.io.fsq.spindle.runtime.UntypedRecord with _root_.io.fsq.spindle.runtime.SemitypedHasPrimaryKey[${elem.text}]] = throw new NotImplementedError("TODO(dan)")
-  override final def ${field.name}GetObj: Seq[_root_.io.fsq.spindle.runtime.SemitypedHasPrimaryKey[${elem.text}]] = throw new NotImplementedError("TODO(dan)")
+  override final def ${field.name}UntypedFks(meta: _root_.io.fsq.spindle.runtime.UntypedMetaRecord): Seq[_root_.io.fsq.spindle.runtime.UntypedRecord with _root_.io.fsq.spindle.runtime.SemitypedHasPrimaryKey[${elem.text}]] = throw new NotImplementedError("TODO")
+  override final def ${field.name}GetObj: Seq[_root_.io.fsq.spindle.runtime.SemitypedHasPrimaryKey[${elem.text}]] = throw new NotImplementedError("TODO")
   override final def ${field.name}SetObj(x: Seq[_root_.io.fsq.spindle.runtime.SemitypedHasPrimaryKey[${elem.text}]]): Unit = throw new UnsupportedOperationException("This is a read only adapter")
   override final def ${field.name}AlternateFks: Seq[AnyRef] = if (${field.varName}AlternateObjSeq != null) { ${field.varName}AlternateObjSeq } else { underlyingLift.primedObjSeqFromWireName("${field.wireName}") }
   override final def ${field.name}SetAlternateObj(x: Seq[AnyRef]): Unit = { ${field.varName}AlternateObjSeq = x }

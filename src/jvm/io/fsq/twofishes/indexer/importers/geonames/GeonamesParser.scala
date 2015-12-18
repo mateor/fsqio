@@ -128,7 +128,7 @@ object GeonamesParser extends DurationUtils {
     writeIndexes(None)
   }
 
-  // TODO(blackmad): if we aren't redoing mongo indexing
+  // TODO: if we aren't redoing mongo indexing
   // then add some code to see if the s2 index is 'done'
   // We should also add an option to skip reloading polys
   def writeIndexes(s2CoveringLatch: Option[CountDownLatch]) {
@@ -717,7 +717,7 @@ class GeonamesParser(
   val spaceRe = " +".r
   def fixName(s: String) = spaceRe.replaceAllIn(s, " ").trim
 
-  // TODO(rahul): actually use flags
+  // TODO: actually use flags
   def doShorten(cc: String, name: String): List[String] = {
     val shortens = shortensList.getOrElse("*", Nil) ++
       shortensList.getOrElse(cc, Nil)
@@ -740,7 +740,7 @@ class GeonamesParser(
     cc: String,
     woeType: YahooWoeType
   ): List[String] = {
-    // HACK(blackmad): TODO(blackmad): move these to data files
+    // HACK: TODO(blackmad): move these to data files
     if (woeType == YahooWoeType.ADMIN1 && cc == "JP" && (lang == "en" || lang == "")) {
       List(name + " Prefecture")
     } else if (woeType == YahooWoeType.TOWN && cc == "TW" && (lang == "en" || lang == "")) {

@@ -9,7 +9,7 @@ scala_library(
     '3rdparty:fscommon-thrift-json',
     '3rdparty:gt-geojson',
     '3rdparty:hadoop-common',
-    '3rdparty:hbase',  # TODO(dan): This is only here while we transition twofishes to our hfile reader.
+    '3rdparty:hbase',  # TODO: This is only here while we transition twofishes to our hfile reader.
     '3rdparty:jackson',
     '3rdparty:jts',
     '3rdparty:mongodb',

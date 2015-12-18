@@ -9,7 +9,7 @@ import org.geotools.geojson.geom.GeometryJSON
 
 object FeatureEditHelper {
 
-  // TODO(rahul): refactor to share code with ConcreteHotfixStorageService
+  // TODO: refactor to share code with ConcreteHotfixStorageService
 
   def applyEdits(feature: GeocodeServingFeature, edits: GeocodeServingFeatureEdits): Option[GeocodeServingFeature] = {
     applyEdits(feature, edits.edits)

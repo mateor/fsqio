@@ -68,7 +68,7 @@ object ${service.name} extends _root_.io.fsq.spindle.runtime.ServiceDescriptor {
     }
 
 #if (!function.oneWayOption.getOrElse(false))
-<%-- NOTE(tdyas): Unlike the regular Thrift compiler, we do not generate a @throws clause for recv_FOO methods. --%>
+<%-- NOTE: Unlike the regular Thrift compiler, we do not generate a @throws clause for recv_FOO methods. --%>
     def recv_${function.name}()${function.returnRenderType.map(rt => ": %s = {" format rt.text).getOrElse(" {")}
       val result = ${service.name}_${function.name}_result.createRawRecord
       receiveBase(result, "${function.name}")
@@ -144,7 +144,7 @@ object ${service.name} extends _root_.io.fsq.spindle.runtime.ServiceDescriptor {
 
       @throws(classOf[org.apache.thrift.TException])
       def write_args(prot: org.apache.thrift.protocol.TProtocol) {
-<%-- NOTE(tdyas): Thrift compiler sets the sequence ID (third argument) always to 0. See notes in thrift compiler. --%>\
+<%-- NOTE: Thrift compiler sets the sequence ID (third argument) always to 0. See notes in thrift compiler. --%>\
         prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("${function.name}", org.apache.thrift.protocol.TMessageType.CALL, 0))
         val args = ${service.name}_${function.name}_args.createRawRecord
 #for (argument <- function.argz)
@@ -154,7 +154,7 @@ object ${service.name} extends _root_.io.fsq.spindle.runtime.ServiceDescriptor {
         prot.writeMessageEnd()
       }
 
-<%-- NOTE(tdyas): Unlike the Thrift compiler, we do not add declared exceptions to the getResult @throws clause. --%>\
+<%-- NOTE: Unlike the Thrift compiler, we do not add declared exceptions to the getResult @throws clause. --%>\
 #if (function.returnRenderType.isDefined && !function.oneWayOption.getOrElse(false))\
       @throws(classOf[org.apache.thrift.TException])
       def getResult: ${function.returnRenderType.map(_.text).getOrElse(throw new IllegalStateException("Unexpected None value"))} = {
@@ -285,13 +285,13 @@ object ${service.name} extends _root_.io.fsq.spindle.runtime.ServiceDescriptor {
       iface: I,
       processMap: java.util.Map[java.lang.String, org.apache.thrift.ProcessFunction[I, _ <: org.apache.thrift.TBase[_ <: org.apache.thrift.TBase[_, _], _ <: org.apache.thrift.TFieldIdEnum]]]
   ) extends #if (parentServiceName != "")${parentServiceName}.Processor[I]#(else)org.apache.thrift.TBaseProcessor[I]#(end)(iface, processMap) with org.apache.thrift.TProcessor {
-<%-- NOTE(tdyas): Thrift compiler includes a LOGGER member here, but it appears to be unused. I omitted it. --%>
+<%-- NOTE: Thrift compiler includes a LOGGER member here, but it appears to be unused. I omitted it. --%>
 
     def this(iface: I) = {
       this(iface, Processor.getProcessMap(new java.util.HashMap[java.lang.String,org.apache.thrift.ProcessFunction[I, _ <: org.apache.thrift.TBase[_ <: org.apache.thrift.TBase[_, _], _ <: org.apache.thrift.TFieldIdEnum]]]()))
     }
 
-<%-- NOTE(tdyas): This constructor was generated for Java by the Thrift compiler. It results, however, in a
+<%-- NOTE: This constructor was generated for Java by the Thrift compiler. It results, however, in a
      double definition of the constructor. But we'd need a way to call Processor.getProcessMap before calling this
      constructor. Revisit if something actually needs it.
     protected def this(iface: I, processMap: java.util.Map[String, org.apache.thrift.ProcessFunction[I, _ <: org.apache.thrift.TBase[_,_]]]) = {
@@ -385,7 +385,7 @@ object ${service.name} extends _root_.io.fsq.spindle.runtime.ServiceDescriptor {
         if (earlyResponse == null) {
           iprot.readMessageEnd()
 
-<%-- HACK(Jorge): Substitute "text" for "boxedText" once diff compatibility is no longer a concern --%>
+<%-- HACK: Substitute "text" for "boxedText" once diff compatibility is no longer a concern --%>
           val future: com.twitter.util.Future[${function.returnRenderType.filterNot(_ => function.oneWayOption.getOrElse(false)).map(_.text).getOrElse("Unit")}] = try {
             iface.${function.name}(${function.argz.map(arg => "args.%s" format arg.defaultName).mkString(", ")})
           } catch {
@@ -398,7 +398,7 @@ object ${service.name} extends _root_.io.fsq.spindle.runtime.ServiceDescriptor {
           future.flatMap { value =>
             val result = ${service.name}_${function.name}_result.createRawRecord
             #if(!function.oneWayOption.getOrElse(false) && function.returnRenderType.isDefined)result.success_=(value)#(end)
-<%-- // result.setSuccessIsSet(true)  // NOTE(tdyas): Not applicable to our Scala version of Thrift data. --%>
+<%-- // result.setSuccessIsSet(true)  // NOTE: Not applicable to our Scala version of Thrift data. --%>
 
             try {
               val memoryBuffer = new org.apache.thrift.transport.TMemoryBuffer(512)
@@ -487,13 +487,13 @@ object ${service.name} extends _root_.io.fsq.spindle.runtime.ServiceDescriptor {
   // Dynamically generate a ScalaStruct for NAME_args, then emit Scala code for it.
   val rawArgsStruct = Struct.newBuilder.name("%s_%s_args".format(service.name, function.name)).__fields(function.argz).result()
   val argsStruct = new ScalaClass(rawArgsStruct, resolver)
-  render("class.ssp", Map("cls" -> argsStruct, "clsContainer" -> "")) // TODO(tdyas): Capture and indent properly.
+  render("class.ssp", Map("cls" -> argsStruct, "clsContainer" -> "")) // TODO: Capture and indent properly.
 
   // Dynamically generate a ScalaStruct for NAME_result, then emit Scala code for it. For one-way functions,
   // this is purely so functionDescriptors has a class to reference.
   val rawResultStruct = Struct.newBuilder.name("%s_%s_result".format(service.name, function.name)).__fields(function.fields).result()
   val resultStruct = new ScalaClass(rawResultStruct, resolver)
-  render("class.ssp", Map("cls" -> resultStruct, "clsContainer" -> "")) // TODO(tdyas): Capture and indent properly.
+  render("class.ssp", Map("cls" -> resultStruct, "clsContainer" -> "")) // TODO: Capture and indent properly.
 %>
 #end
 

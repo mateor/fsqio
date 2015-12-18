@@ -87,7 +87,7 @@ class QueryLoggingGeocodeServerImpl(service: Geocoder.ServiceIface) extends Geoc
 
   val queryMap = new ConcurrentHashMap[ObjectId, (TBase[_, _], Long)]
 
-  // TODO(dan): I've copied in RingBuffer from com.twitter.util to get around
+  // TODO: I've copied in RingBuffer from com.twitter.util to get around
   // deprecation warnings, but we really should just be getting off the dep.
   val recentQueries = new RingBuffer[(TBase[_, _], Long, Long)](1000)
   val slowQueries = new RingBuffer[(TBase[_, _], Long, Long)](1000)

@@ -1,4 +1,4 @@
-// TODO(dan): This file seems unused and has terrible deps for this package. Delete?
+// TODO: This file seems unused and has terrible deps for this package. Delete?
 
 // package io.fsq.twofishes.indexer.util
 

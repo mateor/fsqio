@@ -7,7 +7,7 @@ import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.{LocalFileSystem, Path}
 import org.specs2.mutable.SpecificationWithJUnit
 
-// TODO(dan): See if there's a way to clean up the extra noise this sends to stderr.
+// TODO: See if there's a way to clean up the extra noise this sends to stderr.
 class MMapInputStreamSpec extends SpecificationWithJUnit {
   val random = new scala.util.Random(7)
 

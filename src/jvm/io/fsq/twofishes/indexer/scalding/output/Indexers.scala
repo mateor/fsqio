@@ -11,7 +11,7 @@ import org.apache.hadoop.io.{LongWritable, Text}
 // copy scalding index build intermediate job output sequence files locally
 // run any indexer as follows:
 // java -cp indexer-assembly-[version].jar io.fsq.twofishes.indexer.scalding.output.[indexer class name] [path to scalding intermediate sequence files] [output path]
-// TODO(rahul): make it so mapfiles/hfile can be directly produced by scalding jobs
+// TODO: make it so mapfiles/hfile can be directly produced by scalding jobs
 
 object NameIndexer {
   def processor(key: Text, value: IntermediateDataContainer): Option[(String, Seq[StoredFeatureId])] = {

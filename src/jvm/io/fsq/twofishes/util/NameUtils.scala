@@ -10,7 +10,7 @@ import scala.io.BufferedSource
 object SlugBuilder {
   import NameFormatter.FormatPattern
 
-  // TODO(blackmad): clearly a bug here with non-FEATURE patterns failing
+  // TODO: clearly a bug here with non-FEATURE patterns failing
 
   // do something special with CN-14 (tibet) in the parents, ditto taiwan
 

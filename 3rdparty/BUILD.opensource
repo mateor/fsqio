@@ -299,7 +299,7 @@ jar_library(
   ],
   jars = [
     jar(org = 'org.apache.hadoop', name = 'hadoop-common', rev = HADOOP_VERSION),
-    # TODO(pl): Figure out how dependency_management keys really work so that we don't
+    # TODO: Figure out how dependency_management keys really work so that we don't
     # clobber artifact types with "managed" values.
     # See src/python/foursquare/pants/pom/pom.py
     jar(org = 'org.apache.hadoop', name = 'hadoop-auth', rev = HADOOP_VERSION),
@@ -323,7 +323,7 @@ jar_library(
   ],
 )
 
-# TODO(dan): This is only here while we transition twofishes to our hfile reader.
+# TODO: This is only here while we transition twofishes to our hfile reader.
 jar_library(
   name = 'hbase',
   tags = [
@@ -380,7 +380,7 @@ jar_library(
   ]
 )
 
-# NOTE(jcrobak): joda-convert is required when compiling against joda-time with scala. See
+# NOTE: joda-convert is required when compiling against joda-time with scala. See
 # http://www.scala-lang.org/node/10575
 jar_library(
   name = 'joda-time',

@@ -204,7 +204,7 @@ class MongoIndexCheckerTest extends JUnitMustMatchers {
     no(Q(ThriftIndexTestModel) where (_.m at "foo" eqs 2))
     no(Q(ThriftIndexTestModel) iscan (_.m at "foo" eqs 2))
 
-//TODO(markcc)    yes(Q(ThriftIndexTestModel) where (_.n at "foo" eqs 2))
+//TODO    yes(Q(ThriftIndexTestModel) where (_.n at "foo" eqs 2))
     no(Q(ThriftIndexTestModel) where (_.n at "fo" eqs 2))
     no(Q(ThriftIndexTestModel) where (_.n at "foot" eqs 2))
     no(Q(ThriftIndexTestModel) where (_.n at "bar" eqs 2))

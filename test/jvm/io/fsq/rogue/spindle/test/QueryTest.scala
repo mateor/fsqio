@@ -767,7 +767,7 @@ class QueryTest extends JUnitMustMatchers {
 
     // Indexes
 
-    // TODO(jorge): Reenable type-safe index checking.
+    // TODO: Reenable type-safe index checking.
 
     // // Can't say useIndex and then not use that field.
     // check("""Q(ThriftVenue).useIndex(Q(ThriftVenue).idIdx).where(_.legacyid eqs 4)""",

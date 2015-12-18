@@ -44,7 +44,7 @@ class BaseAlternateNamesJoinIntermediateJob(
       val spaceRe = " +".r
       def fixName(s: String) = spaceRe.replaceAllIn(s, " ").trim
 
-      // TODO(rahul): actually use flags
+      // TODO: actually use flags
       def doShorten(): Seq[String] = {
         val shortens = nameShortensMap.getOrElse("*", Nil) ++
           nameShortensMap.getOrElse(cc, Nil)
@@ -92,7 +92,7 @@ class BaseAlternateNamesJoinIntermediateJob(
       }
 
       def hackName(): Seq[String] = {
-        // HACK(blackmad): TODO(blackmad): move these to data files
+        // TODO: move these to data files
         if (woeType == YahooWoeType.ADMIN1 && cc == "JP" && (lang == "en" || lang == "")) {
           Seq(name + " Prefecture")
         } else if (woeType == YahooWoeType.TOWN && cc == "TW" && (lang == "en" || lang == "")) {

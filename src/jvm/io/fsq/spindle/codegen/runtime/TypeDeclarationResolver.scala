@@ -57,7 +57,7 @@ class TypeDeclarationResolver(enhancedTypes: EnhancedTypes) {
     val exceptionDecls = program.tree.exceptions.map(e => ExceptionDecl(e.name, makeAnnotations(e.__annotations)))
     val serviceDecls = program.tree.services.map(s => ServiceDecl(s.name, makeAnnotations(s.__annotations)))
 
-    // TODO(jorge): throw on duplicate names
+    // TODO: throw on duplicate names
     val decls: Seq[TypeDeclaration] = enumDecls ++ structDecls ++ unionDecls ++ exceptionDecls ++ serviceDecls
     val declsMap: Map[String, TypeDeclaration] = seqToMapByKey(decls)(_.name)
     Map(program -> declsMap)

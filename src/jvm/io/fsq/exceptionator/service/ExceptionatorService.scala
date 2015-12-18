@@ -86,7 +86,7 @@ class ExceptionatorHttpService(
     if (!request.path.startsWith("/api/")) {
       fileService(request)
     } else {
-      // TODO(johng) why did i make this hard on myself?
+      // TODO why did i make this hard on myself?
       if (request.method == HttpMethod.POST &&
           ( request.path.startsWith("/api/notice") ||
             request.path.startsWith("/api/multi-notice"))) {

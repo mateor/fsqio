@@ -279,7 +279,7 @@ class AlternateNamesJoinIntermediateJob(args: Args) extends BaseAlternateNamesJo
   altNameSources = Seq("altnames_import"),
   args = args)
 
-// TODO(rahul): insert polygon join job here and include in multijoin sources below
+// TODO: insert polygon join job here and include in multijoin sources below
 
 class PreEditFeaturesMergeIntermediateJob(args: Args) extends BaseFeatureMergeIntermediateJob(
   name = "pre_edit_features_merge_intermediate",

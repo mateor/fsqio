@@ -86,7 +86,7 @@ class ScalaClass(
               "Unknown field name '' in index specifier for class %s".format(this.name))
           }
 
-          // TODO(jorge): verify subfields exist
+          // TODO: verify subfields exist
           val fieldName = fieldNames.head
           if (!this.fields.exists(field => field.name == fieldName)) {
             throw new CodegenException(

@@ -150,7 +150,7 @@ class MockGeocodeStorageReadService extends GeocodeStorageReadService {
   }
 }
 
-// TODO(dan): See if there's a way to clean up the extra noise this sends to stderr.
+// TODO: See if there's a way to clean up the extra noise this sends to stderr.
 class GeocoderSpec extends SpecificationWithJUnit {
   GeocodeServerConfigSingleton.init(Array(
     "--vm_map_count", "65530",
@@ -432,7 +432,7 @@ class GeocoderSpec extends SpecificationWithJUnit {
     r.interpretations.size aka r.toString must_== 2
     val interp1 = r.interpretations()(0)
     interp1.feature.displayNameOrNull must_== "Paris, Texas, US"
-    // TODO(blackmad): fix this test
+    // TODO: fix this test
     interp1.feature.highlightedNameOrNull must be_==("<b>Paris</b>, Texas, <b>US</b>").orPending
 
     val interp2 = r.interpretations()(1)
