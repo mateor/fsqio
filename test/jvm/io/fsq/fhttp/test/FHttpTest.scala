@@ -299,7 +299,7 @@ class FHttpClientTest {
   }
 
 
-  @Ignore("TODO(dan): Figure out how we want to handle the external requests that these make")
+  @Ignore("TODO: Figure out how we want to handle the external requests that these make")
   @Test
   def testOauthFlowGetPost(): Unit = {
     def testFlow(usePost: Boolean) {
@@ -339,7 +339,7 @@ class FHttpClientTest {
     testFlow(true)
   }
 
-  @Ignore("TODO(dan): Figure out how we want to handle the external requests that these make")
+  @Ignore("TODO: Figure out how we want to handle the external requests that these make")
   @Test
   def testOAuthSigning(): Unit = {
     val consumer = Token("key", "secret")

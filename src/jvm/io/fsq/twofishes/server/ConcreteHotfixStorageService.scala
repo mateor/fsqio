@@ -89,7 +89,7 @@ class ConcreteHotfixStorageService(
 
   def maybeAddToPrefixIndex(id: StoredFeatureId, edit: FeatureNameListEdit) {
     val normalizedName = NameNormalizer.normalize(edit.name)
-    // NOTE(rahul): Strictly speaking, we add to the prefix index only when the PREFERRED or ALT_NAME flags
+    // NOTE: Strictly speaking, we add to the prefix index only when the PREFERRED or ALT_NAME flags
     // are present on a name in English or a local language.
     // To keep logic here simple, we unconditionally add to the prefix index when these flags are present, regardless
     // of language.
@@ -113,7 +113,7 @@ class ConcreteHotfixStorageService(
     edits.foreach(edit => {
       edit.editType match {
         case EditType.Add => {
-          // TODO(rahul): compute LOCAL_LANG flag?
+          // TODO: compute LOCAL_LANG flag?
           listCopy = listCopy.filterNot(n => (n.name == edit.name && n.lang == edit.lang)) :+
             (FeatureName.newBuilder
               .name(edit.name)
@@ -121,7 +121,7 @@ class ConcreteHotfixStorageService(
               .flags(processFeatureNameFlagsListEdits(Nil, edit.flagsEdits))
               .result)
 
-          // NOTE(rahul): By adding prefixes of this name to the hotfix name index, we
+          // NOTE: By adding prefixes of this name to the hotfix name index, we
           // guarantee that it will be considered in autocomplete ranking for all prefixes
           // But once the change is removed from hotfixes and rolled into the next index build proper,
           // it has to compete for its place in the prefix index alongside all other features,
@@ -142,7 +142,7 @@ class ConcreteHotfixStorageService(
             listCopy = removeNameFromList(deaccentedName, listCopy)
           }
 
-          // TODO(rahul): handle removing names and prefixes properly?
+          // TODO: handle removing names and prefixes properly?
           // When a name is deleted, the name and prefix indexes should ideally be updated so that
           // for the given name and each of its prefixes, the id is removed from the list of ids
           // PROVIDED the feature doesn't have the same name in another language.
@@ -165,7 +165,7 @@ class ConcreteHotfixStorageService(
           })
 
           maybeAddToPrefixIndex(id, edit)
-          // TODO(rahul): update prefix index for removal of PREFERRED/ALT_NAME flags?
+          // TODO: update prefix index for removal of PREFERRED/ALT_NAME flags?
           // Removing ids is generally more trouble than it is worth and does not actually affect
           // autocomplete ranking (see above).
         }
@@ -186,7 +186,7 @@ class ConcreteHotfixStorageService(
       if edit.editType != EditType.NoOp
     } {
       if (edit.editType == EditType.Remove) {
-        // TODO(rahul): handle removing names and prefixes properly?
+        // TODO: handle removing names and prefixes properly?
         // When a feature is deleted, the name and prefix indexes should ideally be updated so that
         // for each of its names (and each prefix of each name), its id is removed from the list of ids.
         // However, this is more trouble than it is worth as it requires calling the underlying

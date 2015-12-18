@@ -33,7 +33,7 @@ object RogueTestMongo extends ConnectionIdentifier {
 
   def disconnectFromMongo = {
     mongo.foreach(_.close)
-    // TODO(dan): This breaks the rest of the mongo tests in foursquare.web
+    // TODO: This breaks the rest of the mongo tests in foursquare.web
     // MongoDB.close
     mongo = None
   }

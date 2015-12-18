@@ -219,7 +219,7 @@ trait QueryExecutor[MB, RB] extends Rogue {
         adapter.modify(query, upsert = true, multi = false, writeConcern = writeConcern)
       } catch {
         case r: RogueException if r.getCause() != null && r.getCause().isInstanceOf[MongoException.DuplicateKey] => {
-          /* NOTE(jackson): have to retry upserts that fail with duplicate key,
+          /* NOTE: have to retry upserts that fail with duplicate key,
            * see https://jira.mongodb.org/browse/SERVER-14322
            */
           adapter.modify(query, upsert = true, multi = false, writeConcern = writeConcern)
@@ -265,7 +265,7 @@ trait QueryExecutor[MB, RB] extends Rogue {
         adapter.findAndModify(query, returnNew, upsert = true, remove = false)(s.fromDBObject _)
       } catch {
         case r: RogueException if r.getCause() != null && r.getCause().isInstanceOf[MongoException.DuplicateKey] => {
-          /* NOTE(jackson): have to retry upserts that fail with duplicate key,
+          /* NOTE: have to retry upserts that fail with duplicate key,
            * see https://jira.mongodb.org/browse/SERVER-14322
            */
           val s = readSerializer[M, R](query.query.meta, query.query.select)

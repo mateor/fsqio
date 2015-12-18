@@ -12,7 +12,7 @@ import org.clapper.argot.ArgotParser
 import org.fusesource.scalate.{RenderContext, TemplateEngine}
 import scala.annotation.tailrec
 
-// TODO(dan): This used to be from a magical sbt plugin. Figure out something
+// TODO: This used to be from a magical sbt plugin. Figure out something
 // clever for pants?
 object Info {
   val version: String = "3.0.1"

@@ -13,7 +13,7 @@ import net.liftweb.record.field._
 import org.joda.time.{DateTime, DateTimeZone}
 
 
-// TODO(johng) make a bucket for the filter to keep track of rate?
+// TODO make a bucket for the filter to keep track of rate?
 // A bit hard because we have to loop back and add it.
 
 object TriggerType extends Enumeration {

@@ -53,7 +53,7 @@ class ConcreteUserFilterActions extends UserFilterActions with IndexActions with
   }
 
   def remove(id: String, userId: Option[String]) {
-    // TODO(johng): check incoming user
+    // TODO: check incoming user
     val oidOpt = try {
       Some(new ObjectId(id))
     } catch {

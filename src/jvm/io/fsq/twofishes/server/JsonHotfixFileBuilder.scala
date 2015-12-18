@@ -6,7 +6,7 @@ import io.fsq.twofishes.gen.{GeocodeServingFeatureEdit, GeocodeServingFeatureEdi
 import java.io.{File, FileOutputStream}
 import org.apache.thrift.TSerializer
 
-// TODO(rahul): come up with better tooling for building hotfix files
+// TODO: come up with better tooling for building hotfix files
 object JsonHotfixFileBuilder {
   // build individual objects here and run build-hotfix-file.py to produce json file
   // DO NOT push commits with changes to this list back to twofishes

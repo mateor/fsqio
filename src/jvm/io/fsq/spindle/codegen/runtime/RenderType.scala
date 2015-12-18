@@ -187,7 +187,7 @@ abstract class Container1RenderType(override val container: String, val elem: Re
   override def javaUnderlying: String = "%s<%s>".format(container, elem.javaUnderlying)
 }
 
-// TODO(jorge): Make this immutable.Seq
+// TODO: Make this immutable.Seq
 case class SeqRenderType(e1: RenderType) extends Container1RenderType("scala.collection.Seq", e1) {
   override def ttype: TType = TType.LIST
   override def compareTemplate: String = "compare/seq.ssp"
@@ -342,7 +342,7 @@ case class DateTimeRenderType(ref: RenderType) extends RefRenderType with Enhanc
   override def hasOrdering: Boolean = false
 }
 
-// TODO(dan): Ideally this takes and hands out an S2CellId instead of a Long, but
+// TODO: Ideally this takes and hands out an S2CellId instead of a Long, but
 // the ship has probably sailed on that.
 class S2CellIdRenderType extends PrimitiveRenderType("Long", "long", "java.lang.Long", "0L", "0", TType.I64) with EnhancedRenderType {
   override def fieldDefTemplate: String = "field/def_s2cellid.ssp"

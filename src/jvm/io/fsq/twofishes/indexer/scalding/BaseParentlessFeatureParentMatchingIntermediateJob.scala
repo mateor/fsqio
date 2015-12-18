@@ -29,7 +29,7 @@ class BaseParentlessFeatureParentMatchingIntermediateJob(
       woeType <- matchingValue.woeTypeOption.toList
       candidate <- candidates
       if (candidate.fullOption.has(true) || preparedCenterGeom.within(wkbReader.read(candidate.wkbGeometryByteArray)))
-      // TODO(rahul): use woeType intelligently
+      // TODO: use woeType intelligently
       parentId <- candidate.longIdOption
     } yield {
       parentId

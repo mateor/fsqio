@@ -39,7 +39,7 @@
           foreignOpt
         } else None
       })
-      <% // TODO(dan): This is me trying to generalize how impl_fk.ssp works, but I'm really not sure why anything gets unset. %>
+      <% // TODO: This is me trying to generalize how impl_fk.ssp works, but I'm really not sure why anything gets unset. %>
       if (ret.size == ${field.varName}ObjSeq.size) {
         ret
       } else {

@@ -10,7 +10,7 @@ import org.apache.hadoop.mapred.{JobConf, OutputCollector, RecordReader}
 case class SpindleSequenceFileSource[K <: Writable: Manifest, T <: ThriftConverter.TType](paths: Seq[String])(implicit mf: Manifest[T], conv: TupleConverter[(K, T)], tset: TupleSetter[(K, T)])
   extends FixedPathSource(paths: _*) with Mappable[(K, T)] with TypedSink[(K, T)] {
 
-  // TODO(blackmad): Now that we're passing manifests, I don't think we really need these anymore
+  // TODO: Now that we're passing manifests, I don't think we really need these anymore
   val classOfT: Class[T] = manifest[T].runtimeClass.asInstanceOf[Class[T]]
   val classOfK: Class[K] = manifest[K].runtimeClass.asInstanceOf[Class[K]]
 

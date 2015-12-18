@@ -2,7 +2,7 @@ package io.fsq.twofishes.util
 
 import scala.reflect.ClassTag
 
-// TODO(dan): I've copied in RingBuffer from com.twitter.util to get around
+// TODO: I've copied in RingBuffer from com.twitter.util to get around
 // deprecation warnings, but we really should just be getting off the dep.
 class RingBuffer[A: ClassTag](val maxSize: Int) extends Seq[A] {
   private val array = new Array[A](maxSize)

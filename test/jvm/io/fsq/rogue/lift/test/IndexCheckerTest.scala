@@ -185,7 +185,7 @@ class MongoIndexCheckerTest extends JUnitMustMatchers {
     no(TestModel where (_.m at "foo" eqs 2))
     no(TestModel iscan (_.m at "foo" eqs 2))
 
-//TODO(markcc)    yes(TestModel where (_.n at "foo" eqs 2))
+//TODO    yes(TestModel where (_.n at "foo" eqs 2))
     no(TestModel where (_.n at "fo" eqs 2))
     no(TestModel where (_.n at "foot" eqs 2))
     no(TestModel where (_.n at "bar" eqs 2))

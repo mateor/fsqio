@@ -49,7 +49,7 @@ class java_${source.baseName} {
 #end
 
 #for (union <- program.unions)
-<%-- /* TODO(jorge): make this support real unions */ --%>
+<%-- /* TODO: make this support real unions */ --%>
 <% render("class.ssp", Map("cls" -> union)) %>
 #end
 

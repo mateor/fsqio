@@ -39,7 +39,7 @@ class ScalaField(
       foundTypeReference => foundTypeReference
     )
 
-  // TODO(jorge): implement. must be in terms of custom TypeReference
+  // TODO: implement. must be in terms of custom TypeReference
   val enhancedTypeAnnotations = extractEnhancedType(typeReference)
   val renderType: RenderType = RenderType(typeReference, annotations)
 
@@ -63,7 +63,7 @@ class ScalaField(
       extractEnhancedType(ref)
     case NewtypeRef(_, ref) =>
       extractEnhancedType(ref)
-    // NOTE(jorge): these are ugly but necessary hacks. The only hook we have
+    // NOTE: these are ugly but necessary hacks. The only hook we have
     // to pass on info about enhanced types is the writeFieldBegin call to
     // TProtocol, so if there is an enhanced type anywhere inside, we must pass
     // it in at the nearest field. For collections, this means now.

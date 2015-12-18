@@ -5,7 +5,7 @@ package io.fsq.spindle.enhanced
 import com.google.common.geometry.{S2Cell, S2CellId, S2LatLng}
 import io.fsq.rogue.LatLong
 
-// TODO(dan): This is duplicated with GeoS2Field, unify them.
+// TODO: This is duplicated with GeoS2Field, unify them.
 class LatLngHacc(val value: Long) {
   val ll: LatLong = LatLngHacc.toLatLong(value)
   val haccOpt: Option[Int] = LatLngHacc.toHacc(value)

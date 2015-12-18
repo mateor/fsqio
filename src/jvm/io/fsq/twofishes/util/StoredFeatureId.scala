@@ -178,7 +178,7 @@ object GeonamesZip {
 
 object StoredFeatureId {
   def apply(ns: FeatureNamespace, id: String): StoredFeatureId = ns match {
-    // TODO(nsanch): this is terrible, please fix it
+    // TODO: this is terrible, please fix it
     case GeonamesZipNamespace => new GeonamesZip(id)
     case _ => apply(ns, id.toLong)
   }

@@ -25,7 +25,7 @@ class ScalaFunction(override val underlying: Function, resolver: TypeReferenceRe
         .identifier(0.toShort)
         .name("success")
         .typeId(typeId)
-        // NOTE(tdyas): Should this be Requiredness.REQUIRED? The Python codegen didn't do this, but needs a rethink.
+        // NOTE: Should this be Requiredness.REQUIRED? The Python codegen didn't do this, but needs a rethink.
         .requiredness(Requiredness.OPTIONAL)
         .__annotations(Seq(Annotation("builder_required", "true")))
         .result()

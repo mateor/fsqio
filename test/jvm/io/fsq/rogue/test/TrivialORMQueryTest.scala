@@ -116,7 +116,7 @@ object SimpleRecord extends TrivialORM.Meta[SimpleRecord] {
   }
 }
 
-// TODO(nsanch): Everything in the rogue-lift tests should move here, except for the lift-specific extensions.
+// TODO: Everything in the rogue-lift tests should move here, except for the lift-specific extensions.
 class TrivialORMQueryTest extends JUnitMustMatchers {
   val executor = new TrivialORM.MyQueryExecutor
 

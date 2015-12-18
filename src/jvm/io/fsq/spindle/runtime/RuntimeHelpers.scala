@@ -6,7 +6,7 @@ object RuntimeHelpers {
   def reportError(e: Throwable): Unit = errorHooks.reportError(e)
   def preserveUnknownFields(record: Record[_]): Boolean = configHooks.preserveUnknownFields(record)
 
-  // TODO(dan): We can clean up a bunch of this *Seq duplication if
+  // TODO: We can clean up a bunch of this *Seq duplication if
   // ForeignKeyField and ForeignKeySeqField can be unified some.
   trait ForeignKeyHooks {
     def missingKey[

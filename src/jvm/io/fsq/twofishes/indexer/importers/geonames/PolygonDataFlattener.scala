@@ -14,7 +14,7 @@ import org.apache.commons.net.util.Base64
 // run from twofishes root directory using the following command:
 // ./sbt "indexer/run-main io.fsq.twofishes.indexer.importers.geonames.PolygonDataFlattener"
 //
-// NOTE(rahul): This is a temporary workaround until I find/write an implementation
+// NOTE: This is a temporary workaround until I find/write an implementation
 // of FileInputFormat and RecordReader for shapefiles/geojson that can split
 // geojson is easy
 // https://github.com/mraad/Shapefile works for shapefiles but cannot split yet
