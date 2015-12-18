@@ -59,7 +59,7 @@ private class TwofishesInMemoryBlockCache extends BlockCache {
 class TwofishesFoursquareCacheConfig(config: Configuration, cacheLimit: Option[Int] = None) extends
     CacheConfig(cacheLimit.map(new LruBlockCache(_, 4*1024, config)).getOrElse(new TwofishesInMemoryBlockCache()),
                 true, cacheLimit.isEmpty, true, true, true, true, false) {
-      // TODO (norberthu): Not sure if inMemory arg should use cacheLimit.isEmpty or hardcod to true. Still need to
+      // TODO: Not sure if inMemory arg should use cacheLimit.isEmpty or hardcod to true. Still need to
       // investigate how LruBlockCache.cacheBlock treats this flag. The documentation for CacheConfig is not apparent
       // what the contract for this flag indicates.
 }
