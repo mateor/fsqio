@@ -1,25 +1,14 @@
 // Copyright 2012 Foursquare Labs Inc. All Rights Reserved.
+
 package io.fsq.twofishes.util
 
 import io.fsq.twofishes.gen.{GeocodeFeature, GeocodeInterpretation, YahooWoeType}
 import io.fsq.twofishes.util.Identity._
 import io.fsq.twofishes.util.Lists.Implicits._
 
-object GeoIdConstants {
-  def makeGeonameIds(ids: Int*): Seq[GeonamesId] = {
-    ids.map(i => GeonamesId(i.toLong))
-  }
-
-  val WashingtonDcIds = makeGeonameIds(4140963, 4138106) // city, state
-  val QueensNyIds = makeGeonameIds(5133273, 5133268)
-  val BrooklynNyIds = makeGeonameIds(5110302, 6941775) // city, county
-  val ManhattanNyIds = makeGeonameIds(5128581, 5128594) // city, county
-
-  // in greece, these are the admin2s of the attica admin1
-  val atticaDepartments = makeGeonameIds(445408, 445406, 445407, 406101)
-}
 
 object GeocodeFeatureUtils {
+
   def findFeaturesByWoeType(
     interpretation: GeocodeInterpretation,
     woeType: YahooWoeType
