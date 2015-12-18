@@ -174,8 +174,8 @@ class HFileInput[V](basepath: String, index: Index[String, V], shouldPreload: Bo
 
     val ret: ListBuffer[Array[Byte]] = new ListBuffer()
 
-    // I hate to encode this logic here, but I don't really want to thread it
-    // all the way through the storage logic.
+    // I'd rather not encode this logic here, but I don't really want to thread
+    // it all the way through the storage logic.
     while (new String(scanner.getKeyValue().getKey()).startsWith(key)) {
       if ((key.size >= 3) ||
           (key.size*1.0 / new String(scanner.getKeyValue().getKey()).size) >= minPrefixRatio) {
