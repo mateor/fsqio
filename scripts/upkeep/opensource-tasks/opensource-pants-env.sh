@@ -7,8 +7,8 @@ set -ex
 
 PYTHON=${PYTHON:-$(which python2.7)}
 
-# FSQIO_HOME is exported by the environ.sh file.
-PANTS_BOOTSTRAP="${FSQIO_HOME}/.pantsenv/fsqio"
+FSQIO_HOME="${FSQIO_HOME:-${HOME}/.cache/fsqio/setup}"
+PANTS_BOOTSTRAP="${FSQIO_HOME}/bootstrap"
 
 VENV_VERSION=13.1.2
 
