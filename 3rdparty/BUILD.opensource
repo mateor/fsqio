@@ -560,6 +560,13 @@ jar_library(
 )
 
 jar_library(
+  name = 'scalacheck',
+  jars = [
+    sjar(org = 'org.scalacheck', name = 'scalacheck', rev = '1.10.1')
+  ]
+)
+
+jar_library(
   name = 'scalate',
   tags = [
     'opensource',
@@ -701,6 +708,16 @@ jar_library(
   jars = [
     jar(org = 'com.weiglewilczek.slf4s', name = 'slf4s_2.9.1', rev = '1.0.7')
   ]
+)
+
+jar_library(
+  name = 'specs',
+  jars = [
+    sjar(org = 'org.scala-tools.testing', name = 'specs', rev = '1.6.11-fs'),
+  ],
+  dependencies = [
+    ':mockito'
+  ],
 )
 
 jar_library(
