@@ -79,7 +79,7 @@ def register_goals():
   task(
     name='validate-graph',
     action=ForceValidation,
-  ).install('gen', replace=True)
+  ).install('gen')
 
   task(
     name='map-python-exported-symbols',
