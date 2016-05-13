@@ -20,6 +20,7 @@ if [ -n "$PANTS_INI" ]; then
   export PANTS_CONFIG_OVERRIDE="$PANTS_INI"
 fi
 
+find {src,test}/python -name "*.pyc" -type f -delete
 
 if [ -z "$PANTSBINARY" ]; then
   exec .pantsenv/bin/pants "$@"
