@@ -2,14 +2,13 @@
 
 package io.fsq.spindle.runtime.test
 
-import io.fsq.spindle.codegen.test.gen._
+import io.fsq.spindle.codegen.runtime.enum.test.gen._
 import io.fsq.spindle.common.thrift.json.TReadableJSONProtocol
 import io.fsq.spindle.runtime.{KnownTProtocolNames, MetaRecord, TProtocolInfo}
 import java.nio.ByteBuffer
 import net.liftweb.json.{Diff, JsonAST, JsonParser, Printer}
 import org.apache.thrift.{TBase, TDeserializer, TFieldIdEnum}
 import org.apache.thrift.protocol.TType
-import org.apache.thrift.transport.{AutoExpandingBufferReadTransport, TMemoryBuffer}
 import org.junit.{Assert, Test}
 
 
