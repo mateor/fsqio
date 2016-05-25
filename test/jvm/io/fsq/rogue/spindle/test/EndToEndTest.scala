@@ -2,7 +2,7 @@
 
 package io.fsq.rogue.spindle.test
 
-import com.mongodb.{ReadPreference, WriteConcern}
+import com.mongodb.ReadPreference
 import io.fsq.rogue.Iter
 import io.fsq.rogue.spindle.{BulkInsertOne, BulkRemove, BulkRemoveOne, BulkReplaceOne, BulkUpdate, BulkUpdateOne,
     SpindleQuery}
@@ -436,10 +436,9 @@ class EndToEndTest extends JUnitMustMatchers {
     val venues = (1 to 5).map(_ => baseTestVenue())
     val venueIds = venues.map(_.id)
     val clauses = venues.map(v => BulkInsertOne(v))
-    db.bulk(clauses, writeConcern = WriteConcern.MAJORITY)
+    db.bulk(clauses)
 
-    Assert.assertEquals("Bulk insertOne venues not found in database",
-      venues.length, db.count(Q(ThriftVenue).where(_.id in venueIds)))
+    db.count(Q(ThriftVenue).where(_.id in venueIds)) must_== venues.length
   }
 
   @Test
@@ -453,12 +452,10 @@ class EndToEndTest extends JUnitMustMatchers {
     Assert.assertTrue("No venuesToKeep", venuesToKeep.length >= 1)
 
     val clauses = venuesToRemove.map(v => BulkRemoveOne(Q(ThriftVenue).where(_.id eqs v.id)))
-    db.bulk(clauses, writeConcern = WriteConcern.MAJORITY)
+    db.bulk(clauses)
 
-    Assert.assertEquals("BulkRemoveOne venues not removed",
-      0, db.count(Q(ThriftVenue).where(_.id in venuesToRemove.map(_.id))))
-    Assert.assertEquals("BulkRemoveOne removed wrong venues",
-      venuesToKeep.length, db.count(Q(ThriftVenue).where(_.id in venuesToKeep.map(_.id))))
+    db.count(Q(ThriftVenue).where(_.id in venuesToRemove.map(_.id))) must_== 0
+    db.count(Q(ThriftVenue).where(_.id in venuesToKeep.map(_.id))) must_== venuesToKeep.length
   }
 
   @Test
@@ -472,12 +469,10 @@ class EndToEndTest extends JUnitMustMatchers {
     Assert.assertTrue("No venuesToKeep", venuesToKeep.length >= 1)
 
     val clauses = Vector(BulkRemove(Q(ThriftVenue).where(_.id in venuesToRemove.map(_.id))))
-    db.bulk(clauses, writeConcern = WriteConcern.MAJORITY)
+    db.bulk(clauses)
 
-    Assert.assertEquals("BulkRemove venues not removed",
-      0, db.count(Q(ThriftVenue).where(_.id in venuesToRemove.map(_.id))))
-    Assert.assertEquals("BulkRemove removed the wrong venues",
-      venuesToKeep.length, db.count(Q(ThriftVenue).where(_.id in venuesToKeep.map(_.id))))
+    db.count(Q(ThriftVenue).where(_.id in venuesToRemove.map(_.id))) must_== 0
+    db.count(Q(ThriftVenue).where(_.id in venuesToKeep.map(_.id))) must_== venuesToKeep.length
   }
 
   @Test
@@ -494,7 +489,7 @@ class EndToEndTest extends JUnitMustMatchers {
       1, db.count(Q(ThriftVenue).where(_.id eqs venueToReplace.id)))
 
     val clauses = Vector(BulkReplaceOne(Q(ThriftVenue).where(_.userid eqs VenueUserIdToReplace), replacementVenue, upsert = false))
-    db.bulk(clauses, writeConcern = WriteConcern.MAJORITY)
+    db.bulk(clauses)
 
     Assert.assertEquals("Record to replace still in the database",
       0, db.count(Q(ThriftVenue).where(_.userid eqs VenueUserIdToReplace)))
@@ -502,12 +497,10 @@ class EndToEndTest extends JUnitMustMatchers {
       1, db.count(Q(ThriftVenue).where(_.userid eqs ReplacementVenueUserId)))
 
     val upsertVenue = baseTestVenue().toBuilder().result()
-    val upsertClauses = {
-      Vector(
-        BulkReplaceOne(Q(ThriftVenue).where(_.id eqs upsertVenue.id), upsertVenue, upsert = true)
-      )
+    val upsertClause = {
+      BulkReplaceOne(Q(ThriftVenue).where(_.id eqs upsertVenue.id), upsertVenue, upsert = true)
     }
-    db.bulk(upsertClauses, writeConcern = WriteConcern.MAJORITY)
+    db.bulk(Vector(upsertClause))
 
     Thread.sleep(3000)
 
@@ -528,7 +521,7 @@ class EndToEndTest extends JUnitMustMatchers {
         BulkUpdateOne(Q(ThriftVenue).where(_.id eqs nonExistantId).modify(_.userid setTo 999), upsert = false)
       )
     }
-    db.bulk(clauses, writeConcern = WriteConcern.MAJORITY)
+    db.bulk(clauses)
     Assert.assertEquals("Original venue still has original value",
       0, db.count(Q(ThriftVenue).where(_.id eqs original1.id).and(_.userid eqs 1)))
     Assert.assertEquals("Original venue does not have updated value",
@@ -547,7 +540,7 @@ class EndToEndTest extends JUnitMustMatchers {
         BulkUpdateOne(Q(ThriftVenue).where(_.id eqs original2.id).modify(_.userid setTo 3141591), upsert = true)
       )
     }
-    db.bulk(upsertClauses, writeConcern = WriteConcern.MAJORITY)
+    db.bulk(upsertClauses)
     Assert.assertEquals("Upsert did not insert both venues",
       2, db.count(Q(ThriftVenue).where(_.id in Vector(upsertVenue1.id, upsertVenue2.id))))
 
@@ -565,7 +558,7 @@ class EndToEndTest extends JUnitMustMatchers {
     val clause = {
       BulkUpdate(Q(ThriftVenue).where(_.id in venuesToUpdate.map(_.id)).modify(_.userid setTo 999), upsert = false)
     }
-    db.bulk(Vector(clause), writeConcern = WriteConcern.MAJORITY)
+    db.bulk(Vector(clause))
     Assert.assertEquals("Wrong number of un-updated records",
       venuesToNotUpdate.length, db.count(Q(ThriftVenue).where(_.userid eqs 1)))
     Assert.assertEquals("Wrong number of updated records",
@@ -575,7 +568,7 @@ class EndToEndTest extends JUnitMustMatchers {
     val upsertClause = {
       BulkUpdateOne(Q(ThriftVenue).where(_.id eqs upsertVenue.id).modify(_.userid setTo 999), upsert = true)
     }
-    db.bulk(Vector(upsertClause), writeConcern = WriteConcern.MAJORITY)
+    db.bulk(Vector(upsertClause))
     Assert.assertEquals("Upsert did not insert", 1, db.count(Q(ThriftVenue).where(_.id eqs upsertVenue.id)))
   }
 }
