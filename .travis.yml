@@ -11,8 +11,6 @@ addons:
 before_cache:
   - find . -name "*.py[co]" -print -delete
   - rm -fv $HOME/.ivy2/pants/*.{css,properties,xml,xsl}
-  # The stats cache contains timestamped reports unused by CI but that
-  # thrash the cache.  Skip caching these.
   - rm -rf $HOME/.cache/pants/stats
 
 cache:
@@ -33,7 +31,6 @@ env:
 
 script: |
   uname -a
-  java -version
   ./pants buildgen
   ./pants compile src::
   ./pants test test::
