@@ -25,10 +25,6 @@ env:
   global:
     - PANTS_CONFIG_OVERRIDE="['pants.ini', 'pants-travis-ci.ini']"
 
-before_script: |
-  - sleep 15
-  - mongo mydb_test --eval 'db.addUser("travis", "test");'
-
 script: |
   uname -a
   java -version
