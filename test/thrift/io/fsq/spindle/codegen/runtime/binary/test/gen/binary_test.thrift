@@ -1,6 +1,6 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
 
-namespace java io.fsq.spindle.codegen.test.gen
+namespace java io.fsq.spindle.codegen.runtime.binary.test.gen
 
 typedef binary (enhanced_types="bson:ObjectId") ObjectId
 

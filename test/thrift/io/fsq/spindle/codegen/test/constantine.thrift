@@ -21,7 +21,3 @@ const map<string,string> CRAZY = {
 const map<string, Foo> CRAZYENUMS = {
   "foo": Foo.bar, "bar": Foo.froo
 }
-
-
-
-
