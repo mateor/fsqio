@@ -2,6 +2,7 @@
 
 package io.fsq.spindle.runtime.test
 
+import io.fsq.spindle.codegen.runtime.test.gen._
 import io.fsq.spindle.codegen.runtime.enum.test.gen._
 import io.fsq.spindle.runtime.{KnownTProtocolNames, TProtocolInfo}
 import org.apache.thrift.TBase
