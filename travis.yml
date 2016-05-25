@@ -1,0 +1,46 @@
+# Enables support for a docker container-based build
+# which should provide faster startup times and beefier
+# "machines". This is also required in order to use the
+# cache configured below.
+sudo: false
+
+services:
+  - mongodb
+
+before_cache:
+  # Kill all python bytecode in our cached venvs.  Some files appear to
+  # get bytecode compiled in non-yet-understood circumstances leading to
+  # a full cache re-pack due to new bytecode files.
+  - find . -name "*.py[co]" -print -delete
+  - rm -fv $HOME/.ivy2/pants/*.{css,properties,xml,xsl}
+  # The stats cache contains timestamped reports unused by CI but that
+  # thrash the cache.  Skip caching these.
+  - rm -rf $HOME/.cache/pants/stats
+
+cache:
+  directories:
+    - $HOME/.cache/pants
+    - $HOME/.ivy2/pants
+    - $HOME/.ivy2/pants
+
+language: python
+
+python:
+  - "2.7"
+
+env:
+  global:
+    - PANTS_CONFIG_OVERRIDE="['pants.ini', 'pants-travis-ci.ini']"
+
+before_script: |
+# TODO(mateo): test without this hack suggested here: https://docs.travis-ci.com/user/database-setup/#MongoDB
+  - sleep 15
+  - mongo mydb_test --eval 'db.addUser("travis", "test");'
+
+script: |
+  uname -a
+  java -version
+  ./pants buildgen
+# Add a check here to ensure no unstaged buildgen changes - this is just a POC, if that.
+  ./pants compile src::
+  ./pants test test::
