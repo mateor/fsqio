@@ -3,6 +3,11 @@ sudo: false
 services:
   - mongodb
 
+addons:
+  apt:
+    packages:
+      - oracle-java8-installer
+
 before_cache:
   - find . -name "*.py[co]" -print -delete
   - rm -fv $HOME/.ivy2/pants/*.{css,properties,xml,xsl}
