@@ -1,6 +1,6 @@
 // Copyright 2013 Foursquare Labs Inc. All Rights Reserved.
 
-namespace java io.fsq.spindle.codegen.test.gen
+namespace java io.fsq.spindle.codegen.runtime.binary.test.gen
 
 struct ChildStruct7 {
   1: optional bool member1

@@ -2,7 +2,8 @@
 
 package io.fsq.spindle.runtime.test
 
-import io.fsq.spindle.codegen.runtime.strings.test.gen.{InnerStruct, KeyStruct, MapsWithNonStringKeys, TestStruct}
+import io.fsq.spindle.codegen.test.gen.{InnerStruct, TestStruct, TestStructNoUnknownFieldsTracking}
+import io.fsq.spindle.codegen.runtime.strings.test.gen.{KeyStruct, MapsWithNonStringKeys}
 import java.nio.ByteBuffer
 import org.bson.types.ObjectId
 import org.junit.Assert.assertEquals

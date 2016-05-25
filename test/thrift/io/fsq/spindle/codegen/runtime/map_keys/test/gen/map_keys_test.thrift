@@ -1,6 +1,6 @@
 // Copyright 2014 Foursquare Labs Inc. All Rights Reserved.
 
-namespace java io.fsq.spindle.codegen.test.gen
+namespace java io.fsq.spindle.codegen.runtime.map_keys.test.gen
 
 
 struct MapWithI32Keys {

@@ -2,8 +2,5 @@
 
 spindle_thrift_library(
   name = 'gen',
-  dependencies = [
-    'src/jvm/io/fsq/spindle/runtime',
-  ],
   sources = globs('*.thrift'),
 )

@@ -2,7 +2,7 @@
 
 package io.fsq.spindle.runtime.test
 
-import io.fsq.spindle.codegen.runtime.test.gen.{BSONObjectFields, ObjectIdFields, UUIDFields}
+import io.fsq.spindle.codegen.runtime.enhanced_types.test.gen.{BSONObjectFields, ObjectIdFields, UUIDFields}
 import io.fsq.spindle.runtime.{KnownTProtocolNames, TProtocolInfo}
 import java.util.UUID
 import org.apache.thrift.TBase

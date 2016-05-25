@@ -1,4 +1,4 @@
-# Copyright 2016 Foursquare Labs Inc. All Rights Reserved.
+# Copyright 2015 Foursquare Labs Inc. All Rights Reserved.
 
 spindle_thrift_library(
   name = 'gen',

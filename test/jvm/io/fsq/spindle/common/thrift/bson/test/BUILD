@@ -9,6 +9,6 @@ junit_tests(
     '3rdparty:thrift',
     'src/jvm/io/fsq/spindle/common/thrift/bson',
     'src/jvm/io/fsq/spindle/runtime',
-    'test/thrift/io/fsq/spindle/codegen/test',
+    'test/thrift/io/fsq/spindle/codegen/test/gen',
   ],
 )

@@ -2,7 +2,7 @@
 
 package io.fsq.spindle.runtime.test
 
-import io.fsq.spindle.codegen.test.gen.{ConstantineConstants, Foo}
+import io.fsq.spindle.codegen.runtime.constants.test.gen.{ConstantineConstants, Foo}
 import org.junit.Assert.{assertEquals, assertFalse, assertTrue}
 import org.junit.Test
 import org.specs.SpecsMatchers
