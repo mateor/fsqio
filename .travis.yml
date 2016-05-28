@@ -31,6 +31,4 @@ env:
 
 script: |
   uname -a
-  ./pants buildgen
-  ./pants compile src::
-  ./pants test test::
+  ./pants test test/jvm/io/fsq/spindle::
