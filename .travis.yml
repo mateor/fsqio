@@ -30,7 +30,7 @@ env:
     - PANTS_CONFIG_OVERRIDE="['pants.ini', 'pants-travis-ci.ini']"
 
 before_script: |
-  ls -ls /usr/lib/jvm \
+  ls -ls /usr/lib/jvm
   /usr/lib/jvm/java-8-oracle/bin/java -version
 
 script: |
