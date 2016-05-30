@@ -3,6 +3,11 @@ sudo: false
 services:
   - mongodb
 
+addons:
+  apt:
+    packages:
+      - oracle-java8-installer
+
 before_cache:
   - find . -name "*.py[co]" -print -delete
   - rm -fv $HOME/.ivy2/pants/*.{css,properties,xml,xsl}
@@ -21,11 +26,12 @@ python:
 
 env:
   global:
-    - JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
+    - JAVA_HOME="/usr/lib/jvm/java-8-oracle"
     - PANTS_CONFIG_OVERRIDE="['pants.ini', 'pants-travis-ci.ini']"
 
 before_script:
   ls -ls /usr/lib/jvm
+  /usr/lib/jvm/java-8-oracle/bin/java -version
+
 script: |
   uname -a
-  ./pants test test/jvm/io/fsq/spindle::
