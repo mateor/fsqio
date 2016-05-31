@@ -42,4 +42,4 @@ before_script: |
 script: |
   uname -a
   export JAVA_HOME=~/opt/jdk1.8.0_40/
-  ./pants -ldebug test test/jvm/io/fsq/spindle::
+  ./pants pom-resolve src::

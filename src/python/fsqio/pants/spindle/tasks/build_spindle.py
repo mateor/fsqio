@@ -43,7 +43,6 @@ class BuildSpindle(SpindleTask):
     global_args.extend([
       '--no-pantsrc',
       '--no-lock',
-      '-ldebug',
     ])
     pants_script = os.path.join(get_buildroot(), self.PANTS_SCRIPT_NAME)
     pants_command = [pants_script] + global_args + command
