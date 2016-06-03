@@ -384,6 +384,9 @@ jvm_third_party_map = {
         'servlet': 'jetty-servlet',
       }
     },
+    'deeplearning4j': {
+      'core': 'deeplearning4j-core'
+    },
     'elasticsearch': {
       'DEFAULT': 'elasticsearch',
       'hadoop': 'elasticsearch-hadoop-mr',
@@ -426,6 +429,9 @@ jvm_third_party_map = {
     },
     'mozilla': {
       'javascript': 'rhino',
+    },
+    'nd4j': {
+      'nd4j': 'nd4j',
     },
     'objectweb': {
       'asm': 'asm'
