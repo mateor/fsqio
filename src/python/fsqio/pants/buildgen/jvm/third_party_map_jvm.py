@@ -398,7 +398,8 @@ jvm_third_party_map = {
         'conf': 'deeplearning4j',
         'multilayer': 'deeplearning4j',
         'weights': 'deeplearning4j',
-      }
+      },
+      'util': 'deeplearning4j',
     },
     'elasticsearch': {
       'DEFAULT': 'elasticsearch',
