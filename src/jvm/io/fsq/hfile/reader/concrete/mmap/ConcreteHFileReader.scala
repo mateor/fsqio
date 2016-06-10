@@ -154,8 +154,11 @@ class ConcreteHFileReader(
   val trailerBuffer: ByteBuffer = blockReader(trailerStart, TrailerSize)
 
   val version = new Version(trailerBuffer)
+  val expectedMajorVersion = 1
+  val expectedMinorVersion =  0
   if (version.majorVersion != 1 && version.minorVersion != 0)
-    throw new Exception("wrong version")
+    throw new Exception("wrong version, got %d.%d, was expecting %d.%d."
+      .format(version.majorVersion, version.minorVersion, expectedMajorVersion, expectedMinorVersion))
 
 
   val trailer = new Trailer(trailerBuffer)
