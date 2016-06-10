@@ -42,5 +42,4 @@ before_script: |
   cd -
 script: |
   uname -a
-  export JAVA_HOME=~/opt/jdk1.8.0_40/bin
   ./pants -ldebug compile src::
