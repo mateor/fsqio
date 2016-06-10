@@ -15,6 +15,7 @@ before_cache:
 
 cache:
   directories:
+    - .local_artifact_cache/fsqio_pants_pom_pom_resolve_PomResolve
     - $HOME/.cache/pants
     - $HOME/.ivy2/pants
     - $HOME/.ivy2/pants
@@ -42,5 +43,4 @@ before_script: |
 script: |
   uname -a
   export JAVA_HOME=~/opt/jdk1.8.0_40/
-  ./pants compile src::
-  ./pants test test::
+  ./pants -ldebug compile src::
