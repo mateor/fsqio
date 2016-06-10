@@ -270,6 +270,7 @@ jvm_third_party_map = {
       'ical4j': 'ical4j',
     },
     'sf': {
+      'trove4j': 'trove4j',
       'uadetector': 'uadetector'
     }
   },
