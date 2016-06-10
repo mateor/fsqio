@@ -23,6 +23,7 @@ from pants.util.memo import memoized_property
 
 from fsqio.pants.spindle.tasks.spindle_task import SpindleTask
 from fsqio.pants.util.dirutil import safe_mkdir
+from pants.base.build_environment import get_buildroot
 
 
 class BuildSpindle(SpindleTask):
@@ -97,15 +98,15 @@ class BuildSpindle(SpindleTask):
         vt = targets[0]
         invalid_vts_by_target = {vt.target: vt}
         if not vt.valid:
-          args = ['--build-spindle-shelled', 'bundle', '--bundle-jvm-deployjar']
-          args.append(self.get_options().spindle_codegen_binary)
-          results = self.run_pants_no_lock(args, workunit_name='spindle-build')
+          # args = ['--build-spindle-shelled', 'bundle', '--bundle-jvm-deployjar']
+          # args.append(self.get_options().spindle_codegen_binary)
+          # results = self.run_pants_no_lock(args, workunit_name='spindle-build')
 
-          if results.returncode != 0:
-            # Purposefully not returning a message so the error from the shelled run can be surfaced.
-            raise TaskError()
+          # if results.returncode != 0:
+          #   # Purposefully not returning a message so the error from the shelled run can be surfaced.
+          #   raise TaskError()
 
-          spindle_bundle = self.spindle_bundle_out
+          spindle_bundle = os.path.join(get_buildroot(), 'spindle.jar')
           safe_mkdir(vt.results_dir)
           spindle_binary = os.path.join(vt.results_dir, 'spindle-bundle.jar')
           try:
