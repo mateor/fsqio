@@ -10,9 +10,11 @@ before_cache:
 
 cache:
   directories:
+    # The top three entries are Fsq.io specific and are intended to be managed by an artifact cache.
     - .local_artifact_cache/fsqio_pants_pom_pom_resolve_PomResolve
+    - .local_artifact_cache/fsqio_pants_spindle_tasks_build_spindle_BuildSpindle
+    - $HOME/.pom2
     - $HOME/.cache/pants
-    - $HOME/.ivy2/pants
     - $HOME/.ivy2/pants
 
 language: python
@@ -24,16 +26,15 @@ env:
   global:
     - PANTS_CONFIG_OVERRIDE="['pants.ini', 'pants-travis-ci.ini']"
 
+# Travis does not enable much JDK configuration when Python is the project language so we download our own tarball.
 before_script: |
-  mkdir ~/opt
-  cd ~/opt
+  mkdir ~/opt && cd ~/opt
   wget --no-cookies --no-check-certificate --header \
-  "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" \
-  "http://download.oracle.com/otn-pub/java/jdk/8u40-b25/jdk-8u40-linux-x64.tar.gz"
+    "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" \
+    "http://download.oracle.com/otn-pub/java/jdk/8u40-b25/jdk-8u40-linux-x64.tar.gz"
   tar xzf jdk-8u40-linux-x64.tar.gz
   cd -
+
 script: |
   uname -a
   ./pants buildgen
-  ./pants -ldebug compile src::
-  ./pants test test::
