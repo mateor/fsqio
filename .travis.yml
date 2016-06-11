@@ -3,6 +3,11 @@ sudo: false
 services:
   - mongodb
 
+addons:
+  apt:
+    packages:
+      - oracle-java8-installer
+
 before_cache:
   - find . -name "*.py[co]" -print -delete
   - rm -fv $HOME/.ivy2/pants/*.{css,properties,xml,xsl}
@@ -29,6 +34,7 @@ python:
 env:
   global:
     - PANTS_CONFIG_OVERRIDE="['pants.ini', 'pants-travis-ci.ini']"
+    - JAVA_HOME="$HOME/opt/jdk1.8.0_40"
 
 # Travis does not enable much JDK configuration when Python is the project language so we download our own tarball.
 before_script: |
@@ -43,6 +49,4 @@ before_script: |
 
 script: |
   uname -a
-  ./pants buildgen
-  ./pants compile src::
   ./pants test test::
