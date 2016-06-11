@@ -16,15 +16,15 @@ before_cache:
 cache:
   directories:
     # These three are Fsq.io specific and hold artifacts that were intended to be managed by a shared artifact cache.
-    - .local_artifact_cache/fsqio_pants_pom_pom_resolve_PomResolve
-    - .local_artifact_cache/fsqio_pants_spindle_tasks_build_spindle_BuildSpindle
-    - $HOME/.pom2
-    # The fsqio and pants virtualenvs and shaded tooling.
-    - $HOME/.cache/fsqio
-    - $HOME/.cache/pants
-    - $HOME/.ivy2/pants
-    # The install location for our managed JDK install.
-    - $HOME/opt
+    # - .local_artifact_cache/fsqio_pants_pom_pom_resolve_PomResolve
+    # - .local_artifact_cache/fsqio_pants_spindle_tasks_build_spindle_BuildSpindle
+    # - $HOME/.pom2
+    # # The fsqio and pants virtualenvs and shaded tooling.
+    # - $HOME/.cache/fsqio
+    # - $HOME/.cache/pants
+    # - $HOME/.ivy2/pants
+    # # The install location for our managed JDK install.
+    # - $HOME/opt
 
 language: python
 
