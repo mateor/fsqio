@@ -38,5 +38,4 @@ before_script: |
 script: |
   uname -a
   ./pants buildgen
-  ./pants compile src::
-  ./pants test test::
+  ./pants -ldebug compile src::
