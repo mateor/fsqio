@@ -2,6 +2,9 @@
 
 package io.fsq.spindle.runtime.test
 
+import io.fsq.spindle.codegen.common.gen._
+import io.fsq.spindle.codegen.libs.gen._
+
 import io.fsq.spindle.codegen.test.gen._
 import io.fsq.spindle.common.thrift.json.TReadableJSONProtocol
 import io.fsq.spindle.runtime.{KnownTProtocolNames, MetaRecord, TProtocolInfo}

@@ -15,6 +15,8 @@ junit_tests(
     'src/jvm/io/fsq/spindle/common/thrift/bson',
     'src/jvm/io/fsq/spindle/common/thrift/json',
     'src/jvm/io/fsq/spindle/runtime',
+    'test/thrift/io/fsq/spindle/codegen/common/gen',
+    'test/thrift/io/fsq/spindle/codegen/libs/gen',
     'test/thrift/io/fsq/spindle/codegen/runtime/binary/test/gen',
     'test/thrift/io/fsq/spindle/codegen/runtime/constants/test/gen',
     'test/thrift/io/fsq/spindle/codegen/runtime/enhanced_types/test/gen',

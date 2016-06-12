@@ -3,6 +3,8 @@
 package io.fsq.spindle.common.thrift.bson.test
 
 import com.mongodb.DBObject
+import io.fsq.spindle.codegen.common.gen._
+import io.fsq.spindle.codegen.libs.gen._
 import io.fsq.spindle.codegen.test.gen._
 import io.fsq.spindle.common.thrift.bson.{TBSONBinaryProtocol, TBSONObjectProtocol}
 import io.fsq.spindle.runtime.UntypedRecord

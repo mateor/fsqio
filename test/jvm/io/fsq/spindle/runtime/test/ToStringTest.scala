@@ -2,7 +2,11 @@
 
 package io.fsq.spindle.runtime.test
 
-import io.fsq.spindle.codegen.test.gen.{InnerStruct, TestStruct, TestStructNoUnknownFieldsTracking}
+import io.fsq.spindle.codegen.common.gen._
+import io.fsq.spindle.codegen.libs.gen._
+import io.fsq.spindle.codegen.test.gen._
+
+//import io.fsq.spindle.codegen.test.gen.{InnerStruct, TestStruct, TestStructNoUnknownFieldsTracking}
 import io.fsq.spindle.codegen.runtime.strings.test.gen.{KeyStruct, MapsWithNonStringKeys}
 import java.nio.ByteBuffer
 import org.bson.types.ObjectId
