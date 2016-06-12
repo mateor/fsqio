@@ -16,9 +16,14 @@ before_cache:
 cache:
   directories:
     - .local_artifact_cache/fsqio_pants_pom_pom_resolve_PomResolve
+    - .local_artifact_cache/fsqio_pants_spindle_tasks_build_spindle_BuildSpindle
+    - $HOME/.pom2
+    # # The fsqio and pants virtualenvs and shaded tooling.
+    - $HOME/.cache/fsqio
     - $HOME/.cache/pants
     - $HOME/.ivy2/pants
-    - $HOME/.ivy2/pants
+    # # The install location for our managed JDK install.
+    - $HOME/opt
 
 language: python
 
@@ -27,7 +32,7 @@ python:
 
 env:
   global:
-    - JAVA_HOME="/usr/lib/jvm/java-8-oracle"
+    - JAVA_HOME="$HOME/opt/jdk1.8.0_40"
     - PANTS_CONFIG_OVERRIDE="['pants.ini', 'pants-travis-ci.ini']"
 
 before_script: |
@@ -42,4 +47,4 @@ before_script: |
   cd -
 script: |
   uname -a
-  ./pants -ldebug compile src::
+  ./pants -ldebug test test::
