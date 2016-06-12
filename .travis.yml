@@ -16,7 +16,6 @@ before_cache:
 cache:
   directories:
     - .local_artifact_cache/fsqio_pants_pom_pom_resolve_PomResolve
-    - .local_artifact_cache/fsqio_pants_spindle_tasks_build_spindle_BuildSpindle
     - $HOME/.pom2
     # # The fsqio and pants virtualenvs and shaded tooling.
     - $HOME/.cache/fsqio
@@ -47,4 +46,4 @@ before_script: |
   cd -
 script: |
   uname -a
-  ./pants -ldebug test test::
+  ./pants -ldebug test test/jvm/io/fsq/spindle::
