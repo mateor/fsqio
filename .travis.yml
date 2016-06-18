@@ -44,6 +44,7 @@ before_script: |
 # TODO(mateo): Enable an error on buildgen diff.
 script: |
   uname -a
+  free -m
+  cat /proc/meminfo || echo "need sudo"
   ./pants buildgen
-  ./pants compile src::
-  ./pants test test::
+
