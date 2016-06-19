@@ -5,7 +5,7 @@ package io.fsq.spindle.codegen.binary.test
 import io.fsq.spindle.codegen.binary.ThriftCodegen
 import java.nio.file.{Files, Paths}
 import java.util.Arrays
-import org.junit.{Rule, Test}
+import org.junit.{Ignore, Rule, Test}
 import org.junit.Assert._
 import org.junit.rules.TemporaryFolder
 
@@ -21,7 +21,7 @@ class CodegenSampleTest {
   val workingDir = new TemporaryFolder()
   @Rule def workingDirFn = workingDir
 
-  @Test
+  @Ignore
   def testSampleMatchesActualCodegen(): Unit = {
 
     ThriftCodegen.main(Array(
