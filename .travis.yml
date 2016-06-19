@@ -46,6 +46,5 @@ script: |
   uname -a
   free -m
   cat /proc/meminfo || echo "need sudo"
-  ./pants compile src::
   ./pants test test::
 
