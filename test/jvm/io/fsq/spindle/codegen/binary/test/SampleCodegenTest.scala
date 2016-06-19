@@ -21,6 +21,7 @@ class CodegenSampleTest {
   val workingDir = new TemporaryFolder()
   @Rule def workingDirFn = workingDir
 
+  @Test
   def testSampleMatchesActualCodegen(): Unit = {
 
     ThriftCodegen.main(Array(
