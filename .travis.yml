@@ -45,5 +45,5 @@ before_script: |
 script: |
   uname -a
   ./pants compile src::
-  ./pants test test::
+  ./pants -ldebug test test::
 
