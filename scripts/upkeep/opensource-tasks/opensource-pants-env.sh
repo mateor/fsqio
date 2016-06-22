@@ -10,7 +10,7 @@ PYTHON=${PYTHON:-$(which python2.7)}
 FSQIO_HOME="${FSQIO_HOME:-${HOME}/.cache/fsqio/setup}"
 PANTS_BOOTSTRAP="${FSQIO_HOME}/bootstrap"
 
-VENV_VERSION=13.1.2
+VENV_VERSION=15.0.2
 
 VENV_PACKAGE=virtualenv-${VENV_VERSION}
 VENV_TARBALL=${VENV_PACKAGE}.tar.gz
