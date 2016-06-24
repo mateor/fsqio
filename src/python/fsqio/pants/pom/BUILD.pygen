@@ -48,6 +48,7 @@ python_library(
   name = 'pom_resolve',
   sources = ['pom_resolve.py', '__init__.py'],
   dependencies = [
+    '3rdparty/python:pantsbuild.pants',
     '3rdparty/python:requests-futures',
     ':coordinate',
     ':dependency',
@@ -63,4 +64,7 @@ python_library(
 python_library(
   name = 'sort_projects',
   sources = ['sort_projects.py', '__init__.py'],
+  dependencies = [
+    '3rdparty/python:twitter.common.collections',
+  ],
 )

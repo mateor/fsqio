@@ -3,4 +3,8 @@
 python_library(
   name = 'pom_publish',
   sources = ['pom_publish.py', '__init__.py'],
+  dependencies = [
+    '3rdparty/python:pantsbuild.pants',
+    '3rdparty/python:twitter.common.collections',
+  ],
 )

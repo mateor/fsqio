@@ -60,7 +60,7 @@ def register_goals():
   task(
     name='validate-graph',
     action=ForceValidation,
-  ).install('gen', replace=True)
+  ).install('gen')
 
   Goal.by_name('resolve').uninstall_task('ivy')
   task(name='pom-resolve', action=PomResolve).install()

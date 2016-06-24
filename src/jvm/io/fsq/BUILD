@@ -166,7 +166,7 @@ pom_target(
     'src/jvm/io/fsq/twofishes/server/resources/warmup',
     'src/jvm/io/fsq/twofishes/util',
     'src/jvm/io/fsq/twofishes/util/data',
-    'src/thrift/io/fsq/twofishes',
+    'src/thrift/io/fsq/twofishes:twofishes',
   ],
   provides = artifact(
     org = 'io.fsq',
