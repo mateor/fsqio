@@ -50,8 +50,6 @@ logger = logging.getLogger(__name__)
 
 logging.getLogger('fsqio.pants.pom').setLevel(logging.WARN)
 
-# TODO(mateo): Having this as a global variable isn't great - let's make this a member of something.
-_resolved_dependencies = set()
 
 def stderr(*args, **kwargs):
   print(*args, file=sys.stderr, **kwargs)
@@ -99,8 +97,7 @@ def traverse_project_graph(
 
   fetcher, pom_str = fetchers.resolve_pom(maven_dep.groupId, maven_dep.artifactId,
                                       maven_dep.version, jar_coordinate=maven_dep.coordinate)
-  if fetcher is None:
-    raise MissingResourceException('Failed to fetch maven pom or resource: {}'.format(maven_dep.coordinate))
+
   # TODO(mateo): This code block was not executed in almost 3 months - it should be deleted and instead raise an
   # exception requesting a pin.
   if '(' in maven_dep.version or '[' in maven_dep.version:
@@ -120,12 +117,10 @@ def traverse_project_graph(
     maven_dep = maven_dep._replace(version=not_qualified_versions[-1]._version_str)
 
   dep_graph = MavenDependencyGraph()
-  if maven_dep in _resolved_dependencies:
-    logger.debug("Skipping resolve for {} because it was already processed.".format(maven_dep))
-    return dep_graph
-
   dep_graph.ensure_node(maven_dep.coordinate)
 
+  if fetcher is None:
+    raise MissingResourceException('Failed to fetch maven pom or resource: {}'.format(maven_dep.coordinate))
   if pom_str is None:
     logger.debug(
       'Pom did not exist for dependency: {}.\n'
@@ -225,7 +220,6 @@ def traverse_project_graph(
             .format(pom.coordinate, key, pinned_version))
           new_local_pinned_versions[key] = pinned_version
 
-    _resolved_dependencies.add(maven_dep)
     child_dep_graph = traverse_project_graph(
       maven_dep=dep,
       fetchers=fetchers,
@@ -248,18 +242,14 @@ def resolve_maven_deps(args):
   maven_deps, fetchers, global_pinned_versions, global_exclusions = args
   dep_graph = MavenDependencyGraph()
   for maven_dep in maven_deps:
-    logger.debug("Resolving root target from 3rdparty: {}".format(maven_dep))
-    if maven_dep not in _resolved_dependencies:
-      local_dep_graph = traverse_project_graph(
-        maven_dep,
-        fetchers,
-        global_pinned_versions=global_pinned_versions,
-        local_pinned_versions={},
-        global_exclusions=global_exclusions,
-        local_exclusions=maven_dep.exclusions,
-      )
-    else:
-      local_dep_graph = MavenDependencyGraph()
+    local_dep_graph = traverse_project_graph(
+      maven_dep,
+      fetchers,
+      global_pinned_versions=global_pinned_versions,
+      local_pinned_versions={},
+      global_exclusions=global_exclusions,
+      local_exclusions=maven_dep.exclusions,
+    )
     dep_graph.merge(local_dep_graph)
   sys.stderr.write('.')
   return dep_graph
