@@ -8,7 +8,7 @@ junit_tests(
   ],
   dependencies = [
     '3rdparty:junit',
-    '3rdparty:scala-library-2.11.8',  # override buildgen to include missing scala-library due to pants bug
+    '3rdparty:scala-library-2.10.4',  # override buildgen to include missing scala-library due to pants bug
     'src/jvm/io/fsq/macros',
   ],
 )

@@ -4,7 +4,7 @@ package io.fsq.macros
 
 import scala.language.experimental.macros  // Scala made me do it.
 import scala.language.implicitConversions
-import scala.reflect.macros.blackbox.Context
+import scala.reflect.macros.Context
 
 class StackElement(val stackTraceElement: StackTraceElement) {
   /**
@@ -34,49 +34,19 @@ object StackElement {
   implicit def materializeStackElement: StackElement = macro stackElementImpl
 
   def stackElementImpl(c: Context): c.Expr[StackElement] = {
-    def enclosingClass(initialSymbol: c.Symbol): Option[c.Symbol] = {
-      var symbol: c.Symbol = initialSymbol
-      while (symbol != null && symbol != c.universe.NoSymbol && !symbol.isClass) {
-        symbol = symbol.owner
-      }
-
-      if (symbol != null && symbol != c.universe.NoSymbol) {
-        Some(symbol)
-      } else {
-        None
-      }
-    }
-
-    def enclosingMethod(initialSymbol: c.Symbol): Option[c.Symbol] = {
-      var symbol: c.Symbol = initialSymbol
-      while (symbol != null && symbol != c.universe.NoSymbol && !symbol.isMethod) {
-        symbol = symbol.owner
-      }
-
-      if (symbol != null && symbol != c.universe.NoSymbol) {
-        Some(symbol)
-      } else {
-        None
-      }
-    }
-
     def constExpr[T](value: T): c.universe.Expr[T] = {
       c.Expr[T](c.universe.Literal(c.universe.Constant(value)))
     }
 
-    val clazz = enclosingClass(c.internal.enclosingOwner).map(_.fullName).getOrElse("UNKNOWN_CLASS")
-
-    val method = enclosingMethod(c.internal.enclosingOwner).map(symbol => {
-      symbol.fullName.drop(clazz.length + 1)
-    }).getOrElse({
+    val clazz = c.enclosingClass.symbol.fullName
+    val method = if (c.enclosingMethod != null) {
+      c.enclosingMethod.symbol.fullName.drop(clazz.length + 1)
+    } else {
       // default body constructor of class
       clazz.drop(clazz.lastIndexOf('.') + 1)
-    })
-
-    val file = c.enclosingPosition.source.file.name
-
+    }
+    val file = c.enclosingUnit.source.file.name
     val line = c.enclosingPosition.line
-
     c.universe.reify { new StackElement(new StackTraceElement(
       constExpr(clazz).splice,
       constExpr(method).splice,
@@ -93,3 +63,4 @@ object StackElement {
   }
 
 }
+

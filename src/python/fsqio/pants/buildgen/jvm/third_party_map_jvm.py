@@ -497,14 +497,7 @@ jvm_third_party_map = {
       'jedis': 'jedis',
     },
   },
-  'scala': {
-    'util': {
-      'parsing': 'scala-parser-combinators',
-      'DEFAULT': 'SKIP',
-    },
-    'xml': 'scala-xml',
-    'DEFAULT': 'SKIP',
-  },
+  'scala': 'SKIP',
   'scalaj': {
     'http': 'scalaj-http',
   },

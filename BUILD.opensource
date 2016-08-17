@@ -20,3 +20,31 @@ jar_library(
    sjar(org = 'io.fsq', name = 'buildgen-emit-exported-symbols', rev = '1.1.0'),
  ],
 )
+
+
+jar_library(
+  name = 'scalcamacros-quasiquotes',
+  jars = [
+    sjar(org = 'org.scalamacros', name = 'quasiquotes', rev = '2.1.0'),
+  ],
+)
+
+
+jar_library(
+  name = 'scalac-macro-paradise-plugin',
+  jars = [
+    jar(org = 'org.scalamacros', name = 'paradise_2.10.4', rev = '2.1.0'),
+  ],
+  dependencies = [
+    ':scalcamacros-quasiquotes'
+  ],
+)
+
+
+# Add compiler plugins to this list to enable for Fsq.io only.
+target(
+  name = 'fsqio-plugin-jars',
+  dependencies = [
+    ':scalac-macro-paradise-plugin',
+  ],
+)

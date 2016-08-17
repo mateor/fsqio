@@ -8,7 +8,6 @@ scala_library(
     '3rdparty:commons-logging',  # Runtime dep.
     '3rdparty:finagle',
     '3rdparty:netty',
-    '3rdparty:scala-xml',
     '3rdparty:twitter-util',
   ],
 )
