@@ -191,7 +191,7 @@ jvm_third_party_map = {
       'logging': 'twitter-util',
       'ostrich': 'ostrich',
       'parrot': 'iago',
-      'penguin': 'korean-text-scala-2.10',
+      'penguin': 'korean-text',
       'scalding': 'scalding',
       'thrift': {
         'ServiceInstance': 'zookeeper-lock',
