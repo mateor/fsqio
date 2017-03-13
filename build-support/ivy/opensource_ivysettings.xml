@@ -17,7 +17,8 @@ Copyright 2015 Foursquare Labs Inc. All Rights Reserved.
 
     <chain name="chain-repos" returnFirst="true">
 
-      <ibiblio name="download.osgeo.org"
+
+      <ibiblio name="osgeo"
                m2compatible="true"
                usepoms="true"
                root="http://download.osgeo.org/webdav/geotools"
@@ -63,4 +64,12 @@ Copyright 2015 Foursquare Labs Inc. All Rights Reserved.
 
     </chain>
   </resolvers>
+  <caches default="default" lockStrategy="no-lock" useOrigin="true">
+    <cache name="default" basedir="${ivy.cache.dir}" useOrigin="true" defaultTTL="8h"
+      artifactPattern="[orgPath]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"
+      ivyPattern="[orgPath]/[module]/[revision]/ivy-[revision].xml">
+      <ttl revision="latest.integration" duration="0ms" />
+    </cache>
+  </caches>
+
 </ivysettings>

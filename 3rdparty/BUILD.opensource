@@ -6,6 +6,25 @@ def sjar(org, name, **kwargs):
   scala_jar_version = '2.11'
   return jar(org = org, name = '%s_%s' % (name, scala_jar_version), **kwargs)
 
+
+managed_jar_dependencies(name='management',
+  artifacts=[
+    ':scalaz-streams',
+    ':scalacheck',
+  ],
+)
+
+jar_library(
+  name = 'scalaz-streams',
+  tags = [
+    'opensource',
+    'fscommon',
+  ],
+  jars = [
+    sjar(org = 'org.scalaz.stream', name = 'scalaz-stream', rev = '0.7.3a'),
+  ],
+)
+
 jar_library(
   name = 'akka',
   tags = [
