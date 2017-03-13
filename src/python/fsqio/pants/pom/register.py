@@ -28,5 +28,6 @@ def build_file_aliases():
   )
 
 def register_goals():
-  Goal.by_name('resolve').uninstall_task('ivy')
-  task(name='pom-resolve', action=PomResolve).install()
+  # Goal.by_name('resolve').uninstall_task('ivy')
+  # task(name='pom-resolve', action=PomResolve).install()
+  pass

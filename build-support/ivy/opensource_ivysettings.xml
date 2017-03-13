@@ -16,7 +16,44 @@ Copyright 2015 Foursquare Labs Inc. All Rights Reserved.
   <resolvers>
 
     <chain name="chain-repos" returnFirst="true">
+
+      <ibiblio name="download.osgeo.org"
+               m2compatible="true"
+               usepoms="true"
+               root="http://download.osgeo.org/webdav/geotools"
+               pattern="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"
+               />
+
       <ibiblio name="maven-central" m2compatible="true" descriptor="required"/>
+
+      <ibiblio name="maven.twttr.com"
+               m2compatible="true"
+               usepoms="true"
+               root="https://maven.twttr.com"
+               pattern="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"
+               />
+
+      <ibiblio name="bintray-jnegre"
+               m2compatible="true"
+               usepoms="true"
+               root="https://bintray.com/artifact/download/jnegre/maven"
+               pattern="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"
+               />
+
+      <ibiblio name="conjars.org"
+               m2compatible="true"
+               usepoms="true"
+               root="http://conjars.org/repo"
+               pattern="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"
+               />
+
+      <ibiblio name="clojars.org"
+               m2compatible="true"
+               usepoms="true"
+               root="http://clojars.org/repo"
+               pattern="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"
+               />
+
 
       <!-- The mvn standard local filesystem repo/cache -->
       <filesystem name="local.m2" m2compatible="true" local="true" checkmodified="true">
