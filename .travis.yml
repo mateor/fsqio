@@ -32,8 +32,16 @@ script: |
   git diff --exit-code || exit "$?"
   echo "Running under PANTS_CONFIG_FILES: ${PANTS_CONFIG_FILES}"
   ./pants compile src::
-  ./pants test --test-pytest-coverage="auto" test/python::
-  ./pants test --test-junit-coverage --test-junit-coverage-processor="jacoco" test/jvm::
+  ./pants test \
+     --test-pytest-coverage=fsqio,fsqio_test \
+     --test-pytest-fast \
+     --no-test-pytest-chroot \
+     test/python::
+  ./pants test \
+      --test-junit-coverage \
+      --test-junit-fast \
+      --no-test-junit-chroot \
+      --test-junit-coverage-processor="jacoco" test/jvm::
 after_success:
   - coveralls
 notifications:
