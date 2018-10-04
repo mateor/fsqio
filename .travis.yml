@@ -13,6 +13,7 @@ cache:
 language: python
 python:
 - '2.7'
+install: pip install coveralls
 env:
   global:
   - PANTS_CONFIG_FILES="['pants.ini', 'pants-travis-ci.ini']"
@@ -31,7 +32,10 @@ script: |
   git diff --exit-code || exit "$?"
   echo "Running under PANTS_CONFIG_FILES: ${PANTS_CONFIG_FILES}"
   ./pants compile src::
-  ./pants test test::
+  ./pants test --test-pytest-coverage="auto" test/python::
+  ./pants test --test-junit-coverage --test-junit-coverage-processor="jacoco" test/jvm::
+after_success:
+  - coveralls
 notifications:
   slack:
     rooms:
