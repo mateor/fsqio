@@ -9,6 +9,7 @@ open source projects that had previously lived in their own separate Github repo
 to a build tool specifically designed to work with monorepos called [Pants](https://pantsbuild.github.io/).
 The entire `Fsq.io` repo is is built and tested by Pants.
 
+
 Deploying directly from our monorepo has some nice advantages, for consumers of our open source projects as
 well as Foursquare itself. The entire repo is built daily by our CIs and internal contributions are open sourced
 automatically without the overhead of publishing. This repo will always contain the latest code that we use
